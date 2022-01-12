@@ -1,0 +1,33 @@
+{
+	"data": [
+		{
+			"node": {
+				"id": "public",
+				"name": "公共示例",
+				"path": "/public",
+				"sideShow": true,
+				"functionPointLanguage": ["list"]
+			},
+			"child": [
+				{
+					"node": {
+						"id": "public-table",
+						"pid": "public",
+						"name": "Table 表格",
+						"path": "/public/table",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "public-class",
+						"pid": "public",
+						"name": "Class 样式布局",
+						"path": "/public/class",
+						"sideShow": true
+					}
+				}
+			]
+		}
+	]
+}

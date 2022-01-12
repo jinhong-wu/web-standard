@@ -1,0 +1,208 @@
+**页面效果：**
+
+![image-1](assets/md/imgs/table.png)
+
+# 全部用法
+```html
+<!-- 表格-上方操作区 封装组件（app-table-head） -->
+<app-table-head (search)="tableDataFn(true, $event)" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
+	<ng-container ngProjectAs="btns">
+		<button nz-button nzType="primary">新增</button>
+		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+	</ng-container>
+</app-table-head>
+<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
+	nzShowSizeChanger="true" [nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal"
+	[(nzPageIndex)]="tablePage" [(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()"
+	(nzPageSizeChange)="tableDataFn(true)" (nzCurrentPageDataChange)="refreshStatus()">
+	<!-- 排序功能：(nzSortOrderChange)="sortFn($event)" -->
+	<thead (nzSortOrderChange)="sortFn($event)">
+		<tr>
+			<!-- th：勾选框、时间、ip等固定列宽加上对应class -->
+			<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
+				(nzCheckedChange)="checkAll($event)"></th>
+			<!-- 正常写法 -->
+			<!--<th class="time">时间</th>
+			<th class="ip">IP</th>
+			<th>描述</th>
+			<th nzWidth="120px">操作</th>-->
+			<!-- 可配置列写法 -->
+			<ng-container *ngFor="let item of colsData">
+				<!-- 排序功能：[nzShowSort]="item.sort" [nzColumnKey]="item.key" -->
+				<th [hidden]="!item.show" [ngClass]="item.class" [style.width]="item.width" [nzShowSort]="item.sort"
+					[nzColumnKey]="item.key">
+					{{ item.value }}
+				</th>
+			</ng-container>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of Table.data">
+			<td nzShowCheckbox [(nzChecked)]="checkedIds[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+			<td [hidden]="!colsData[0].show">{{item.time}}</td>
+			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
+			<td [hidden]="!colsData[2].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
+			<td [hidden]="!colsData[3].show">
+				<a nz-button nzType="link">修改</a>
+				<a nz-button nzType="link" [disabled]="true">查看结果</a>
+			</td>
+		</tr>
+	</tbody>
+</nz-table>
+```
+```typescript
+import { Component, OnInit, Injector } from '@angular/core';
+import { BaseTableComponent } from 'src/app/common/component/base/base-table.component';
+import { TableService } from 'src/app/common/api/public/table/table.service';
+
+@Component({
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.less']
+})
+// extends BaseTableComponent必须
+export class TableComponent extends BaseTableComponent implements OnInit {
+
+	constructor(
+		public injector: Injector,
+		public TableService: TableService
+	) {
+		super(injector);
+	}
+
+	// 举例：精确查询
+	advanceData = [
+		{ 
+			key: "strategyName", 
+			type: "text", 
+			style: { class: 'width1' },
+			placeholder: "策略名称", 
+		},
+		{ 
+			key: "strategyStatus", 
+			type: "select",
+			placeholder: "策略状态", 
+			options: [
+				{ value: 'PROCESSING', label: '进行中' },
+				{ value: 'SUCCESS', label: '下发成功' },
+				{ value: 'FAILED', label: '下发失败' },
+				{ value: 'CANCELED', label: '已取消' },
+			]
+		},
+	];
+
+	colsData = [
+    {
+      key: "time",
+      value: "时间",
+			class: "time",
+      show: true,
+			sort: true
+    },
+		{
+      key: "ip",
+      value: "IP",
+			class: "ip",
+      show: true,
+    },
+		{
+      key: "describe",
+      value: "描述",
+      show: true,
+    },
+		{
+      key: "handle",
+      value: "操作",
+			width: "120px",
+      show: true,
+    },
+  ];
+
+  ngOnInit(): void {
+		this.tableDataFn();
+  }
+
+	// 获取表格数据
+	tableDataFn(reset: boolean = false, advance: boolean = false) {
+    this.tableInit(reset, advance);
+		this.TableService.tableData(this.tableParams).subscribe((res) => {
+			this.tableLoading = false;
+			this.tableTotal = res.total;
+			this.tableData = res.data;
+		});
+	}
+
+}
+```
+# 上方操作区（app-table-head）
+**使用-参数：**
+- searchShow：右侧搜索区，默认true显示
+- search：获取表格数据方法（searchShow = false时可不传，true时必传）
+- advanceShow：精确查询，默认false隐藏
+- advanceData：精确查询数据，参考interface advanceData（advanceShow = false可不传，true时必传）
+- colsData 可配置列数据，参考interface colsData
+```html
+<!-- tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询 -->
+<!-- <ng-container ngProjectAs="btns">左侧按钮区</ng-container> -->
+<app-table-head (search)="tableDataFn(true, $event)" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
+	<ng-container ngProjectAs="btns">
+		<button nz-button nzType="primary">新增</button>
+		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+	</ng-container>
+</app-table-head>
+```
+```typescript
+interface advanceData {
+	key: string;  // 对应param参数
+	type: string;  // 输入框类型（文字输入框text、下拉框select）
+	value?: string | number; // ngModel输入值
+	options?: advanceDataOptions[]  // type:'select'时，必传
+	placeholder?: string  // placeholder提示文字
+	style?: {  // .item样式
+		// .item盒子新增class，更多class查看common.less .table-head
+		//（输入框宽度.width2 >.width-short，为了美观，width2数据建议放在最后）
+		class?: string
+	}	
+}
+interface advanceDataOptions {
+	label: string;
+	value: string;
+}
+interface colsData {
+	key: string,  // 对应列key
+	value: string,  // 对应列名称
+	show: boolean,  // 对应列是否展示
+	class?: string,  // 对应列class
+	width?: string  // 对应列class
+}
+```
+
+# 勾选框
+- 多个勾选框
+```html
+<thead>
+	<tr>
+		<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
+			(nzCheckedChange)="checkAll($event)">
+		</th>
+	</tr>
+</thead>
+<tbody>
+	<tr *ngFor="let item of Table.data">
+		<td nzShowCheckbox [(nzChecked)]="checkedIds[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+	</tr>
+</tbody>
+```
+- 单个勾选框
+```html
+<thead>
+	<tr></tr>
+</thead>
+<tbody>
+	<tr *ngFor="let item of Table.data">
+		<td nzShowCheckbox [(nzChecked)]="checkedIds[item.id]" (nzCheckedChange)="checkRadio(item.id, $event)"></td>
+	</tr>
+</tbody>
+```
+
+

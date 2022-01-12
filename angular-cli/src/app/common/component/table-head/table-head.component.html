@@ -1,0 +1,80 @@
+<div class="table-head">
+	<!-- 精确查询 -->
+	<div class="advance" *ngIf="advanceShow">
+		<div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
+			<!-- 文字输入框 -->
+			<ng-container *ngIf="item.type =='text'">
+				<input nz-input [(ngModel)]="item.value" [placeholder]="item.placeholder">
+			</ng-container>
+
+			<!-- 下拉选择框 -->
+			<ng-container *ngIf="item.type =='select'">
+				<nz-select nzAllowClear [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
+					<nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
+					</nz-option>
+				</nz-select>
+			</ng-container>
+		</div>
+		<div class="item-btn">
+			<!-- 查询 -->
+			<button nz-button nzSearch nzType="primary" (click)="searchFn(true)">
+				{{ publicI18nBase.search }}
+			</button>
+			<!-- 导入查询结果 -->
+			<button nz-button nzSearch nzType="primary" (click)="exportSearchFn()">
+				{{ publicI18nBase.exportSearch }}
+			</button>
+		</div>
+	</div>
+
+	<!-- 左侧操作区 -->
+	<div class="btns">
+		<ng-content select="btns"></ng-content>
+	</div>
+
+	<!-- 右侧搜索区 -->
+	<div class="search" *ngIf="searchShow">
+		<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
+			<input nz-input [placeholder]='publicI18nBase.placeholder' (keydown.enter)="searchFn()">
+		</nz-input-group>
+		<ng-template #suffixButton>
+			<button nz-button nzType="primary" nzSearch (click)="searchFn()">
+				<i nz-icon nzType="search"></i>
+			</button>
+		</ng-template>
+		<!-- 精确查询 -->
+		<ng-container *ngIf="advanceData.length > 0">
+			<button nz-button nzType="primary" (click)="advanceShow = !advanceShow">
+				<i nz-icon nzType="up" nzTheme="outline" *ngIf="!advanceShow"></i>
+				<i nz-icon nzType="down" nzTheme="outline" *ngIf="advanceShow"></i>
+			</button>
+		</ng-container>
+		<!-- 列可配置 -->
+		<ng-container *ngIf="colsData.length > 0">
+			<button nz-button nzType="primary" nz-popover nzPopoverTrigger="click" nzPopoverPlacement="bottomRight"
+				[nzPopoverTitle]="titleTemplate" [nzPopoverContent]="contentTemplate">
+				<i nz-icon nzType="unordered-list" nzTheme="outline"></i>
+			</button>
+			<ng-template #titleTemplate>
+				<div class="col-title">
+					<label nz-checkbox [(ngModel)]="isAllChecked" (ngModelChange)="allCheckFn()"
+						[nzIndeterminate]="isIndeterminate">
+						{{ publicI18nBase.allCheck }}
+					</label>
+					<a nz-button nzType="link" (click)="resetCheckFn()">
+						{{ publicI18nBase.reset }}
+					</a>
+				</div>
+			</ng-template>
+			<ng-template #contentTemplate>
+				<nz-checkbox-wrapper class="col-content" (nzOnChange)="colRefresh()">
+					<div *ngFor="let item of colsData">
+						<label nz-checkbox [nzValue]="item.value" [(ngModel)]="item.show">
+							{{item.value}}
+						</label>
+					</div>
+				</nz-checkbox-wrapper>
+			</ng-template>
+		</ng-container>
+	</div>
+</div>

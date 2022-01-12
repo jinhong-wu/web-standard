@@ -25,12 +25,32 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.less"
+              "node_modules/ng-zorro-antd/ng-zorro-antd.less",
+							"node_modules/prismjs/themes/prism-okaidia.css",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
+              "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",
+              "node_modules/katex/dist/katex.min.css",
+							"src/common.less"
             ],
-            "scripts": []
+            "scripts": [
+							"node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-csharp.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
+              "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
+              "node_modules/katex/dist/katex.min.js"
+						]
           },
           "configurations": {
             "production": {
@@ -123,6 +143,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-cli"
+    }
+  },
+  "defaultProject": "angular-cli",
+  "cli": {
+    "analytics": "cc42b728-44af-4485-afdf-0045e29f8138"
+  }
 }

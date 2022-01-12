@@ -1,0 +1,330 @@
+@import url("./common-name.less");
+
+/*
+	* 字体颜色
+*/
+.ft-red {
+  color: @ft-red  !important;
+}
+
+.ft-orange {
+  color: @ft-orange  !important;
+}
+
+.bg-orange {
+  background-color: @bg-orange  !important;
+}
+
+.ft-green {
+  color: @ft-green;
+}
+
+/*
+	* 省略号
+*/
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+	* 统计卡片
+*/
+.card-box {
+  display: flex;
+  padding: 0 5px;
+
+  .card-item {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    padding: 10px 20px 16px 28px;
+    margin-right: 14px;
+    white-space: nowrap;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, .1);
+    background: #FFFFFF;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      width: 120px;
+      height: 90px;
+      transition: 0.3s linear;
+      opacity: 0;
+    }
+
+    &:before {
+      top: -15px;
+      left: -20px;
+      border-radius: 0 0px 90px 0px;
+      background: #D3E8FF;
+    }
+
+    &:after {
+      bottom: -30px;
+      right: -60px;
+      border-radius: 80px 0 0 0;
+      background: #F2F8FF;
+    }
+
+    &:hover:after,
+    &:hover:before {
+      opacity: 1;
+    }
+
+    &.click {
+      cursor: pointer;
+    }
+
+    .num {
+      display: flex;
+      align-items: baseline;
+      font-weight: bold;
+
+      .total {
+        font-size: 28px;
+        font-family: D-DIN-Bold, D-DIN;
+        color: @ft-blue;
+
+        .unit {
+          margin: 0 7px;
+          font-size: 14px;
+        }
+      }
+
+      .trend {
+        flex: 1;
+        text-align: right;
+        font-size: 16px;
+        font-family: D-DIN-Bold, D-DIN;
+        color: @ft-green;
+
+        &.up {
+          color: @ft-red;
+        }
+
+        >img {
+          width: 11px;
+          vertical-align: baseline;
+        }
+      }
+    }
+
+    .title {
+      margin-top: 7px;
+      font-size: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: #1B1B1B;
+    }
+  }
+}
+
+/*
+	* 模块盒子
+*/
+.inner-box {
+  position: relative;
+  margin-top: @space;
+  padding: @space;
+  border-radius: 4px;
+  background: #fff;
+  color: @color;
+}
+
+.inner-box-shadow {
+  .inner-box();
+  box-shadow: 0 0 5px #ddd
+}
+
+.inner-title {
+  position: relative;
+  margin-bottom: 10px;
+  min-height: 20px;
+  font-weight: 500;
+  color: @color;
+}
+
+.inner-title-border {
+  .inner-title();
+  padding-left: 10px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 5px;
+    width: 2px;
+    height: 13px;
+    background: @ft-blue;
+  }
+}
+
+/*
+	* 表格
+*/
+table {
+  tr {
+
+    th,
+    td {
+      &.center {
+        text-align: center;
+      }
+    }
+
+    th {
+      &.checkbox {
+        width: 40px;
+      }
+
+      &.time {
+        width: 150px;
+      }
+
+      &.time-short {
+        width: 100px;
+      }
+
+      &.ip {
+        width: 120px;
+      }
+    }
+
+    td {
+      max-width: 0;
+      .ellipsis();
+    }
+  }
+}
+
+// 表格-上方操作区
+.table-head {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: @space;
+
+  .advance {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: @space;
+
+    .item {
+      width: 20%;
+      max-width: 300px;
+      padding: 0 5px 5px 0;
+
+      &.width-short {
+        width: 10%;
+        max-width: 150px;
+      }
+
+      &.width2 {
+        width: 40%;
+        max-width: 600px;
+      }
+
+      >* {
+        width: 100%;
+      }
+    }
+
+    .item-btn {
+      flex: 1;
+      white-space: nowrap;
+
+      >button {
+        margin-right: @space-samll;
+      }
+    }
+  }
+
+  .btns button {
+    margin-right: @space-samll;
+  }
+
+  .search {
+    flex: 1;
+    text-align: right;
+
+    >button {
+      margin-left: @space-samll;
+    }
+
+    .search-input {
+      width: 30%;
+      min-width: 260px;
+    }
+
+  }
+}
+
+// 表格-上方操作区-可配置列
+.col-title {
+  display: flex;
+
+  .ant-btn {
+    flex: 1;
+    margin: 0;
+    text-align: right;
+  }
+
+}
+
+.col-content>div {
+  margin-bottom: @space-samll;
+}
+
+/*
+	* 【布局】左树右表格
+*/
+.tree-table {
+  display: flex;
+  width: 100%;
+
+  .left-tree {
+    padding: @space @space 0 0;
+    width: 320px;
+    height: calc(100vh - 183px);
+    border-right: 1px solid #e8e8e8;
+    overflow-y: auto;
+  }
+
+  .right-table {
+    flex: 1;
+    padding: @space 0 0 @space;
+  }
+}
+
+/*
+	* ng-zorro 修改样式
+*/
+.ant-btn {
+  border: none !important;
+
+  &.ant-btn-link {
+    padding: 0;
+    margin-right: @space-samll;
+    line-height: inherit;
+    height: inherit;
+  }
+}
+
+nz-row {
+
+  &,
+  nz-col {
+    margin: 0 !important;
+  }
+}

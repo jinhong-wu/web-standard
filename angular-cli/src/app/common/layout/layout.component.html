@@ -1,0 +1,71 @@
+<nz-layout class="app-layout">
+	<!-- 侧边栏 -->
+	<nz-sider nzCollapsible nzWidth='230px' [(nzCollapsed)]="isCollapsed">
+		<div class="logo">
+			<a routerLink="/home">
+				<img src="assets/imgs/common/logo.png">
+			</a>
+		</div>
+		<div class="menu-sider">
+			<ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+				<ng-container *ngFor="let item of MenuService.siderList">
+					<ng-container *ngIf="item.child">
+						<li nz-submenu [nzTitle]="item.node.name" [nzIcon]="item.node.icon"
+							[nzOpen]="routerLinkBread[1]?.path == item.node.path">
+							<ul *ngFor="let itemChild of item.child">
+								<li nz-menu-item *ngIf="itemChild.node.sideShow" [nzSelected]="itemChild.node.path == routerLinkActive">
+									<a [routerLink]="[itemChild.node.path]">
+										<i nz-icon [nzType]="itemChild.node.icon" *ngIf="itemChild.node.icon"></i>
+										{{itemChild.node.name}}
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ng-container>
+					<ng-container *ngIf="!item.child">
+						<li nz-menu-item *ngIf="item.node.sideShow" [nzSelected]="item.node.path == routerLinkActive">
+							<a [routerLink]="[item.node.path]">
+								<i nz-icon [nzType]="item.node.icon" *ngIf="item.node.icon"></i>
+								<span>{{ item.node.name }}</span>
+							</a>
+						</li>
+					</ng-container>
+				</ng-container>
+			</ul>
+		</div>
+	</nz-sider>
+
+	<nz-layout class="layout-body">
+		<nz-header>
+			<div class="logo-title">{{ publicI18n?.project?.title }}</div>
+			<div class="menu-first">
+				<a class="item" *ngFor="let menu of MenuService.menuList" [routerLink]="[menu.node.path]"
+					routerLinkActive="selected" (click)="MenuService.chooseMenu(menu.node.path)">
+					{{ menu.node.name }}
+				</a>
+				<a class="item" nz-dropdown [nzDropdownMenu]="linkmenu">
+					参考链接<i nz-icon nzType="down"></i>
+				</a>
+				<nz-dropdown-menu #linkmenu="nzDropdownMenu">
+					<ul nz-menu nzSelectable>
+						<li nz-menu-item *ngFor="let item of linkmenus">
+							<a target="_blank" [href]="item.href">{{item.name}}</a>
+						</li>
+					</ul>
+				</nz-dropdown-menu>
+			</div>
+		</nz-header>
+		<nz-content>
+			<!-- 面包屑：导航路径 -->
+			<nz-breadcrumb nzSeparator=">">
+				<nz-breadcrumb-item *ngFor="let item of routerLinkBread">
+					{{item.name}}
+				</nz-breadcrumb-item>
+			</nz-breadcrumb>
+			<!-- 路由 -->
+			<div class="router-box">
+				<router-outlet></router-outlet>
+			</div>
+		</nz-content>
+	</nz-layout>
+</nz-layout>

@@ -1,0 +1,135 @@
+@import url("~src/common-name");
+
+.app-layout {
+  width: 100vw;
+}
+
+// 左-侧边栏
+:host ::ng-deep nz-sider {
+  height: 100vh;
+  z-index: 10;
+  box-shadow: 2px 0 6px #0015291f;
+  background: #fff !important;
+
+  .logo {
+    text-align: center;
+    line-height: @headerH;
+    background: #1976d2;
+
+    img {
+      margin: 10px;
+      height: 40px;
+    }
+  }
+
+  .menu-sider {
+    height: calc(100% - @headerH - 48px);
+    overflow-x: hidden;
+
+    >ul {
+      height: 100%;
+      border: none;
+    }
+
+    /*滚动条整体样式*/
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /*滚动条里面小方块*/
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #c1c1c1;
+    }
+
+    /*滚动条轨道*/
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+  }
+
+  .ant-layout-sider-trigger {
+    color: rgba(0, 0, 0, .65);
+    background: #fff;
+  }
+
+}
+
+// 右-layout
+@layoutMinW: 1100px;
+
+:host ::ng-deep .layout-body {
+  height: 100vh;
+  overflow-x: auto !important;
+
+  nz-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 @space;
+    min-width: @layoutMinW;
+    z-index: 10;
+    box-shadow: 0px 2px 6px #0015291f;
+    background: #fff;
+
+    .logo-title {
+      padding-right: @space;
+      font-size: 20px;
+      color: #504b4b;
+    }
+
+    .menu-first {
+      display: flex;
+
+      .item {
+        position: relative;
+        padding: 0 @space;
+        font-size: 16px;
+        border-bottom: 2px solid transparent;
+        color: #191919;
+
+        &::after {
+          position: absolute;
+          top: 26px;
+          right: 0;
+          content: "";
+          width: 1px;
+          height: 13px;
+          background: #60B7FF;
+        }
+
+        &:last-child:after {
+          content: inherit;
+        }
+
+        &.selected {
+          color: #18A3FE;
+          border-bottom-color: #1890FF;
+        }
+
+        >i {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  nz-content {
+    width: 100%;
+    height: calc(100% - @headerH);
+    padding: @space;
+    min-width: @layoutMinW;
+    overflow: auto;
+    background-color: #f0f2f5;
+
+    nz-breadcrumb {
+      margin-bottom: 7px;
+    }
+
+    .router-box {
+      padding: 10px;
+      min-height: calc(100vh - @headerH - @space*2 - 28px);
+      border-radius: 2px;
+      background: #fff;
+    }
+  }
+}
