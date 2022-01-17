@@ -14,7 +14,7 @@ export class UploadComponent implements OnInit {
 
   ngOnInit(): void {
 		//setTimeout(()=>{
-		//	this.UploadService.import({
+		//	this.UploadService.file({
 		//		importUrl: '',
 		//		templateUrl: 'aa',
 		//		close(compo) {

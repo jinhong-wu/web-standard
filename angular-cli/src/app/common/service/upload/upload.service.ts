@@ -7,6 +7,9 @@ interface importOptions {
 	templateUrl?: string,  // 下载模板地址
 	accept?: string  // 接受数据类型
 	size?: number,  // 接受数据大小，单位：KB
+	bigSize?: number,  // 大文件界限大小，单位：KB
+	bigSingle?: number,  // 大文件分片大小，单位：KB
+	bigInitUrl?: string,  // 大文件传输前初始化url
 	close?: Function  // 下载弹框关闭后操作
 }
 
@@ -22,7 +25,7 @@ export class UploadService extends BaseComponent {
 	}
 
 	// 导入文件
-	import(options: importOptions) {
+	file(options: importOptions) {
 		const modal = this.nzModal.create({
 			...this.tip.modal(),
 			nzTitle: this.i18n.baseList.import,
@@ -36,6 +39,5 @@ export class UploadService extends BaseComponent {
 		// 支持拖拽（该弹出框关闭函数调用nzOnCancel）
 		this.tip.modalAfter(modal);
 	}
-
 
 }

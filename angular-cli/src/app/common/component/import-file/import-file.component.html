@@ -8,7 +8,7 @@
 		</div>
 		<!-- 单选、后端参数file -->
 		<nz-upload nzType="drag" [nzAction]="importUrl" [nzAccept]="accept" [nzSize]="size" [nzDisabled]="uploadLoading"
-			[nzBeforeUpload]="nzBeforeUpload" (nzChange)="nzChange($event)">
+			[nzBeforeUpload]="nzBeforeUpload" [nzCustomRequest]="nzCustomRequest" (nzChange)="nzChange($event)">
 			<p class="ant-upload-drag-icon"><i nz-icon nzType="inbox"></i></p>
 			<p class="ant-upload-text">{{ i18n.baseList.uploadPlaceholder }}</p>
 		</nz-upload>

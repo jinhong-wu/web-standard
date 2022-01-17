@@ -14,7 +14,7 @@
 - size：接受数据大小，默认不限制，单位：KB
 - close：下载弹框关闭后操作
 ```typescript
-this.UploadService.import({
+this.UploadService.file({
 	importUrl: '',
 	templateUrl: '',
 	close(compo) {
@@ -22,6 +22,14 @@ this.UploadService.import({
 	}
 });
 ```
+
+# 大文件上传（串行分片）
+
+和上传/导入文件相同  
+**使用-参数：**
+- bigSize：大文件界限大小（超过即为大文件分片上传），默认为50MB，单位：KB
+- bigSingle：大文件分片大小，默认为10MB，单位：KB
+- bigInitUrl：大文件传输前初始化url（告知后端分片数量等信息）
 
 # 下载文件
 
