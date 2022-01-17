@@ -20,6 +20,10 @@ import { NzToolTipModule } from "ng-zorro-antd/tooltip";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 @NgModule({
   declarations: [],
@@ -45,7 +49,11 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 		NzToolTipModule,
 		NzSelectModule,
 		NzPopoverModule,
-		NzCheckboxModule
+		NzCheckboxModule,
+		NzAlertModule,
+		NzNotificationModule,
+		NzMessageModule,
+		NzUploadModule,
   ],
 	// tip的位置，持续时间，最大数量
 	providers: [

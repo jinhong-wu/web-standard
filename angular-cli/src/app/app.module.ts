@@ -23,6 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './common/layout/layout.component';
 import { SharedModule } from './common/shared.module';
+import { ComponentModule } from './common/component/component.module';
+import { PipeModule } from './common/pipe/pipe.module';
 
 registerLocaleData(zh);
 export function createTranslateLoader(http: HttpClient) {
@@ -39,6 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
 		BrowserAnimationsModule,
     AppRoutingModule,
 		HttpClientModule,
+		ComponentModule,
+		PipeModule,
 		SharedModule,
 		TranslateModule.forRoot({
       loader: {

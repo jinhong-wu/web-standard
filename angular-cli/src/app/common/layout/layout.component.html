@@ -37,7 +37,7 @@
 
 	<nz-layout class="layout-body">
 		<nz-header>
-			<div class="logo-title">{{ publicI18n?.project?.title }}</div>
+			<div class="logo-title">{{ i18n.i18nList?.projectTitle }}</div>
 			<div class="menu-first">
 				<a class="item" *ngFor="let menu of MenuService.menuList" [routerLink]="[menu.node.path]"
 					routerLinkActive="selected" (click)="MenuService.chooseMenu(menu.node.path)">

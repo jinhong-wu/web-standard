@@ -7,11 +7,17 @@ import { SharedModule } from 'src/app/common/shared.module';
 import { ClassComponent } from './class/class.component';
 import { TableComponent } from './table/table.component';
 import { ComponentModule } from 'src/app/common/component/component.module';
+import { ModalComponent } from './modal/modal.component';
+import { ModalCreateComponent } from './modal/modal-create/modal-create.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
 		TableComponent,
-		ClassComponent
+		ClassComponent,
+		ModalComponent,
+		ModalCreateComponent,
+		UploadComponent
 	],
   imports: [
     CommonModule,
@@ -19,6 +25,9 @@ import { ComponentModule } from 'src/app/common/component/component.module';
 		SharedModule,
 		ComponentModule,
 		MarkdownModule.forChild(), 
-  ]
+  ],
+	entryComponents: [
+		ModalCreateComponent
+	]
 })
 export class PublicModule { }

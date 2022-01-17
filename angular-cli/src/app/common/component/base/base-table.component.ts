@@ -103,7 +103,7 @@ export class BaseTableComponent extends BaseComponent {
     this.MenuService.createTab({
       type: "create",
       pid: this.tab.id,
-      name: this.publicI18n.base.create + this.tab.name ? this.tab.name : "",
+      name: this.i18n.baseList.create + this.tab.name ? this.tab.name : "",
     });
   }
 
@@ -112,7 +112,7 @@ export class BaseTableComponent extends BaseComponent {
     this.MenuService.createTab({
       type: "update",
       pid: this.tab.id,
-      name: this.publicI18n.base.update + "：" + item.nodeName,
+      name: this.i18n.baseList.update + "：" + item.nodeName,
       data: item,
     });
   }

@@ -94,12 +94,12 @@
 **使用：**
 ```html
 <div class="table-head">
-	<!-- 左侧操作区 -->
+	<!-- 左侧按钮区 -->
 	<div class="btns">
 		<button nz-button nzType="primary">按钮一</button>
 		<button nz-button nzType="primary" [disabled]="'true'">按钮二</button>
 	</div>
-	<!-- 右侧搜索区 -->
+	<!-- 右侧查询区 -->
 	<div class="search">
 		<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
 			<input nz-input placeholder='输入关键字进行查询' (keydown.enter)="tableDataFn(true)">
@@ -109,7 +109,7 @@
 				<i nz-icon nzType="search"></i>
 			</button>
 		</ng-template>
-		<!-- 右侧搜索区-精确查询 -->
+		<!-- 右侧查询区-精确查询 -->
 		<button nz-button nzType="primary">
 			<i nz-icon nzType="up" nzTheme="outline"></i>
 		</button>
@@ -161,42 +161,7 @@ table {
 	</div>
 	<!-- 右侧列表 -->
 	<div class="right-table">
-		<div class="table-head">
-			<div class="btns">
-				<button nz-button nzType="primary">按钮一</button>
-				<button nz-button nzType="primary" [disabled]="'true'">按钮二</button>
-			</div>
-			<div class="search">
-				<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton"  (keydown.enter)="tableDataFn(true)">
-					<input nz-input placeholder='输入关键字进行查询'>
-				</nz-input-group>
-				<ng-template #suffixButton>
-					<button nz-button nzType="primary" nzSearch (click)="tableDataFn(true)">
-						<i nz-icon nzType="search"></i>
-					</button>
-				</ng-template>
-				<button nz-button nzType="primary">
-					<i nz-icon nzType="up" nzTheme="outline"></i>
-				</button>
-			</div>
-		</div>
-		<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
-			nzShowSizeChanger="true" [nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal"
-			[(nzPageIndex)]="tablePage" [(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()"
-			(nzPageSizeChange)="tableDataFn(true)" (nzCurrentPageDataChange)="refreshStatus()">
-			<thead>
-				<tr>
-					<th>表头一</th>
-					<th>表头二</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let item of Table.data">
-					<td>{{item.xxx}}</td>
-					<td>{{item.xxx}}</td>
-				</tr>
-			</tbody>
-		</nz-table>
+		<!-- 查阅：公共示例-Table 表格 -->
 	</div>
 </div>
 ```
@@ -206,17 +171,25 @@ table {
 ```html
 <!-- nz-spin 加载效果（必须） -->
 <nz-spin [nzSpinning]="cardLoading">
-    <div class="card-box">
-        ...代码
-    </div>
+	<div class="card-box">
+	</div>
 </nz-spin>
 ```
 - 表格
 ```html
 <!-- [nzLoading]="tableLoading"（必须） -->
 <nz-table [nzLoading]="tableLoading">
-	...代码
 </nz-table>
+```
+- 弹出框
+```html
+<!-- nz-spin 加载效果（必须） -->
+<nz-spin [nzSpinning]="formLoading">
+	<div class="content">
+	</div>
+	<div class="footer">
+	</div>
+</nz-spin>
 ```
 
 # 省略号（ellipsis）

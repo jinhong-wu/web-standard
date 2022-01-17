@@ -34,10 +34,12 @@ interface colsData {
 })
 /**
  * @name 表格-上方操作区
- * @param searchShow 右侧搜索区，默认true显示
+ * @param searchShow 右侧查询区，默认true显示
  * @param search 获取表格数据方法（searchShow = false时可不传，true时必传）
  * @param advanceShow 精确查询，默认false隐藏
  * @param advanceData 精确查询数据，参考interface advanceData（advanceShow = false可不传，true时必传）
+ * @param exportShow 精确查询-导出，默认true显示  
+ * @param export 精确查询-导出方法（exportShow = false时可不传，true时必传）
  * @param colsData 可配置列数据，参考interface colsData
  * @example
  * tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
@@ -45,13 +47,13 @@ interface colsData {
  * 		左侧按钮区
  * </ng-container>
  * 
- * <app-table-head (search)="tableDataFn(true, $event)" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
+ * <app-table-head (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
 		<ng-container ngProjectAs="btns">
 			<button nz-button nzType="primary">新增</button>
 			<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
 		</ng-container>
 	 </app-table-head>
- */
+*/
 export class TableHeadComponent extends BaseComponent implements OnInit {
 
   constructor(
@@ -61,9 +63,11 @@ export class TableHeadComponent extends BaseComponent implements OnInit {
 	}
 
 	@Input() searchShow: any = true;
-	@Output() search = new EventEmitter<boolean>(); 
+	@Output() search = new EventEmitter<boolean>();
 	@Input() advanceShow: any = false;
 	@Input() advanceData: advanceData[] = [];
+	@Input() exportShow: any = true;
+	@Output() export = new EventEmitter<boolean>();
 	@Input() colsData: colsData[] = [];
 
 	// 可配置列
@@ -86,6 +90,7 @@ export class TableHeadComponent extends BaseComponent implements OnInit {
 
 	// 精确查询-导出查询结果
   exportSearchFn(){
+		this.export.emit();
   }
 
 	// 可配置列-刷新

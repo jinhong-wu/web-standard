@@ -26,6 +26,24 @@
 						"path": "/public/class",
 						"sideShow": true
 					}
+				},
+				{
+					"node": {
+						"id": "public-modal",
+						"pid": "public",
+						"name": "Modal 弹出框",
+						"path": "/public/modal",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "public-upload",
+						"pid": "public",
+						"name": "Upload 上传/下载",
+						"path": "/public/upload",
+						"sideShow": true
+					}
 				}
 			]
 		}

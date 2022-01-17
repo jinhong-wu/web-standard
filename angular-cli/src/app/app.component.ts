@@ -13,11 +13,8 @@ export class AppComponent extends BaseComponent {
 		super(injector)
     window.sessionStorage.setItem("lang", "zh");
 		
-		let timer = setInterval(()=>{
-			if (!this.publicI18nLoading) {
-				clearInterval(timer);
-				document.getElementsByTagName("title")[0].innerHTML = this.publicI18n.project.title;
-			}
-		}, 500);
+		this.i18n.promise(()=>{
+			document.getElementsByTagName("title")[0].innerHTML = this.i18n.i18nList.projectTitle;
+		});
   }
 }

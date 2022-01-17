@@ -7,16 +7,28 @@ import { TableService } from 'src/app/common/api/public/table/table.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.less']
 })
+// extends BaseTableComponent必须
 export class TableComponent extends BaseTableComponent implements OnInit {
 
-  constructor(
+	constructor(
 		public injector: Injector,
 		public TableService: TableService
 	) {
 		super(injector);
 	}
 
-  ngOnInit(): void {
-  }
-
+	ngOnInit() {
+		
+	}
 }
+
+
+//this.tableTotal = 10;
+//this.tableData = new Array(10).fill(0).map((_, index) => {
+//	return {
+//		id: index,
+//		time: '2022-01-01 12:00:00',
+//		ip: '255.255.255.255',
+//		describe: `超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述`,
+//	};
+//});

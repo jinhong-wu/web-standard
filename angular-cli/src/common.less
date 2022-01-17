@@ -204,86 +204,15 @@ table {
     td {
       max-width: 0;
       .ellipsis();
-    }
-  }
-}
 
-// 表格-上方操作区
-.table-head {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: @space;
-
-  .advance {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: @space;
-
-    .item {
-      width: 20%;
-      max-width: 300px;
-      padding: 0 5px 5px 0;
-
-      &.width-short {
-        width: 10%;
-        max-width: 150px;
-      }
-
-      &.width2 {
-        width: 40%;
-        max-width: 600px;
-      }
-
-      >* {
-        width: 100%;
-      }
-    }
-
-    .item-btn {
-      flex: 1;
-      white-space: nowrap;
-
-      >button {
+      .ant-btn-link {
+        padding: 0;
         margin-right: @space-samll;
+        line-height: inherit;
+        height: inherit;
       }
     }
   }
-
-  .btns button {
-    margin-right: @space-samll;
-  }
-
-  .search {
-    flex: 1;
-    text-align: right;
-
-    >button {
-      margin-left: @space-samll;
-    }
-
-    .search-input {
-      width: 30%;
-      min-width: 260px;
-    }
-
-  }
-}
-
-// 表格-上方操作区-可配置列
-.col-title {
-  display: flex;
-
-  .ant-btn {
-    flex: 1;
-    margin: 0;
-    text-align: right;
-  }
-
-}
-
-.col-content>div {
-  margin-bottom: @space-samll;
 }
 
 /*
@@ -310,21 +239,64 @@ table {
 /*
 	* ng-zorro 修改样式
 */
-.ant-btn {
-  border: none !important;
-
-  &.ant-btn-link {
-    padding: 0;
-    margin-right: @space-samll;
-    line-height: inherit;
-    height: inherit;
-  }
-}
 
 nz-row {
 
   &,
   nz-col {
     margin: 0 !important;
+  }
+}
+
+.ant-modal-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ant-modal {
+    top: 0;
+
+    // confirm 按钮顺序
+    .ant-modal-confirm-btns {
+      display: flex;
+      justify-content: flex-end;
+
+      .ant-btn {
+        margin-left: 8px;
+        order: 2;
+      }
+
+      .ant-btn-primary {
+        order: 1;
+      }
+
+    }
+
+  }
+
+  // modal
+  &.ant-modal-wrap-base {
+    .ant-modal-body {
+      padding: 0;
+
+      .content {
+        padding: @space*2;
+
+        small {
+          font-weight: 400;
+          color: #a5a5a5;
+        }
+      }
+
+      .footer {
+        text-align: right;
+        padding: @space @space*2;
+        border-top: 1px solid #f0f0f0;
+
+        >button {
+          margin-left: @space-samll;
+        }
+      }
+    }
   }
 }

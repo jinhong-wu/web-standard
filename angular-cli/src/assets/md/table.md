@@ -1,3 +1,8 @@
+**文件：**
+- 全局属性：BaseTableComponent（common/component/base/base.component.ts）
+- 表格属性&方法：BaseTableComponent（common/component/base/base-table.component.ts）
+- 【组件】表格-上方操作区：app-table-head（common/component/table-head/table-head.component）
+
 **页面效果：**
 
 ![image-1](assets/md/imgs/table.png)
@@ -5,10 +10,14 @@
 # 全部用法
 ```html
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
-<app-table-head (search)="tableDataFn(true, $event)" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
+<app-table-head (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData"
+	[advanceShow]="advanceShow" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary">新增</button>
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+	</ng-container>
+	<ng-container ngProjectAs="tips">
+		<nz-alert nzShowIcon nzType="warning" nzMessage="该表格警告语句"></nz-alert>
 	</ng-container>
 </app-table-head>
 <nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
@@ -125,26 +134,33 @@ export class TableComponent extends BaseTableComponent implements OnInit {
 	// 获取表格数据
 	tableDataFn(reset: boolean = false, advance: boolean = false) {
     this.tableInit(reset, advance);
-		this.TableService.tableData(this.tableParams).subscribe((res) => {
-			this.tableLoading = false;
-			this.tableTotal = res.total;
-			this.tableData = res.data;
-		});
+		//this.TableService.tableData(this.tableParams).subscribe((res) => {
+		//	this.tableLoading = false;
+		//	this.tableTotal = res.total;
+		//	this.tableData = res.data;
+		//});
 	}
 
+	tableExport() {
+		this.tip.confirm("确定导出xxx数据？", ()=>{
+			//this.TableService.tableExport(queryParam);
+		});
+	}
 }
 ```
 # 上方操作区（app-table-head）
 **使用-参数：**
-- searchShow：右侧搜索区，默认true显示
+- searchShow：右侧查询区，默认true显示
 - search：获取表格数据方法（searchShow = false时可不传，true时必传）
 - advanceShow：精确查询，默认false隐藏
 - advanceData：精确查询数据，参考interface advanceData（advanceShow = false可不传，true时必传）
+- exportShow：精确查询-导出，默认true显示
+- export：精确查询-导出方法（exportShow = false时可不传，true时必传）
 - colsData 可配置列数据，参考interface colsData
 ```html
 <!-- tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询 -->
 <!-- <ng-container ngProjectAs="btns">左侧按钮区</ng-container> -->
-<app-table-head (search)="tableDataFn(true, $event)" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
+<app-table-head (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary">新增</button>
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>

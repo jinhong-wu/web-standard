@@ -1,0 +1,21 @@
+<div class="content">
+	<!-- 上传文件 -->
+	<div class="upload-file">
+		<div class="inner-title">
+			{{ i18n.baseList.uploadFile }}
+			<small *ngIf='uploadHint'>( {{ uploadHint }} )</small>
+			<a *ngIf='templateUrl' (click)='downloadTemplate()'>{{ i18n.baseList.downloadTemplate }}</a>
+		</div>
+		<!-- 单选、后端参数file -->
+		<nz-upload nzType="drag" [nzAction]="importUrl" [nzAccept]="accept" [nzSize]="size" [nzDisabled]="uploadLoading"
+			[nzBeforeUpload]="nzBeforeUpload" (nzChange)="nzChange($event)">
+			<p class="ant-upload-drag-icon"><i nz-icon nzType="inbox"></i></p>
+			<p class="ant-upload-text">{{ i18n.baseList.uploadPlaceholder }}</p>
+		</nz-upload>
+	</div>
+	<!-- 上传结果 -->
+	<div class="upload-result">
+		<div class="inner-title">{{ i18n.baseList.uploadResult }}</div>
+		<textarea nz-input disabled rows="4" [ngModel]="uploadResult"></textarea>
+	</div>
+</div>

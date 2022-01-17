@@ -1,41 +1,40 @@
-<div class="table-head">
-	<!-- 精确查询 -->
-	<div class="advance" *ngIf="advanceShow">
-		<div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
-			<!-- 文字输入框 -->
-			<ng-container *ngIf="item.type =='text'">
-				<input nz-input [(ngModel)]="item.value" [placeholder]="item.placeholder">
-			</ng-container>
+<!-- 精确查询 -->
+<div class="table-advance" *ngIf="advanceShow">
+	<div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
+		<!-- 文字输入框 -->
+		<ng-container *ngIf="item.type =='text'">
+			<input nz-input [(ngModel)]="item.value" [placeholder]="item.placeholder">
+		</ng-container>
 
-			<!-- 下拉选择框 -->
-			<ng-container *ngIf="item.type =='select'">
-				<nz-select nzAllowClear [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
-					<nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
-					</nz-option>
-				</nz-select>
-			</ng-container>
-		</div>
-		<div class="item-btn">
-			<!-- 查询 -->
-			<button nz-button nzSearch nzType="primary" (click)="searchFn(true)">
-				{{ publicI18nBase.search }}
-			</button>
-			<!-- 导入查询结果 -->
-			<button nz-button nzSearch nzType="primary" (click)="exportSearchFn()">
-				{{ publicI18nBase.exportSearch }}
-			</button>
-		</div>
+		<!-- 下拉选择框 -->
+		<ng-container *ngIf="item.type =='select'">
+			<nz-select nzAllowClear [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
+				<nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
+				</nz-option>
+			</nz-select>
+		</ng-container>
 	</div>
-
-	<!-- 左侧操作区 -->
+	<div class="item-btn">
+		<!-- 查询 -->
+		<button nz-button nzSearch nzType="primary" (click)="searchFn(true)">
+			{{ i18n.baseList.search }}
+		</button>
+		<!-- 导出查询结果 -->
+		<button *ngIf="exportShow" nz-button nzSearch nzType="primary" (click)="exportSearchFn()">
+			{{ i18n.baseList.exportSearch }}
+		</button>
+	</div>
+</div>
+<!-- 操作区 -->
+<div class="table-head">
+	<!-- 左侧按钮区 -->
 	<div class="btns">
 		<ng-content select="btns"></ng-content>
 	</div>
-
-	<!-- 右侧搜索区 -->
+	<!-- 右侧查询区 -->
 	<div class="search" *ngIf="searchShow">
 		<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
-			<input nz-input [placeholder]='publicI18nBase.placeholder' (keydown.enter)="searchFn()">
+			<input nz-input [placeholder]='i18n.baseList.placeholder' (keydown.enter)="searchFn()">
 		</nz-input-group>
 		<ng-template #suffixButton>
 			<button nz-button nzType="primary" nzSearch (click)="searchFn()">
@@ -59,10 +58,10 @@
 				<div class="col-title">
 					<label nz-checkbox [(ngModel)]="isAllChecked" (ngModelChange)="allCheckFn()"
 						[nzIndeterminate]="isIndeterminate">
-						{{ publicI18nBase.allCheck }}
+						{{ i18n.baseList.allCheck }}
 					</label>
 					<a nz-button nzType="link" (click)="resetCheckFn()">
-						{{ publicI18nBase.reset }}
+						{{ i18n.baseList.reset }}
 					</a>
 				</div>
 			</ng-template>
@@ -77,4 +76,9 @@
 			</ng-template>
 		</ng-container>
 	</div>
+</div>
+
+<!-- 表格提示 -->
+<div class="table-tips">
+	<ng-content select="tips"></ng-content>
 </div>
