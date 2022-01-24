@@ -1,7 +1,7 @@
 **文件：**
-- 全局属性：BaseTableComponent（common/component/base/base.component.ts）
+- 全局属性：BaseComponent（common/component/base/base.component.ts）
 - 表格属性&方法：BaseTableComponent（common/component/base/base-table.component.ts）
-- 【组件】表格-上方操作区：app-table-head（common/component/table-head/table-head.component）
+- 【组件】表格-上方操作区：app-table-head（common/component/table-head/table-head.component.ts）
 
 **页面效果：**
 
@@ -10,8 +10,8 @@
 # 全部用法
 ```html
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
-<app-table-head (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData"
-	[advanceShow]="advanceShow" [colsData]="colsData">
+<app-table-head #tableHead (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData"
+	[colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary">新增</button>
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
@@ -24,8 +24,8 @@
 	nzShowSizeChanger="true" [nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal"
 	[(nzPageIndex)]="tablePage" [(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()"
 	(nzPageSizeChange)="tableDataFn(true)" (nzCurrentPageDataChange)="refreshStatus()">
-	<!-- 排序功能：(nzSortOrderChange)="sortFn($event)" -->
-	<thead (nzSortOrderChange)="sortFn($event)">
+	<!-- 排序功能：(nzSortOrderChange)="sortFn($event, tableDataFn)" -->
+	<thead (nzSortOrderChange)="sortFn($event, tableDataFn)">
 		<tr>
 			<!-- th：勾选框、时间、ip等固定列宽加上对应class -->
 			<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
@@ -150,20 +150,23 @@ export class TableComponent extends BaseTableComponent implements OnInit {
 ```
 # 上方操作区（app-table-head）
 **使用-参数：**
-- searchShow：右侧查询区，默认true显示
-- search：获取表格数据方法（searchShow = false时可不传，true时必传）
-- advanceShow：精确查询，默认false隐藏
-- advanceData：精确查询数据，参考interface advanceData（advanceShow = false可不传，true时必传）
-- exportShow：精确查询-导出，默认true显示
-- export：精确查询-导出方法（exportShow = false时可不传，true时必传）
+- search：获取表格数据方法（keywordShow = true时必传，false时可不传）
+- keywordShow：右侧查询区-输入框，默认true显示
+- advanceData：精确查询数据，参考interface advanceData
 - colsData 可配置列数据，参考interface colsData
+- exportShow：精确查询-导出，默认true显示
+- export：精确查询-导出方法（exportShow = true时必传，false时可不传）
 ```html
+<!-- #tableHead 必须取此名 -->
 <!-- tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询 -->
-<!-- <ng-container ngProjectAs="btns">左侧按钮区</ng-container> -->
-<app-table-head (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData" [advanceShow]="advanceShow" [colsData]="colsData">
+<app-table-head #tableHead (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData"
+	[colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary">新增</button>
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+	</ng-container>
+	<ng-container ngProjectAs="tips">
+		<nz-alert nzShowIcon nzType="warning" nzMessage="该表格警告语句"></nz-alert>
 	</ng-container>
 </app-table-head>
 ```

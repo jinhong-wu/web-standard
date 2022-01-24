@@ -10,6 +10,9 @@ import { ComponentModule } from 'src/app/common/component/component.module';
 import { ModalComponent } from './modal/modal.component';
 import { ModalCreateComponent } from './modal/modal-create/modal-create.component';
 import { UploadComponent } from './upload/upload.component';
+import { FormComponent } from './form/form.component';
+import { MenuComponent } from './menu/menu.component';
+import { MenuCreateComponent } from './menu/menu-create/menu-create.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { UploadComponent } from './upload/upload.component';
 		ClassComponent,
 		ModalComponent,
 		ModalCreateComponent,
-		UploadComponent
+		UploadComponent,
+		FormComponent,
+		MenuComponent,
+		MenuCreateComponent
 	],
   imports: [
     CommonModule,

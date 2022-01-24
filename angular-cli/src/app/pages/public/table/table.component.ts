@@ -24,6 +24,7 @@ export class TableComponent extends BaseTableComponent implements OnInit {
 
 
 //this.tableTotal = 10;
+//this.tableLoading = false;
 //this.tableData = new Array(10).fill(0).map((_, index) => {
 //	return {
 //		id: index,

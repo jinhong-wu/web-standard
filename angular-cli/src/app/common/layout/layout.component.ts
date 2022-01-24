@@ -34,18 +34,15 @@ export class LayoutComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
 		// 初始化侧边栏菜单
-		let menuLoading = setInterval(() => {
-      if(!this.MenuService.menuLoading) {
-				clearInterval(menuLoading);
-				this.MenuService.menuList.forEach((item) => {
-					if (this.router.isActive(item.node.path, false)) {
-						this.MenuService.chooseMenu(item.node.path);
-					}
-				});
-				this.MenuService.routerMenuFn(this.routerLinkActive);
-				this.routerLinkBreadFn();
-			}
-    }, 500);
+		this.MenuService.routerMenuFn(this.routerLinkActive);
+		this.MenuService.promise(()=>{
+			this.MenuService.menuList.forEach((item) => {
+				if (this.router.isActive(item.node.path, false)) {
+					this.MenuService.chooseMenu(item.node.path);
+				}
+			});
+			this.routerLinkBreadFn();
+		});
 
 		// 路由事件
 		this.router.events

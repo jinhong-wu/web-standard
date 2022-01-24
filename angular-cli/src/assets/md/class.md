@@ -167,29 +167,47 @@ table {
 ```
 
 # 加载动画
-- 卡片
+- 卡片：nz-spin加载效果（必须）
 ```html
-<!-- nz-spin 加载效果（必须） -->
 <nz-spin [nzSpinning]="cardLoading">
 	<div class="card-box">
 	</div>
 </nz-spin>
 ```
-- 表格
+- 表格：[nzLoading]="tableLoading"（必须）
 ```html
-<!-- [nzLoading]="tableLoading"（必须） -->
 <nz-table [nzLoading]="tableLoading">
 </nz-table>
 ```
-- 弹出框
+- 表单：nz-spin加载效果（必须）
 ```html
-<!-- nz-spin 加载效果（必须） -->
 <nz-spin [nzSpinning]="formLoading">
+	<div class="form-content">
+		<form nz-form [formGroup]="form">
+		</form>
+	</div>
+	<div class="form-footer">
+	</div>
+</nz-spin>
+```
+- 弹出框：nz-spin加载效果（必须）
+```html
+<nz-spin [nzSpinning]="modalLoading">
 	<div class="content">
 	</div>
 	<div class="footer">
 	</div>
 </nz-spin>
+```
+
+# 无数据/空状态  
+
+**页面效果：**
+![image-1](assets/md/imgs/empty.png)
+
+**使用：**
+```html
+<nz-empty nzNotFoundImage="simple"></nz-empty>
 ```
 
 # 省略号（ellipsis）

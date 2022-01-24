@@ -11,10 +11,39 @@
 			"child": [
 				{
 					"node": {
+						"id": "public-menu",
+						"pid": "public",
+						"name": "Menu 菜单",
+						"path": "/public/menu",
+						"sideShow": true
+					},
+					"child": [
+						{
+							"node": {
+								"id": "public-menu-list",
+								"pid": "public-menu",
+								"name": "菜单列表1",
+								"path": "/public/menu/list",
+								"sideShow": false
+							}
+						}
+					]
+				},
+				{
+					"node": {
 						"id": "public-table",
 						"pid": "public",
 						"name": "Table 表格",
 						"path": "/public/table",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "public-form",
+						"pid": "public",
+						"name": "Form 表单",
+						"path": "/public/form",
 						"sideShow": true
 					}
 				},

@@ -1,5 +1,5 @@
 
-import { Injector } from "@angular/core";
+import { Injector, ViewChild } from "@angular/core";
 import { BaseComponent } from "./base.component";
 
 export class BaseTableComponent extends BaseComponent {
@@ -10,12 +10,17 @@ export class BaseTableComponent extends BaseComponent {
 		super(injector);
 	}
 
+	@ViewChild("tableHead" , { static: false }) tableHead: any = {};
+
 	tableData: any = [];
 	tableLoading: boolean = false;
 	tableTotal: number = 0;
 	tablePage: number = 1;
 	tableSize: number = 10;
 	tableParams: any = {};
+
+	// 排序
+	orderBy: string = "";
 
 	// 选择功能：nz-checkbox
 	checkedIds: { [key: string]: boolean } = {};
@@ -24,7 +29,6 @@ export class BaseTableComponent extends BaseComponent {
 
 	// 精确查询
 	advanceData: any = [];
-	advanceShow: Boolean = false;
 
 	// 状态初始化
 	tableInit(reset, advance) {
@@ -44,16 +48,24 @@ export class BaseTableComponent extends BaseComponent {
 			page: this.tablePage - 1,
 			size: this.tableSize
 		};
+		if (this.orderBy) {
+			this.tableParams.orderBy = this.orderBy;
+		}
 		if (advance) { // 精确查询传参
 			this.advanceData.forEach(d => {
-				if (d.value) this.tableParams[d.key] = d.value;
+				if(![undefined, null, NaN, ""].includes(d.value)) {
+					this.tableParams[d.key] = d.value;
+				}
 			});
+		} else if(![undefined, null, NaN, ""].includes(this.tableHead.keyword)) {
+			this.tableParams.keyword = this.tableHead.keyword;
 		}
   }
 
 	// 排序
-	sortFn(sort) {
-		this.tableParams.orderBy = sort.key + " " + sort.value;
+	sortFn(sort, fn: Function) {
+		this.orderBy = sort.key + " " + sort.value;
+		fn.call(this);
 	}
 
 	// 刷新勾选状态
@@ -103,7 +115,7 @@ export class BaseTableComponent extends BaseComponent {
     this.MenuService.createTab({
       type: "create",
       pid: this.tab.id,
-      name: this.i18n.baseList.create + this.tab.name ? this.tab.name : "",
+      name: this.i18n.baseList.create + this.tab?.name,
     });
   }
 
@@ -112,7 +124,7 @@ export class BaseTableComponent extends BaseComponent {
     this.MenuService.createTab({
       type: "update",
       pid: this.tab.id,
-      name: this.i18n.baseList.update + "：" + item.nodeName,
+      name: this.i18n.baseList.update + "：" + (item.name || item.nodeName || ''),
       data: item,
     });
   }

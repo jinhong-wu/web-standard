@@ -32,15 +32,19 @@
 		<ng-content select="btns"></ng-content>
 	</div>
 	<!-- 右侧查询区 -->
-	<div class="search" *ngIf="searchShow">
-		<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
-			<input nz-input [placeholder]='i18n.baseList.placeholder' (keydown.enter)="searchFn()">
-		</nz-input-group>
-		<ng-template #suffixButton>
-			<button nz-button nzType="primary" nzSearch (click)="searchFn()">
-				<i nz-icon nzType="search"></i>
-			</button>
-		</ng-template>
+	<div class="search">
+		<ng-content select="search"></ng-content>
+		<!-- 关键字查询 -->
+		<ng-container *ngIf="keywordShow">
+			<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
+				<input nz-input [(ngModel)]="keyword" (keydown.enter)="searchFn()" [placeholder]='i18n.baseList.placeholder'>
+			</nz-input-group>
+			<ng-template #suffixButton>
+				<button nz-button nzType="primary" nzSearch (click)="searchFn()">
+					<i nz-icon nzType="search"></i>
+				</button>
+			</ng-template>
+		</ng-container>
 		<!-- 精确查询 -->
 		<ng-container *ngIf="advanceData.length > 0">
 			<button nz-button nzType="primary" (click)="advanceShow = !advanceShow">

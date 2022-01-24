@@ -33,7 +33,6 @@
 */
 .card-box {
   display: flex;
-  padding: 0 5px;
 
   .card-item {
     flex: 1;
@@ -237,9 +236,44 @@ table {
 }
 
 /*
+	* 表单
+*/
+.form-content {
+  .i-tip {
+    margin-left: @space-samll;
+    color: #1890ff;
+  }
+}
+
+.form-footer {
+  text-align: center;
+
+  button {
+    margin-right: @space-samll;
+  }
+}
+
+/*
 	* ng-zorro 修改样式
 */
+// 标签
+nz-tabs-nav {
+  margin-bottom: @space  !important;
 
+  .ant-tabs-tab {
+    padding: @space;
+
+    &.ant-tabs-tab-active {
+      background-color: #e6f7ff;
+    }
+
+    .anticon {
+      margin: 0;
+    }
+  }
+}
+
+// 栅格
 nz-row {
 
   &,
@@ -248,6 +282,7 @@ nz-row {
   }
 }
 
+// 弹出框
 .ant-modal-wrap {
   display: flex;
   align-items: center;
@@ -298,5 +333,15 @@ nz-row {
         }
       }
     }
+  }
+}
+
+nz-empty {
+  .ant-empty-image {
+    height: 40px;
+  }
+
+  .ant-empty-description {
+    color: rgba(0, 0, 0, .25);
   }
 }

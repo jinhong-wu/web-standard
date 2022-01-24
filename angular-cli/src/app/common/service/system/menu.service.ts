@@ -1,15 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { ActivatedRoute } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
 })
 export class MenuService {
   constructor(
-    private http: HttpClient,
-    public activatedRoute: ActivatedRoute
+    public http: HttpClient
   ) {
     this.menuLoading = true;
     this.http.get<any>("assets/json/menu.json").subscribe((data) => {
@@ -106,11 +104,11 @@ export class MenuService {
 
   // 菜单（nz-tab ）
   tabs: any = [];
-  activeIndex = 0; // 当前页
+  selectIndex = 0; // 当前页
 
   initTab(fn?) {
     this.tabs = (this.routerMenu.child || []).map((d) => d.node);
-    this.activeIndex = 0;
+    this.selectIndex = 0;
     if (this.tabs[0]) {
       this.selectTab();
     }
@@ -121,40 +119,43 @@ export class MenuService {
     }
   }
 
-  selectTab() {
-    setTimeout(() => {
-      this.routerMenuFn(this.tabs[this.activeIndex].path);
-    });
+  selectTab(index = 0) {
+		this.routerMenuFn(this.tabs[index].path);
   }
 
-  async createTab(tab: any, closeable: boolean = true) {
+  createTab(tab: any, closeable: boolean = true) {
     tab.id = `${tab.pid}-${tab.type}`;
     if (tab == "update") tab.id += `-${tab.data.id}`;
-    //tab.name = await this.translate.get(tab.name).toPromise();
 
-    let index = this.tabs.findIndex((d) => {
-      return d.id === tab.id;
-    });
+    let index = this.tabs.findIndex((d) => d.id === tab.id);
     if (index < 0) {
       this.tabs.push({ ...tab, closeable });
-      this.activeIndex = this.tabs.length - 1;
+      this.selectIndex = this.tabs.length - 1;
     } else {
-      this.tabs[index].name = tab.name;
-      this.activeIndex = index;
+      this.selectIndex = index;
     }
   }
 
   closeTab(index) {
     let tab = this.tabs[index];
     this.tabs.splice(index, 1);
-    if (this.activeIndex == index) {
+    if (this.selectIndex == index) {
       if (tab.pid) {
-        this.activeIndex = this.tabs.findIndex((item) => item.id == tab.pid);
+        this.selectIndex = this.tabs.findIndex((item) => item.id == tab.pid);
       } else {
-        this.activeIndex = 0;
+        this.selectIndex = 0;
       }
     }
   }
+
+	promise(ok: Function) {
+		let timer = setInterval(()=>{
+			if (!this.menuLoading) {
+				clearInterval(timer);
+				ok();
+			}
+		}, 500);
+	}
 }
 // 对应权限注解
 // userbind=绑定用户

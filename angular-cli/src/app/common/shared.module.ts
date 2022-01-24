@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMessageService } from "ng-zorro-antd/message";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzTabsModule } from "ng-zorro-antd/tabs";
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -13,6 +13,7 @@ import { NzDropDownModule } from "ng-zorro-antd/dropdown";
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from "ng-zorro-antd/input";
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from "ng-zorro-antd/spin";
@@ -24,6 +25,10 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @NgModule({
   declarations: [],
@@ -40,9 +45,9 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 		FormsModule,
 		NzDropDownModule,
 		NzIconModule,
-		NzTabsModule,
 		NzButtonModule,
 		NzInputModule,
+		NzInputNumberModule,
 		NzTreeModule,
 		NzTableModule,
 		NzSpinModule,
@@ -54,6 +59,11 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 		NzNotificationModule,
 		NzMessageModule,
 		NzUploadModule,
+		NzFormModule,
+		ReactiveFormsModule,
+		NzSwitchModule,
+		NzRadioModule,
+		NzEmptyModule
   ],
 	// tip的位置，持续时间，最大数量
 	providers: [

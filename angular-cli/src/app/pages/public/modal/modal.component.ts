@@ -17,7 +17,7 @@ export class ModalComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
 		//setTimeout(()=>{
-		//	//this.tip.confirm("是否删除所选表格数据？", ()=>{
+		//	//this.tip.confirm("确定删除所选表格数据？", ()=>{
 		//	//	// 确认后代码...
 		//	//	console.log(1);
 				

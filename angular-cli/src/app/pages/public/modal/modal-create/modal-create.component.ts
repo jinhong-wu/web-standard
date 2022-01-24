@@ -12,7 +12,7 @@ export class ModalCreateComponent implements OnInit {
 		public nzModal: NzModalRef
 	) { }
 	
-	formLoading = false;
+	modalLoading = false;
 
   ngOnInit(): void {
 		
