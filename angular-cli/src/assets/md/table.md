@@ -1,3 +1,6 @@
+# 注意！！！
+- 增删改等操作，都需要刷新table数据
+
 **文件：**
 - 全局属性：BaseComponent（common/component/base/base.component.ts）
 - 表格属性&方法：BaseTableComponent（common/component/base/base-table.component.ts）

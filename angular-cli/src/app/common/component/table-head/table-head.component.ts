@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector, Output, Input, EventEmitter } from '@angular/core';
-import { BaseComponent } from '../base/base.component';
+import { BaseComponent } from '../../ts/base/base';
 
 interface advanceData {
   key: string;  // 对应param参数

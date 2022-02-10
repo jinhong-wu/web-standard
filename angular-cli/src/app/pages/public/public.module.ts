@@ -13,6 +13,10 @@ import { UploadComponent } from './upload/upload.component';
 import { FormComponent } from './form/form.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuCreateComponent } from './menu/menu-create/menu-create.component';
+import { HttpComponent } from './http/http.component';
+import { InputComponent } from './input/input.component';
+import { PipeComponent } from './pipe/pipe.component';
+import { PipeModule } from 'src/app/common/pipe/pipe.module';
 
 @NgModule({
   declarations: [
@@ -23,13 +27,17 @@ import { MenuCreateComponent } from './menu/menu-create/menu-create.component';
 		UploadComponent,
 		FormComponent,
 		MenuComponent,
-		MenuCreateComponent
+		MenuCreateComponent,
+		HttpComponent,
+		InputComponent,
+		PipeComponent
 	],
   imports: [
     CommonModule,
     PublicRoutingModule,
 		SharedModule,
 		ComponentModule,
+		PipeModule,
 		MarkdownModule.forChild(), 
   ],
 	entryComponents: [

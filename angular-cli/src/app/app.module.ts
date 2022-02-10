@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // 国际化
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
@@ -25,6 +25,7 @@ import { LayoutComponent } from './common/layout/layout.component';
 import { SharedModule } from './common/shared.module';
 import { ComponentModule } from './common/component/component.module';
 import { PipeModule } from './common/pipe/pipe.module';
+import { Interceptor } from './common/interceptor/interceptor';
 
 registerLocaleData(zh);
 export function createTranslateLoader(http: HttpClient) {
@@ -56,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
 	providers: [
 		{ provide: NZ_I18N, useValue: zh_CN },
 		{ provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline] },
+		{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
 	],
   bootstrap: [AppComponent]
 })

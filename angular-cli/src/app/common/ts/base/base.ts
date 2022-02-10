@@ -6,6 +6,7 @@ import { MenuService } from "../../service/system/menu.service";
 import { TipService } from "../../service/tip/tip.service";
 import { I18nService } from "../../service/system/i18n.service";
 import { NzModalService } from "ng-zorro-antd/modal";
+import { httpUtil } from "../util/http.util";
 
 export class BaseComponent {
 
@@ -17,7 +18,7 @@ export class BaseComponent {
 	public tip: TipService
 	public i18n: I18nService
 	public MenuService: MenuService;
-
+	public httpUtil = httpUtil;
 
   constructor(
 		private baseInjector: Injector

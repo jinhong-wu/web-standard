@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { BaseFormComponent } from 'src/app/common/component/base/base-form.component';
+import { BaseFormComponent } from 'src/app/common/ts/base/form.base';
 
 @Component({
   selector: 'app-menu-create',

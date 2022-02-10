@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Injector } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpEventType, HttpRequest, HttpResponse } from '@angular/common/http';
-import { BaseComponent } from 'src/app/common/component/base/base.component';
+import { BaseComponent } from 'src/app/common/ts/base/base';
 import { NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { MemoryPipe } from "src/app/common/pipe/memory.pipe";
 import { DownloadService } from '../../service/download/download.service';

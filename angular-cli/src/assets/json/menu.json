@@ -73,6 +73,33 @@
 						"path": "/public/upload",
 						"sideShow": true
 					}
+				},
+				{
+					"node": {
+						"id": "public-http",
+						"pid": "public",
+						"name": "Http 请求",
+						"path": "/public/http",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "public-input",
+						"pid": "public",
+						"name": "Input 输入框",
+						"path": "/public/input",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "public-pipe",
+						"pid": "public",
+						"name": "Pipe 过滤器",
+						"path": "/public/pipe",
+						"sideShow": true
+					}
 				}
 			]
 		}

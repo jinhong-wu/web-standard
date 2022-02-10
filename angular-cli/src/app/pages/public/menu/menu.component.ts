@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableComponent } from 'src/app/common/component/base/base-table.component';
+import { BaseTableComponent } from 'src/app/common/ts/base/table.base';
 
 @Component({
   selector: 'app-menu',

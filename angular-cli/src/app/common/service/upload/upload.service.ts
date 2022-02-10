@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { BaseComponent } from '../../component/base/base.component';
+import { BaseComponent } from '../../ts/base/base';
 import { ImportFileComponent } from '../../component/import-file/import-file.component';
 
 interface importOptions {

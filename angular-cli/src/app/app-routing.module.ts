@@ -14,7 +14,7 @@ const routes: Routes = [
       },
 			{
         path: '**',
-        redirectTo: 'public',
+        redirectTo: 'menu',
 				pathMatch: "full"
 			},
 		]

@@ -1,7 +1,7 @@
 
 import { EventEmitter, Injector, Input, Output } from "@angular/core";
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { BaseComponent } from "./base.component";
+import { BaseComponent } from "./base";
 /**
  * @name 表单-基本属性及方法
  * @param tab 当前tab值
@@ -29,7 +29,7 @@ export class BaseFormComponent extends BaseComponent {
 
 	// 状态初始化
 	formInit(values: object = {}) {
-		this.formParamsFn(values);
+		this.formParams = this.httpUtil.paramsFn(values)
 		this.formLoading = true;
 	}
 
@@ -40,16 +40,6 @@ export class BaseFormComponent extends BaseComponent {
 			values[key] = this.form.controls[key].value;
 		});
 		return values;
-	}
-
-	// 获取表单有效值value
-	formParamsFn(values: object = {}) {
-		this.formParams = {};
-		for(let key in values) {
-			if(![undefined, null, NaN, ""].includes(values[key])) {
-				this.formParams[key] = values[key];
-			}
-		}
 	}
 
 	// 保存

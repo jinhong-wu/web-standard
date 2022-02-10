@@ -1,6 +1,6 @@
 
 import { Injector, ViewChild } from "@angular/core";
-import { BaseComponent } from "./base.component";
+import { BaseComponent } from "./base";
 
 export class BaseTableComponent extends BaseComponent {
 
@@ -53,11 +53,9 @@ export class BaseTableComponent extends BaseComponent {
 		}
 		if (advance) { // 精确查询传参
 			this.advanceData.forEach(d => {
-				if(![undefined, null, NaN, ""].includes(d.value)) {
-					this.tableParams[d.key] = d.value;
-				}
+				this.tableParams[d.key] = d.value;
 			});
-		} else if(![undefined, null, NaN, ""].includes(this.tableHead.keyword)) {
+		} else{
 			this.tableParams.keyword = this.tableHead.keyword;
 		}
   }

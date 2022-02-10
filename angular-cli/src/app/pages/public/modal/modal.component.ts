@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseComponent } from 'src/app/common/component/base/base.component';
+import { BaseComponent } from 'src/app/common/ts/base/base';
 import { ModalCreateComponent } from './modal-create/modal-create.component';
 
 @Component({
