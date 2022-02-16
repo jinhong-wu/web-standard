@@ -107,7 +107,7 @@ export class BaseTableTs extends BaseTs {
     return { checkedIds, checkedDatas };
   }
 
-  // 操作功能：新增、修改
+  // 操作功能：新增
   tab: any = {};
   create(tab: any = {}) {
     if (tab.id) this.tab = tab;
@@ -117,7 +117,7 @@ export class BaseTableTs extends BaseTs {
       name: this.i18n.baseList.create + this.tab?.name,
     });
   }
-
+  // 操作功能：修改
   update(item, tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({

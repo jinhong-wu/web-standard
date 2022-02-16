@@ -215,6 +215,7 @@ table {
 
 **使用：**
 ```html
+<!-- 统一使用 -->
 <nz-empty nzNotFoundImage="simple"></nz-empty>
 ```
 

@@ -1,5 +1,24 @@
 # 注意！！！
 - 增删改等操作，都需要刷新table数据
+- th：勾选框、时间、ip等固定列宽，必须写入宽度样式（.checkbox .time .ip）
+- td：较长td必须 [nz-tooltip]="xxx"
+```html
+<td [nz-tooltip]="item.name">{{item.name}}</td>
+```
+- 【修改】操作，写在操作列
+```html
+<thead>
+	<!-- 操作列：必须写入nzWidth -->
+	<th nzWidth="120px">操作</th>
+</thead>
+<tbody>
+	<td>
+		<!-- 按钮使用：<a nz-button nzType="link"></a> -->
+		<a nz-button nzType="link" (click)="update(item, tab)">修改</a>
+		<a nz-button nzType="link" [disabled]="true">其他操作</a>
+	</td>
+</tbody>
+```
 
 **文件：**
 - 全局属性：BaseTs（common/ts/base/base.ts）
