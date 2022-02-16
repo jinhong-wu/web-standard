@@ -1,27 +1,20 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableComponent } from 'src/app/common/ts/base/table.base';
+import { BaseTableTs } from 'src/app/common/ts/base/table.base';
 import { TableService } from 'src/app/common/api/public/table/table.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.less']
+  styleUrls: ['./table.component.less'],
 })
 // extends BaseTableComponent必须
-export class TableComponent extends BaseTableComponent implements OnInit {
+export class TableComponent extends BaseTableTs implements OnInit {
+  constructor(public injector: Injector, public TableService: TableService) {
+    super(injector);
+  }
 
-	constructor(
-		public injector: Injector,
-		public TableService: TableService
-	) {
-		super(injector);
-	}
-
-	ngOnInit() {
-		
-	}
+  ngOnInit() {}
 }
-
 
 //this.tableTotal = 10;
 //this.tableLoading = false;

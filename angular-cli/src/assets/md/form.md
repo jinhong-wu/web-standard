@@ -1,6 +1,6 @@
 **文件：**
-- 全局属性：BaseComponent（common/component/base/base.component.ts）
-- 表格属性&方法：BaseFormComponent（common/component/base/base-form.component.ts）
+- 全局属性：BaseTs（common/ts/base/base.ts）
+- 表格属性&方法：BaseFormTs（common/ts/base/form.base.ts）
 
 # 全部用法
 示例文件：app-menu-create（pages/public/menu/menu-create/menu-create.component.ts）
@@ -50,14 +50,14 @@
 ```typescript
 import { Component, OnInit, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { BaseFormComponent } from 'src/app/common/component/base/base-form.component';
+import { BaseFormTs } from 'common/ts/base/form.base.ts';
 
 @Component({
   selector: 'app-menu-create',
   templateUrl: './menu-create.component.html',
   styleUrls: ['./menu-create.component.less']
 })
-export class MenuCreateComponent extends BaseFormComponent implements OnInit {
+export class MenuCreateComponent extends BaseFormTs implements OnInit {
 
   constructor(
 		public injuctor: Injector,

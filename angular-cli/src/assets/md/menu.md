@@ -39,14 +39,14 @@
 
 ```typescript
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableComponent } from 'src/app/common/component/base/base-table.component';
+import { BaseTableTs } from 'src/app/common/ts/base/table.base.ts';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.less']
 })
-export class MenuComponent extends BaseTableComponent implements OnInit {
+export class MenuComponent extends BaseTableTs implements OnInit {
 
   constructor(
 		public injuctor: Injector,

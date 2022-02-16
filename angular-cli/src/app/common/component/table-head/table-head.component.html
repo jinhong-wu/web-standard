@@ -48,8 +48,7 @@
 		<!-- 精确查询 -->
 		<ng-container *ngIf="advanceData.length > 0">
 			<button nz-button nzType="primary" (click)="advanceShow = !advanceShow">
-				<i nz-icon nzType="up" nzTheme="outline" *ngIf="!advanceShow"></i>
-				<i nz-icon nzType="down" nzTheme="outline" *ngIf="advanceShow"></i>
+				<i nz-icon [nzType]="advanceShow?'down':'up'" nzTheme="outline"></i>
 			</button>
 		</ng-container>
 		<!-- 列可配置 -->

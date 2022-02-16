@@ -99,7 +99,7 @@
 **页面效果：**
 ![image-1](assets/md/imgs/table-head.png)
 
-**使用：**
+**使用：**（具体使用查看 公共示例-Table 表格）
 ```html
 <div class="table-head">
 	<!-- 左侧按钮区 -->

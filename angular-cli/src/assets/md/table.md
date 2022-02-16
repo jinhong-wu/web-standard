@@ -2,8 +2,8 @@
 - 增删改等操作，都需要刷新table数据
 
 **文件：**
-- 全局属性：BaseComponent（common/component/base/base.component.ts）
-- 表格属性&方法：BaseTableComponent（common/component/base/base-table.component.ts）
+- 全局属性：BaseTs（common/ts/base/base.ts）
+- 表格属性&方法：BaseTableTs（common/ts/base/table.base.ts）
 - 【组件】表格-上方操作区：app-table-head（common/component/table-head/table-head.component.ts）
 
 **页面效果：**
@@ -64,7 +64,7 @@
 ```
 ```typescript
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableComponent } from 'src/app/common/component/base/base-table.component';
+import { BaseTableTs } from 'src/app/common/ts/base/table.base';
 import { TableService } from 'src/app/common/api/public/table/table.service';
 
 @Component({
@@ -72,8 +72,8 @@ import { TableService } from 'src/app/common/api/public/table/table.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.less']
 })
-// extends BaseTableComponent必须
-export class TableComponent extends BaseTableComponent implements OnInit {
+// extends BaseTableTs必须
+export class TableComponent extends BaseTableTs implements OnInit {
 
 	constructor(
 		public injector: Injector,

@@ -1,17 +1,25 @@
-import { Component, OnInit, Injector, Output, Input, EventEmitter } from '@angular/core';
-import { BaseComponent } from '../../ts/base/base';
+import {
+  Component,
+  OnInit,
+  Injector,
+  Output,
+  Input,
+  EventEmitter,
+} from '@angular/core';
+import { BaseTs } from '../../ts/base/base';
 
 interface advanceData {
-  key: string;  // 对应param参数
-  type: string;  // 输入框类型（文字输入框text、下拉框select）
+  key: string; // 对应param参数
+  type: string; // 输入框类型（文字输入框text、下拉框select）
   value?: string | number; // ngModel输入值
-	options?: advanceDataOptions[]  // type:'select'时，必传
-	placeholder?: string  // placeholder提示文字
-	style?: {  // .item样式
-		// .item盒子新增class，更多class查看common.less .table-head
-		//（输入框宽度.width2 >.width-short，为了美观，width2数据建议放在最后）
-		class?: string
-	}	
+  options?: advanceDataOptions[]; // type:'select'时，必传
+  placeholder?: string; // placeholder提示文字
+  style?: {
+    // .item样式
+    // .item盒子新增class，更多class查看common.less .table-head
+    //（输入框宽度.width2 >.width-short，为了美观，width2数据建议放在最后）
+    class?: string;
+  };
 }
 interface advanceDataOptions {
   label: string;
@@ -19,18 +27,18 @@ interface advanceDataOptions {
 }
 
 interface colsData {
-	key: string,  // 列key
-	value: string,  // 名称
-	show: boolean,  // 是否展示
-	sort: boolean, // 是否支持排序
-	class?: string,  // 列class
-	width?: string  // 列宽度
+  key: string; // 列key
+  value: string; // 名称
+  show: boolean; // 是否展示
+  sort: boolean; // 是否支持排序
+  class?: string; // 列class
+  width?: string; // 列宽度
 }
 
 @Component({
   selector: 'app-table-head',
   templateUrl: './table-head.component.html',
-  styleUrls: ['./table-head.component.less']
+  styleUrls: ['./table-head.component.less'],
 })
 /**
  * @name 表格-上方操作区
@@ -54,66 +62,63 @@ interface colsData {
 		</ng-container>
 	</app-table-head>
 */
-export class TableHeadComponent extends BaseComponent implements OnInit {
+export class TableHeadComponent extends BaseTs implements OnInit {
+  constructor(public injector: Injector) {
+    super(injector);
+  }
 
-  constructor(
-		public injector: Injector,
-	) {
-		super(injector);
-	}
+  @Output() search = new EventEmitter<boolean>();
+  @Input() keywordShow: any = true;
+  @Input() advanceData: advanceData[] = [];
+  @Input() colsData: colsData[] = [];
+  @Input() exportShow: any = true;
+  @Output() export = new EventEmitter<boolean>();
 
-	@Output() search = new EventEmitter<boolean>();
-	@Input() keywordShow: any = true;
-	@Input() advanceData: advanceData[] = [];
-	@Input() colsData: colsData[] = [];
-	@Input() exportShow: any = true;
-	@Output() export = new EventEmitter<boolean>();
-
-	// 关键字查询
-	keyword: string = "";
-	// 精确查询
-	advanceShow: boolean = false;
-	// 可配置列
-	colsDataCopy: any = [];
-	isAllChecked: boolean = false;
+  // 关键字查询
+  keyword: string = '';
+  // 精确查询
+  advanceShow: boolean = false;
+  // 可配置列
+  colsDataCopy: any = [];
+  isAllChecked: boolean = false;
   isIndeterminate: boolean = false;
 
   ngOnInit() {
-		if (this.colsData.length > 0) {
-			this.colsDataCopy = JSON.parse(JSON.stringify(this.colsData));
-			this.colRefresh();
-		}
+    if (this.colsData.length > 0) {
+      this.colsDataCopy = JSON.parse(JSON.stringify(this.colsData));
+      this.colRefresh();
+    }
   }
 
-	// 查询
-	searchFn(advance: boolean = false) {
-		// advance：是否为精确查询
-		this.search.emit(advance);
-	}
-
-	// 精确查询-导出查询结果
-  exportSearchFn(){
-		this.export.emit();
+  // 查询
+  searchFn(advance: boolean = false) {
+    // advance：是否为精确查询
+    this.search.emit(advance);
   }
 
-	// 可配置列-刷新
-	colRefresh() {
-		this.isAllChecked = this.colsData.every(item => item.show);
-    this.isIndeterminate = this.colsData.some(item => item.show) && !this.isAllChecked;
+  // 精确查询-导出查询结果
+  exportSearchFn() {
+    this.export.emit();
   }
-	// 可配置列-全选
-	allCheckFn() {
-		this.isIndeterminate = false;
+
+  // 可配置列-刷新
+  colRefresh() {
+    this.isAllChecked = this.colsData.every((item) => item.show);
+    this.isIndeterminate =
+      this.colsData.some((item) => item.show) && !this.isAllChecked;
+  }
+  // 可配置列-全选
+  allCheckFn() {
+    this.isIndeterminate = false;
     this.colsData.forEach((item) => {
       item.show = this.isAllChecked;
     });
-	}
-	// 可配置列-重置
-	resetCheckFn() {
-		this.colsData.forEach((d, index) => {
+  }
+  // 可配置列-重置
+  resetCheckFn() {
+    this.colsData.forEach((d, index) => {
       d.show = this.colsDataCopy[index].show;
     });
     this.colRefresh();
   }
-
 }
