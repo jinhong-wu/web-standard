@@ -1,3 +1,10 @@
+# 注意！！！
+- 新增：文件命名 xxx-create
+- 修改：函数命名统一为update()
+- 新增/修改：用同一个文件即可，命名为-create  
+  组件传值 [tab]="tab" [tabIndex]="index"，修改数据包含在tab.data
+
+
 **文件：**
 - 一级导航、侧边栏：app-layout（common/layout/layout.component.ts）
 - 【服务】菜单-属性方法：MenuService（common/service/system/menu.service.ts）
@@ -39,7 +46,7 @@
 
 ```typescript
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableTs } from 'src/app/common/ts/base/table.base.ts';
+import { BaseTableTs } from 'src/app/common/ts/base/table.base';
 
 @Component({
   selector: 'app-menu',

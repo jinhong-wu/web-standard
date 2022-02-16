@@ -123,8 +123,7 @@ export class BaseTableTs extends BaseTs {
     this.MenuService.createTab({
       type: 'update',
       pid: this.tab.id,
-      name:
-        this.i18n.baseList.update + '：' + (item.name || item.nodeName || ''),
+      name: this.i18n.baseList.update + '：' + (item.name || ''),
       data: item,
     });
   }
