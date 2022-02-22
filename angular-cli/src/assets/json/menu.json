@@ -94,10 +94,28 @@
 				},
 				{
 					"node": {
+						"id": "public-select",
+						"pid": "public",
+						"name": "Select 下拉框",
+						"path": "/public/select",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
 						"id": "public-pipe",
 						"pid": "public",
 						"name": "Pipe 过滤器",
 						"path": "/public/pipe",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "public-name",
+						"pid": "public",
+						"name": "命名规范",
+						"path": "/public/name",
 						"sideShow": true
 					}
 				}

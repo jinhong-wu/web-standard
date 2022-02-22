@@ -1,7 +1,7 @@
 import { Injector, ViewChild } from '@angular/core';
 import { BaseTs } from './base';
 
-export class BaseTableTs extends BaseTs {
+export class TableBaseTs extends BaseTs {
   constructor(public injector: Injector) {
     super(injector);
   }
@@ -17,9 +17,13 @@ export class BaseTableTs extends BaseTs {
 
   // 排序
   orderBy: string = '';
+  // 勾选框-是否为多选
+  multiple: boolean = true;
 
   // 选择功能：nz-checkbox
-  checkedIds: { [key: string]: boolean } = {};
+  checkedRows: { [key: string]: boolean } = {};
+  checkedIds: any = [];
+  checkedData: any = [];
   isAllChecked: Boolean = false;
   isIndeterminate: Boolean = false;
 
@@ -30,7 +34,7 @@ export class BaseTableTs extends BaseTs {
   tableInit(reset, advance) {
     if (reset) {
       this.tablePage = 1;
-      this.checkedIds = {};
+      this.checkedRows = {};
       this.isAllChecked = false;
       this.isIndeterminate = false;
     }
@@ -67,13 +71,13 @@ export class BaseTableTs extends BaseTs {
   refreshStatus() {
     if (this.tableData.length > 0) {
       this.isAllChecked = this.tableData.every(
-        (item) => this.checkedIds[item.id]
+        (item) => this.checkedRows[item.id]
       );
       this.isIndeterminate =
-        this.tableData.some((item) => this.checkedIds[item.id]) &&
+        this.tableData.some((item) => this.checkedRows[item.id]) &&
         !this.isAllChecked;
     } else {
-      this.checkedIds = {};
+      this.checkedRows = {};
       this.isAllChecked = false;
       this.isIndeterminate = false;
     }
@@ -81,30 +85,33 @@ export class BaseTableTs extends BaseTs {
 
   // 勾选框-单选
   checkRadio(id, value) {
-    this.checkedIds = {
+    this.checkedRows = {
       [id]: value,
     };
   }
 
   // 全选、取消全选
   checkAll(value) {
-    this.tableData.forEach((item) => (this.checkedIds[item.id] = value));
+    this.tableData.forEach((item) => (this.checkedRows[item.id] = value));
     this.refreshStatus();
   }
 
-  // 获取选中行id（getData是否返回整行数据）
-  getCheckedIds(getData: boolean = false) {
-    let checkedIds = [],
-      checkedDatas = [];
-    for (let id in this.checkedIds) {
-      if (this.checkedIds[id]) {
-        checkedIds.push(id);
+  // 获取选中行id（getData是否获取选中行数据）
+  checkedIdsFn(getData: boolean = false) {
+    this.checkedIds = [];
+    this.checkedData = [];
+    for (let id in this.checkedRows) {
+      if (this.checkedRows[id]) {
+        this.checkedIds.push(id);
         if (getData) {
-          checkedDatas.push(this.tableData.find((item) => item.id === id));
+          this.checkedData.push(
+            this.tableData.find((item) => {
+              return item.id == id;
+            })
+          );
         }
       }
     }
-    return { checkedIds, checkedDatas };
   }
 
   // 操作功能：新增

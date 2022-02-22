@@ -9,7 +9,7 @@ import {
 import { BaseTs } from 'src/app/common/ts/base/base';
 import { NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { MemoryPipe } from 'src/app/common/pipe/memory.pipe';
-import { DownloadService } from '../../service/download/download.service';
+import { DownloadService } from '../../service/download.service';
 import { from } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 

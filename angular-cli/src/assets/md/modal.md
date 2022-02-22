@@ -1,4 +1,4 @@
-**文件：tip.service.ts**（common/service/tip/tip.service.ts）
+**文件：tip.service.ts**（common/service/tip.service.ts）
 
 # 顶部居中提示
 

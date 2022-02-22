@@ -3,30 +3,34 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './common/layout/layout.component';
 
 const routes: Routes = [
-	{
-    path: "",
+  {
+    path: '',
     component: LayoutComponent,
-		children: [
+    children: [
       // 公共示例
       {
         path: 'public',
-        loadChildren: () => import('./pages/public/public.module').then(modal => modal.PublicModule)
+        loadChildren: () =>
+          import('./pages/public/public.module').then(
+            (modal) => modal.PublicModule
+          ),
       },
-			{
+      {
         path: '**',
-        redirectTo: 'menu',
-				pathMatch: "full"
-			},
-		]
-	},
-	{
-		path: '**', 
-		loadChildren: () => import('./pages/error/error.module').then(modal => modal.ErrorModule)
-	} 
+        redirectTo: 'public',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./pages/error/error.module').then((modal) => modal.ErrorModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

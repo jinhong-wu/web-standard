@@ -3,7 +3,7 @@
 	<div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
 		<!-- 文字输入框 -->
 		<ng-container *ngIf="item.type =='text'">
-			<input nz-input [(ngModel)]="item.value" [placeholder]="item.placeholder">
+			<input nz-input [(ngModel)]="item.value" (keydown.enter)="searchFn(true)" [placeholder]="item.placeholder">
 		</ng-container>
 
 		<!-- 下拉选择框 -->

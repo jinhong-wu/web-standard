@@ -1,12 +1,12 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableTs } from 'src/app/common/ts/base/table.base';
+import { TableBaseTs } from 'src/app/common/ts/base/table.base';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.less'],
 })
-export class MenuComponent extends BaseTableTs implements OnInit {
+export class MenuComponent extends TableBaseTs implements OnInit {
   constructor(public injuctor: Injector) {
     super(injuctor);
   }

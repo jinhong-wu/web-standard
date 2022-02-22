@@ -7,7 +7,7 @@ import { BaseTs } from './base';
  * @param tabIndex 当前tab index值，必传
  * @param search 数据刷新对应函数，必传
  */
-export class BaseFormTs extends BaseTs {
+export class FormBaseTs extends BaseTs {
   public fb: FormBuilder;
 
   constructor(public injector: Injector) {
@@ -24,18 +24,18 @@ export class BaseFormTs extends BaseTs {
   formParams: any = {};
 
   // 状态初始化
-  formInit(values: object = {}) {
-    this.formParams = this.httpUtil.paramsFn(values);
+  formInit(values?: object) {
+    this.formValuesFn();
+    this.formParams = this.httpUtil.paramsFn({ ...this.formParams, ...values });
     this.formLoading = true;
   }
 
   // 获取表单所有value（这样注册[{value: false}]，this.form.value无法全部获取）
   formValuesFn() {
-    let values = {};
+    this.formParams = {};
     Object.keys(this.form.controls).forEach((key) => {
-      values[key] = this.form.controls[key].value;
+      this.formParams[key] = this.form.controls[key].value;
     });
-    return values;
   }
 
   // 保存
@@ -51,8 +51,12 @@ export class BaseFormTs extends BaseTs {
   }
 
   // 重置时confirm提示
-  resetInit(okFn: Function) {
-    this.tip.confirm('是否重置？', okFn);
+  resetInit(okFn: Function, confirm = true) {
+    if (confirm) {
+      this.tip.confirm('是否重置？', okFn);
+    } else {
+      okFn();
+    }
   }
 
   // 关闭时是否刷新数据

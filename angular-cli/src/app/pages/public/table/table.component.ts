@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableTs } from 'src/app/common/ts/base/table.base';
+import { TableBaseTs } from 'src/app/common/ts/base/table.base';
 import { TableService } from 'src/app/common/api/public/table/table.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { TableService } from 'src/app/common/api/public/table/table.service';
   styleUrls: ['./table.component.less'],
 })
 // extends BaseTableComponent必须
-export class TableComponent extends BaseTableTs implements OnInit {
+export class TableComponent extends TableBaseTs implements OnInit {
   constructor(public injector: Injector, public TableService: TableService) {
     super(injector);
   }

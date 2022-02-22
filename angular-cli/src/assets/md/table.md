@@ -22,7 +22,7 @@
 
 **文件：**
 - 全局属性：BaseTs（common/ts/base/base.ts）
-- 表格属性&方法：BaseTableTs（common/ts/base/table.base.ts）
+- 表格属性&方法：TableBaseTs（common/ts/base/table.base.ts）
 - 【组件】表格-上方操作区：app-table-head（common/component/table-head/table-head.component.ts）
 
 **页面效果：**
@@ -69,7 +69,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let item of Table.data">
-			<td nzShowCheckbox [(nzChecked)]="checkedIds[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
 			<td [hidden]="!colsData[0].show">{{item.time}}</td>
 			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
 			<td [hidden]="!colsData[2].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
@@ -83,7 +83,7 @@
 ```
 ```typescript
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableTs } from 'src/app/common/ts/base/table.base';
+import { TableBaseTs } from 'src/app/common/ts/base/table.base';
 import { TableService } from 'src/app/common/api/public/table/table.service';
 
 @Component({
@@ -91,8 +91,8 @@ import { TableService } from 'src/app/common/api/public/table/table.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.less']
 })
-// extends BaseTableTs必须
-export class TableComponent extends BaseTableTs implements OnInit {
+// extends TableBaseTs必须
+export class TableComponent extends TableBaseTs implements OnInit {
 
 	constructor(
 		public injector: Injector,
@@ -175,7 +175,7 @@ export class TableComponent extends BaseTableTs implements OnInit {
 - search：获取表格数据方法（keywordShow = true时必传，false时可不传）
 - keywordShow：右侧查询区-输入框，默认true显示
 - advanceData：精确查询数据，参考interface advanceData
-- colsData 可配置列数据，参考interface colsData
+- colsData：可配置列数据，参考interface colsData
 - exportShow：精确查询-导出，默认true显示
 - export：精确查询-导出方法（exportShow = true时必传，false时可不传）
 ```html
@@ -230,18 +230,20 @@ interface colsData {
 </thead>
 <tbody>
 	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedIds[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
 	</tr>
 </tbody>
 ```
 - 单个勾选框
 ```html
 <thead>
-	<tr></tr>
+	<tr>
+		<th></th>
+	</tr>
 </thead>
 <tbody>
 	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedIds[item.id]" (nzCheckedChange)="checkRadio(item.id, $event)"></td>
+		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkRadio(item.id, $event)"></td>
 	</tr>
 </tbody>
 ```

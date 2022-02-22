@@ -3,25 +3,16 @@ import { CommonModule } from '@angular/common';
 import { TableHeadComponent } from './table-head/table-head.component';
 import { SharedModule } from '../shared.module';
 import { ImportFileComponent } from './import-file/import-file.component';
-
-
+import { SelectModalComponent } from './select-modal/select-modal.component';
 
 @NgModule({
-  declarations: [
-		TableHeadComponent,
-		ImportFileComponent,
-	],
-  imports: [
-    CommonModule,
-		SharedModule
+  declarations: [TableHeadComponent, ImportFileComponent, SelectModalComponent],
+  imports: [CommonModule, SharedModule],
+  exports: [TableHeadComponent, ImportFileComponent, SelectModalComponent],
+  entryComponents: [
+    TableHeadComponent,
+    ImportFileComponent,
+    SelectModalComponent,
   ],
-	exports: [
-		TableHeadComponent,
-		ImportFileComponent
-	],
-	entryComponents: [
-		TableHeadComponent,
-		ImportFileComponent
-	]
 })
-export class ComponentModule { }
+export class ComponentModule {}

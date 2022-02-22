@@ -1,7 +1,7 @@
 # 上传/导入文件
 
 **文件：**
-- 统一方法：UploadService（common/service/upload/upload.service.ts）
+- 统一方法：UploadService（common/service/upload.service.ts）
 - 统一组件：ImportFileComponent（common/component/import-file/import-file.component.ts）
 
 **页面效果：**
@@ -34,7 +34,7 @@ this.UploadService.file({
 # 下载文件
 
 **文件：**
-- 统一方法：DownloadService（common/service/download/download.service.ts）  
+- 统一方法：DownloadService（common/service/download.service.ts）  
 
 **使用-参数：**
 - url：下载地址，必传

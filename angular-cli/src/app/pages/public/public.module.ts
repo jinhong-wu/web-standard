@@ -17,31 +17,35 @@ import { HttpComponent } from './http/http.component';
 import { InputComponent } from './input/input.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { PipeModule } from 'src/app/common/pipe/pipe.module';
+import { SelectComponent } from './select/select.component';
+import { NameComponent } from './name/name.component';
+import { SelectOpenComponent } from './select/select-open/select-open.component';
 
 @NgModule({
   declarations: [
-		TableComponent,
-		ClassComponent,
-		ModalComponent,
-		ModalCreateComponent,
-		UploadComponent,
-		FormComponent,
-		MenuComponent,
-		MenuCreateComponent,
-		HttpComponent,
-		InputComponent,
-		PipeComponent
-	],
+    TableComponent,
+    ClassComponent,
+    ModalComponent,
+    ModalCreateComponent,
+    UploadComponent,
+    FormComponent,
+    MenuComponent,
+    MenuCreateComponent,
+    HttpComponent,
+    InputComponent,
+    PipeComponent,
+    SelectComponent,
+    SelectOpenComponent,
+    NameComponent,
+  ],
   imports: [
     CommonModule,
     PublicRoutingModule,
-		SharedModule,
-		ComponentModule,
-		PipeModule,
-		MarkdownModule.forChild(), 
+    SharedModule,
+    ComponentModule,
+    PipeModule,
+    MarkdownModule.forChild(),
   ],
-	entryComponents: [
-		ModalCreateComponent
-	]
+  entryComponents: [ModalCreateComponent, SelectOpenComponent],
 })
-export class PublicModule { }
+export class PublicModule {}

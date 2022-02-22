@@ -1,9 +1,7 @@
 # 注意！！！
-- 新增：文件命名 xxx-create
-- 修改：函数命名统一为update()
-- 新增/修改：用同一个文件即可，命名为-create  
+- 新增/修改：用同一个文件即可，命名 xxx-create  
   组件传值 [tab]="tab" [tabIndex]="index"，修改数据包含在tab.data
-
+- 修改：函数命名统一为update()
 
 **文件：**
 - 一级导航、侧边栏：app-layout（common/layout/layout.component.ts）
@@ -46,14 +44,14 @@
 
 ```typescript
 import { Component, OnInit, Injector } from '@angular/core';
-import { BaseTableTs } from 'src/app/common/ts/base/table.base';
+import { TableBaseTs } from 'src/app/common/ts/base/table.base';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.less']
 })
-export class MenuComponent extends BaseTableTs implements OnInit {
+export class MenuComponent extends TableBaseTs implements OnInit {
 
   constructor(
 		public injuctor: Injector,

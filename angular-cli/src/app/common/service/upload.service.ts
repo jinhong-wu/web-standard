@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
-import { BaseTs } from '../../ts/base/base';
-import { ImportFileComponent } from '../../component/import-file/import-file.component';
+import { BaseTs } from 'src/app/common/ts/base/base';
+import { ImportFileComponent } from 'src/app/common/component/import-file/import-file.component';
 
 interface importOptions {
   importUrl: string; // 上传/导入路径，必传
