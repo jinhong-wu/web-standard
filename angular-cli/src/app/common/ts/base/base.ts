@@ -1,5 +1,4 @@
 import { Injector } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuService } from '../../service/system/menu.service';
@@ -7,6 +6,7 @@ import { TipService } from '../../service/tip.service';
 import { I18nService } from '../../service/system/i18n.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { httpUtil } from '../util/http.util';
+import { HttpClient } from '@angular/common/http';
 
 export class BaseTs {
   public translate: TranslateService;

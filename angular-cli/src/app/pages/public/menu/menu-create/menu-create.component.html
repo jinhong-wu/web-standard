@@ -2,18 +2,12 @@
 	<div class="form-content">
 		<form nz-form [formGroup]="form">
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>用户名</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>IP</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<input nz-input formControlName="username" autocomplete="username">
+					<input nz-input formControlName="ip" autocomplete="ip">
 				</nz-form-control>
 				<nz-form-control nzSpan="1">
-					<i nz-icon nzType="info-circle" class="i-tip" [nz-tooltip]="'用户名填写规则'"></i>
-				</nz-form-control>
-			</nz-form-item>
-			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>地址</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<input nz-input formControlName="address" autocomplete="address">
+					<i nz-icon nzType="info-circle" class="i-tip" [nz-tooltip]="'填写正确的IP值'"></i>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>

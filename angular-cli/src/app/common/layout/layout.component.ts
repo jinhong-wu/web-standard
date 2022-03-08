@@ -39,8 +39,8 @@ export class LayoutComponent extends BaseTs implements OnInit {
 
   ngOnInit() {
     // 初始化侧边栏菜单
-    this.MenuService.routerMenuFn(this.routerLinkActive);
     this.MenuService.promise(() => {
+      this.MenuService.routerMenuFn(this.routerLinkActive);
       this.MenuService.menuList.forEach((item) => {
         if (this.router.isActive(item.node.path, false)) {
           this.MenuService.chooseMenu(item.node.path);

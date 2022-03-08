@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UploadService } from './upload.service';
+import { TipModalService } from './tip-modal.service';
 
-describe('UploadService', () => {
-  let service: UploadService;
+describe('TipModalService', () => {
+  let service: TipModalService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UploadService);
+    service = TestBed.inject(TipModalService);
   });
 
   it('should be created', () => {

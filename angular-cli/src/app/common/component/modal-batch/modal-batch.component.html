@@ -1,0 +1,65 @@
+<div class="content">
+	<div class="progress">
+		<small *ngIf='progress < 100; else finished'>
+			{{ i18n.baseList.currentBatchRecord }}：{{ currentNodeName }}
+		</small>
+		<ng-template #finished>
+			<small>
+				{{ i18n.baseList.batchRecordCompleted }}，
+				{{ i18n.baseList.batchSuccessAmount }}：<span class="ft-green">{{ tableSuccessData.length }}</span>，
+				{{ i18n.baseList.batchErrorAmount }}：<span class="ft-red">{{ tableErrorData.length }}</span>。
+			</small>
+		</ng-template>
+		<nz-progress [nzPercent]="progress"></nz-progress>
+	</div>
+
+	<nz-tabset [(nzSelectedIndex)]="selectIndex">
+		<nz-tab *ngFor="let tab of tabs;" [nzTitle]="tab.name">
+			<!-- 批量操作成功记录 -->
+			<ng-container *ngIf="tab.id == 'success'">
+				<nz-table #tableSuccess nzSize="middle" nzShowPagination nzShowSizeChanger [nzData]="tableSuccessData"
+					[nzPageSize]='tableSize'>
+					<thead>
+						<tr>
+							<th *ngFor='let col of columns'>{{ col.title }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of tableSuccess.data">
+							<td *ngFor="let col of columns"
+								[nz-tooltip]="col.format ? col.format(item[col.colKey], item) : item[col.colKey]">
+								{{ col.format ? col.format(item[col.colKey], item) : item[col.colKey]}}
+							</td>
+						</tr>
+					</tbody>
+				</nz-table>
+			</ng-container>
+			<!-- 批量操作失败记录 -->
+			<ng-container *ngIf="tab.id == 'error'">
+				<nz-table #tableError nzSize="middle" nzShowPagination nzShowSizeChanger [nzData]="tableErrorData"
+					[nzPageSize]='5'>
+					<thead>
+						<tr>
+							<th *ngFor='let col of columns'>{{ col.title }}</th>
+							<th>{{ i18n.baseList.errorReasons }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of tableError.data">
+							<td *ngFor="let col of columns"
+								[nz-tooltip]="col.format ? col.format(item[col.colKey], item) : item[col.colKey]">
+								{{ col.format ? col.format(item[col.colKey], item) : item[col.colKey]}}
+							</td>
+							<td class="ft-red" [nz-tooltip]="item.reason">
+								{{ item.reason }}
+							</td>
+						</tr>
+					</tbody>
+				</nz-table>
+			</ng-container>
+		</nz-tab>
+	</nz-tabset>
+</div>
+<div class="footer">
+	<button nz-button nzType="default" (click)="nzModalRef.close()">关闭</button>
+</div>

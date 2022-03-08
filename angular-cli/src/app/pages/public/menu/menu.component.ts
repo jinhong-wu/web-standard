@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { TableBaseTs } from 'src/app/common/ts/base/table.base';
 
 @Component({
@@ -14,19 +14,14 @@ export class MenuComponent extends TableBaseTs implements OnInit {
   // Tab
   // 表单列表 public-menu-list
 
-  item = {
-    id: '1',
-    name: '用户信息1',
-    username: 'admin',
-    address: '启明星辰',
-    describe: '描述',
-  };
+  @ViewChild('menuList', { static: false }) menuList: any = {};
+
   ngOnInit() {
-    // 菜单页面必须调用此方法，生成菜单数据
-    this.MenuService.initTab();
+    this.MenuService.initTab(); // 菜单页面必须调用此方法，生成菜单数据
   }
 
+  // 刷新表格数据
   tableDataFn(reset) {
-    console.log('tableDataFn()：' + reset);
+    this.menuList.tableDataFn(reset);
   }
 }

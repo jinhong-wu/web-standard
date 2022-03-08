@@ -1,22 +1,19 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "src/environments/environment";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class MenuService {
-  constructor(
-    public http: HttpClient
-  ) {
+  constructor(public http: HttpClient) {
     this.menuLoading = true;
-    this.http.get<any>("assets/json/menu.json").subscribe((data) => {
-			this.menuLoading = false;
-			this.menuList = data.data || [];
-			this.getMenuDeal(this.menuList);
-		});
+    this.http.get<any>('assets/json/menu.json').subscribe((data) => {
+      this.menuLoading = false;
+      this.menuList = data.data || [];
+      this.getMenuDeal(this.menuList);
+    });
   }
-
 
   menuList: any[] = [];
   menuObject: Object = {};
@@ -107,25 +104,27 @@ export class MenuService {
   selectIndex = 0; // 当前页
 
   initTab(fn?) {
-    this.tabs = (this.routerMenu.child || []).map((d) => d.node);
-    this.selectIndex = 0;
-    if (this.tabs[0]) {
-      this.selectTab();
-    }
-    if (fn) {
-      setTimeout(() => {
-        fn();
-      });
-    }
+    this.promise(() => {
+      this.tabs = (this.routerMenu.child || []).map((d) => d.node);
+      this.selectIndex = 0;
+      if (this.tabs[0]) {
+        this.selectTab();
+      }
+      if (fn) {
+        setTimeout(() => {
+          fn();
+        });
+      }
+    });
   }
 
   selectTab(index = 0) {
-		this.routerMenuFn(this.tabs[index].path);
+    this.routerMenuFn(this.tabs[index].path);
   }
 
   createTab(tab: any, closeable: boolean = true) {
     tab.id = `${tab.pid}-${tab.type}`;
-    if (tab == "update") tab.id += `-${tab.data.id}`;
+    if (tab.type == 'update') tab.id += `-${tab.data.id}`;
 
     let index = this.tabs.findIndex((d) => d.id === tab.id);
     if (index < 0) {
@@ -148,14 +147,14 @@ export class MenuService {
     }
   }
 
-	promise(ok: Function) {
-		let timer = setInterval(()=>{
-			if (!this.menuLoading) {
-				clearInterval(timer);
-				ok();
-			}
-		}, 500);
-	}
+  promise(ok: Function) {
+    let timer = setInterval(() => {
+      if (!this.menuLoading) {
+        clearInterval(timer);
+        ok();
+      }
+    }, 500);
+  }
 }
 // 对应权限注解
 // userbind=绑定用户

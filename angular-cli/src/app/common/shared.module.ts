@@ -29,6 +29,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 @NgModule({
   declarations: [],
@@ -64,6 +65,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
     NzSwitchModule,
     NzRadioModule,
     NzEmptyModule,
+    NzProgressModule,
   ],
   // tip的位置，持续时间，最大数量
   providers: [NzMessageService],

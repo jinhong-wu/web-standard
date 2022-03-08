@@ -14,11 +14,10 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      username: [
-        { value: null, disabled: this.tab?.data?.username },
+      ip: [
+        { value: null, disabled: this.tab.type == 'update' },
         [Validators.required],
       ],
-      address: [null, [Validators.required]],
       describe: [null, [Validators.required]],
     });
     this.reset(false);
@@ -36,7 +35,10 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
       this.formInit();
       setTimeout(() => {
         this.formLoading = false;
-        this.tip.notify('success', '新增成功');
+        this.tip.notify(
+          'success',
+          this.tab.type == 'update' ? '修改成功' : '新增成功'
+        );
         this.cancel(true);
       }, 1000);
     });
@@ -45,8 +47,7 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
   reset(confirm?) {
     this.resetInit(() => {
       this.form.patchValue({
-        username: this.tab?.data?.username,
-        address: this.tab?.data?.address,
+        ip: this.tab?.data?.ip,
         describe: this.tab?.data?.describe,
       });
     }, confirm);

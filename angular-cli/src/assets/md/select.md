@@ -172,7 +172,7 @@ openChange() {
 
 // SelectOpenComponent保存方法
 save() {
-	this.checkedIdsFn(true);
+	this.checkedIdsFn();
 	this.NzModalRef.close({
 		value: this.checkedIds,
 		option: this.checkedData,

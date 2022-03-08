@@ -73,10 +73,11 @@ export class SelectOpenComponent extends TableBaseTs implements OnInit {
   tableDataFn(reset: boolean = false, advance: boolean = false) {
     this.tableTotal = 10;
     this.tableLoading = false;
-    this.tableData = new Array(10).fill(0).map((_, index) => {
+    this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
       return {
         id: '' + index,
-        name: 'name' + index,
+        value: '' + index,
+        label: 'label' + index,
         time: '2022-01-01 12:00:00',
         ip: '255.255.255.255',
         describe: `超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述`,
@@ -85,7 +86,7 @@ export class SelectOpenComponent extends TableBaseTs implements OnInit {
   }
 
   save() {
-    this.checkedIdsFn(true);
+    this.checkedIdsFn();
     this.NzModalRef.close({
       value: this.checkedIds,
       option: this.checkedData,

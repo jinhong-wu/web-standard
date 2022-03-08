@@ -23,7 +23,7 @@ import { mergeMap } from 'rxjs/operators';
  * @param bigSingle 大文件分片大小，默认为10MB，单位：KB
  * @param bigInitUrl 大文件传输前初始化url（告知后端分片数量等信息）
  * @example
-		this.UploadService.file({
+		this.TipModalService.file({
 			importUrl: '',
 			templateUrl: '',
 			close(compo) {

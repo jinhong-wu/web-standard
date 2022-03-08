@@ -1,0 +1,47 @@
+<app-table-head #tableHead (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData"
+	[colsData]="colsData">
+	<ng-container ngProjectAs="btns">
+		<button nz-button nzType="primary" (click)="create(tab)">新增</button>
+		<button nz-button nzType="primary" (click)="delete()" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+	</ng-container>
+	<ng-container ngProjectAs="tips">
+		<nz-alert nzShowIcon nzType="warning" nzMessage="该表格警告语句"></nz-alert>
+	</ng-container>
+</app-table-head>
+<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
+	nzShowSizeChanger="true" [nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal"
+	[(nzPageIndex)]="tablePage" [(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()"
+	(nzPageSizeChange)="tableDataFn(true)" (nzCurrentPageDataChange)="refreshStatus()">
+	<!-- 排序功能：(nzSortOrderChange)="sortFn($event, tableDataFn)" -->
+	<thead (nzSortOrderChange)="sortFn($event, tableDataFn)">
+		<tr>
+			<!-- th：勾选框、时间、ip等固定列宽加上对应class -->
+			<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
+				(nzCheckedChange)="checkAll($event)"></th>
+			<!-- 正常写法 -->
+			<!--<th class="time">时间</th>
+			<th class="ip">IP</th>
+			<th>描述</th>
+			<th nzWidth="120px">操作</th>-->
+			<!-- 可配置列写法 -->
+			<ng-container *ngFor="let item of colsData">
+				<!-- 排序功能：[nzShowSort]="item.sort" [nzColumnKey]="item.key" -->
+				<th [hidden]="!item.show" [ngClass]="item.class" [style.width]="item.width" [nzShowSort]="item.sort"
+					[nzColumnKey]="item.key">
+					{{ item.value }}
+				</th>
+			</ng-container>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of Table.data">
+			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+			<td [hidden]="!colsData[0].show">{{item.time}}</td>
+			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
+			<td [hidden]="!colsData[2].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
+			<td [hidden]="!colsData[3].show">
+				<a nz-button nzType="link" (click)="update(item, tab)">修改</a>
+			</td>
+		</tr>
+	</tbody>
+</nz-table>

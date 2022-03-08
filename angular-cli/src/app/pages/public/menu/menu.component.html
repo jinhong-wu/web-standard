@@ -1,1 +1,25 @@
+<h1>示例：</h1>
+<nz-tabset [(nzSelectedIndex)]="MenuService.selectIndex" (nzSelectedIndexChange)="MenuService.selectTab($event)">
+	<nz-tab *ngFor="let tab of MenuService.tabs;let index=index" [nzTitle]="titleTemplate">
+		<ng-template #titleTemplate>
+			<div>
+				{{ tab.name}}
+				<i nz-icon nzType="close" class="ant-tabs-close-x" *ngIf="tab.closeable"
+					(click)="MenuService.closeTab(index)"></i>
+			</div>
+		</ng-template>
+		<!-- 表单列表 -->
+		<ng-container *ngIf="tab.id == 'public-menu-list'">
+			<app-menu-list #menuList [tab]="tab"></app-menu-list>
+		</ng-container>
+		<!-- 表单列表-新增、修改 -->
+		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
+			<!-- app-menu-create用法：参考公共示例 - From表单  -->
+			<app-menu-create [tab]="tab" [tabIndex]="index" (search)="tableDataFn($event)"></app-menu-create>
+		</ng-container>
+
+	</nz-tab>
+</nz-tabset>
+
+
 <markdown src='assets/md/menu.md'></markdown>

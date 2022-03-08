@@ -13,7 +13,7 @@ export class AppComponent extends BaseTs {
 
     this.i18n.promise(() => {
       document.getElementsByTagName('title')[0].innerHTML =
-        this.i18n.i18nList.projectTitle;
+        this.i18n.list.projectTitle;
     });
   }
 }

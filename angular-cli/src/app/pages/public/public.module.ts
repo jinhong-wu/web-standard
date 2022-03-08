@@ -20,6 +20,7 @@ import { PipeModule } from 'src/app/common/pipe/pipe.module';
 import { SelectComponent } from './select/select.component';
 import { NameComponent } from './name/name.component';
 import { SelectOpenComponent } from './select/select-open/select-open.component';
+import { MenuListComponent } from './menu/menu-list/menu-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SelectOpenComponent } from './select/select-open/select-open.component'
     SelectComponent,
     SelectOpenComponent,
     NameComponent,
+    MenuListComponent,
   ],
   imports: [
     CommonModule,

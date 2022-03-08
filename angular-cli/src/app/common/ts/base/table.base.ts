@@ -1,12 +1,16 @@
-import { Injector, ViewChild } from '@angular/core';
+import { Injector, Input, ViewChild } from '@angular/core';
 import { BaseTs } from './base';
+import { TipModalService } from 'src/app/common/service/tip-modal.service';
 
 export class TableBaseTs extends BaseTs {
+  public tipModal;
   constructor(public injector: Injector) {
     super(injector);
+    this.tipModal = injector.get(TipModalService);
   }
 
   @ViewChild('tableHead', { static: false }) tableHead: any = {};
+  @Input() tab: any = {};
 
   tableData: any = [];
   tableLoading: boolean = false;
@@ -31,7 +35,7 @@ export class TableBaseTs extends BaseTs {
   advanceData: any = [];
 
   // 状态初始化
-  tableInit(reset, advance) {
+  tableInit(reset = false, advance) {
     if (reset) {
       this.tablePage = 1;
       this.checkedRows = {};
@@ -43,7 +47,7 @@ export class TableBaseTs extends BaseTs {
   }
 
   // 请求参数
-  tableParamsFn(advance) {
+  tableParamsFn(advance = false) {
     this.tableParams = {
       page: this.tablePage - 1,
       size: this.tableSize,
@@ -96,26 +100,23 @@ export class TableBaseTs extends BaseTs {
     this.refreshStatus();
   }
 
-  // 获取选中行id（getData是否获取选中行数据）
-  checkedIdsFn(getData: boolean = false) {
+  // 获取选中行id、行data
+  checkedIdsFn() {
     this.checkedIds = [];
     this.checkedData = [];
     for (let id in this.checkedRows) {
       if (this.checkedRows[id]) {
         this.checkedIds.push(id);
-        if (getData) {
-          this.checkedData.push(
-            this.tableData.find((item) => {
-              return item.id == id;
-            })
-          );
-        }
+        this.checkedData.push(
+          this.tableData.find((item) => {
+            return item.id == id;
+          })
+        );
       }
     }
   }
 
-  // 操作功能：新增
-  tab: any = {};
+  // 按钮区：新增
   create(tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
@@ -124,7 +125,35 @@ export class TableBaseTs extends BaseTs {
       name: this.i18n.baseList.create + this.tab?.name,
     });
   }
-  // 操作功能：修改
+  // 按钮区：删除
+  deleteInit(confirmInfo, options) {
+    this.tip.confirm(confirmInfo, () => {
+      this.checkedIdsFn();
+      this.tipModal.batch({
+        nzTitle: this.i18n.baseList.delete,
+        checkedData: this.checkedData,
+        columns: options.columns,
+        doFn() {
+          options.doFn();
+        },
+        resFn(successData) {
+          // 批量删除后，请求最近有数据的一页（需要判断现在页请求的话有无数据）
+          if (successData.length) {
+            let page = (this.tableTotal - successData.length) / this.tableSize;
+            if (this.tablePage > page) {
+              this.tablePage = Math.ceil(page);
+            }
+          }
+          if (this.tablePage < 1) {
+            this.tablePage = 1;
+          }
+          this.checkedRows = {};
+          options.resFn?.();
+        },
+      });
+    });
+  }
+  // 操作列：修改
   update(item, tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({

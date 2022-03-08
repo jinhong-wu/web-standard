@@ -18,7 +18,7 @@ export class TableComponent extends TableBaseTs implements OnInit {
 
 //this.tableTotal = 10;
 //this.tableLoading = false;
-//this.tableData = new Array(10).fill(0).map((_, index) => {
+//this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
 //	return {
 //		id: index,
 //		time: '2022-01-01 12:00:00',

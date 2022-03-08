@@ -1,7 +1,7 @@
 # 上传/导入文件
 
 **文件：**
-- 统一方法：UploadService（common/service/upload.service.ts）
+- 统一方法：TipModalService（common/service/tip-modal.service.ts）
 - 统一组件：ImportFileComponent（common/component/import-file/import-file.component.ts）
 
 **页面效果：**
@@ -14,7 +14,7 @@
 - size：接受数据大小，默认不限制，单位：KB
 - close：下载弹框关闭后操作
 ```typescript
-this.UploadService.file({
+this.TipModalService.file({
 	importUrl: '',
 	templateUrl: '',
 	close(compo) {

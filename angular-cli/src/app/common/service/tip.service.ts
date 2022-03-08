@@ -57,9 +57,8 @@ export class TipService {
     });
   }
 
-  // 基本对话框（弹框页）
+  // 基本对话框（弹框页）- 统一配置
   modal() {
-    // 配置较多，只返回统一配置
     return {
       nzWrapClassName: 'ant-modal-wrap-base',
       nzMaskClosable: false,
@@ -67,6 +66,7 @@ export class TipService {
     };
   }
 
+  // 基本对话框（弹框页）
   modalAfter(modal, after?: modalAfter) {
     modal.afterOpen.subscribe(() => {
       this.enableModalDrag(modal); // 支持拖拽

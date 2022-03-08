@@ -71,14 +71,14 @@ this.tip.modalAfter(modal, {
 ```
 - 弹出框nzContent统一要求（ModalCreateComponent）
 ```html
-<!-- public nzModal: NzModalRef -->
+<!-- public nzModalRef: NzModalRef -->
 <nz-spin [nzSpinning]="formLoading">
 	<div class="content">
 		// 内容
 	</div>
 	<div class="footer">
 		// 按钮（测试、保存、重置、取消...）
-		<button nz-button nzType="default" (click)="nzModal.close()">取消</button>
+		<button nz-button nzType="default" (click)="nzModalRef.close()">取消</button>
 	</div>
 </nz-spin>
 ```

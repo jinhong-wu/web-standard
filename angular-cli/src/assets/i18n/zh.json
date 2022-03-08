@@ -6,6 +6,12 @@
 		"update":"修改",
 		"delete":"删除",
 		"batch":"批量",
+		"currentBatchRecord":"当前操作记录",
+  	"batchRecordCompleted":"批量操作完成",
+		"batchSuccessAmount":"批量操作成功数目",
+		"batchErrorAmount":"批量操作失败数目",
+		"batchSuccessRecord":"批量操作成功记录",
+		"batchErrorRecord":"批量操作失败记录",
 		"import":"导入",
 		
 		"export":"导出",
@@ -42,7 +48,8 @@
 		"deleteError": "删除失败",
 		"importError": "导入失败",
 		"exportError": "导出失败",
-		"saveError": "保存失败"
+		"saveError": "保存失败",
+		"errorReasons":"失败原因"
 	},
 	"pattern": {
     "code": "只能是数字，英文字母，中划线，下划线",
