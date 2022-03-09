@@ -21,7 +21,7 @@ import { SelectComponent } from './select/select.component';
 import { NameComponent } from './name/name.component';
 import { SelectOpenComponent } from './select/select-open/select-open.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
-
+import { NzResizableModule } from 'ng-zorro-antd/resizable';
 @NgModule({
   declarations: [
     TableComponent,
@@ -47,6 +47,7 @@ import { MenuListComponent } from './menu/menu-list/menu-list.component';
     ComponentModule,
     PipeModule,
     MarkdownModule.forChild(),
+    NzResizableModule,
   ],
   entryComponents: [ModalCreateComponent, SelectOpenComponent],
 })
