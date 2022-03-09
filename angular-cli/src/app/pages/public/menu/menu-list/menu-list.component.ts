@@ -79,7 +79,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
           describe: `超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述`,
         };
       });
-    }, 2000);
+    }, 1000);
   }
 
   tableExport() {

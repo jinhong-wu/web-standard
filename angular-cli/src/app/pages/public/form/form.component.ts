@@ -14,10 +14,10 @@ export class FormComponent extends FormBaseTs implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      //ip: [
-      //  { value: null, disabled: this.tab.type == 'update' },
-      //  [Validators.required],
-      //],
+      ip: [
+        { value: null, disabled: this.tab.type == 'update' },
+        [Validators.required],
+      ],
       describe: [null, [Validators.required]],
     });
     this.reset(false);

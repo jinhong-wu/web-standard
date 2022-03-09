@@ -9,6 +9,12 @@
 	<div class="form-content">
 		<form nz-form [formGroup]="form">
 			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>Select 下拉框</nz-form-label>
+				<nz-form-control nzSpan="12">
+					参考 公共示例-Select 下拉框
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>IP</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
 					<input nz-input formControlName="ip" autocomplete="ip">

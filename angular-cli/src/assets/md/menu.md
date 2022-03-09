@@ -7,9 +7,6 @@
 - 一级导航、侧边栏：app-layout（common/layout/layout.component.ts）
 - 【服务】菜单-属性方法：MenuService（common/service/system/menu.service.ts）
 
-**页面效果：**  
-![image-1](assets/md/imgs/menu.png)
-
 # 全部用法
 - 一级导航切换时，修改侧边二级导航（app-layout）
 - 监听路由变更事件：获取当前路由数据、面包屑功能（app-layout）
