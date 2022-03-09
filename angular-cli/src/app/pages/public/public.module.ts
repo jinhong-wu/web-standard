@@ -21,6 +21,9 @@ import { NameComponent } from './name/name.component';
 import { SelectOpenComponent } from './select/select-open/select-open.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
+import { NzPipesModule } from 'ng-zorro-antd/pipes';
+import { PipeModule } from 'src/app/common/pipe/pipe.module';
+
 @NgModule({
   declarations: [
     TableComponent,
@@ -44,6 +47,8 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable';
     PublicRoutingModule,
     SharedModule,
     ComponentModule,
+    PipeModule,
+    NzPipesModule,
     MarkdownModule.forChild(),
     NzResizableModule,
   ],

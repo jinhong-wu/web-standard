@@ -31,13 +31,5 @@
 <!-- 展示为：万 -->
 ```
 
-# 计量单位
-**文件：** MemoryPipe（common/pipe/memory.pipe.ts）
-
-**使用-参数：**
-- value：数据，必填
-- unit：单位，默认为KB
-```html
-{{ 1024 | memory:'MB' }}
-<!-- 展示为：1.00GB -->
-```
+# 计量单位 等
+使用ng-zorro官方定义：https://ng.ant.design/version/10.2.x/experimental/pipes/zh

@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { BaseTs } from 'src/app/common/ts/base/base';
 import { NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
-import { MemoryPipe } from 'src/app/common/pipe/memory.pipe';
+import { NzBytesPipe } from 'ng-zorro-antd/pipes';
 import { DownloadService } from '../../service/download.service';
 import { from } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
@@ -69,7 +69,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
       if (this[d.key]) {
         d.value = `${this.i18n.baseList[d.name]}：`;
         if (d.key == 'size') {
-          d.size = new MemoryPipe().transform(this.size);
+          d.size = new NzBytesPipe().transform(this.size, 2, 'KB');
           d.value += `<${d.size}`;
         } else {
           d.value += this[d.key];
