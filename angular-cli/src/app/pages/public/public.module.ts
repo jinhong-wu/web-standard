@@ -16,7 +16,6 @@ import { MenuCreateComponent } from './menu/menu-create/menu-create.component';
 import { HttpComponent } from './http/http.component';
 import { InputComponent } from './input/input.component';
 import { PipeComponent } from './pipe/pipe.component';
-import { PipeModule } from 'src/app/common/pipe/pipe.module';
 import { SelectComponent } from './select/select.component';
 import { NameComponent } from './name/name.component';
 import { SelectOpenComponent } from './select/select-open/select-open.component';
@@ -45,7 +44,6 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable';
     PublicRoutingModule,
     SharedModule,
     ComponentModule,
-    PipeModule,
     MarkdownModule.forChild(),
     NzResizableModule,
   ],

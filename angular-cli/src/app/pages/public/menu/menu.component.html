@@ -1,4 +1,4 @@
-<h1>示例：</h1>
+<h1>示例</h1>
 <nz-tabset [(nzSelectedIndex)]="MenuService.selectIndex" (nzSelectedIndexChange)="MenuService.selectTab($event)">
 	<nz-tab *ngFor="let tab of MenuService.tabs;let index=index" [nzTitle]="titleTemplate">
 		<ng-template #titleTemplate>
@@ -14,12 +14,11 @@
 		</ng-container>
 		<!-- 表单列表-新增、修改 -->
 		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
-			<!-- app-menu-create用法：参考公共示例 - From表单  -->
+			<!-- tab：对应tab值，tabIndex：对应tab序号，必传，search：对应表格查询函数，必传  -->
 			<app-menu-create [tab]="tab" [tabIndex]="index" (search)="tableDataFn($event)"></app-menu-create>
 		</ng-container>
 
 	</nz-tab>
 </nz-tabset>
-
 
 <markdown src='assets/md/menu.md'></markdown>

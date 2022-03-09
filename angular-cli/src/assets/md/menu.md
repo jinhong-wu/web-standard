@@ -28,13 +28,11 @@
 		</ng-template>
 		<!-- 表单列表 -->
 		<ng-container *ngIf="tab.id == 'public-menu-list'">
-			<button nz-button nzType="primary" (click)="create(tab)">新增</button>
-			<button nz-button nzType="primary" (click)="update(item, tab)">修改</button>
+			<app-menu-list #menuList [tab]="tab"></app-menu-list>
 		</ng-container>
-
 		<!-- 表单列表-新增、修改 -->
 		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
-			<!-- app-menu-create用法：参考公共示例 - From表单  -->
+			<!-- tab：对应tab值，tabIndex：对应tab序号，必传，search：对应表格查询函数，必传  -->
 			<app-menu-create [tab]="tab" [tabIndex]="index" (search)="tableDataFn($event)"></app-menu-create>
 		</ng-container>
 

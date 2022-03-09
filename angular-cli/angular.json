@@ -34,6 +34,7 @@
             ],
             "styles": [
               "node_modules/ng-zorro-antd/ng-zorro-antd.less",
+							"node_modules/ng-zorro-antd/resizable/style/entry.less",
 							"node_modules/prismjs/themes/prism-okaidia.css",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css",

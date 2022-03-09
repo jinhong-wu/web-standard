@@ -156,7 +156,7 @@ table {
 ```html
 <div class="tree-table">
 	<!-- 左侧树 -->
-	<div class="left-tree" nz-resizable [style.width.px]="width" (nzResize)="onResize($event)">
+	<div class="left-tree" nz-resizable [nzMinWidth]="320" [style.width.px]="width" (nzResize)="onResize($event">
 		<nz-input-group nzSearch [nzAddOnAfter]="suffixIcon">
 			<input nz-input [(ngModel)]="treeSearch" placeholder="输入关键字进行查询" />
 		</nz-input-group>
@@ -166,7 +166,7 @@ table {
 			</button>
 		</ng-template>
 		<nz-tree [nzData]="treeData" [nzSearchValue]="treeSearch"></nz-tree>
-		<nz-resize-handles nzDirection="right"></nz-resize-handles>
+		<nz-resize-handles [nzDirections]="['right']"></nz-resize-handles>
 	</div>
 	<!-- 右侧列表 -->
 	<div class="right-table">

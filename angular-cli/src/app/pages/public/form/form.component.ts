@@ -1,15 +1,55 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { TableBaseTs } from 'src/app/common/ts/base/table.base';
+import { Validators } from '@angular/forms';
+import { FormBaseTs } from 'src/app/common/ts/base/form.base';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.less'],
 })
-export class FormComponent extends TableBaseTs implements OnInit {
+export class FormComponent extends FormBaseTs implements OnInit {
   constructor(public injuctor: Injector) {
     super(injuctor);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.form = this.fb.group({
+      //ip: [
+      //  { value: null, disabled: this.tab.type == 'update' },
+      //  [Validators.required],
+      //],
+      describe: [null, [Validators.required]],
+    });
+    this.reset(false);
+  }
+
+  test() {
+    this.saveInit(() => {
+      // 拨测代码
+      console.log('拨测');
+    });
+  }
+
+  save() {
+    this.saveInit(() => {
+      this.formInit();
+      setTimeout(() => {
+        this.formLoading = false;
+        this.tip.notify(
+          'success',
+          this.tab.type == 'update' ? '修改成功' : '新增成功'
+        );
+        this.cancel(true);
+      }, 1000);
+    });
+  }
+
+  reset(confirm?) {
+    this.resetInit(() => {
+      this.form.patchValue({
+        ip: this.tab?.data?.ip,
+        describe: this.tab?.data?.describe,
+      });
+    }, confirm);
+  }
 }
