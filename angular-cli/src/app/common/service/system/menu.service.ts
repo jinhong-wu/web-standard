@@ -37,7 +37,7 @@ export class MenuService {
     });
   }
 
-  routerMenuFn(url) {
+  routerMenuFn(url?) {
     if (url) {
       this.routerMenu = this.menuObject[url] || {};
       this.routerMenuPoint = [];
@@ -103,23 +103,22 @@ export class MenuService {
   tabs: any = [];
   selectIndex = 0; // 当前页
 
-  initTab(fn?) {
+  initTab(fn?: Function) {
     this.promise(() => {
       this.tabs = (this.routerMenu.child || []).map((d) => d.node);
       this.selectIndex = 0;
-      if (this.tabs[0]) {
-        this.selectTab();
-      }
-      if (fn) {
-        setTimeout(() => {
-          fn();
-        });
-      }
+      fn?.();
     });
   }
 
-  selectTab(index = 0) {
-    this.routerMenuFn(this.tabs[index].path);
+  selectTab(overviewEle?, fn?: Function) {
+    // overviewEle概览Ele，fn回调函数
+    this.routerMenuFn(this.tabs[this.selectIndex]?.path || '');
+    // 点击到概览页面，都需要重新刷新数据
+    if (overviewEle && this.routerMenu?.node?.id.includes('overview')) {
+      overviewEle?.getOverview();
+    }
+    fn?.();
   }
 
   createTab(tab: any, closeable: boolean = true) {

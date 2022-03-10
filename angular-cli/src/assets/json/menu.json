@@ -20,9 +20,18 @@
 					"child": [
 						{
 							"node": {
+								"id": "public-menu-overview",
+								"pid": "public-menu",
+								"name": "概览",
+								"path": "/public/menu/overview",
+								"sideShow": false
+							}
+						},
+						{
+							"node": {
 								"id": "public-menu-list",
 								"pid": "public-menu",
-								"name": "菜单列表1",
+								"name": "菜单列表",
 								"path": "/public/menu/list",
 								"sideShow": false
 							}

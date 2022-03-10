@@ -11,10 +11,12 @@ export class MenuComponent extends TableBaseTs implements OnInit {
     super(injuctor);
   }
 
-  // Tab
-  // 表单列表 public-menu-list
+  // Tab（备注tab对应id，方便代码查看）
+  // 概览 public-menu-overview
+  // 列表 public-menu-list
 
-  @ViewChild('menuList', { static: false }) menuList: any = {};
+  @ViewChild('overview', { static: false }) overview;
+  @ViewChild('list', { static: false }) list;
 
   ngOnInit() {
     this.MenuService.initTab(); // 菜单页面必须调用此方法，生成菜单数据
@@ -22,6 +24,6 @@ export class MenuComponent extends TableBaseTs implements OnInit {
 
   // 刷新表格数据
   tableDataFn(reset) {
-    this.menuList.tableDataFn(reset);
+    this.list.tableDataFn(reset);
   }
 }
