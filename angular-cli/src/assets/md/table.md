@@ -39,7 +39,7 @@
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
-		<nz-alert nzShowIcon nzType="warning" nzMessage="该表格警告语句"></nz-alert>
+		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
 	</ng-container>
 </app-table-head>
 <nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
@@ -188,7 +188,7 @@ export class TableComponent extends TableBaseTs implements OnInit {
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
-		<nz-alert nzShowIcon nzType="warning" nzMessage="该表格警告语句"></nz-alert>
+		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
 	</ng-container>
 </app-table-head>
 ```
