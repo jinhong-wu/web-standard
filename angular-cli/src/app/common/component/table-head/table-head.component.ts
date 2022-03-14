@@ -27,10 +27,10 @@ interface advanceDataOptions {
 }
 
 interface colsData {
+  title: string; // 列名
   key: string; // 列key
-  value: string; // 名称
-  show: boolean; // 是否展示
-  sort: boolean; // 是否支持排序
+  show?: boolean; // 是否展示
+  sort?: boolean; // 是否支持排序
   class?: string; // 列class
   width?: string; // 列宽度
 }

@@ -65,7 +65,7 @@ export class TableBaseTs extends BaseTs {
     }
   }
 
-  // 排序
+  // 排序功能
   sortFn(sort, fn: Function) {
     this.orderBy = sort.key + ' ' + sort.value;
     fn.call(this);

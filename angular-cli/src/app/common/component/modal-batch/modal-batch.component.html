@@ -27,8 +27,8 @@
 					<tbody>
 						<tr *ngFor="let item of tableSuccess.data">
 							<td *ngFor="let col of columns"
-								[nz-tooltip]="col.format ? col.format(item[col.colKey], item) : item[col.colKey]">
-								{{ col.format ? col.format(item[col.colKey], item) : item[col.colKey]}}
+								[nz-tooltip]="col.format ? col.format(item[col.key], item) : item[col.key]">
+								{{ col.format ? col.format(item[col.key], item) : item[col.key]}}
 							</td>
 						</tr>
 					</tbody>
@@ -47,8 +47,8 @@
 					<tbody>
 						<tr *ngFor="let item of tableError.data">
 							<td *ngFor="let col of columns"
-								[nz-tooltip]="col.format ? col.format(item[col.colKey], item) : item[col.colKey]">
-								{{ col.format ? col.format(item[col.colKey], item) : item[col.colKey]}}
+								[nz-tooltip]="col.format ? col.format(item[col.key], item) : item[col.key]">
+								{{ col.format ? col.format(item[col.key], item) : item[col.key]}}
 							</td>
 							<td class="ft-red" [nz-tooltip]="item.reason">
 								{{ item.reason }}

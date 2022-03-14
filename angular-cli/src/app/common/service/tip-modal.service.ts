@@ -17,7 +17,7 @@ interface modalBatchOptions {
 
 interface Column {
   title: string; // 表-列名
-  colKey: string; // 表-列关键字
+  key: string; // 表-列key
   format?: Function; // 表-列数据处理方法
 }
 

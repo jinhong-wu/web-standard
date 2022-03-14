@@ -35,26 +35,26 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
 
   colsData = [
     {
+      title: '时间',
       key: 'time',
-      value: '时间',
       class: 'time',
       show: true,
       sort: true,
     },
     {
+      title: 'IP',
       key: 'ip',
-      value: 'IP',
       class: 'ip',
       show: true,
     },
     {
+      title: '描述',
       key: 'describe',
-      value: '描述',
       show: true,
     },
     {
+      title: '操作',
       key: 'handle',
-      value: '操作',
       width: '60px',
       show: true,
     },
@@ -93,15 +93,11 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
       columns: [
         {
           title: '名称',
-          colKey: 'name',
-        },
-        {
-          title: '类型',
-          colKey: 'type',
+          key: 'name',
         },
         {
           title: 'IP',
-          colKey: 'ip',
+          key: 'ip',
         },
       ],
       doFn() {

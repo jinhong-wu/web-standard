@@ -7,7 +7,7 @@ import { TableService } from 'src/app/common/api/public/table/table.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.less'],
 })
-// extends BaseTableComponent必须
+// extends TableBaseTs必须
 export class TableComponent extends TableBaseTs implements OnInit {
   constructor(public injector: Injector, public TableService: TableService) {
     super(injector);

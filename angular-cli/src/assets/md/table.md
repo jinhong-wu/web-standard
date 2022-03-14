@@ -62,7 +62,7 @@
 				<!-- 排序功能：[nzShowSort]="item.sort" [nzColumnKey]="item.key" -->
 				<th [hidden]="!item.show" [ngClass]="item.class" [style.width]="item.width" [nzShowSort]="item.sort"
 					[nzColumnKey]="item.key">
-					{{ item.value }}
+					{{ item.title }}
 				</th>
 			</ng-container>
 		</tr>
@@ -122,29 +122,29 @@ export class TableComponent extends TableBaseTs implements OnInit {
 		},
 	];
 
-	colsData = [
+  colsData = [
     {
-      key: "time",
-      value: "时间",
-			class: "time",
+      title: '时间',
+      key: 'time',
+      class: 'time',
       show: true,
-			sort: true
+      sort: true,
     },
-		{
-      key: "ip",
-      value: "IP",
-			class: "ip",
-      show: true,
-    },
-		{
-      key: "describe",
-      value: "描述",
+    {
+      title: 'IP',
+      key: 'ip',
+      class: 'ip',
       show: true,
     },
-		{
-      key: "handle",
-      value: "操作",
-			width: "120px",
+    {
+      title: '描述',
+      key: 'describe',
+      show: true,
+    },
+    {
+      title: '操作',
+      key: 'handle',
+      width: '120px',
       show: true,
     },
   ];
@@ -210,8 +210,8 @@ interface advanceDataOptions {
 	value: string;
 }
 interface colsData {
+	title: string,  // 对应列名称
 	key: string,  // 对应列key
-	value: string,  // 对应列名称
 	show: boolean,  // 对应列是否展示
 	class?: string,  // 对应列class
 	width?: string  // 对应列class

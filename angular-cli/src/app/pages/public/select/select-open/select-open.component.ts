@@ -40,26 +40,26 @@ export class SelectOpenComponent extends TableBaseTs implements OnInit {
 
   colsData = [
     {
+      title: '时间',
       key: 'time',
-      value: '时间',
       class: 'time',
       show: true,
       sort: true,
     },
     {
+      title: 'IP',
       key: 'ip',
-      value: 'IP',
       class: 'ip',
       show: true,
     },
     {
+      title: '描述',
       key: 'describe',
-      value: '描述',
       show: true,
     },
     {
+      title: '操作',
       key: 'handle',
-      value: '操作',
       width: '120px',
       show: true,
     },
