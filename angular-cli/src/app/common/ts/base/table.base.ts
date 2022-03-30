@@ -1,6 +1,7 @@
 import { Injector, Input, ViewChild } from '@angular/core';
 import { BaseTs } from './base';
 import { TipModalService } from 'src/app/common/service/tip-modal.service';
+import { DatePipe } from '@angular/common';
 
 export class TableBaseTs extends BaseTs {
   public tipModal;
@@ -47,7 +48,7 @@ export class TableBaseTs extends BaseTs {
   }
 
   // 请求参数
-  tableParamsFn(advance = false) {
+  tableParamsFn(advance = false): boolean {
     this.tableParams = {
       page: this.tablePage - 1,
       size: this.tableSize,
@@ -55,14 +56,31 @@ export class TableBaseTs extends BaseTs {
     if (this.orderBy) {
       this.tableParams.orderBy = this.orderBy;
     }
+    // 精确查询传参
     if (advance) {
-      // 精确查询传参
       this.advanceData.forEach((d) => {
         this.tableParams[d.key] = d.value;
       });
     } else {
       this.tableParams.keyword = this.tableHead.keyword;
     }
+    // 结束时间须在开始时间之后
+    if (this.tableParams.startDt || this.tableParams.endDt) {
+      if (
+        new DatePipe('zh').transform(
+          this.tableParams?.startDt,
+          'yyyy-MM-dd HH:mm:ss'
+        ) >
+        new DatePipe('zh').transform(
+          this.tableParams?.endDt,
+          'yyyy-MM-dd HH:mm:ss'
+        )
+      ) {
+        this.tip.msg('warning', this.i18n.baseList.confirmDt);
+        return false;
+      }
+    }
+    return true;
   }
 
   // 排序功能

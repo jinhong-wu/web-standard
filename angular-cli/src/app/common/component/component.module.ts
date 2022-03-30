@@ -5,6 +5,7 @@ import { SharedModule } from '../shared.module';
 import { ImportFileComponent } from './import-file/import-file.component';
 import { SelectModalComponent } from './select-modal/select-modal.component';
 import { ModalBatchComponent } from './modal-batch/modal-batch.component';
+import { RangePickerComponent } from './range-picker/range-picker.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ModalBatchComponent } from './modal-batch/modal-batch.component';
     ImportFileComponent,
     SelectModalComponent,
     ModalBatchComponent,
+    RangePickerComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -19,12 +21,14 @@ import { ModalBatchComponent } from './modal-batch/modal-batch.component';
     ImportFileComponent,
     SelectModalComponent,
     ModalBatchComponent,
+    RangePickerComponent,
   ],
   entryComponents: [
     TableHeadComponent,
     ImportFileComponent,
     SelectModalComponent,
     ModalBatchComponent,
+    RangePickerComponent,
   ],
 })
 export class ComponentModule {}

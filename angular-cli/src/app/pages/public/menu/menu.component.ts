@@ -23,7 +23,7 @@ export class MenuComponent extends TableBaseTs implements OnInit {
   }
 
   // 刷新表格数据
-  tableDataFn(reset) {
-    this.list.tableDataFn(reset);
+  tableDataFn(refresh) {
+    if (refresh) this.list.tableDataFn(refresh);
   }
 }

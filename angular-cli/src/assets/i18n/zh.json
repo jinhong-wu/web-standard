@@ -13,7 +13,6 @@
 		"batchSuccessRecord":"批量操作成功记录",
 		"batchErrorRecord":"批量操作失败记录",
 		"import":"导入",
-		
 		"export":"导出",
 		"download":"下载",
 		"save":"保存",
@@ -35,7 +34,6 @@
 		"uploadFileAccept": "文件类型",
 		"downloadTemplate":"下载模板",
 
-
 		"createSuccess": "新增成功",
 		"updateSuccess": "修改成功",
 		"deleteSuccess": "删除成功",
@@ -49,7 +47,11 @@
 		"importError": "导入失败",
 		"exportError": "导出失败",
 		"saveError": "保存失败",
-		"errorReasons":"失败原因"
+		"errorReasons":"失败原因",
+
+		"startDt": "开始时间",
+		"endDt": "结束时间",
+		"confirmDt": "结束时间须在开始时间之后"
 	},
 	"pattern": {
     "code": "只能是数字，英文字母，中划线，下划线",

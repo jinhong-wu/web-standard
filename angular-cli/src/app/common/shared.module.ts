@@ -30,6 +30,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @NgModule({
   declarations: [],
@@ -66,6 +67,7 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzRadioModule,
     NzEmptyModule,
     NzProgressModule,
+    NzDatePickerModule,
   ],
   // tip的位置，持续时间，最大数量
   providers: [NzMessageService],

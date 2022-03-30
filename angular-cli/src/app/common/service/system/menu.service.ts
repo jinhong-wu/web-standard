@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+interface createTab {
+  type: string; // tab类型
+  pid: string; // 父tab id
+  id?: string; // tab id
+  name: string; // tab菜单名称
+  data?: any; // tab携带数据
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -103,6 +111,7 @@ export class MenuService {
   tabs: any = [];
   selectIndex = 0; // 当前页
 
+  // 菜单初始化
   initTab(fn?: Function) {
     this.promise(() => {
       this.tabs = (this.routerMenu.child || []).map((d) => d.node);
@@ -111,19 +120,27 @@ export class MenuService {
     });
   }
 
+  /**
+   * @name 选中tab
+   * @param overviewEle 概览页面Ele（点击到概览页面，都需要重新刷新数据）
+   * @param fn 回调函数
+   */
   selectTab(overviewEle?, fn?: Function) {
-    // overviewEle概览Ele，fn回调函数
     this.routerMenuFn(this.tabs[this.selectIndex]?.path || '');
-    // 点击到概览页面，都需要重新刷新数据
     if (overviewEle && this.routerMenu?.node?.id.includes('overview')) {
       overviewEle?.getOverview();
     }
     fn?.();
   }
 
-  createTab(tab: any, closeable: boolean = true) {
+  /**
+   * @name 新增tab
+   * @param tab tab数据，必传
+   * @param closeable tab是否可关闭
+   */
+  createTab(tab: createTab, closeable: boolean = true) {
     tab.id = `${tab.pid}-${tab.type}`;
-    if (tab.type == 'update') tab.id += `-${tab.data.id}`;
+    if (tab?.data?.id) tab.id += `-${tab.data.id}`;
 
     let index = this.tabs.findIndex((d) => d.id === tab.id);
     if (index < 0) {
@@ -134,6 +151,7 @@ export class MenuService {
     }
   }
 
+  // 关闭tab
   closeTab(index) {
     let tab = this.tabs[index];
     this.tabs.splice(index, 1);

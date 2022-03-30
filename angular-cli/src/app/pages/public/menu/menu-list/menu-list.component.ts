@@ -31,6 +31,16 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
         { value: 'CANCELED', label: '已取消' },
       ],
     },
+    {
+      key: 'startDt',
+      type: 'date',
+      placeholder: '开始时间',
+    },
+    {
+      key: 'endDt',
+      type: 'date',
+      placeholder: '结束时间',
+    },
   ];
 
   colsData = [
