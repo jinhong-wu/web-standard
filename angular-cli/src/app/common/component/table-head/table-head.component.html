@@ -3,20 +3,34 @@
 	<div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
 		<!-- 文字框 -->
 		<ng-container *ngIf="item.type =='text'">
-			<input nz-input [(ngModel)]="item.value" (keydown.enter)="searchFn(true)" [placeholder]="item.placeholder">
+			<nz-input-group [nzSuffix]="nzAllowClear">
+				<input nz-input type="text" [(ngModel)]="item.value" (keydown.enter)="searchFn(true)"
+					[placeholder]="item.placeholder">
+			</nz-input-group>
+			<ng-template #nzAllowClear>
+				<i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="item.value"
+					(click)="item.value = null"></i>
+			</ng-template>
 		</ng-container>
 
 		<!-- 下拉框 -->
 		<ng-container *ngIf="item.type =='select'">
-			<nz-select nzAllowClear [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
+			<nz-select nzShowSearch nzAllowClear [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
 				<nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
 				</nz-option>
 			</nz-select>
 		</ng-container>
 
+		<!-- 下拉框-树 -->
+		<ng-container *ngIf="item.type =='tree'">
+			<nz-tree-select nzShowSearch nzAllowClear [nzNodes]="item.nodes" [(ngModel)]='item.value'
+				[nzPlaceHolder]="item.placeholder">
+			</nz-tree-select>
+		</ng-container>
+
 		<!-- 时间框 -->
 		<ng-container *ngIf="item.type =='date'">
-			<nz-date-picker nzShowTime [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
+			<nz-date-picker nzAllowClear nzShowTime [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
 			</nz-date-picker>
 		</ng-container>
 	</div>

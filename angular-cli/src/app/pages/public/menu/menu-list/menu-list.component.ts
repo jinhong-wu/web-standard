@@ -15,20 +15,38 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
   // 举例：精确查询
   advanceData = [
     {
-      key: 'strategyName',
+      key: 'key-text',
       type: 'text',
       style: { class: 'width1' },
-      placeholder: '策略名称',
+      placeholder: '文字框',
     },
     {
-      key: 'strategyStatus',
+      key: 'key-select',
       type: 'select',
-      placeholder: '策略状态',
+      placeholder: '下拉框',
       options: [
-        { value: 'PROCESSING', label: '进行中' },
-        { value: 'SUCCESS', label: '下发成功' },
-        { value: 'FAILED', label: '下发失败' },
-        { value: 'CANCELED', label: '已取消' },
+        { value: '1', label: 'option1' },
+        { value: '2', label: 'option2' },
+        { value: '3', label: 'option3' },
+        { value: '4', label: 'option4' },
+      ],
+    },
+    {
+      key: 'key-tree',
+      type: 'tree',
+      placeholder: '下拉框-树',
+      nodes: [
+        {
+          title: 'parent 1',
+          key: '100',
+          children: [
+            {
+              title: 'parent 1-0',
+              key: '1001',
+              children: [{ title: 'leaf 1-0-0', key: '10010', isLeaf: true }],
+            },
+          ],
+        },
       ],
     },
     {

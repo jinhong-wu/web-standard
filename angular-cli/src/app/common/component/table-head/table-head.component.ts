@@ -12,7 +12,8 @@ interface advanceData {
   key: string; // 对应param参数
   type: string; // 输入框类型（文字输入框text、下拉框select）
   value?: string | number; // ngModel输入值
-  options?: advanceDataOptions[]; // type:'select'时，必传
+  options?: advanceDataOptions[]; // type: 'select'时，必传
+  nodes?: []; // type: 'tree'时，必传
   placeholder?: string; // placeholder提示文字
   style?: {
     // .item样式
