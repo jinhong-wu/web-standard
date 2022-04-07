@@ -112,6 +112,15 @@
 				},
 				{
 					"node": {
+						"id": "public-service",
+						"pid": "public",
+						"name": "Service 服务",
+						"path": "/public/service",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
 						"id": "public-pipe",
 						"pid": "public",
 						"name": "Pipe 过滤器",

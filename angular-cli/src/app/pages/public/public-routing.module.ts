@@ -9,6 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { NameComponent } from './name/name.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { SelectComponent } from './select/select.component';
+import { ServiceComponent } from './service/service.component';
 import { TableComponent } from './table/table.component';
 import { UploadComponent } from './upload/upload.component';
 
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'input', component: InputComponent },
   // select
   { path: 'select', component: SelectComponent },
+  // service
+  { path: 'service', component: ServiceComponent },
   // pipe
   { path: 'pipe', component: PipeComponent },
   // 命名规范

@@ -243,7 +243,7 @@ interface colsData {
 </thead>
 <tbody>
 	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkRadio(item.id, $event)"></td>
+		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatusRadio(item.id, $event)"></td>
 	</tr>
 </tbody>
 ```

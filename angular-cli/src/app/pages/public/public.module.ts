@@ -24,6 +24,7 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { PipeModule } from 'src/app/common/pipe/pipe.module';
 import { MenuOverviewComponent } from './menu/menu-overview/menu-overview.component';
+import { ServiceComponent } from './service/service.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MenuOverviewComponent } from './menu/menu-overview/menu-overview.compon
     NameComponent,
     MenuListComponent,
     MenuOverviewComponent,
+    ServiceComponent,
   ],
   imports: [
     CommonModule,

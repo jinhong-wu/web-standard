@@ -15,7 +15,7 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-多选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzMode="multiple" nzShowSearch nzAllowClear formControlName="multiple">
+					<nz-select nzShowSearch nzAllowClear nzMode="multiple" formControlName="multiple">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
@@ -24,7 +24,7 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-自行输入多个内容</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzMode="tags" nzAllowClear formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"></nz-select>
+					<nz-select nzAllowClear nzMode="tags" formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"></nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>

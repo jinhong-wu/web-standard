@@ -89,7 +89,7 @@ export class TableBaseTs extends BaseTs {
     fn.call(this);
   }
 
-  // 刷新勾选状态
+  // 勾选框-多选：刷新勾选状态
   refreshStatus() {
     if (this.tableData.length > 0) {
       this.isAllChecked = this.tableData.every(
@@ -106,7 +106,7 @@ export class TableBaseTs extends BaseTs {
   }
 
   // 勾选框-单选
-  checkRadio(id, value) {
+  refreshStatusRadio(id, value) {
     this.checkedRows = {
       [id]: value,
     };
