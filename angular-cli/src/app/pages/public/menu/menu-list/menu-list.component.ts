@@ -112,6 +112,16 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
     }, 1000);
   }
 
+  import() {
+    this.tipModal.file({
+      importUrl: '',
+      tempUrl: 'aa',
+      close(compo) {
+        console.log('右上角关闭弹出框后操作');
+      },
+    });
+  }
+
   delete() {
     this.deleteInit('是否删除所选xxx数据？', {
       columns: [

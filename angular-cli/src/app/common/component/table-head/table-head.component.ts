@@ -47,7 +47,7 @@ interface colsData {
  * @param keywordShow 右侧查询区-输入框，默认true显示
  * @param advanceData 精确查询数据，参考interface advanceData
  * @param colsData 可配置列数据，参考interface colsData
- * @param exportShow 精确查询-导出，默认true显示  
+ * @param exportShow 精确查询-导出，默认false隐藏 
  * @param export 精确查询-导出方法（exportShow = true时必传，false时可不传）
  * @example
 	#tableHead 必须取此名
@@ -72,7 +72,7 @@ export class TableHeadComponent extends BaseTs implements OnInit {
   @Input() keywordShow: any = true;
   @Input() advanceData: advanceData[] = [];
   @Input() colsData: colsData[] = [];
-  @Input() exportShow: any = true;
+  @Input() exportShow: any = false;
   @Output() export = new EventEmitter<boolean>();
 
   // 关键字查询

@@ -3,6 +3,7 @@
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary" (click)="create(tab)">新增</button>
 		<button nz-button nzType="primary" (click)="delete()" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+		<button nz-button nzType="primary" (click)="import()">导入</button>
 		<button nz-button nzType="primary" (click)="export('checked', exportUrl)"
 			[disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
