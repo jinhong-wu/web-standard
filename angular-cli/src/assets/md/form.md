@@ -1,3 +1,6 @@
+# 注意！！！
+- form表单中：formControlName和ngModel尽量避免混用（容易造成很多Bug）
+
 **文件：**
 - 全局属性：BaseTs（common/ts/base/base.ts）
 - 表格属性&方法：FormBaseTs（common/ts/base/form.base.ts）

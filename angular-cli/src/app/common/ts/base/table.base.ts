@@ -2,12 +2,15 @@ import { Injector, Input, ViewChild } from '@angular/core';
 import { BaseTs } from './base';
 import { TipModalService } from 'src/app/common/service/tip-modal.service';
 import { DatePipe } from '@angular/common';
+import { DownloadService } from '../../service/download.service';
 
 export class TableBaseTs extends BaseTs {
   public tipModal;
+  public download;
   constructor(public injector: Injector) {
     super(injector);
     this.tipModal = injector.get(TipModalService);
+    this.download = injector.get(DownloadService);
   }
 
   @ViewChild('tableHead', { static: false }) tableHead: any = {};
@@ -179,6 +182,24 @@ export class TableBaseTs extends BaseTs {
       pid: this.tab.id,
       name: this.i18n.baseList.update + '：' + (item.name || ''),
       data: item,
+    });
+  }
+
+  // 按钮区：导出
+  export(type: 'search' | 'checked', url) {
+    let confirm = '',
+      params = null;
+    if (type == 'search') {
+      confirm = this.i18n.baseList.exportSearchConfirm;
+      this.tableParamsFn(true);
+      params = this.httpUtil.getHttpParam(this.tableParams);
+    } else {
+      confirm = this.i18n.baseList.exportConfirm;
+      this.checkedIdsFn();
+      url += this.httpUtil.getString({ ids: this.checkedIds });
+    }
+    this.tip.confirm(confirm, () => {
+      this.download.down(url, { params }).subscribe();
     });
   }
 }

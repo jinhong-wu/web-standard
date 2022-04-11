@@ -16,7 +16,7 @@ import { mergeMap } from 'rxjs/operators';
 /**
  * @name 上传/导入文件
  * @param importUrl 上传/导入路径（必传）
- * @param templateUrl 下载模板地址
+ * @param tempUrl 下载模板地址
  * @param accept 接受数据类型，默认.xlsx
  * @param size 接受数据大小，默认为0，表示不限制，单位：KB
  * @param bigSize 大文件界限大小（超过即为大文件分片上传），默认为50MB，单位：KB
@@ -25,7 +25,7 @@ import { mergeMap } from 'rxjs/operators';
  * @example
 		this.TipModalService.file({
 			importUrl: '',
-			templateUrl: '',
+			tempUrl: '',
 			close(compo) {
 				// 右上角关闭弹出框后操作
 			}
@@ -43,7 +43,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   }
 
   @Input() importUrl: string;
-  @Input() templateUrl?: string;
+  @Input() tempUrl?: string;
   @Input() accept?: string = '.xlsx';
   @Input() size: number = 0; // 单位：KB
   @Input() bigSize: number = 1024 * 50; // 默认50MB，单位：KB
@@ -54,8 +54,8 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   uploadLoading: boolean = false;
   uploadHint: any = [];
   uploadHintList: any = [
-    { key: 'size', name: 'uploadFileSize' },
-    { key: 'accept', name: 'uploadFileAccept' },
+    { key: 'size', name: 'fileSize' },
+    { key: 'accept', name: 'fileAccept' },
   ];
   uploadType: string; // 上传状态
   uploadRes: any = {}; // 接口返回
@@ -67,7 +67,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
     // 提示文字
     this.uploadHintList.forEach((d) => {
       if (this[d.key]) {
-        d.value = `${this.i18n.baseList[d.name]}：`;
+        d.value = `${this.i18n.list.upload[d.name]}：`;
         if (d.key == 'size') {
           d.size = new NzBytesPipe().transform(this.size, 2, 'KB');
           d.value += `<${d.size}`;
@@ -223,7 +223,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   };
 
   // 下载模板
-  downloadTemplate() {
-    this.download.down(this.templateUrl).subscribe();
+  downloadTemp() {
+    this.download.down(this.tempUrl).subscribe();
   }
 }

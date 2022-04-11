@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { TipService } from './tip.service';
 import { Observable } from 'rxjs';
+
+interface options {
+  type?: 'excel' | 'file';
+  params?: HttpParams;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +19,23 @@ export class DownloadService {
     file: 'application/octet-stream',
   };
 
-  down(url: string, type: 'excel' | 'file' = 'file'): Observable<boolean> {
+  down(url: string, option?: options): Observable<boolean> {
     const msg: any = this.tip.msg('loading', '正在下载，请稍候...', {
       nzDuration: 0,
     });
     return new Observable((observer) => {
       observer.next(true);
       this.http
-        .get(url, { responseType: 'blob', observe: 'response' })
+        .get(url, {
+          responseType: 'blob',
+          observe: 'response',
+          params: option?.params || null,
+        })
         .subscribe(
           (res) => {
-            const blob = new Blob([res.body], { type: this.blobType[type] }),
+            const blob = new Blob([res.body], {
+                type: this.blobType[option.type || 'file'],
+              }),
               fileName = decodeURIComponent(
                 res.headers.get('Content-Disposition').split('filename=')[1]
               );

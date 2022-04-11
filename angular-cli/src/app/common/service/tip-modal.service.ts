@@ -23,7 +23,7 @@ interface Column {
 
 interface importOptions {
   importUrl: string; // 上传/导入路径，必传
-  templateUrl?: string; // 下载模板地址
+  tempUrl?: string; // 下载模板地址
   accept?: string; // 接受数据类型
   size?: number; // 接受数据大小，单位：KB
   bigSize?: number; // 大文件界限大小，单位：KB

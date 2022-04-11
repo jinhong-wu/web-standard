@@ -13,7 +13,7 @@ export class UploadComponent implements OnInit {
     //setTimeout(() => {
     //  this.TipModalService.file({
     //    importUrl: '',
-    //    templateUrl: 'aa',
+    //    tempUrl: 'aa',
     //    close(compo) {
     //      // 右上角关闭弹出框后操作
     //    },

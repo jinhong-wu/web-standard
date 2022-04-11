@@ -9,14 +9,14 @@
 
 **使用-参数：**
 - importUrl：上传/导入路径，必传
-- templateUrl：下载模板地址
+- tempUrl：下载模板地址
 - accept：接受数据类型，默认.xlsx
 - size：接受数据大小，默认不限制，单位：KB
 - close：下载弹框关闭后操作
 ```typescript
 this.TipModalService.file({
 	importUrl: '',
-	templateUrl: '',
+	tempUrl: '',
 	close(compo) {
 		// 右上角关闭弹出框后操作
 	}

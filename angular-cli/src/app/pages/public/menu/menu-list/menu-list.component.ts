@@ -12,7 +12,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
     super(injector);
   }
 
-  // 举例：精确查询
+  // 举例
   advanceData = [
     {
       key: 'key-text',
@@ -88,6 +88,8 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
     },
   ];
 
+  exportUrl = 'https://....';
+
   ngOnInit(): void {
     this.tableDataFn();
   }
@@ -110,14 +112,8 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
     }, 1000);
   }
 
-  tableExport() {
-    this.tip.confirm('确定导出xxx数据？', () => {
-      //this.TableService.tableExport(queryParam);
-    });
-  }
-
   delete() {
-    this.deleteInit('确定删除所选xxx数据？', {
+    this.deleteInit('是否删除所选xxx数据？', {
       columns: [
         {
           title: '名称',
