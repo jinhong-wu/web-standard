@@ -1,5 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { ValidatorService } from 'src/app/common/service/validator.service';
 import { FormBaseTs } from 'src/app/common/ts/base/form.base';
 
 @Component({
@@ -8,7 +9,7 @@ import { FormBaseTs } from 'src/app/common/ts/base/form.base';
   styleUrls: ['./menu-create.component.less'],
 })
 export class MenuCreateComponent extends FormBaseTs implements OnInit {
-  constructor(public injuctor: Injector) {
+  constructor(public injuctor: Injector, public validator: ValidatorService) {
     super(injuctor);
   }
 
@@ -16,9 +17,9 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
     this.form = this.fb.group({
       ip: [
         { value: null, disabled: this.tab.type == 'update' },
-        [Validators.required],
+        [Validators.required, Validators.pattern(this.validator.IPV4)],
       ],
-      describe: [null, [Validators.required]],
+      describe: [null, [Validators.pattern(this.validator.DESCRIPTION)]],
     });
     this.reset(false);
   }

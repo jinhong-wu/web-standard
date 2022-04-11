@@ -9,7 +9,6 @@ import { BaseTs } from './base';
  */
 export class FormBaseTs extends BaseTs {
   public fb: FormBuilder;
-
   constructor(public injector: Injector) {
     super(injector);
     this.fb = this.injector.get(FormBuilder);
@@ -40,6 +39,7 @@ export class FormBaseTs extends BaseTs {
 
   // 保存
   saveInit(okFn: Function) {
+    // 更新验证规则，统一写在前面（valid更改时会出现验证规则更新不及时的bug）
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();

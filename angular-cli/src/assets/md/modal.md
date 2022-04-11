@@ -33,6 +33,7 @@ this.tip.notify("success", "提示标题", "提示内容");
 ![image-1](assets/md/imgs/tip-confirm.png)
 
 **使用：确认操作**
+- 提示语句：是否xxxx？（统一用是否，不用确定）
 - 按钮顺序：确定、取消
 - type：info、success、warning、error、blank
 - title：  

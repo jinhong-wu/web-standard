@@ -3,7 +3,7 @@
 		<form nz-form [formGroup]="form">
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>IP</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="ipError">
 					<input nz-input formControlName="ip" autocomplete="ip">
 				</nz-form-control>
 				<nz-form-control nzSpan="1">
@@ -11,8 +11,8 @@
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>描述</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-label nzSpan="6">描述</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.pattern.description">
 					<input nz-input formControlName="describe" autocomplete="describe">
 				</nz-form-control>
 			</nz-form-item>
@@ -25,8 +25,6 @@
 		<button nz-button nzType="default" (click)="cancel()">取消</button>
 	</div>
 </nz-spin>
-<ng-template #requiredErrorTpl let-control>
-	<ng-container *ngIf="control.hasError('required')">
-		必须输入
-	</ng-container>
+<ng-template #ipError let-control>
+	{{ i18n.list.pattern.ipv4 }}
 </ng-template>

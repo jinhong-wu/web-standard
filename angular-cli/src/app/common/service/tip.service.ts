@@ -21,7 +21,7 @@ export class TipService {
     private rendererFactory2: RendererFactory2
   ) {
     this.i18n.promise(() => {
-      this.title = this.i18n?.baseList?.confirmInfo; // 默认标题：提示信息
+      this.title = this.i18n?.baseList?.confirmInfo; // 默认标题：提示
       this.content = this.i18n?.baseList?.noContent; // 默认内容：暂无内容
     });
   }
