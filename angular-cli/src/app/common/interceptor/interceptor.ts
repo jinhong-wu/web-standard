@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -15,7 +15,11 @@ import { TipService } from '../service/tip.service';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
-  constructor(private router: Router, private tip: TipService) {}
+  constructor(private injector: Injector) {}
+
+  private get tip(): TipService {
+    return this.injector.get(TipService);
+  }
 
   intercept(
     request: HttpRequest<any>,
@@ -45,43 +49,65 @@ export class Interceptor implements HttpInterceptor {
 
     return next.handle(newReq).pipe(
       mergeMap((event: any) => {
-        // 允许统一对请求错误处理
         if (event instanceof HttpResponseBase) {
-          return this.handleData(event);
+          return this.handleData(event, request.headers.has('ignoreTip'));
         }
-        // 若一切都正常，则后续操作
         return of(event);
       }),
       catchError((err: HttpErrorResponse) => {
-        return this.handleData(err);
+        return this.handleData(err, request.headers.has('ignoreTip'));
       })
     );
   }
 
-  private handleData(ev: HttpResponseBase): Observable<any> {
+  // ignoreTip：忽略拦截器的提示信息
+  private handleData(
+    ev: HttpResponseBase,
+    ignoreTip: boolean = false
+  ): Observable<any> {
     switch (ev.status) {
+      case 302:
+        this.goTo(ev.headers.get('location'));
+        break;
       case 400:
+        if (ev instanceof HttpErrorResponse) {
+          if (!ignoreTip) {
+            this.tip.notify('error', ev.error.message, ev.error.details);
+          }
+          return throwError(ev);
+        }
+      case 401:
+        break;
       case 404:
+        debugger;
+        if (ev instanceof HttpErrorResponse) {
+          if (!ignoreTip) {
+            this.tip.notify('error', ev.error.message, ev.error.message);
+          }
+          return throwError(ev);
+        }
+        break;
       case 500:
         if (ev instanceof HttpErrorResponse) {
-          this.tip.notify('error', ev.error.message, ev.error.details);
+          if (!ignoreTip) {
+            this.tip.notify('error', ev.error.message, ev.error.message);
+          }
           return throwError({ ev });
         }
         break;
-      case 302:
-        this.router.navigate([ev.headers.get('location')]);
-        break;
-      case 401:
-        break;
-      case 403:
-        break;
       default:
         if (ev instanceof HttpErrorResponse) {
-          this.tip.notify('error', '未知错误', ev.error.details);
+          if (!ignoreTip) {
+            this.tip.notify('error', '未知错误', ev.error.details);
+          }
           return throwError(ev);
         }
         break;
     }
     return of(ev);
+  }
+
+  private goTo(url: string) {
+    setTimeout(() => this.injector.get(Router).navigateByUrl(url));
   }
 }

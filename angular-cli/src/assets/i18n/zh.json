@@ -8,10 +8,12 @@
 		"delete":"删除",
 		"import":"导入",
 		"download":"下载",
-		"save":"保存",
 		"allCheck": "全选",
+		"save":"保存",
 		"reset":"重置",
-
+		"cancel":"取消",
+		"on": "启用",
+		"off": "禁用",
 		"export":"导出",
 		"exportConfirm":"是否导出所选数据？",
 		"exportSearch": "导出查询数据",
@@ -19,7 +21,6 @@
 
 		"placeholder": "输入关键字进行查询",
 		"sure": "确定",
-		"cancel":"取消",
 		"confirmInfo":"提示",
 		"noContent": "暂无内容",
 
