@@ -1,12 +1,13 @@
 # 全部用法
 ```html
+<h1>示例</h1>
 <nz-spin [nzSpinning]="formLoading">
 	<div class="form-content">
 		<form nz-form [formGroup]="form">
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-单选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear formControlName="select">
+					<nz-select nzShowSearch nzAllowClear formControlName="select" nzPlaceHolder="select-单选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
@@ -15,16 +16,34 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-多选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear nzMode="multiple" formControlName="multiple">
+					<nz-select nzShowSearch nzAllowClear nzMode="multiple" formControlName="multiple" nzPlaceHolder="select-多选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>select-树-单选</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-tree-select nzShowSearch nzAllowClear [nzNodes]="nodes" nzPlaceHolder="select-树-单选"
+						formControlName="tree">
+					</nz-tree-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>select-树-多选</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-tree-select nzShowSearch nzAllowClear nzMultiple [nzNodes]="nodes" nzPlaceHolder="select-树-多选"
+						formControlName="treeMultiple">
+					</nz-tree-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-自行输入多个内容</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzAllowClear nzMode="tags" formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"></nz-select>
+					<nz-select nzAllowClear nzMode="tags" formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"
+						nzPlaceHolder="select-自行输入多个内容">
+					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
@@ -66,10 +85,30 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 
   @ViewChild('selectModal', { static: false }) selectModal;
 
+  nodes = [
+    {
+      title: 'parent 1',
+      key: '1',
+      children: [
+        {
+          title: 'parent 1-0',
+          key: '1-0',
+          children: [{ title: 'leaf 1-0-0', key: '1-0-0', isLeaf: true }],
+        },
+        {
+          title: 'parent 1-1',
+          key: '1-1',
+          children: [{ title: 'leaf 1-1-0', key: '1-1-0', isLeaf: true }],
+        },
+      ],
+    },
+  ];
   tab = {
     data: {
       select: 'a10',
       multiple: ['a10', 'c12'],
+      tree: '1-0',
+      treeMultiple: ['1-0', '1-1'],
       tags: ['a10', 'c12'],
       modal: [
         { value: '2', label: 'label2' },
@@ -82,7 +121,9 @@ export class SelectComponent extends FormBaseTs implements OnInit {
     this.form = this.fb.group({
       select: [null, [Validators.required]],
       multiple: [null, [Validators.required]],
-      tags: [{ value: null, disabled: true }, [Validators.required]],
+      tree: [null, [Validators.required]],
+      treeMultiple: [null, [Validators.required]],
+      tags: [{ value: null, disabled: false }, [Validators.required]],
       modal: [null, [Validators.required]],
     });
     this.reset(false);
@@ -105,6 +146,8 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       this.form.patchValue({
         select: this.tab?.data?.select,
         multiple: this.tab?.data?.multiple,
+        tree: this.tab?.data?.tree,
+        treeMultiple: this.tab?.data?.treeMultiple,
         tags: this.tab?.data?.tags,
         modal: this.tab?.data?.modal,
       });
@@ -122,6 +165,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
     });
   }
 }
+
 ```
 
 # select-自行输入多个内容

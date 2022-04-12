@@ -5,7 +5,7 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-单选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear formControlName="select">
+					<nz-select nzShowSearch nzAllowClear formControlName="select" nzPlaceHolder="select-单选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
@@ -14,16 +14,34 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-多选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear nzMode="multiple" formControlName="multiple">
+					<nz-select nzShowSearch nzAllowClear nzMode="multiple" formControlName="multiple" nzPlaceHolder="select-多选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>select-树-单选</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-tree-select nzShowSearch nzAllowClear [nzNodes]="nodes" nzPlaceHolder="select-树-单选"
+						formControlName="tree">
+					</nz-tree-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>select-树-多选</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-tree-select nzShowSearch nzAllowClear nzMultiple [nzNodes]="nodes" nzPlaceHolder="select-树-多选"
+						formControlName="treeMultiple">
+					</nz-tree-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-自行输入多个内容</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzAllowClear nzMode="tags" formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"></nz-select>
+					<nz-select nzAllowClear nzMode="tags" formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"
+						nzPlaceHolder="select-自行输入多个内容">
+					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
@@ -46,6 +64,5 @@
 		必须输入
 	</ng-container>
 </ng-template>
-
 
 <markdown src='assets/md/select.md'></markdown>
