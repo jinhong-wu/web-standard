@@ -53,7 +53,7 @@ interface colsData {
 	#tableHead 必须取此名
 	tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
 
-	<app-table-head #tableHead (search)="tableDataFn(true, $event)" (export)="tableExport()" [advanceData]="advanceData" [colsData]="colsData">
+	<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export('search')" [advanceData]="advanceData" [colsData]="colsData">
 		<ng-container ngProjectAs="btns">
 			<button nz-button nzType="primary">新增</button>
 			<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>

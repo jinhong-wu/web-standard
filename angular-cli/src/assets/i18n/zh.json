@@ -15,9 +15,9 @@
 		"on": "启用",
 		"off": "禁用",
 		"export":"导出",
-		"exportConfirm":"是否导出所选数据？",
+		"exportConfirm":"确定导出所选数据？",
 		"exportSearch": "导出查询数据",
-		"exportSearchConfirm": "是否导出所有查询结果？",
+		"exportSearchConfirm": "确定导出所有查询结果？",
 
 		"placeholder": "输入关键字进行查询",
 		"sure": "确定",
@@ -51,6 +51,9 @@
 		"startDt": "开始时间",
 		"endDt": "结束时间",
 		"confirmDt": "结束时间须在开始时间之后"
+	},
+	"tree": {
+		"inputPlaceholder": "请输入名称"
 	},
 	"upload": {
 		"file":"上传文件",

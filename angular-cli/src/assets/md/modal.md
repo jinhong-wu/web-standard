@@ -33,7 +33,7 @@ this.tip.notify("success", "提示标题", "提示内容");
 ![image-1](assets/md/imgs/tip-confirm.png)
 
 **使用：确认操作**
-- 提示语句：是否xxxx？（统一用是否，不用确定）
+- 提示语句：确定xxxx？（统一用确定）
 - 按钮顺序：确定、取消
 - type：info、success、warning、error、blank
 - title：  
@@ -41,7 +41,7 @@ this.tip.notify("success", "提示标题", "提示内容");
 （type = 'error'）createError、updateError、deleteError、importError、exportError、saveError  
 ```typescript
 // confirm(content, okFn)
-this.tip.confirm("是否删除所选表格数据？", ()=>{
+this.tip.confirm("确定删除所选表格数据？", ()=>{
 	// 确认后代码...
 });
 ```

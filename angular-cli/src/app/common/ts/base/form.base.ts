@@ -52,7 +52,7 @@ export class FormBaseTs extends BaseTs {
   // 重置时confirm提示
   resetInit(okFn: Function, confirm = true) {
     if (confirm) {
-      this.tip.confirm('是否重置？', okFn);
+      this.tip.confirm('确定重置？', okFn);
     } else {
       okFn();
     }

@@ -32,11 +32,11 @@
 # 全部用法
 ```html
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
-<app-table-head #tableHead (search)="tableDataFn(true, $event)" (export)="export('search', exportUrl)" [advanceData]="advanceData" [colsData]="colsData">
+<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export('search')" [advanceData]="advanceData" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary">新增</button>
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-		<button nz-button nzType="primary" (click)="export('checked', exportUrl)"
+		<button nz-button nzType="primary" (click)="export('checked')"
 			[disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
@@ -178,11 +178,11 @@ export class TableComponent extends TableBaseTs implements OnInit {
 ```html
 <!-- #tableHead 必须取此名 -->
 <!-- tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询 -->
-<app-table-head #tableHead (search)="tableDataFn(true, $event)" (export)="export('search', exportUrl)" [advanceData]="advanceData" [colsData]="colsData">
+<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export('search')" [advanceData]="advanceData" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<button nz-button nzType="primary">新增</button>
 		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-		<button nz-button nzType="primary" (click)="export('checked', exportUrl)" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
+		<button nz-button nzType="primary" (click)="export('checked')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
 		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>

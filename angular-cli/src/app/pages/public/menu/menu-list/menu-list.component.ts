@@ -123,7 +123,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
   }
 
   delete() {
-    this.deleteInit('是否删除所选xxx数据？', {
+    this.deleteInit('确定删除所选xxx数据？', {
       columns: [
         {
           title: '名称',

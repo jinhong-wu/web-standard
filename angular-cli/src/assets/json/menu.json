@@ -49,6 +49,15 @@
 				},
 				{
 					"node": {
+						"id": "public-tree",
+						"pid": "public",
+						"name": "Tree 树",
+						"path": "/public/tree",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
 						"id": "public-form",
 						"pid": "public",
 						"name": "Form 表单",

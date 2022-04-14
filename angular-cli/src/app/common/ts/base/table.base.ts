@@ -186,8 +186,10 @@ export class TableBaseTs extends BaseTs {
   }
 
   // 按钮区：导出
-  export(type: 'search' | 'checked', url) {
+	exportUrl = '';
+  export(type: 'search' | 'checked') {
     let confirm = '',
+			url = this.exportUrl,
       params = null;
     if (type == 'search') {
       confirm = this.i18n.baseList.exportSearchConfirm;
