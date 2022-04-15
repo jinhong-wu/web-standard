@@ -6,19 +6,24 @@ import { HttpComponent } from './http/http.component';
 import { InputComponent } from './input/input.component';
 import { MenuComponent } from './menu/menu.component';
 import { ModalComponent } from './modal/modal.component';
-import { NameComponent } from './name/name.component';
+import { OtherComponent } from './other/other.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { SelectComponent } from './select/select.component';
 import { ServiceComponent } from './service/service.component';
 import { TableComponent } from './table/table.component';
+import { TreeComponent } from './tree/tree.component';
 import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'menu', pathMatch: 'full' },
+  { path: '', redirectTo: 'other', pathMatch: 'full' },
+  // 规范
+  { path: 'other', component: OtherComponent },
   // 菜单
   { path: 'menu', component: MenuComponent },
   // 表格
   { path: 'table', component: TableComponent },
+  // 树
+  { path: 'tree', component: TreeComponent },
   // 表单
   { path: 'form', component: FormComponent },
   // 样式
@@ -37,8 +42,6 @@ const routes: Routes = [
   { path: 'service', component: ServiceComponent },
   // pipe
   { path: 'pipe', component: PipeComponent },
-  // 命名规范
-  { path: 'name', component: NameComponent },
 ];
 
 @NgModule({

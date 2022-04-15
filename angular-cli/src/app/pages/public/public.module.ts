@@ -17,7 +17,6 @@ import { HttpComponent } from './http/http.component';
 import { InputComponent } from './input/input.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { SelectComponent } from './select/select.component';
-import { NameComponent } from './name/name.component';
 import { SelectOpenComponent } from './select/select-open/select-open.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
@@ -25,6 +24,8 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { PipeModule } from 'src/app/common/pipe/pipe.module';
 import { MenuOverviewComponent } from './menu/menu-overview/menu-overview.component';
 import { ServiceComponent } from './service/service.component';
+import { TreeComponent } from './tree/tree.component';
+import { OtherComponent } from './other/other.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,11 @@ import { ServiceComponent } from './service/service.component';
     PipeComponent,
     SelectComponent,
     SelectOpenComponent,
-    NameComponent,
     MenuListComponent,
     MenuOverviewComponent,
     ServiceComponent,
+    TreeComponent,
+    OtherComponent,
   ],
   imports: [
     CommonModule,

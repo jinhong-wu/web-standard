@@ -11,6 +11,15 @@
 			"child": [
 				{
 					"node": {
+						"id": "public-other",
+						"pid": "public",
+						"name": "规范（必读）",
+						"path": "/public/other",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
 						"id": "public-menu",
 						"pid": "public",
 						"name": "Menu 菜单",
@@ -134,15 +143,6 @@
 						"pid": "public",
 						"name": "Pipe 过滤器",
 						"path": "/public/pipe",
-						"sideShow": true
-					}
-				},
-				{
-					"node": {
-						"id": "public-name",
-						"pid": "public",
-						"name": "命名规范",
-						"path": "/public/name",
 						"sideShow": true
 					}
 				}
