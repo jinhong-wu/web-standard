@@ -82,13 +82,15 @@ export class ImportFileComponent extends BaseTs implements OnInit {
 
   // 上传文件前
   nzBeforeUpload = (file: NzUploadFile): boolean => {
+		// 文件大小超过
     if (this.size !== 0 && file.size > this.size) {
-      this.tip.msg('warning', '文件大小超过：' + this.uploadHintList[0].size);
+      this.tip.msg('warning', this.i18n.list.upload.fileSizeTip + this.uploadHintList[0].size);
       return false;
     }
+		// 文件类型仅支持
     let name = new RegExp(this.accept, 'ig');
     if (!name.test(file.name)) {
-      this.tip.msg('warning', '文件类型仅支持：' + this.accept);
+      this.tip.msg('warning', this.i18n.list.upload.fileAcceptTip + this.accept);
       return false;
     }
     return true;
