@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BaseTs } from './base';
 /**
  * @name 表单-基本属性及方法
- * @param tab 当前tab值
- * @param tabIndex 当前tab index值，必传
+ * @param tab 当前tab值，必传
  * @param search 数据刷新对应函数，必传
  */
 export class FormBaseTs extends BaseTs {
@@ -15,7 +14,6 @@ export class FormBaseTs extends BaseTs {
   }
 
   @Input() tab?: any = {};
-  @Input() tabIndex: number;
   @Output() search = new EventEmitter<boolean>();
 
   form: FormGroup;
@@ -58,9 +56,10 @@ export class FormBaseTs extends BaseTs {
     }
   }
 
-  // 关闭时是否刷新数据
+  // 取消时是否刷新数据
   cancel(refresh = false) {
-    this.MenuService.closeTab(this.tabIndex);
+		let index = this.MenuService.tabs.findIndex((d) => d.id === this.tab.id);
+    this.MenuService.closeTab(index);
     this.search.emit(refresh);
   }
 }

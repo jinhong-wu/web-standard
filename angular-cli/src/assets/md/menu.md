@@ -1,6 +1,6 @@
 # 注意！！！
 - 新增/修改：用同一个文件即可，命名 xxx-create  
-  组件传值 [tab]="tab" [tabIndex]="index"，修改数据包含在tab.data
+  组件传值 [tab]="tab"，修改数据包含在tab.data
 - 修改：函数命名统一为update()
 - 概览：命名 xxx-overview
 
@@ -35,8 +35,8 @@
 		</ng-container>
 		<!-- 列表-新增、修改 -->
 		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
-			<!-- tab：对应tab值，tabIndex：对应tab序号，必传，search：对应表格查询函数，必传  -->
-			<app-menu-create [tab]="tab" [tabIndex]="index" (search)="tableDataFn($event)"></app-menu-create>
+			<!-- tab：对应tab值，必传；search：对应表格查询函数，必传  -->
+			<app-menu-create [tab]="tab" (search)="tableDataFn($event)"></app-menu-create>
 		</ng-container>
 	</nz-tab>
 </nz-tabset>

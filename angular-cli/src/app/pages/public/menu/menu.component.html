@@ -18,8 +18,8 @@
 		</ng-container>
 		<!-- 列表-新增、修改 -->
 		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
-			<!-- tab：对应tab值，tabIndex：对应tab序号，必传，search：对应表格查询函数，必传  -->
-			<app-menu-create [tab]="tab" [tabIndex]="index" (search)="tableDataFn($event)"></app-menu-create>
+			<!-- tab：对应tab值，必传；search：对应表格查询函数，必传  -->
+			<app-menu-create [tab]="tab" (search)="tableDataFn($event)"></app-menu-create>
 		</ng-container>
 	</nz-tab>
 </nz-tabset>
