@@ -7,7 +7,9 @@
 
 # 全部用法
 示例文件：app-menu-create（pages/public/menu/menu-create/menu-create.component.ts）
+- reset()：必须写上 || null，表示新增无数据传入时，输入框/单选框等的默认值
 ```html
+<h1>示例</h1>
 <nz-spin [nzSpinning]="formLoading">
 	<div class="form-content">
 		<form nz-form [formGroup]="form">
@@ -30,6 +32,15 @@
 				<nz-form-label nzSpan="6" nzRequired>描述</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
 					<input nz-input formControlName="describe" autocomplete="describe">
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>初始值</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-radio-group formControlName="init">
+						<label nz-radio nzValue="nothing">初始值为空</label>
+						<label nz-radio nzValue="init">初始值</label>
+					</nz-radio-group>
 				</nz-form-control>
 			</nz-form-item>
 		</form>
@@ -68,6 +79,7 @@ export class FormComponent extends FormBaseTs implements OnInit {
         { value: null, disabled: this.tab.type == 'update' },
         [Validators.required],
       ],
+			init: [null, [Validators.required]],
       describe: [null, [Validators.required]],
     });
     this.reset(false);
@@ -97,7 +109,8 @@ export class FormComponent extends FormBaseTs implements OnInit {
   reset(confirm?) {
     this.resetInit(() => {
       this.form.patchValue({
-        ip: this.tab?.data?.ip,
+        ip: this.tab?.data?.ip || null,
+				init: this.tab?.data?.init || 'nothing',
         describe: this.tab?.data?.describe,
       });
     }, confirm);

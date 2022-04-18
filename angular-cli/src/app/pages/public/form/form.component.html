@@ -23,6 +23,15 @@
 					<input nz-input formControlName="describe" autocomplete="describe">
 				</nz-form-control>
 			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>初始值</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-radio-group formControlName="init">
+						<label nz-radio nzValue="nothing">初始值为空</label>
+						<label nz-radio nzValue="init">初始值</label>
+					</nz-radio-group>
+				</nz-form-control>
+			</nz-form-item>
 		</form>
 	</div>
 	<div class="form-footer">

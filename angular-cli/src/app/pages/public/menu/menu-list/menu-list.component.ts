@@ -103,6 +103,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
       this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
         return {
           id: index,
+					init: 'init',
           name: 'name' + index,
           time: '2022-01-01 12:00:00',
           ip: '255.255.255.255',

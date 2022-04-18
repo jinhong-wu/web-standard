@@ -18,6 +18,7 @@ export class FormComponent extends FormBaseTs implements OnInit {
         { value: null, disabled: this.tab.type == 'update' },
         [Validators.required],
       ],
+			init: [null, [Validators.required]],
       describe: [null, [Validators.required]],
     });
     this.reset(false);
@@ -47,7 +48,8 @@ export class FormComponent extends FormBaseTs implements OnInit {
   reset(confirm?) {
     this.resetInit(() => {
       this.form.patchValue({
-        ip: this.tab?.data?.ip,
+        ip: this.tab?.data?.ip || null,
+				init: this.tab?.data?.init || 'nothing',
         describe: this.tab?.data?.describe,
       });
     }, confirm);

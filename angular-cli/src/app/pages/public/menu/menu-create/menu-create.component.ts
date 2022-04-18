@@ -19,6 +19,7 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
         { value: null, disabled: this.tab.type == 'update' },
         [Validators.required, Validators.pattern(this.validator.IPV4)],
       ],
+			init: [null, [Validators.required]],
       describe: [null, [Validators.pattern(this.validator.DESCRIPTION)]],
     });
     this.reset(false);
@@ -48,7 +49,8 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
   reset(confirm?) {
     this.resetInit(() => {
       this.form.patchValue({
-        ip: this.tab?.data?.ip,
+        ip: this.tab?.data?.ip || null,
+				init: this.tab?.data?.init || 'nothing',
         describe: this.tab?.data?.describe,
       });
     }, confirm);
