@@ -158,12 +158,14 @@ export class TableComponent extends TableBaseTs implements OnInit {
 
 	// 获取表格数据
 	tableDataFn(reset: boolean = false, advance: boolean = false) {
-    this.tableInit(reset, advance);
-		//this.TableService.tableData(this.tableParams).subscribe((res) => {
-		//	this.tableLoading = false;
-		//	this.tableTotal = res.total;
-		//	this.tableData = res.data;
-		//});
+		this.tableInit({
+			reset,
+			advance,
+			tableService: this.TableService,
+			tableData: 'tableData',
+			successFn(data){
+			}
+		});
 	}
 }
 ```

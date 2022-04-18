@@ -4,6 +4,15 @@ import { TipModalService } from 'src/app/common/service/tip-modal.service';
 import { DatePipe } from '@angular/common';
 import { DownloadService } from '../../service/download.service';
 
+interface tableInit {
+	reset: boolean;  // 是否初始化page、checkedRows等数据
+	advance: boolean;  // 是否为精确查询
+	tableService: any;  // table-api所在service
+	tableData: string; // table-api所在service-方法名
+	paramsFn?: Function;  // 请求参数回调函数
+	successFn?: Function; // 请求成功回调函数
+	errorFn?: Function;  // 请求失败回调函数
+}
 export class TableBaseTs extends BaseTs {
   public tipModal;
   public download;
@@ -38,20 +47,31 @@ export class TableBaseTs extends BaseTs {
   // 精确查询
   advanceData: any = [];
 
-  // 状态初始化
-  tableInit(reset = false, advance) {
+  // 数据初始化
+  tableInit({reset = false, advance = false, paramsFn, tableService, tableData, successFn, errorFn}: tableInit) {
     if (reset) {
       this.tablePage = 1;
       this.checkedRows = {};
       this.isAllChecked = false;
       this.isIndeterminate = false;
     }
-    this.tableParamsFn(advance);
-    this.tableLoading = true;
+		if (this.tableParamsFn(advance, paramsFn)) {
+			this.tableLoading = true;
+			tableService[tableData].call(tableService, this.tableParams).subscribe((data) => {
+				this.tableLoading = false;
+				this.tableTotal = data.total || 0;
+				this.tableData = data.data || [];
+				successFn?.(data);
+			},() => {
+				this.tableLoading = false;
+				errorFn?.();
+			});
+		}
+		
   }
 
   // 请求参数
-  tableParamsFn(advance = false): boolean {
+  tableParamsFn(advance = false, fn?: Function): boolean {
     this.tableParams = {
       page: this.tablePage - 1,
       size: this.tableSize,
@@ -83,6 +103,7 @@ export class TableBaseTs extends BaseTs {
         return false;
       }
     }
+		fn?.();
     return true;
   }
 

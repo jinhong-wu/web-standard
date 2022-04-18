@@ -99,10 +99,18 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
   ngOnInit(): void {
     this.tableDataFn();
   }
-
+	
   // 获取表格数据
   tableDataFn(reset: boolean = false, advance: boolean = false) {
-    this.tableInit(reset, advance);
+    //this.tableInit({
+		//	reset,
+		//	advance,
+		//	tableService: this.TableService,
+		//	tableData: 'tableData',
+		//	successFn(data){
+
+		//	}
+		//});
     setTimeout(() => {
       this.tableTotal = 3;
       this.tableLoading = false;
