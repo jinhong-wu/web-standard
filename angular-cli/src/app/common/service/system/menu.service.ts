@@ -14,14 +14,7 @@ interface createTab {
   providedIn: 'root',
 })
 export class MenuService {
-  constructor(public http: HttpClient) {
-    this.menuLoading = true;
-    this.http.get<any>('assets/json/menu.json').subscribe((data) => {
-      this.menuLoading = false;
-      this.menuList = data.data || [];
-      this.getMenuDeal(this.menuList);
-    });
-  }
+  constructor(public http: HttpClient) {}
 
   menuList: any[] = [];
   menuObject: Object = {};
@@ -34,6 +27,16 @@ export class MenuService {
 
   // 侧边栏
   siderList = [];
+
+	// 获取菜单数据
+	initMenu() {
+		this.menuLoading = true;
+    this.http.get<any>('assets/json/menu.json').subscribe((data) => {
+      this.menuLoading = false;
+      this.menuList = data.data || [];
+      this.getMenuDeal(this.menuList);
+    });
+	}
 
   // 数据处理
   getMenuDeal(data = []) {

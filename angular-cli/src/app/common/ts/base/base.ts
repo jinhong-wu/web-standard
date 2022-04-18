@@ -29,4 +29,10 @@ export class BaseTs {
     this.i18n = this.baseInjector.get(I18nService);
     this.MenuService = this.baseInjector.get(MenuService);
   }
+
+	// 项目数据初始化
+	appInit() {
+		this.MenuService.initMenu();  // 加载菜单数据
+		// ...其他初始化方法
+	}
 }

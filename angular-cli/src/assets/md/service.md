@@ -1,6 +1,8 @@
 # 系统信息-国际化
 **文件：** I18nService（common/service/system/i18n.service.ts）
-- 获取数据：全局en.json或zh.json
+- 方法：获取en/zh.json
+- 方法：切换/使用语言-use()
+
 
 # 系统信息-菜单数据
 **文件：** MenuService（common/service/system/menu.service.ts）
