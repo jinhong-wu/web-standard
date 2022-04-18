@@ -75,6 +75,12 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
       class: 'ip',
       show: true,
     },
+		{
+      title: '下拉框样式',
+      key: 'select',
+			width: '100px',
+      show: true,
+    },
     {
       title: '描述',
       key: 'describe',

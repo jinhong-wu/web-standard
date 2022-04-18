@@ -1,3 +1,16 @@
+# 必读！！！
+- nz-select必须配置nzShowSearch、nzAllowClear、nzDropdownMatchSelectWidth（除非特殊要求）
+  ```html
+	<!-- 
+		nzShowSearch：可搜索
+		nzAllowClear：显示清除按钮
+		nzDropdownMatchSelectWidth：默认最小宽度为选择器宽度，超出后自适应宽度。  
+	-->
+	<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzPlaceHolder="">
+		<nz-option nzValue="" nzLabel=""></nz-option>
+	</nz-select>
+	```
+
 # 全部用法
 ```html
 <h1>示例</h1>
@@ -7,7 +20,7 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-单选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear formControlName="select" nzPlaceHolder="select-单选">
+					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="select" nzPlaceHolder="select-单选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
@@ -16,16 +29,16 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-多选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear nzMode="multiple" formControlName="multiple" nzPlaceHolder="select-多选">
+					<nz-selectnzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="multiple" formControlName="multiple" nzPlaceHolder="select-多选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
-					</nz-select>
+					</nz-selectnzShowSearch>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-树-单选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-tree-select nzShowSearch nzAllowClear [nzNodes]="nodes" nzPlaceHolder="select-树-单选"
+					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="nodes" nzPlaceHolder="select-树-单选"
 						formControlName="tree">
 					</nz-tree-select>
 				</nz-form-control>
@@ -33,7 +46,7 @@
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>select-树-多选</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-tree-select nzShowSearch nzAllowClear nzMultiple [nzNodes]="nodes" nzPlaceHolder="select-树-多选"
+					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth nzMultiple [nzNodes]="nodes" nzPlaceHolder="select-树-多选"
 						formControlName="treeMultiple">
 					</nz-tree-select>
 				</nz-form-control>
@@ -175,7 +188,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 
 **使用：**
 ```html
-<nz-select nzMode="tags" nzAllowClear nzNotFoundContent="多个内容以【回车】分隔"></nz-select>
+<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="tags" nzNotFoundContent="多个内容以【回车】分隔"></nz-select>
 ```
 
 # select-点击出现表格弹出框

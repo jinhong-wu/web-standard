@@ -1,4 +1,4 @@
-# 注意！！！
+# 必读！！！
 - 增删改等操作，都需要刷新table数据
 - th：勾选框、时间、ip等固定列宽，必须写入宽度样式（.checkbox .time .ip）
 - td：较长td必须 [nz-tooltip]="xxx"

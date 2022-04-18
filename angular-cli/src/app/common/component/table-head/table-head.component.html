@@ -15,7 +15,8 @@
 
 		<!-- 下拉框 -->
 		<ng-container *ngIf="item.type =='select'">
-			<nz-select nzShowSearch nzAllowClear [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
+			<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth [(ngModel)]="item.value"
+				[nzPlaceHolder]="item.placeholder">
 				<nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
 				</nz-option>
 			</nz-select>
@@ -23,8 +24,8 @@
 
 		<!-- 下拉框-树 -->
 		<ng-container *ngIf="item.type =='tree'">
-			<nz-tree-select nzShowSearch nzAllowClear [nzNodes]="item.nodes" [(ngModel)]='item.value'
-				[nzPlaceHolder]="item.placeholder">
+			<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="item.nodes"
+				[(ngModel)]='item.value' [nzPlaceHolder]="item.placeholder">
 			</nz-tree-select>
 		</ng-container>
 

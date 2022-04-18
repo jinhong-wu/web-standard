@@ -40,8 +40,15 @@
 			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
 			<td [hidden]="!colsData[0].show">{{item.time}}</td>
 			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
-			<td [hidden]="!colsData[2].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
-			<td [hidden]="!colsData[3].show">
+			<td [hidden]="!colsData[2].show">
+				<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth style="width: 100%;"
+					nzPlaceHolder='很长的placeHolder很长的placeHolder很长的placeHolder'>
+					<nz-option nzValue="true" nzLabel="select/select-tree必须配置nzDropdownMatchSelectWidth：默认最小宽度为选择器宽度，超出后自适应宽度">
+					</nz-option>
+				</nz-select>
+			</td>
+			<td [hidden]="!colsData[3].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
+			<td [hidden]="!colsData[4].show">
 				<a nz-button nzType="link" (click)="update(item, tab)">修改</a>
 			</td>
 		</tr>
