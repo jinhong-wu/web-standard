@@ -175,7 +175,7 @@ export class TableBaseTs extends BaseTs {
       name: this.i18n.baseList.create + this.tab?.name,
     });
   }
-  // 按钮区：删除（confirmInfo：确定删除所选xxx？）
+  // 按钮区：删除
   deleteInit(confirmInfo, options) {
 		let confirm = this.i18n.lang == 'zh'? `确定删除所选${confirmInfo || '数据'}？` : `Sure delete the selected ${confirmInfo || 'data'}?`;
     this.tip.confirm(confirm, () => {

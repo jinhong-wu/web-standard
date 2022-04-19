@@ -43,8 +43,7 @@ this.tip.notify("success", "提示标题", "提示内容");
 （type = 'success'）createSuccess、updateSuccess、deleteSuccess、importSuccess、exportSuccess、saveSuccess  
 （type = 'error'）createError、updateError、deleteError、importError、exportError、saveError  
 ```typescript
-// confirm(content, okFn)
-this.tip.confirm("确定删除所选表格数据？", ()=>{
+this.tip.confirm("确定xxxx？", ()=>{
 	// 确认后代码...
 });
 ```
