@@ -32,6 +32,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { NzResizableModule } from 'ng-zorro-antd/resizable';
 
 @NgModule({
   declarations: [],
@@ -70,6 +71,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
     NzProgressModule,
     NzDatePickerModule,
     NzTreeSelectModule,
+		NzResizableModule
   ],
   // tip的位置，持续时间，最大数量
   providers: [NzMessageService],

@@ -19,7 +19,6 @@ import { PipeComponent } from './pipe/pipe.component';
 import { SelectComponent } from './select/select.component';
 import { SelectOpenComponent } from './select/select-open/select-open.component';
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
-import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { PipeModule } from 'src/app/common/pipe/pipe.module';
 import { MenuOverviewComponent } from './menu/menu-overview/menu-overview.component';
@@ -56,7 +55,6 @@ import { OtherComponent } from './other/other.component';
     PipeModule,
     NzPipesModule,
     MarkdownModule.forChild(),
-    NzResizableModule,
   ],
   entryComponents: [ModalCreateComponent, SelectOpenComponent],
 })

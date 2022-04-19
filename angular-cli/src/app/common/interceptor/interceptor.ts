@@ -79,7 +79,6 @@ export class Interceptor implements HttpInterceptor {
       case 401:
         break;
       case 404:
-        debugger;
         if (ev instanceof HttpErrorResponse) {
           if (!ignoreTip) {
             this.tip.notify('error', ev.error.message, ev.error.message);

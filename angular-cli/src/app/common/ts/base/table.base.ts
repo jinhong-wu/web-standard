@@ -88,7 +88,7 @@ export class TableBaseTs extends BaseTs {
         this.tableParams[d.key] = d.value;
       });
     } else {
-      this.tableParams.keyword = this.tableHead.keyword;
+      this.tableParams.keyword = this.tableHead?.keyword;
     }
     // 结束时间须在开始时间之后
     if (this.tableParams.startDt || this.tableParams.endDt) {

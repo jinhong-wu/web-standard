@@ -6,6 +6,7 @@ import { ImportFileComponent } from './import-file/import-file.component';
 import { SelectModalComponent } from './select-modal/select-modal.component';
 import { ModalBatchComponent } from './modal-batch/modal-batch.component';
 import { RangePickerComponent } from './range-picker/range-picker.component';
+import { TreeTableComponent } from './tree-table/tree-table.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RangePickerComponent } from './range-picker/range-picker.component';
     SelectModalComponent,
     ModalBatchComponent,
     RangePickerComponent,
+    TreeTableComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -22,6 +24,7 @@ import { RangePickerComponent } from './range-picker/range-picker.component';
     SelectModalComponent,
     ModalBatchComponent,
     RangePickerComponent,
+		TreeTableComponent
   ],
   entryComponents: [
     TableHeadComponent,
@@ -29,6 +32,7 @@ import { RangePickerComponent } from './range-picker/range-picker.component';
     SelectModalComponent,
     ModalBatchComponent,
     RangePickerComponent,
+		TreeTableComponent
   ],
 })
 export class ComponentModule {}
