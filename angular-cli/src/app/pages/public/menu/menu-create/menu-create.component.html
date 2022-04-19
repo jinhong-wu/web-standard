@@ -37,3 +37,8 @@
 <ng-template #ipError let-control>
 	{{ i18n.list.pattern.ipv4 }}
 </ng-template>
+<ng-template #requiredErrorTpl let-control>
+	<ng-container *ngIf="control.hasError('required')">
+		必须输入
+	</ng-container>
+</ng-template>

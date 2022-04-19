@@ -53,7 +53,7 @@ interface colsData {
 	#tableHead 必须取此名
 	tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
 
-	<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export($event)" [advanceData]="advanceData" [colsData]="colsData">
+	<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
 		<ng-container ngProjectAs="btns">
 			<button nz-button nzType="primary">新增</button>
 			<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
@@ -99,7 +99,7 @@ export class TableHeadComponent extends BaseTs implements OnInit {
 
   // 精确查询-导出查询结果
   exportSearchFn() {
-    this.export.emit('search');
+    this.export.emit();
   }
 
   // 可配置列-刷新

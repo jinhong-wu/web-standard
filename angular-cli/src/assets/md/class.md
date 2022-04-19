@@ -1,4 +1,4 @@
-# 注意！！！
+# 必读！！！
 - 页面提示：统一放在菜单tab下。
 - 表格提示：统一放在按钮下，表格上。
 - 数值都用千位分隔符展示（angular自带过滤器：number）
@@ -156,7 +156,7 @@ table {
 ```html
 <div class="tree-table">
 	<!-- 左侧树 -->
-	<div class="left-tree" nz-resizable [nzMinWidth]="320" [style.width.px]="width" (nzResize)="onResize($event">
+	<div class="left-tree" nz-resizable [nzMinWidth]="320" [style.width.px]="width" (nzResize)="onResize($event)">
 		<nz-input-group nzSearch [nzAddOnAfter]="suffixIcon">
 			<input nz-input [(ngModel)]="treeSearch" placeholder="输入关键字进行查询" />
 		</nz-input-group>

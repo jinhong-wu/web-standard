@@ -32,6 +32,10 @@ export class TableBaseTs extends BaseTs {
   tableSize: number = 10;
   tableParams: any = {};
 
+	// 左树右表格
+	treeParamKey: string = '';  // 树params对应的key
+	clickNode: any = {};  // 左键点击node
+
   // 排序
   orderBy: string = '';
   // 勾选框-是否为多选
@@ -67,7 +71,6 @@ export class TableBaseTs extends BaseTs {
 				errorFn?.();
 			});
 		}
-		
   }
 
   // 请求参数
@@ -103,6 +106,11 @@ export class TableBaseTs extends BaseTs {
         return false;
       }
     }
+		// 左树有表格
+		if(this.treeParamKey) {
+			this.tableParams[this.treeParamKey] = this.clickNode.key;
+		}
+		
 		fn?.();
     return true;
   }
@@ -167,9 +175,10 @@ export class TableBaseTs extends BaseTs {
       name: this.i18n.baseList.create + this.tab?.name,
     });
   }
-  // 按钮区：删除
+  // 按钮区：删除（confirmInfo：确定删除所选xxx？）
   deleteInit(confirmInfo, options) {
-    this.tip.confirm(confirmInfo, () => {
+		let confirm = this.i18n.lang == 'zh'? `确定删除所选${confirmInfo || '数据'}？` : `Sure delete the selected ${confirmInfo || 'data'}?`;
+    this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
       this.tipModal.batch({
         nzTitle: this.i18n.baseList.delete,
@@ -208,16 +217,16 @@ export class TableBaseTs extends BaseTs {
 
   // 按钮区：导出
 	exportUrl = '';
-  export(type: 'search' | 'checked' = 'checked') {
+  export(type: 'search' | 'checked' = 'search', confirmInfo = '') {
     let confirm = '',
 			url = this.exportUrl,
       params = null;
     if (type == 'search') {
-      confirm = this.i18n.baseList.exportSearchConfirm;
+			confirm = this.i18n.lang == 'zh'? `确定导出所有查询结果？` : `Sure export all search results?`;
       this.tableParamsFn(true);
       params = this.httpUtil.getHttpParam(this.tableParams);
     } else {
-      confirm = this.i18n.baseList.exportConfirm;
+			confirm = this.i18n.lang == 'zh'? `确定导出所选${confirmInfo || '数据'}？` : `Sure export the selected ${confirmInfo || 'data'}?`;
       this.checkedIdsFn();
       url += this.httpUtil.getString({ ids: this.checkedIds });
     }

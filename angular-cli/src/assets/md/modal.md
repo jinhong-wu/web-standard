@@ -34,6 +34,9 @@ this.tip.notify("success", "提示标题", "提示内容");
 
 **使用：确认操作**
 - 提示语句：确定xxxx？（统一用确定）
+  ```html
+	例：确定删除所选列表数据？、确定导出所选列表数据？、确定导出所有查询结果？
+	```
 - 按钮顺序：确定、取消
 - type：info、success、warning、error、blank
 - title：  

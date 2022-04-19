@@ -17,9 +17,7 @@
 		"off": "禁用",
 		"close": "关闭",
 		"export":"导出",
-		"exportConfirm":"确定导出所选数据？",
 		"exportSearch": "导出查询数据",
-		"exportSearchConfirm": "确定导出所有查询结果？",
 
 		"placeholder": "输入关键字进行查询",
 		"sure": "确定",
