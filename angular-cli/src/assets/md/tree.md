@@ -110,8 +110,10 @@ export class TreeComponent extends TreeTableBaseTs implements OnInit {
 - 搜索高亮 过滤（10.x已实现）
 - 点击要明确表现出被点击的状态（10.x已实现，自定义nzTreeTemplate也实现）
 **使用-参数：**
-- searchValue：查询值
-- resizable：是否可拖动，默认true
+- searchShow：是否显示查询输入框，默认true显示
+- searchValue：查询值（searchShow = true时必传，false时可不传）
+- width：树宽度，默认300px
+- resizable：是否可拖动，默认true（200px<width<50%）
   ```html
 	<app-tree-table [(searchValue)]="treeSearch">
 		<ng-container ngProjectAs="tree">

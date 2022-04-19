@@ -1,13 +1,15 @@
 <div class="tree-table">
 	<!-- 左侧树 -->
 	<div class="left-tree" nz-resizable [style.width.px]="width" (nzResize)="onResize($event)">
-		<nz-input-group [nzSuffix]="searchIcon">
-			<input nz-input type="text" [(ngModel)]="searchValue" (ngModelChange)="modelChange()"
-				[placeholder]='i18n?.list?.tree?.inputPlaceholder' />
-		</nz-input-group>
-		<ng-template #searchIcon>
-			<i nz-icon nzType="search"></i>
-		</ng-template>
+		<ng-container *ngIf="searchShow">
+			<nz-input-group [nzSuffix]="searchIcon">
+				<input nz-input type="text" [(ngModel)]="searchValue" (ngModelChange)="modelChange()"
+					[placeholder]='i18n?.list?.tree?.inputPlaceholder' />
+			</nz-input-group>
+			<ng-template #searchIcon>
+				<i nz-icon nzType="search"></i>
+			</ng-template>
+		</ng-container>
 		<ng-content select="tree"></ng-content>
 		<ng-container *ngIf="resizable">
 			<nz-resize-handles [nzDirections]="['right']"></nz-resize-handles>
