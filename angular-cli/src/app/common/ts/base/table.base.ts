@@ -177,7 +177,7 @@ export class TableBaseTs extends BaseTs {
   }
   // 按钮区：删除
   deleteInit(confirmInfo, options) {
-		let confirm = this.i18n.lang == 'zh'? `确定删除所选${confirmInfo || '数据'}？` : `Sure delete the selected ${confirmInfo || 'data'}?`;
+		let confirm = this.render(this.i18n.baseList.deleteConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
 			if (this.checkedData.length == 0) {
@@ -218,7 +218,7 @@ export class TableBaseTs extends BaseTs {
       data: item,
     });
   }
-
+	
   // 按钮区：导出
 	exportUrl = '';
   export(type: 'search' | 'checked' = 'search', confirmInfo = '') {
@@ -227,11 +227,11 @@ export class TableBaseTs extends BaseTs {
 			isParams = true,
       params = null;
     if (type == 'search') {
-			confirm = this.i18n.lang == 'zh'? `确定导出所有查询结果？` : `Sure export all search results?`;
+			confirm = this.i18n.baseList.exportSearchConfirm;
       isParams = this.tableParamsFn(true);
       params = this.httpUtil.getHttpParam(this.tableParams);
     } else {
-			confirm = this.i18n.lang == 'zh'? `确定导出所选${confirmInfo || '数据'}？` : `Sure export the selected ${confirmInfo || 'data'}?`;
+			confirm = this.render(this.i18n.baseList.exportConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
       this.checkedIdsFn();
 			if (this.checkedIds.length == 0) {
 				this.tip.msg('warning', this.i18n.baseList.checkTip);

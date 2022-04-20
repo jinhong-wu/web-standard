@@ -35,4 +35,14 @@ export class BaseTs {
 		this.MenuService.initMenu();  // 加载菜单数据
 		// ...其他初始化方法
 	}
+
+	// 简单的模板解析器
+	render(str: string, replace: Object = {}) {
+		// 例：str='${xxx}',replace必须为{xxx: ...}
+		for(let key in replace){
+			let reg = new RegExp("\\${"+key+"}", "g");
+			str = str.replace(reg, replace[key]);
+ 		}
+		return str;
+	}
 }
