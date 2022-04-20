@@ -39,3 +39,11 @@
 - 概览页面初始化函数名必须：getOverview()   
 	// 在MenuService.selectTab()中，点击到概览页面，都需要重新刷新数据
 - 修改：update()
+
+
+# UI规范
+- 时间统一显示为：yyyy-MM-dd HH:mm:ss
+- 无数据时都应显示 无数据图标（参考 公共示例-Class样式布局）
+  ```html
+	<nz-empty nzNotFoundImage="simple"></nz-empty>
+	```

@@ -3,28 +3,36 @@
 	<div class="form-content">
 		<form nz-form [formGroup]="form">
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>Select 下拉框</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'Select 下拉框'">Select 下拉框</span>
+				</nz-form-label>
 				<nz-form-control nzSpan="12">
 					参考 公共示例-Select 下拉框
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>IP</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<input nz-input formControlName="ip" autocomplete="ip">
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'IP'">IP</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.pattern.ipv4">
+					<input nz-input formControlName="ip" autocomplete="ip" placeHolder="默认只支持IPV4">
 				</nz-form-control>
 				<nz-form-control nzSpan="1">
-					<i nz-icon nzType="info-circle" class="i-tip" [nz-tooltip]="'填写正确的IP值'"></i>
+					<i nz-icon nzType="info-circle" [nz-tooltip]="i18n.list.pattern.ipv4"></i>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>描述</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'描述'">描述</span>
+				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
 					<input nz-input formControlName="describe" autocomplete="describe">
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>初始值</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'初始值'">初始值</span>
+				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
 					<nz-radio-group formControlName="init">
 						<label nz-radio nzValue="nothing">初始值为空</label>

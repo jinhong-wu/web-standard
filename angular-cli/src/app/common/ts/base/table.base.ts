@@ -85,10 +85,11 @@ export class TableBaseTs extends BaseTs {
     // 精确查询传参
     if (advance) {
       this.advanceData.forEach((d) => {
+				if (typeof d.value === 'string') d.value = d.value?.trim();
         this.tableParams[d.key] = d.value;
       });
     } else {
-      this.tableParams.keyword = this.tableHead?.keyword;
+      this.tableParams.keyword = this.tableHead?.keyword?.trim();
     }
     // 结束时间须在开始时间之后
     if (this.tableParams.startDt || this.tableParams.endDt) {

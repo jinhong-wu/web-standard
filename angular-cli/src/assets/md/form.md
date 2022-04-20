@@ -8,56 +8,76 @@
 # 全部用法
 示例文件：app-menu-create（pages/public/menu/menu-create/menu-create.component.ts）
 - reset()：必须写上 || null，表示新增无数据传入时，输入框/单选框等的默认值
-	```html
-	<h1>示例</h1>
-	<nz-spin [nzSpinning]="formLoading">
-		<div class="form-content">
-			<form nz-form [formGroup]="form">
-				<nz-form-item>
-					<nz-form-label nzSpan="6" nzRequired>Select 下拉框</nz-form-label>
-					<nz-form-control nzSpan="12">
-						参考 公共示例-Select 下拉框
-					</nz-form-control>
-				</nz-form-item>
-				<nz-form-item>
-					<nz-form-label nzSpan="6" nzRequired>IP</nz-form-label>
-					<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-						<input nz-input formControlName="ip" autocomplete="ip">
-					</nz-form-control>
-					<nz-form-control nzSpan="1">
-						<i nz-icon nzType="info-circle" class="i-tip" [nz-tooltip]="'填写正确的IP值'"></i>
-					</nz-form-control>
-				</nz-form-item>
-				<nz-form-item>
-					<nz-form-label nzSpan="6" nzRequired>描述</nz-form-label>
-					<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-						<input nz-input formControlName="describe" autocomplete="describe">
-					</nz-form-control>
-				</nz-form-item>
-				<nz-form-item>
-					<nz-form-label nzSpan="6" nzRequired>初始值</nz-form-label>
-					<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-						<nz-radio-group formControlName="init">
-							<label nz-radio nzValue="nothing">初始值为空</label>
-							<label nz-radio nzValue="init">初始值</label>
-						</nz-radio-group>
-					</nz-form-control>
-				</nz-form-item>
-			</form>
-		</div>
-		<div class="form-footer">
-			<button nz-button nzType="primary" (click)="test()">拨测</button>
-			<button nz-button nzType="primary" (click)="save()">保存</button>
-			<button nz-button nzType="default" (click)="reset()">重置</button>
-			<button nz-button nzType="default" (click)="cancel()">取消</button>
-		</div>
-	</nz-spin>
-	<ng-template #requiredErrorTpl let-control>
-		<ng-container *ngIf="control.hasError('required')">
-			必须输入
-		</ng-container>
-	</ng-template>
+- 所有label均[nz-tooltip]（BUG编号24136）
+  ```html
+	<nz-form-label nzSpan="6" nzRequired>
+		<span [nz-tooltip]=""></span>
+	</nz-form-label>
 	```
+- 提示统一为：请输入合法的xxxx，且尾部蓝色icon说明具体规则（BUG编号24804）
+  ```html
+	<nz-form-control nzSpan="1">
+		<i nz-icon nzType="info-circle" [nz-tooltip]=""></i>
+	</nz-form-control>
+	```
+	
+```html
+<nz-spin [nzSpinning]="formLoading">
+	<div class="form-content">
+		<form nz-form [formGroup]="form">
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'Select 下拉框'">Select 下拉框</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12">
+					参考 公共示例-Select 下拉框
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'IP'">IP</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.pattern.ipv4">
+					<input nz-input formControlName="ip" autocomplete="ip" placeHolder="默认只支持IPV4">
+				</nz-form-control>
+				<nz-form-control nzSpan="1">
+					<i nz-icon nzType="info-circle" [nz-tooltip]="i18n.list.pattern.ipv4"></i>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'描述'">描述</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<input nz-input formControlName="describe" autocomplete="describe">
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'初始值'">初始值</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-radio-group formControlName="init">
+						<label nz-radio nzValue="nothing">初始值为空</label>
+						<label nz-radio nzValue="init">初始值</label>
+					</nz-radio-group>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+	</div>
+	<div class="form-footer">
+		<button nz-button nzType="primary" (click)="test()">拨测</button>
+		<button nz-button nzType="primary" (click)="save()">保存</button>
+		<button nz-button nzType="default" (click)="reset()">重置</button>
+		<button nz-button nzType="default" (click)="cancel()">取消</button>
+	</div>
+</nz-spin>
+<ng-template #requiredErrorTpl let-control>
+	<ng-container *ngIf="control.hasError('required')">
+		必须输入
+	</ng-container>
+</ng-template>
+```
 
 	```typescript
 	import { Component, OnInit, Injector } from '@angular/core';

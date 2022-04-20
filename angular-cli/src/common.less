@@ -216,8 +216,8 @@ table {
 /*
 	* 表单
 */
-.form-content {
-  .i-tip {
+form {
+	.anticon-info-circle {
     margin-left: @space-samll;
     color: #1890ff;
   }
@@ -268,6 +268,11 @@ nz-row {
 
   .ant-modal {
     top: 0;
+
+		.ant-modal-body {
+			max-height: calc(100vh - 100px);
+			overflow: auto;
+		}
 
     // confirm 按钮顺序
     .ant-modal-confirm-btns {

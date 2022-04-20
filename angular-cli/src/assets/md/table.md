@@ -19,6 +19,7 @@
 	</td>
 </tbody>
 ```
+- 单独的空格、前后的空格当作无效数据查询所有，两个字符中间的空格当作有效数据处理（BUG编号24724）
 
 **文件：**
 - 全局属性：BaseTs（common/ts/base/base.ts）
@@ -30,6 +31,8 @@
 ![image-1](assets/md/imgs/table.png)
 
 # 全部用法
+- 支持跨页勾选  
+
 ```html
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
 <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">

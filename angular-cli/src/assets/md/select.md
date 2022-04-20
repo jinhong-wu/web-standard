@@ -13,54 +13,67 @@
 
 # 全部用法
 ```html
-<h1>示例</h1>
 <nz-spin [nzSpinning]="formLoading">
 	<div class="form-content">
 		<form nz-form [formGroup]="form">
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>select-单选</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-单选'">select-单选</span>
+				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="select" nzPlaceHolder="select-单选">
+					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="select"
+						nzPlaceHolder="select-单选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>select-多选</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-多选'">select-多选</span>
+				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-selectnzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="multiple" formControlName="multiple" nzPlaceHolder="select-多选">
+					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="multiple" formControlName="multiple"
+						nzPlaceHolder="select-多选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
 						<nz-option nzLabel="c12" nzValue="c12"></nz-option>
-					</nz-selectnzShowSearch>
-				</nz-form-control>
-			</nz-form-item>
-			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>select-树-单选</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="nodes" nzPlaceHolder="select-树-单选"
-						formControlName="tree">
-					</nz-tree-select>
-				</nz-form-control>
-			</nz-form-item>
-			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>select-树-多选</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth nzMultiple [nzNodes]="nodes" nzPlaceHolder="select-树-多选"
-						formControlName="treeMultiple">
-					</nz-tree-select>
-				</nz-form-control>
-			</nz-form-item>
-			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>select-自行输入多个内容</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzAllowClear nzMode="tags" formControlName="tags" nzNotFoundContent="多个内容以【回车】分隔"
-						nzPlaceHolder="select-自行输入多个内容">
 					</nz-select>
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>
-				<nz-form-label nzSpan="6" nzRequired>select-点击出现表格弹出框</nz-form-label>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-树-单选'">select-树-单选</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="nodes"
+						nzPlaceHolder="select-树-单选" formControlName="tree">
+					</nz-tree-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-树-多选'">select-树-多选</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth nzMultiple
+						[nzNodes]="nodes" nzPlaceHolder="select-树-多选" formControlName="treeMultiple">
+					</nz-tree-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-自行输入多个内容'">select-自行输入多个内容</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="tags" formControlName="tags"
+						nzNotFoundContent="多个内容以【回车】分隔" nzPlaceHolder="select-自行输入多个内容">
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-点击出现表格弹出框'">select-点击出现表格弹出框</span>
+				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
 					<app-select-modal #selectModal formControlName="modal" (openChange)="openChange()">
 					</app-select-modal>

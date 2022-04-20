@@ -4,4 +4,4 @@
 <input nz-input [(ngModel)]="keyword" (keydown.enter)="searchFn()" placeholder="输入关键字查询">
 ```
 - 搜索/查询，统一为 查询
-- input最小宽度必须完全显示中文，英文不做要求（对应BUG编号22968）
+- input最小宽度必须完全显示中文，英文不做要求（BUG编号22968）

@@ -17,6 +17,19 @@ import { TipService } from '../service/tip.service';
 export class Interceptor implements HttpInterceptor {
   constructor(private injector: Injector) {}
 
+	errorMessage = {
+    "400":{
+      'zh':{
+        title:'失败',
+        content:'当前请求携带参数过长，请使用合理的查询参数',
+      },
+      'en':{
+        title:'FAILED',
+        content:"The param of Current Request's length is too long, please use valid query param",
+      }
+    }
+  }
+
   private get tip(): TipService {
     return this.injector.get(TipService);
   }
@@ -79,9 +92,15 @@ export class Interceptor implements HttpInterceptor {
       case 401:
         break;
       case 404:
-        if (ev instanceof HttpErrorResponse) {
-          if (!ignoreTip) {
-            this.tip.notify('error', ev.error.message, ev.error.message);
+				if (ev instanceof HttpErrorResponse) {
+          if(!ignoreTip){
+            // 当前请求为400时，且ev.error对象为string，此时为浏览器报出的URL超长错误。
+            if(typeof ev.error === 'string') {
+              const lang = window.sessionStorage.getItem("lang")
+              this.tip.notify('error', this.errorMessage["400"][lang].title, this.errorMessage["400"][lang].content);
+            } else {
+              this.tip.notify('error', ev.error.message, ev.error.message);
+            }
           }
           return throwError(ev);
         }
