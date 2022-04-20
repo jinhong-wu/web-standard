@@ -23,13 +23,11 @@ export class TreeTableBaseTs extends TableBaseTs {
 
 
 	treeNodesFn(data: Array<any> = []) {
-    let result = [];
+    let result = [],
+			map = {},
+			pidMap = {};
     data.forEach((item) => {
-      delete item.children;
-    });
-    let map = {};
-    let pidMap = {}
-    data.forEach((item) => {
+			delete item.children;
       map[item.id] = item;
       if(item.pid && item.pid.length){
         pidMap[item.pid] = true
@@ -46,6 +44,9 @@ export class TreeTableBaseTs extends TableBaseTs {
         result.push(item);
       }
     });
+		if (result[0]) {
+			result[0].expanded = true;
+		};
 		this.treeNode0 = result[0] || [];
     return result;
   }

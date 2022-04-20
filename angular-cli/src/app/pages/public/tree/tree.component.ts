@@ -27,7 +27,6 @@ export class TreeComponent extends TreeTableBaseTs implements OnInit {
 					children: [],
 					id: t.id,
 					pid: t.pid,
-					expanded: t.id == "1",
 					//disabled: true
 				});
 			});
