@@ -28,12 +28,12 @@ import { BaseTs } from 'src/app/common/ts/base/base';
  * @param multiple 弹出框-表格页面-是否多选，默认true多选
  * @param maxCount select-展示的最大tag数，默认4
  * @param disabled select-是否禁止选中，默认false
- * @param placeholder select-默认文字
+ * @param nzPlaceHolder select-默认文字
  * @example
 	#selectModal 必须取名
 	formControlName 必须命名
 
-	<app-select-modal #selectModal formControlName="modal" (openChange)="openChange()">
+	<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="" (openChange)="openChange()">
 	</app-select-modal>
 */
 export class SelectModalComponent
@@ -48,7 +48,7 @@ export class SelectModalComponent
   @Input() multiple: boolean = true;
   @Input() maxCount: number = 4;
   @Input() disabled = false;
-  @Input() placeholder?: string = '';
+  @Input() nzPlaceHolder?: string = '';
 
   isOpen = false;
   selectValue = []; // 已选value

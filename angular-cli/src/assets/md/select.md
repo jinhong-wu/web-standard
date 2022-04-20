@@ -1,4 +1,5 @@
 # 必读！！！
+- 所有select都需要nzPlaceHolder
 - nz-select必须配置nzShowSearch、nzAllowClear、nzDropdownMatchSelectWidth（除非特殊要求）
   ```html
 	<!-- 
@@ -75,7 +76,7 @@
 					<span [nz-tooltip]="'select-点击出现表格弹出框'">select-点击出现表格弹出框</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<app-select-modal #selectModal formControlName="modal" (openChange)="openChange()">
+					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框'" (openChange)="openChange()">
 					</app-select-modal>
 				</nz-form-control>
 			</nz-form-item>
@@ -216,7 +217,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 
 ```html
 <!-- #selectModal 必须取名，formControlName 必须命名 -->
-<app-select-modal #selectModal formControlName="modal" (openChange)="openChange()"></app-select-modal>
+<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="" (openChange)="openChange()"></app-select-modal>
 ```
 
 ```typescript

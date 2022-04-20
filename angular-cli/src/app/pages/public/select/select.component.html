@@ -61,7 +61,8 @@
 					<span [nz-tooltip]="'select-点击出现表格弹出框'">select-点击出现表格弹出框</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<app-select-modal #selectModal formControlName="modal" (openChange)="openChange()">
+					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框'"
+						(openChange)="openChange()">
 					</app-select-modal>
 				</nz-form-control>
 			</nz-form-item>
