@@ -11,7 +11,7 @@
 - importUrl：上传/导入路径，必传
 - tempUrl：下载模板地址
 - accept：接受数据类型，默认.xlsx
-- size：接受数据大小，默认不限制，单位：KB
+- size：接受数据大小，默认为1048576KB（1GB），单位：KB
 - close：下载弹框关闭后操作
 ```typescript
 this.TipModalService.file({

@@ -18,7 +18,7 @@ import { mergeMap } from 'rxjs/operators';
  * @param importUrl 上传/导入路径（必传）
  * @param tempUrl 下载模板地址
  * @param accept 接受数据类型，默认.xlsx
- * @param size 接受数据大小，默认为0，表示不限制，单位：KB
+ * @param size 接受数据大小，默认为1048576KB（1GB），单位：KB
  * @param bigSize 大文件界限大小（超过即为大文件分片上传），默认为50MB，单位：KB
  * @param bigSingle 大文件分片大小，默认为10MB，单位：KB
  * @param bigInitUrl 大文件传输前初始化url（告知后端分片数量等信息）
@@ -45,7 +45,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   @Input() importUrl: string;
   @Input() tempUrl?: string;
   @Input() accept?: string = '.xlsx';
-  @Input() size: number = 0; // 单位：KB
+  @Input() size: number = 1048576; // 单位：KB
   @Input() bigSize: number = 1024 * 50; // 默认50MB，单位：KB
   @Input() bigSingle: number = 1024 * 10; // 默认10MB，单位：KB
   @Input() bigInitUrl: string =

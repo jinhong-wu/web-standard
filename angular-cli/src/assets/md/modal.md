@@ -54,6 +54,7 @@ this.tip.confirm("确定xxxx？", ()=>{
 ![image-1](assets/md/imgs/tip-modal.png)
 
 **使用：弹框页**
+- 除特殊要求外，都需要支持拖动功能
 - 按钮顺序：拨测、保存、重置、取消（tab页form按钮顺序）
 ```typescript
 const modal = this.nzModal.create({
