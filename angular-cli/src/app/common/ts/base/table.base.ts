@@ -180,6 +180,10 @@ export class TableBaseTs extends BaseTs {
 		let confirm = this.i18n.lang == 'zh'? `确定删除所选${confirmInfo || '数据'}？` : `Sure delete the selected ${confirmInfo || 'data'}?`;
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
+			if (this.checkedData.length == 0) {
+				this.tip.msg('warning', this.i18n.baseList.checkTip);
+				return false;
+			}
       this.tipModal.batch({
         nzTitle: this.i18n.baseList.delete,
         checkedData: this.checkedData,
@@ -220,18 +224,25 @@ export class TableBaseTs extends BaseTs {
   export(type: 'search' | 'checked' = 'search', confirmInfo = '') {
     let confirm = '',
 			url = this.exportUrl,
+			isParams = true,
       params = null;
     if (type == 'search') {
 			confirm = this.i18n.lang == 'zh'? `确定导出所有查询结果？` : `Sure export all search results?`;
-      this.tableParamsFn(true);
+      isParams = this.tableParamsFn(true);
       params = this.httpUtil.getHttpParam(this.tableParams);
     } else {
 			confirm = this.i18n.lang == 'zh'? `确定导出所选${confirmInfo || '数据'}？` : `Sure export the selected ${confirmInfo || 'data'}?`;
       this.checkedIdsFn();
+			if (this.checkedIds.length == 0) {
+				this.tip.msg('warning', this.i18n.baseList.checkTip);
+				isParams = false;
+			}
       url += this.httpUtil.getString({ ids: this.checkedIds });
     }
-    this.tip.confirm(confirm, () => {
-      this.download.down(url, { params }).subscribe();
-    });
+		if (isParams) {
+			this.tip.confirm(confirm, () => {
+				this.download.down(url, { params }).subscribe();
+			});
+		}
   }
 }

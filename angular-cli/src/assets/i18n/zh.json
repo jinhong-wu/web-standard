@@ -9,6 +9,7 @@
 		"import":"导入",
 		"download":"下载",
 		"allCheck": "全选",
+		"checkTip": "请勾选对应操作数据",
 		"save":"保存",
 		"reset":"重置",
 		"resetConfirm": "确定重置？",
