@@ -11,6 +11,7 @@
 		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
 	</ng-container>
 </app-table-head>
+<!-- 此处为前端假数据所以忽略nzFrontPagination="false" -->
 <nz-table #Table nzSize="middle" nzLoadingDelay="500" nzShowQuickJumper="true" nzShowSizeChanger="true"
 	[nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal" [(nzPageIndex)]="tablePage"
 	[(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()" (nzPageSizeChange)="tableDataFn(true)"

@@ -72,6 +72,7 @@ export class SelectOpenComponent extends TableBaseTs implements OnInit {
   // 获取表格数据
   tableDataFn(reset: boolean = false, advance: boolean = false) {
     this.tableTotal = 10;
+		this.tableSize = 5;
     this.tableLoading = false;
     this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
       return {

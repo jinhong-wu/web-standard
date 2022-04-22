@@ -159,8 +159,8 @@ export class TableBaseTs extends BaseTs {
 
   // 获取选中行id、行data
   checkedIdsFn() {
-    this.checkedIds = this.checkedIds = Object.keys(this.checkedRows);
-    this.checkedData = this.checkedIds = Object.values(this.checkedRows);
+		this.checkedIds = Object.keys(this.checkedRows);
+    this.checkedData = Object.values(this.checkedRows);
   }
 
   // 按钮区：新增
