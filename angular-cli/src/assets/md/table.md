@@ -14,7 +14,7 @@
 <tbody>
 	<td>
 		<!-- 按钮使用：<a nz-button nzType="link"></a> -->
-		<a nz-button nzType="link" (click)="update(item, tab)">修改</a>
+		<a nz-button nzType="link" (click)="update(item, 'name', tab)">修改</a>
 		<a nz-button nzType="link" [disabled]="true">其他操作</a>
 	</td>
 </tbody>

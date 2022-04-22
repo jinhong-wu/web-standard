@@ -51,7 +51,7 @@
 			</td>
 			<td [hidden]="!colsData[3].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
 			<td [hidden]="!colsData[4].show">
-				<a nz-button nzType="link" (click)="update(item, tab)">修改</a>
+				<a nz-button nzType="link" (click)="update(item, 'name', tab)">修改</a>
 			</td>
 		</tr>
 	</tbody>

@@ -169,7 +169,7 @@ export class TableBaseTs extends BaseTs {
     this.MenuService.createTab({
       type: 'create',
       pid: this.tab.id,
-      name: this.i18n.baseList.create + this.tab?.name,
+      name: this.i18n.baseList.create + (this.tab?.name || ''),
     });
   }
   // 按钮区：删除
@@ -206,12 +206,12 @@ export class TableBaseTs extends BaseTs {
     });
   }
   // 操作列：修改
-  update(item, tab: any = {}) {
+  update(item, name, tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
       type: 'update',
       pid: this.tab.id,
-      name: this.i18n.baseList.update + '：' + (item.name || ''),
+      name: this.i18n.baseList.update + '：' + (item[name] || ''),
       data: item,
     });
   }
