@@ -73,7 +73,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let item of Table.data">
-			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item)"></td>
 			<td [hidden]="!colsData[0].show">{{item.time}}</td>
 			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
 			<td [hidden]="!colsData[2].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
@@ -232,7 +232,7 @@ interface colsData {
 </thead>
 <tbody>
 	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item)"></td>
 	</tr>
 </tbody>
 ```
@@ -245,7 +245,7 @@ interface colsData {
 </thead>
 <tbody>
 	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatusRadio(item.id, $event)"></td>
+		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item, false)"></td>
 	</tr>
 </tbody>
 ```

@@ -20,9 +20,8 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let item of Table.data">
-				<td *ngIf='!multiple' nzShowCheckbox [(nzChecked)]="checkedRows[item.id]"
-					(nzCheckedChange)="refreshStatusRadio(item.id, $event)"></td>
-				<td *ngIf='multiple' nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()">
+				<td *ngIf='multiple' nzShowCheckbox [(nzChecked)]="checkedRows[item.id]"
+					(nzCheckedChange)="checkbox(item, multiple)">
 				</td>
 				<td [hidden]="!colsData[0].show">{{item.time}}</td>
 				<td [hidden]="!colsData[1].show">{{item.ip}}</td>

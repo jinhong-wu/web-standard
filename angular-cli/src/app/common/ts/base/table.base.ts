@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 import { DownloadService } from '../../service/download.service';
 
 interface tableInit {
-	reset: boolean;  // 是否初始化page、checkedRows等数据
+	reset: boolean;  // 是否初始化page数据
 	advance: boolean;  // 是否为精确查询
 	tableService: any;  // table-api所在service
 	tableData: string; // table-api所在service-方法名
@@ -42,7 +42,7 @@ export class TableBaseTs extends BaseTs {
   multiple: boolean = true;
 
   // 选择功能：nz-checkbox
-  checkedRows: { [key: string]: boolean } = {};
+  checkedRows: { [key: string]: any } = {};
   checkedIds: any = [];
   checkedData: any = [];
   isAllChecked: Boolean = false;
@@ -53,22 +53,17 @@ export class TableBaseTs extends BaseTs {
 
   // 数据初始化
   tableInit({reset = false, advance = false, paramsFn, tableService, tableData, successFn, errorFn}: tableInit) {
-    if (reset) {
-      this.tablePage = 1;
-      this.checkedRows = {};
-      this.isAllChecked = false;
-      this.isIndeterminate = false;
-    }
+    if (reset) this.tablePage = 1;
 		if (this.tableParamsFn(advance, paramsFn)) {
 			this.tableLoading = true;
 			tableService[tableData].call(tableService, this.tableParams).subscribe((data) => {
 				this.tableLoading = false;
 				this.tableTotal = data.total || 0;
 				this.tableData = data.data || [];
-				successFn?.(data);
+				successFn?.call(this, data);
 			},() => {
 				this.tableLoading = false;
-				errorFn?.();
+				errorFn?.call(this);
 			});
 		}
   }
@@ -122,49 +117,50 @@ export class TableBaseTs extends BaseTs {
     fn.call(this);
   }
 
-  // 勾选框-多选：刷新勾选状态
+  // 勾选框：刷新勾选状态
   refreshStatus() {
     if (this.tableData.length > 0) {
-      this.isAllChecked = this.tableData.every(
-        (item) => this.checkedRows[item.id]
-      );
+      this.isAllChecked = this.tableData.every(d => this.checkedRows[d.id]);
       this.isIndeterminate =
-        this.tableData.some((item) => this.checkedRows[item.id]) &&
-        !this.isAllChecked;
+        this.tableData.some((d) => this.checkedRows[d.id]) && !this.isAllChecked;
     } else {
-      this.checkedRows = {};
       this.isAllChecked = false;
       this.isIndeterminate = false;
     }
   }
 
-  // 勾选框-单选
-  refreshStatusRadio(id, value) {
-    this.checkedRows = {
-      [id]: value,
-    };
+  // 勾选框-多选、单选
+  checkbox(item, checkbox: boolean = true) {
+		if (checkbox) {
+			if (this.checkedRows[item.id]) {
+				this.checkedRows[item.id] = item;
+			} else {
+				delete this.checkedRows[item?.id];
+			};
+			this.refreshStatus();
+		} else {
+			this.checkedRows = {
+				[item.id]: item,
+			};
+		};
   }
 
   // 全选、取消全选
   checkAll(value) {
-    this.tableData.forEach((item) => (this.checkedRows[item.id] = value));
+		this.tableData.forEach((d) => {
+			if(value) { 
+				this.checkedRows[d.id] = d;
+			} else {
+				delete this.checkedRows[d.id]
+			}
+		});
     this.refreshStatus();
   }
 
   // 获取选中行id、行data
   checkedIdsFn() {
-    this.checkedIds = [];
-    this.checkedData = [];
-    for (let id in this.checkedRows) {
-      if (this.checkedRows[id]) {
-        this.checkedIds.push(id);
-        this.checkedData.push(
-          this.tableData.find((item) => {
-            return item.id == id;
-          })
-        );
-      }
-    }
+    this.checkedIds = this.checkedIds = Object.keys(this.checkedRows);
+    this.checkedData = this.checkedIds = Object.values(this.checkedRows);
   }
 
   // 按钮区：新增

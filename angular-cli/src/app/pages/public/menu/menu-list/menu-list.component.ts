@@ -102,31 +102,32 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
 	
   // 获取表格数据
   tableDataFn(reset: boolean = false, advance: boolean = false) {
-    //this.tableInit({
-		//	reset,
-		//	advance,
-		//	tableService: this.TableService,
-		//	tableData: 'tableData',
-		//	successFn(data){
-
-		//	}
-		//});
-		this.tableParamsFn(advance, ()=>{
-			setTimeout(() => {
-				this.tableTotal = 3;
-				this.tableLoading = false;
-				this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
-					return {
-						id: index,
-						init: 'init',
-						name: 'name' + index,
-						time: '2022-01-01 12:00:00',
-						ip: '255.255.255.255',
-						describe: `超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述`,
-					};
-				});
-			}, 1000);
-		});
+			//this.tableInit({
+			//	reset,
+			//	advance,
+			//	tableService: this.TableService,
+			//	tableData: 'tableData',
+			//	successFn(data){
+	
+			//	},
+			//	errorFn() {
+					setTimeout(() => {
+						this.tableTotal = 5;
+						this.tableSize = 3;
+						this.tableLoading = false;
+						this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
+							return {
+								id: index,
+								init: 'init',
+								name: 'name' + index,
+								time: '2022-01-01 12:00:00',
+								ip: '255.255.255.255',
+								describe: `超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述`,
+							};
+						});
+					}, 1000);
+				//}
+			//});
   }
 
   import() {

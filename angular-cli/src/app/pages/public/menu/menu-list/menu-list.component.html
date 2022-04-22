@@ -11,10 +11,10 @@
 		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
 	</ng-container>
 </app-table-head>
-<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
-	nzShowSizeChanger="true" [nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal"
-	[(nzPageIndex)]="tablePage" [(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()"
-	(nzPageSizeChange)="tableDataFn(true)" (nzCurrentPageDataChange)="refreshStatus()">
+<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzShowQuickJumper="true" nzShowSizeChanger="true"
+	[nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal" [(nzPageIndex)]="tablePage"
+	[(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()" (nzPageSizeChange)="tableDataFn(true)"
+	(nzCurrentPageDataChange)="refreshStatus()">
 	<!-- 排序功能：(nzSortOrderChange)="sortFn($event, tableDataFn)" -->
 	<thead (nzSortOrderChange)="sortFn($event, tableDataFn)">
 		<tr>
@@ -38,7 +38,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let item of Table.data">
-			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="refreshStatus()"></td>
+			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item)"></td>
 			<td [hidden]="!colsData[0].show">{{item.time}}</td>
 			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
 			<td [hidden]="!colsData[2].show">

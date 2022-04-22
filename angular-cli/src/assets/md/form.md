@@ -1,13 +1,6 @@
 # 必读！！！
 - form表单中：formControlName和ngModel尽量避免混用（容易造成很多Bug）
-
-**文件：**
-- 全局属性：BaseTs（common/ts/base/base.ts）
-- 表格属性&方法：FormBaseTs（common/ts/base/form.base.ts）
-
-# 全部用法
-示例文件：app-menu-create（pages/public/menu/menu-create/menu-create.component.ts）
-- reset()：必须写上 || null，表示新增无数据传入时，输入框/单选框等的默认值
+- 重置方法reset()：必须写上 || null，表示新增无数据传入时，输入框/单选框等的默认值
 - 所有label均[nz-tooltip]（BUG编号24136）
   ```html
 	<nz-form-label nzSpan="6" nzRequired>
@@ -20,7 +13,18 @@
 		<i nz-icon nzType="info-circle" [nz-tooltip]=""></i>
 	</nz-form-control>
 	```
-	
+- 端口使用nz-input-number（所有的端口号都不能为小数）
+  ```html
+	<nz-input-number [nzMin]="1" [nzMax]="65535" [nzPrecision]='0' formControlName='' nzPlaceHolder="端口">
+	</nz-input-number>
+	```
+
+**文件：**
+- 全局属性：BaseTs（common/ts/base/base.ts）
+- 表格属性&方法：FormBaseTs（common/ts/base/form.base.ts）
+
+# 全部用法
+示例文件：app-menu-create（pages/public/menu/menu-create/menu-create.component.ts）
 ```html
 <nz-spin [nzSpinning]="formLoading">
 	<div class="form-content">
@@ -79,62 +83,62 @@
 </ng-template>
 ```
 
-	```typescript
-	import { Component, OnInit, Injector } from '@angular/core';
-	import { Validators } from '@angular/forms';
-	import { FormBaseTs } from 'src/app/common/ts/base/form.base';
+```typescript
+import { Component, OnInit, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { FormBaseTs } from 'src/app/common/ts/base/form.base';
 
-	@Component({
-		selector: 'app-form',
-		templateUrl: './form.component.html',
-		styleUrls: ['./form.component.less'],
-	})
-	export class FormComponent extends FormBaseTs implements OnInit {
-		constructor(public injuctor: Injector) {
-			super(injuctor);
-		}
-
-		ngOnInit() {
-			this.form = this.fb.group({
-				ip: [
-					{ value: null, disabled: this.tab.type == 'update' },
-					[Validators.required],
-				],
-				init: [null, [Validators.required]],
-				describe: [null, [Validators.required]],
-			});
-			this.reset(false);
-		}
-
-		test() {
-			this.saveInit(() => {
-				// 拨测代码
-				console.log('拨测');
-			});
-		}
-
-		save() {
-			this.saveInit(() => {
-				this.formInit();
-				setTimeout(() => {
-					this.formLoading = false;
-					this.tip.notify(
-						'success',
-						this.tab.type == 'update' ? '修改成功' : '新增成功'
-					);
-					this.cancel(true);
-				}, 1000);
-			});
-		}
-
-		reset(confirm?) {
-			this.resetInit(() => {
-				this.form.patchValue({
-					ip: this.tab?.data?.ip || null,
-					init: this.tab?.data?.init || 'nothing',
-					describe: this.tab?.data?.describe,
-				});
-			}, confirm);
-		}
+@Component({
+	selector: 'app-form',
+	templateUrl: './form.component.html',
+	styleUrls: ['./form.component.less'],
+})
+export class FormComponent extends FormBaseTs implements OnInit {
+	constructor(public injuctor: Injector) {
+		super(injuctor);
 	}
-	```
+
+	ngOnInit() {
+		this.form = this.fb.group({
+			ip: [
+				{ value: null, disabled: this.tab.type == 'update' },
+				[Validators.required],
+			],
+			init: [null, [Validators.required]],
+			describe: [null, [Validators.required]],
+		});
+		this.reset(false);
+	}
+
+	test() {
+		this.saveInit(() => {
+			// 拨测代码
+			console.log('拨测');
+		});
+	}
+
+	save() {
+		this.saveInit(() => {
+			this.formInit();
+			setTimeout(() => {
+				this.formLoading = false;
+				this.tip.notify(
+					'success',
+					this.tab.type == 'update' ? '修改成功' : '新增成功'
+				);
+				this.cancel(true);
+			}, 1000);
+		});
+	}
+
+	reset(confirm?) {
+		this.resetInit(() => {
+			this.form.patchValue({
+				ip: this.tab?.data?.ip || null,
+				init: this.tab?.data?.init || 'nothing',
+				describe: this.tab?.data?.describe,
+			});
+		}, confirm);
+	}
+}
+```

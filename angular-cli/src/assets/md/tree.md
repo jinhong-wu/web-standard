@@ -1,5 +1,4 @@
 # 必读！！！
-- 左树右表格：树的查询条件一直要带上，不管模糊查询还是精确查询
 - nz-tree-select必须配置nzShowSearch、nzAllowClear、nzHideUnMatched、nzDropdownMatchSelectWidth（除非特殊要求）
   ```html
 	<!-- 
