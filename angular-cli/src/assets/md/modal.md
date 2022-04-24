@@ -18,13 +18,12 @@ this.tip.msg("loading", "正在下载");
 ![image-1](assets/md/imgs/tip-notify.png)
 
 **使用：后端接口调用的提示**
-- type：info、success、warning、error、blank
-- title：  
-（type = 'success'）createSuccess、updateSuccess、deleteSuccess、importSuccess、exportSuccess、saveSuccess  
-（type = 'error'）createError、updateError、deleteError、importError、exportError、saveError  
+- type：info、success、warning、error、blank  
+  
+	（type = 'success'）this.tip.successNotify()
+	（type = 'error'）this.tip.errorNotify()
 ```typescript
-// notify(type, title, content)
-this.tip.notify("success", "提示标题", "提示内容");
+this.tip.notify(type, "提示标题", "提示内容");
 ```
 
 # 确认对话框
@@ -38,10 +37,6 @@ this.tip.notify("success", "提示标题", "提示内容");
 	例：确定删除所选列表数据？、确定导出所选列表数据？、确定导出所有查询结果？
 	```
 - 按钮顺序：确定、取消
-- type：info、success、warning、error、blank
-- title：  
-（type = 'success'）createSuccess、updateSuccess、deleteSuccess、importSuccess、exportSuccess、saveSuccess  
-（type = 'error'）createError、updateError、deleteError、importError、exportError、saveError  
 ```typescript
 this.tip.confirm("确定xxxx？", ()=>{
 	// 确认后代码...

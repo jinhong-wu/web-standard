@@ -23,7 +23,7 @@ export class FormBaseTs extends BaseTs {
   // 状态初始化
   formInit(values?: object) {
     this.formValuesFn();
-    this.formParams = this.httpUtil.paramsFn({ ...this.formParams, ...values });
+    this.formParams = this.HttpUtilTs.paramsFn({ ...this.formParams, ...values });
     this.formLoading = true;
   }
 

@@ -117,7 +117,7 @@ export class TableBaseTs extends BaseTs {
     fn.call(this);
   }
 
-  // 勾选框：刷新勾选状态
+  // 勾选框-刷新勾选状态
   refreshStatus() {
     if (this.tableData.length > 0) {
       this.isAllChecked = this.tableData.every(d => this.checkedRows[d.id]);
@@ -145,7 +145,7 @@ export class TableBaseTs extends BaseTs {
 		};
   }
 
-  // 全选、取消全选
+  // 勾选框-全选、取消全选
   checkAll(value) {
 		this.tableData.forEach((d) => {
 			if(value) { 
@@ -157,7 +157,7 @@ export class TableBaseTs extends BaseTs {
     this.refreshStatus();
   }
 
-  // 获取选中行id、行data
+  // 勾选框-获取选中行id、行data
   checkedIdsFn() {
 		this.checkedIds = Object.keys(this.checkedRows);
     this.checkedData = Object.values(this.checkedRows);
@@ -174,7 +174,7 @@ export class TableBaseTs extends BaseTs {
   }
   // 按钮区：删除
   deleteInit(confirmInfo, options) {
-		let confirm = this.render(this.i18n.baseList.deleteConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
+		let confirm = this.UtilTs.render(this.i18n.baseList.deleteConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
 			if (this.checkedData.length == 0) {
@@ -206,7 +206,7 @@ export class TableBaseTs extends BaseTs {
     });
   }
   // 操作列：修改
-  update(item, name, tab: any = {}) {
+  update(item, name = 'name', tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
       type: 'update',
@@ -226,15 +226,15 @@ export class TableBaseTs extends BaseTs {
     if (type == 'search') {
 			confirm = this.i18n.baseList.exportSearchConfirm;
       isParams = this.tableParamsFn(true);
-      params = this.httpUtil.getHttpParam(this.tableParams);
+      params = this.HttpUtilTs.getHttpParam(this.tableParams);
     } else {
-			confirm = this.render(this.i18n.baseList.exportConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
+			confirm = this.UtilTs.render(this.i18n.baseList.exportConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
       this.checkedIdsFn();
 			if (this.checkedIds.length == 0) {
 				this.tip.msg('warning', this.i18n.baseList.checkTip);
 				isParams = false;
 			}
-      url += this.httpUtil.getString({ ids: this.checkedIds });
+      url += this.HttpUtilTs.getString({ ids: this.checkedIds });
     }
 		if (isParams) {
 			this.tip.confirm(confirm, () => {

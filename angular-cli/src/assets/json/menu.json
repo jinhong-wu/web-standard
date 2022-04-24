@@ -20,6 +20,37 @@
 				},
 				{
 					"node": {
+						"id": "public-ts",
+						"pid": "public",
+						"name": "公共方法",
+						"path": "/public/ts",
+						"sideShow": true
+					},
+					"child": [
+						{
+							"node": {
+								"id": "public-ts-base",
+								"pid": "public-ts",
+								"name": "base-基础类",
+								"path": "/public/ts/base",
+								"icon": "right",
+								"sideShow": true
+							}
+						},
+						{
+							"node": {
+								"id": "public-ts-base",
+								"pid": "public-ts",
+								"name": "util-工具类",
+								"path": "/public/ts/util",
+								"icon": "right",
+								"sideShow": true
+							}
+						}
+					]
+				},
+				{
+					"node": {
 						"id": "public-menu",
 						"pid": "public",
 						"name": "Menu 菜单",
@@ -98,15 +129,6 @@
 						"pid": "public",
 						"name": "Upload 上传/下载",
 						"path": "/public/upload",
-						"sideShow": true
-					}
-				},
-				{
-					"node": {
-						"id": "public-http",
-						"pid": "public",
-						"name": "Http 请求",
-						"path": "/public/http",
 						"sideShow": true
 					}
 				},

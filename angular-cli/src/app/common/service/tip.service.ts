@@ -3,6 +3,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { I18nService } from './system/i18n.service';
+import { UtilTs } from '../ts/util/util';
 
 interface modalAfter {
   open?: Function;
@@ -45,6 +46,16 @@ export class TipService {
       nzPlacement: 'bottomRight',
     });
   }
+
+	// 右下角通知框-成功提示
+	successNotify(name = '') {
+		this.notify('success', UtilTs.render(this.i18n.baseList.successNotify, {name: name}));
+	}
+
+	// 右下角通知框-失败提示
+	errorNotify(name = '') {
+		this.notify('error', UtilTs.render(this.i18n.baseList.errorNotify, {name: name}));
+	}
 
   // 确认对话框（确认操作）
   confirm(content = this.content, okFn: Function) {

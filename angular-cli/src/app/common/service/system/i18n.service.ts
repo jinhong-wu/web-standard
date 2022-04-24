@@ -32,7 +32,7 @@ export class I18nService {
   list: any = {};
   baseList: any = {};
 
-  // 语言:切换、使用
+  // 语言-切换、使用
   use(lang?: 'zh' | 'en') {
     if (lang) {
       window.sessionStorage.setItem('lang', lang);

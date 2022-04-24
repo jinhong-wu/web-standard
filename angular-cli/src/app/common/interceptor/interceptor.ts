@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
-import { httpUtil } from '../ts/util/http.util';
+import { HttpUtilTs } from '../ts/util/http.util';
 import { Router } from '@angular/router';
 import { TipService } from '../service/tip.service';
 
@@ -51,7 +51,7 @@ export class Interceptor implements HttpInterceptor {
     // 去除body-params无效值
     let body = request.body;
     if (body) {
-      body = httpUtil.paramsFn(body);
+      body = HttpUtilTs.paramsFn(body);
     }
 
     let newReq = request.clone({

@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 
-export class httpUtil {
+export class HttpUtilTs {
   static invalidList = [undefined, null, NaN, '']; // 无效字符
   static encodeUrlList = [',', '/', '?', ':', '@', '&', '=', '+', '#', '$']; // 转义字符
 

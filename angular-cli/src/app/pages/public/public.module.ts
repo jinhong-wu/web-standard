@@ -13,7 +13,6 @@ import { UploadComponent } from './upload/upload.component';
 import { FormComponent } from './form/form.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuCreateComponent } from './menu/menu-create/menu-create.component';
-import { HttpComponent } from './http/http.component';
 import { InputComponent } from './input/input.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { SelectComponent } from './select/select.component';
@@ -25,6 +24,8 @@ import { MenuOverviewComponent } from './menu/menu-overview/menu-overview.compon
 import { ServiceComponent } from './service/service.component';
 import { TreeComponent } from './tree/tree.component';
 import { OtherComponent } from './other/other.component';
+import { BaseComponent } from './ts/base/base.component';
+import { UtilComponent } from './ts/util/util.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,6 @@ import { OtherComponent } from './other/other.component';
     FormComponent,
     MenuComponent,
     MenuCreateComponent,
-    HttpComponent,
     InputComponent,
     PipeComponent,
     SelectComponent,
@@ -46,6 +46,8 @@ import { OtherComponent } from './other/other.component';
     ServiceComponent,
     TreeComponent,
     OtherComponent,
+    BaseComponent,
+    UtilComponent,
   ],
   imports: [
     CommonModule,

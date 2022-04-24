@@ -5,7 +5,8 @@ import { MenuService } from '../../service/system/menu.service';
 import { TipService } from '../../service/tip.service';
 import { I18nService } from '../../service/system/i18n.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { httpUtil } from '../util/http.util';
+import { UtilTs } from '../util/util';
+import { HttpUtilTs } from '../util/http.util';
 import { HttpClient } from '@angular/common/http';
 
 export class BaseTs {
@@ -17,7 +18,8 @@ export class BaseTs {
   public tip: TipService;
   public i18n: I18nService;
   public MenuService: MenuService;
-  public httpUtil = httpUtil;
+	public UtilTs = UtilTs;
+  public HttpUtilTs = HttpUtilTs;
 
   constructor(private baseInjector: Injector) {
     this.translate = this.baseInjector.get(TranslateService);
@@ -36,13 +38,4 @@ export class BaseTs {
 		// ...其他初始化方法
 	}
 
-	// 简单的模板解析器
-	render(str: string, replace: Object = {}) {
-		// 例：str='${xxx}',replace必须为{xxx: ...}
-		for(let key in replace){
-			let reg = new RegExp("\\${"+key+"}", "g");
-			str = str.replace(reg, replace[key]);
- 		}
-		return str;
-	}
 }
