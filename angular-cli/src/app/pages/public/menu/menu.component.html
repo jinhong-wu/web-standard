@@ -1,11 +1,11 @@
 <h1>示例</h1>
 <nz-tabset [(nzSelectedIndex)]="MenuService.selectIndex" (nzSelectedIndexChange)="MenuService.selectTab(overview)">
-	<nz-tab *ngFor="let tab of MenuService.tabs;let index=index" [nzTitle]="titleTemplate">
+	<nz-tab *ngFor="let tab of MenuService.tabs" [nzTitle]="titleTemplate">
 		<ng-template #titleTemplate>
 			<div>
 				{{ tab.name}}
 				<i nz-icon nzType="close" class="ant-tabs-close-x" *ngIf="tab.closeable"
-					(click)="MenuService.closeTab(index)"></i>
+					(click)="MenuService.closeTab(tab)"></i>
 			</div>
 		</ng-template>
 		<!-- 概览 -->

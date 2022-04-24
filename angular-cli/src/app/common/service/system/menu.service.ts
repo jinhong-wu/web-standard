@@ -8,6 +8,7 @@ interface createTab {
   id?: string; // tab id
   name: string; // tab菜单名称
   data?: any; // tab携带数据
+	closeable?: boolean; // 是否可关闭
 }
 
 @Injectable({
@@ -145,7 +146,7 @@ export class MenuService {
     tab.id = `${tab.pid}-${tab.type}`;
     if (tab?.data?.id) tab.id += `-${tab.data.id}`;
 
-    let index = this.tabs.findIndex((d) => d.id === tab.id);
+		let index = this.tabs.findIndex((d) => d.id === tab.id);
     if (index < 0) {
       this.tabs.push({ ...tab, closeable });
       this.selectIndex = this.tabs.length - 1;
@@ -155,8 +156,8 @@ export class MenuService {
   }
 
   // 关闭tab
-  closeTab(index) {
-    let tab = this.tabs[index];
+  closeTab(tab) {
+		let index = this.tabs.findIndex((d) => d.id === tab.id);
     this.tabs.splice(index, 1);
     if (this.selectIndex == index) {
       if (tab.pid) {

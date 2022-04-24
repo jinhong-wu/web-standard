@@ -58,8 +58,7 @@ export class FormBaseTs extends BaseTs {
 
   // 取消时是否刷新数据
   cancel(refresh = false) {
-		let index = this.MenuService.tabs.findIndex((d) => d.id === this.tab.id);
-    this.MenuService.closeTab(index);
+    this.MenuService.closeTab(this.tab);
     this.search.emit(refresh);
   }
 }
