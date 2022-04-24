@@ -231,9 +231,6 @@ form {
   }
 }
 
-/*
-	* ng-zorro 修改样式
-*/
 // 标签
 nz-tabs-nav {
   margin-bottom: @space  !important;
@@ -253,11 +250,21 @@ nz-tabs-nav {
 
 // 栅格
 nz-row {
-
   &,
   nz-col {
     margin: 0 !important;
   }
+}
+
+// 下拉框
+.ant-select-dropdown {
+	max-height: 400px;
+}
+
+// 提示框-tooltip
+.ant-tooltip-inner {
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 // 弹出框

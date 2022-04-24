@@ -30,8 +30,48 @@
 
 ![image-1](assets/md/imgs/table.png)
 
+# 上方操作区（app-table-head）
+**使用-参数：**
+- search：获取表格数据方法（keywordShow = true时必传，false时可不传）
+- keywordShow：右侧查询区-输入框，默认true显示
+- advanceData：精确查询数据，参考interface advanceData
+- colsData：可配置列数据，参考interface colsData
+- exportShow：精确查询-导出，默认true显示
+- export：精确查询-导出方法（exportShow = true时必传，false时可不传）
+	```html
+	<!-- #tableHead 必须取此名 -->
+	<!-- tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询 -->
+	<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
+		<ng-container ngProjectAs="btns">
+		</ng-container>
+		<ng-container ngProjectAs="tips">
+		</ng-container>
+	</app-table-head>
+	```
+
 # 全部用法
-- 支持跨页勾选  
+- 支持跨页勾选
+- 勾选框-单选、多选
+	```html
+	<thead>
+		<tr>
+			<!-- 单选 -->
+			<th class="checkbox"></th>
+			<!-- 多选 -->
+			<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
+				(nzCheckedChange)="checkAll($event)">
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of Table.data">
+			<!-- 单选 -->
+			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item, false)"></td>
+			<!-- 多选 -->
+			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item)"></td>
+		</tr>
+	</tbody>
+	```
 
 ```html
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
@@ -172,82 +212,3 @@ export class TableComponent extends TableBaseTs implements OnInit {
 	}
 }
 ```
-# 上方操作区（app-table-head）
-**使用-参数：**
-- search：获取表格数据方法（keywordShow = true时必传，false时可不传）
-- keywordShow：右侧查询区-输入框，默认true显示
-- advanceData：精确查询数据，参考interface advanceData
-- colsData：可配置列数据，参考interface colsData
-- exportShow：精确查询-导出，默认true显示
-- export：精确查询-导出方法（exportShow = true时必传，false时可不传）
-```html
-<!-- #tableHead 必须取此名 -->
-<!-- tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询 -->
-<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
-	<ng-container ngProjectAs="btns">
-		<button nz-button nzType="primary">新增</button>
-		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-		<button nz-button nzType="primary" (click)="export('checked', '列表数据')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
-	</ng-container>
-	<ng-container ngProjectAs="tips">
-		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
-	</ng-container>
-</app-table-head>
-```
-```typescript
-interface advanceData {
-	key: string;  // 对应param参数
-	type: string;  // 输入框类型（文字输入框text、下拉框select）
-	value?: string | number; // ngModel输入值
-	options?: advanceDataOptions[]  // type:'select'时，必传
-	placeholder?: string  // placeholder提示文字
-	style?: {  // .item样式
-		// .item盒子新增class，更多class查看common.less .table-head
-		//（输入框宽度.width2 >.width-short，为了美观，width2数据建议放在最后）
-		class?: string
-	}	
-}
-interface advanceDataOptions {
-	label: string;
-	value: string;
-}
-interface colsData {
-	title: string,  // 对应列名称
-	key: string,  // 对应列key
-	show: boolean,  // 对应列是否展示
-	class?: string,  // 对应列class
-	width?: string  // 对应列class
-}
-```
-
-# 勾选框
-- 多个勾选框
-```html
-<thead>
-	<tr>
-		<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
-			(nzCheckedChange)="checkAll($event)">
-		</th>
-	</tr>
-</thead>
-<tbody>
-	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item)"></td>
-	</tr>
-</tbody>
-```
-- 单个勾选框
-```html
-<thead>
-	<tr>
-		<th></th>
-	</tr>
-</thead>
-<tbody>
-	<tr *ngFor="let item of Table.data">
-		<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item, false)"></td>
-	</tr>
-</tbody>
-```
-
-

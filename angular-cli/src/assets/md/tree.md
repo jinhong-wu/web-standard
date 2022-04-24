@@ -19,6 +19,30 @@
 
 ![image-1](assets/md/imgs/tree-table.png)
 
+# 左树右表格（app-tree-table）
+**实现功能：**
+- 默认展开根节点
+- 树的查询条件不管模糊查询还是精确查询必须带上
+- disabled不能限制右键nzContextMenu方法，在nzContextMenu方法中手动判断
+- 可拖动调整宽度
+- 搜索高亮 过滤（10.x已实现）
+- 点击要明确表现出被点击的状态（10.x已实现，自定义nzTreeTemplate也实现）
+**使用-参数：**
+- searchShow：是否显示查询输入框，默认true显示
+- searchValue：查询值（searchShow = true时必传，false时可不传）
+- width：树宽度，默认300px
+- resizable：是否可拖动，默认true（200px<width<50%）
+  ```html
+	<app-tree-table [(searchValue)]="treeSearch">
+		<ng-container ngProjectAs="tree">
+			<!-- nz-tree -->
+		</ng-container>
+		<ng-container ngProjectAs="table">
+			<!-- nz-table -->
+		</ng-container>
+	</app-tree-table>
+	```
+
 # 全部用法
 ```html
 <app-tree-table [(searchValue)]="treeSearch">
@@ -99,27 +123,3 @@ export class TreeComponent extends TreeTableBaseTs implements OnInit {
 
 }
 ```
-
-# 左树右表格（app-tree-table）
-**实现功能：**
-- 默认展开根节点
-- 树的查询条件不管模糊查询还是精确查询必须带上
-- disabled不能限制右键nzContextMenu方法，在nzContextMenu方法中手动判断
-- 可拖动调整宽度
-- 搜索高亮 过滤（10.x已实现）
-- 点击要明确表现出被点击的状态（10.x已实现，自定义nzTreeTemplate也实现）
-**使用-参数：**
-- searchShow：是否显示查询输入框，默认true显示
-- searchValue：查询值（searchShow = true时必传，false时可不传）
-- width：树宽度，默认300px
-- resizable：是否可拖动，默认true（200px<width<50%）
-  ```html
-	<app-tree-table [(searchValue)]="treeSearch">
-		<ng-container ngProjectAs="tree">
-			<!-- nz-tree -->
-		</ng-container>
-		<ng-container ngProjectAs="table">
-			<!-- nz-table -->
-		</ng-container>
-	</app-tree-table>
-	```
