@@ -34,6 +34,7 @@
 **使用-参数：**
 - search：获取表格数据方法（keywordShow = true时必传，false时可不传）
 - keywordShow：右侧查询区-输入框，默认true显示
+- placeholder: 右侧查询区-输入框placeholder，默认'输入关键字进行查询'
 - advanceData：精确查询数据，参考interface advanceData
 - colsData：可配置列数据，参考interface colsData
 - exportShow：精确查询-导出，默认true显示

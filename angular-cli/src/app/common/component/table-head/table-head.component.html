@@ -58,7 +58,7 @@
 		<!-- 关键字查询 -->
 		<ng-container *ngIf="keywordShow">
 			<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
-				<input nz-input [(ngModel)]="keyword" (keydown.enter)="searchFn()" [placeholder]='i18n.baseList.placeholder'>
+				<input nz-input [(ngModel)]="keyword" (keydown.enter)="searchFn()" [placeholder]='placeholder'>
 			</nz-input-group>
 			<ng-template #suffixButton>
 				<button nz-button nzType="primary" nzSearch (click)="searchFn()">

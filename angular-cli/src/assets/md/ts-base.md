@@ -1,7 +1,7 @@
 # 基础类
 **文件：** BaseTs（common/ts/base/base.ts） 
 
-# 表格-基础方法
+# 表格
 **文件：** TableBaseTs（common/ts/base/table.base.ts） 
 
 **使用-方法：**
@@ -17,7 +17,7 @@
 - update()：修改功能
 - export()：导出功能
 
-## 表单-基础方法
+## 表单
 **文件：** FormBaseTs（common/ts/base/form.base.ts） 
 
 **使用-方法：**
@@ -27,7 +27,7 @@
 - resetInit()：重置前confirm提示
 - cancel()：取消
 
-## 左树右表格-基础方法
+## 左树右表格
 **文件：** TreeTableBaseTs（common/ts/base/tree-table.base.ts） 
 
 **使用-方法：**

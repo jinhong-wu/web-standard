@@ -45,6 +45,7 @@ interface colsData {
  * @name 表格-上方操作区
  * @param search 获取表格数据方法（keywordShow = true时必传，false时可不传）
  * @param keywordShow 右侧查询区-输入框，默认true显示
+ * @param placeholder 右侧查询区-输入框placeholder，默认'输入关键字进行查询'
  * @param advanceData 精确查询数据，参考interface advanceData
  * @param colsData 可配置列数据，参考interface colsData
  * @param exportShow 精确查询-导出，默认false隐藏 
@@ -70,6 +71,7 @@ export class TableHeadComponent extends BaseTs implements OnInit {
 
   @Output() search = new EventEmitter<boolean>();
   @Input() keywordShow: any = true;
+	@Input() placeholder: string = this.i18n.baseList.placeholder;
   @Input() advanceData: advanceData[] = [];
   @Input() colsData: colsData[] = [];
   @Input() exportShow: any = false;
