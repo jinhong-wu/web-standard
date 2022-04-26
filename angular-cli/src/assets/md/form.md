@@ -1,6 +1,7 @@
 # 必读！！！
 - form表单中：formControlName和ngModel尽量避免混用（容易造成很多Bug）
 - 重置方法reset()：必须写上 || null，表示新增无数据传入时，输入框/单选框等的默认值
+- 单选框必须要有默认值
 - 所有label均[nz-tooltip]（BUG编号24136）
   ```html
 	<nz-form-label nzSpan="6" nzRequired>

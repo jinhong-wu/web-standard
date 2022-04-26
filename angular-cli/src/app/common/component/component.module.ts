@@ -4,33 +4,33 @@ import { TableHeadComponent } from './table-head/table-head.component';
 import { SharedModule } from '../shared.module';
 import { ImportFileComponent } from './import-file/import-file.component';
 import { SelectModalComponent } from './select-modal/select-modal.component';
-import { ModalBatchComponent } from './modal-batch/modal-batch.component';
 import { RangePickerComponent } from './range-picker/range-picker.component';
 import { TreeTableComponent } from './tree-table/tree-table.component';
+import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
 
 @NgModule({
   declarations: [
     TableHeadComponent,
     ImportFileComponent,
     SelectModalComponent,
-    ModalBatchComponent,
     RangePickerComponent,
     TreeTableComponent,
+    BatchDeleteComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
     TableHeadComponent,
     ImportFileComponent,
     SelectModalComponent,
-    ModalBatchComponent,
+    BatchDeleteComponent,
     RangePickerComponent,
-		TreeTableComponent
+		TreeTableComponent,
   ],
   entryComponents: [
     TableHeadComponent,
     ImportFileComponent,
     SelectModalComponent,
-    ModalBatchComponent,
+    BatchDeleteComponent,
     RangePickerComponent,
 		TreeTableComponent
   ],

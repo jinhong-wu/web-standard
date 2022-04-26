@@ -1,13 +1,13 @@
-import { Component, OnInit, Injector, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { I18nService } from '../../service/system/i18n.service';
 
 @Component({
-  selector: 'app-modal-batch',
-  templateUrl: './modal-batch.component.html',
-  styleUrls: ['./modal-batch.component.less'],
+  selector: 'app-batch-delete',
+  templateUrl: './batch-delete.component.html',
+  styleUrls: ['./batch-delete.component.less']
 })
-export class ModalBatchComponent implements OnInit {
+export class BatchDeleteComponent implements OnInit {
   constructor(public i18n: I18nService, public nzModalRef: NzModalRef) {}
 
   @Input() checkedData: Array<any> = []; // 批量操作数据

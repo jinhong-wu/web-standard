@@ -1,6 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
+import { BatchDeleteComponent } from '../component/batch-delete/batch-delete.component';
 import { ImportFileComponent } from '../component/import-file/import-file.component';
-import { ModalBatchComponent } from '../component/modal-batch/modal-batch.component';
 import { BaseTs } from '../ts/base/base';
 
 /**
@@ -40,12 +40,12 @@ export class TipModalService extends BaseTs {
     super(injector);
   }
 
-  // 批量操作
-  batch(options: modalBatchOptions) {
+  // 批量删除
+  delete(options: modalBatchOptions) {
     const modal = this.nzModal.create({
       ...this.tip.modal(),
       nzTitle: this.i18n.baseList.batch + options.nzTitle,
-      nzContent: ModalBatchComponent,
+      nzContent: BatchDeleteComponent,
       nzWidth: 800,
       nzComponentParams: {
         checkedData: options.checkedData,

@@ -37,7 +37,7 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
       this.formInit();
       setTimeout(() => {
         this.formLoading = false;
-				this.tip.successNotify(this.tab.type == 'update' ? '修改' : '新增');
+				this.tip.successNotify(this.tab.type);
         this.cancel(true);
       }, 1000);
     });

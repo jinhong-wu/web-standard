@@ -48,6 +48,9 @@ export class TableBaseTs extends BaseTs {
   isAllChecked: Boolean = false;
   isIndeterminate: Boolean = false;
 
+	// 导出url
+	exportUrl = '';
+
   // 精确查询
   advanceData: any = [];
 
@@ -56,11 +59,14 @@ export class TableBaseTs extends BaseTs {
     if (reset) this.tablePage = 1;
 		if (this.tableParamsFn(advance, paramsFn)) {
 			this.tableLoading = true;
-			tableService[tableData].call(tableService, this.tableParams).subscribe((data) => {
+			tableService[tableData].call(tableService, this.tableParams).subscribe((res) => {
 				this.tableLoading = false;
-				this.tableTotal = data.total || 0;
-				this.tableData = data.data || [];
-				successFn?.call(this, data);
+				// 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
+				if (![null, undefined].includes(res.total)) {
+					this.tableTotal = res.total || 0;
+				};
+				this.tableData = res.data || [];
+				successFn?.call(this, res);
 			},() => {
 				this.tableLoading = false;
 				errorFn?.call(this);
@@ -181,7 +187,7 @@ export class TableBaseTs extends BaseTs {
 				this.tip.msg('warning', this.i18n.baseList.checkTip);
 				return false;
 			}
-      this.tipModal.batch({
+      this.tipModal.delete({
         nzTitle: this.i18n.baseList.delete,
         checkedData: this.checkedData,
         columns: options.columns,
@@ -217,7 +223,6 @@ export class TableBaseTs extends BaseTs {
   }
 	
   // 按钮区：导出
-	exportUrl = '';
   export(type: 'search' | 'checked' = 'search', confirmInfo = '') {
     let confirm = '',
 			url = this.exportUrl,

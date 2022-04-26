@@ -43,10 +43,13 @@
 **文件：common.less**
 
 **页面效果：**
-![image-1](assets/md/imgs/card-box.png)
+![image-1](assets/md/imgs/card-box.png)  
+
+可点击
+![image-1](assets/md/imgs/card-box-click.png)
 
 **使用：**
-- 可点击卡片：card-item click
+- 可点击卡片：class="card-item-click" [class.active]=""
 - 数量增多/减少：up/down
 
 ```html

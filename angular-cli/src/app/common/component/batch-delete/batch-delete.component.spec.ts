@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalBatchComponent } from './modal-batch.component';
+import { BatchDeleteComponent } from './batch-delete.component';
 
-describe('ModalBatchComponent', () => {
-  let component: ModalBatchComponent;
-  let fixture: ComponentFixture<ModalBatchComponent>;
+describe('BatchDeleteComponent', () => {
+  let component: BatchDeleteComponent;
+  let fixture: ComponentFixture<BatchDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalBatchComponent ]
+      declarations: [ BatchDeleteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalBatchComponent);
+    fixture = TestBed.createComponent(BatchDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

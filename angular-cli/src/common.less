@@ -80,10 +80,6 @@
       opacity: 1;
     }
 
-    &.click {
-      cursor: pointer;
-    }
-
     .num {
       display: flex;
       align-items: baseline;
@@ -125,6 +121,25 @@
       color: #1B1B1B;
     }
   }
+
+	.card-item-click {
+		.card-item();
+		cursor: pointer;
+		&.active {
+			border: 1px solid #2B9FF2;
+			.title:before {
+				position: absolute;
+				content: " ";
+				width: 9px;
+				height: 18px;
+				transform: rotate(45deg);
+				border-right: 2px solid #2B9FF2;
+				border-bottom: 2px solid #2B9FF2;
+				bottom: 6px;
+				right: 10px;
+			}
+		}
+	}
 }
 
 /*

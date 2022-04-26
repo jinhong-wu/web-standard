@@ -48,13 +48,13 @@ export class TipService {
   }
 
 	// 右下角通知框-成功提示
-	successNotify(name = '') {
-		this.notify('success', UtilTs.render(this.i18n.baseList.successNotify, {name: name}));
+	successNotify(type) {
+		this.notify('success', UtilTs.render(this.i18n.baseList.successNotify, {name: this.i18n.baseList[type] || ''}));
 	}
 
 	// 右下角通知框-失败提示
-	errorNotify(name = '') {
-		this.notify('error', UtilTs.render(this.i18n.baseList.errorNotify, {name: name}));
+	errorNotify(type) {
+		this.notify('error', UtilTs.render(this.i18n.baseList.errorNotify, {name: this.i18n.baseList[type] || ''}));
 	}
 
   // 确认对话框（确认操作）
