@@ -73,7 +73,8 @@
 								"pid": "public-menu",
 								"name": "菜单列表",
 								"path": "/public/menu/list",
-								"sideShow": false
+								"sideShow": false,
+								"functionPointLanguage": ["create", "delete", "import", "export"]
 							}
 						}
 					]

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ListGuard } from 'src/app/common/guard/list.guard';
 import { ClassComponent } from './class/class.component';
 import { FormComponent } from './form/form.component';
 import { InputComponent } from './input/input.component';
@@ -16,35 +17,35 @@ import { UtilComponent } from './ts/util/util.component';
 import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'other', pathMatch: 'full' },
+  { path: '', redirectTo: 'other', pathMatch: 'full', canActivate: [ListGuard] },
   // 规范
-  { path: 'other', component: OtherComponent },
+  { path: 'other', component: OtherComponent, canActivate: [ListGuard] },
 	// ts-base
-	{ path: 'ts/base', component: BaseComponent },
+	{ path: 'ts/base', component: BaseComponent, canActivate: [ListGuard] },
 	// ts-util
-	{ path: 'ts/util', component: UtilComponent },
+	{ path: 'ts/util', component: UtilComponent, canActivate: [ListGuard] },
   // 菜单
-  { path: 'menu', component: MenuComponent },
+  { path: 'menu', component: MenuComponent, canActivate: [ListGuard] },
   // 表格
-  { path: 'table', component: TableComponent },
+  { path: 'table', component: TableComponent, canActivate: [ListGuard] },
   // 树
-  { path: 'tree', component: TreeComponent },
+  { path: 'tree', component: TreeComponent, canActivate: [ListGuard] },
   // 表单
-  { path: 'form', component: FormComponent },
+  { path: 'form', component: FormComponent, canActivate: [ListGuard] },
   // 样式
-  { path: 'class', component: ClassComponent },
+  { path: 'class', component: ClassComponent, canActivate: [ListGuard] },
   // 弹出框
-  { path: 'modal', component: ModalComponent },
+  { path: 'modal', component: ModalComponent, canActivate: [ListGuard] },
   // 上传/下载
-  { path: 'upload', component: UploadComponent },
+  { path: 'upload', component: UploadComponent, canActivate: [ListGuard] },
   // input
-  { path: 'input', component: InputComponent },
+  { path: 'input', component: InputComponent, canActivate: [ListGuard] },
   // select
-  { path: 'select', component: SelectComponent },
+  { path: 'select', component: SelectComponent, canActivate: [ListGuard] },
   // service
-  { path: 'service', component: ServiceComponent },
+  { path: 'service', component: ServiceComponent, canActivate: [ListGuard] },
   // pipe
-  { path: 'pipe', component: PipeComponent },
+  { path: 'pipe', component: PipeComponent, canActivate: [ListGuard] },
 ];
 
 @NgModule({

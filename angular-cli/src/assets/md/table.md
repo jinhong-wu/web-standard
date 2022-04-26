@@ -78,9 +78,12 @@
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
 <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
-		<button nz-button nzType="primary">新增</button>
-		<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-		<button nz-button nzType="primary" (click)="export('checked', '列表数据')"
+		<!-- MenuService.menuPoint('create') 权限校验 -->
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('create')">新增</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('delete')" [disabled]="!isAllChecked && !isIndeterminate">
+			删除
+		</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('export')" (click)="export('checked', '列表数据')"
 			[disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">

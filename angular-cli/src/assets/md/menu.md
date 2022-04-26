@@ -3,6 +3,13 @@
   组件传值 [tab]="tab"，修改数据包含在tab.data
 - 修改：函数命名统一为update()
 - 概览：命名 xxx-overview
+- 权限校验
+  ```html
+	<!-- 路由配置：canActivate: [ListGuard] -->
+	{ path: '', component: , canActivate: [ListGuard] }
+	<!-- 页面配置：*ngIf="MenuService.menuPoint('create')" -->
+	<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('create')" (click)="create(tab)">新增</button>
+	````
 
 **文件：**
 - 一级导航、侧边栏：app-layout（common/layout/layout.component.ts）

@@ -1,10 +1,11 @@
 <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()"
 	[advanceData]="advanceData" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
-		<button nz-button nzType="primary" (click)="create(tab)">新增</button>
-		<button nz-button nzType="primary" (click)="delete()" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-		<button nz-button nzType="primary" (click)="import()">导入</button>
-		<button nz-button nzType="primary" (click)="export('checked', '列表数据')"
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('create')" (click)="create(tab)">新增</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('delete')" (click)="delete()"
+			[disabled]="!isAllChecked && !isIndeterminate">删除</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('import')" (click)="import()">导入</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('export')" (click)="export('checked', '列表数据')"
 			[disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">

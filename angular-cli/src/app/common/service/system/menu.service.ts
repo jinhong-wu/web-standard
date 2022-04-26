@@ -23,7 +23,6 @@ export class MenuService {
 
   // 当前路由菜单
   routerMenu: any = {};
-  // 当前路由菜单-权限
   routerMenuPoint: any[] = [];
 
   // 侧边栏
@@ -33,9 +32,26 @@ export class MenuService {
 	initMenu() {
 		this.menuLoading = true;
     this.http.get<any>('assets/json/menu.json').subscribe((data) => {
+			(data.data || []).forEach((d) => {
+				this.menuObject[d.node.path] = d;
+				// 一级导航：有首页跳转首页，没首页跳转第一个子菜单
+				if (d.node.functionPointLanguage.includes("home")) {
+					d.node.linkPath = d.node.path;
+				} else {
+					if(d.child[0]){
+						if(d.child[0].child?.[0].node.sideShow){
+							d.node.linkPath = d.child[0].child[0].node.path;
+						} else {
+							d.node.linkPath = d.child[0].node.path;
+						}
+					}
+				}
+				if (d.child && d.child.length > 0) {
+					this.getMenuDeal(d.child);
+				}
+			});
+			this.menuList = data.data || [];
       this.menuLoading = false;
-      this.menuList = data.data || [];
-      this.getMenuDeal(this.menuList);
     });
 	}
 
@@ -49,6 +65,7 @@ export class MenuService {
     });
   }
 
+	// 当前路由菜单
   routerMenuFn(url?) {
     if (url) {
       this.routerMenu = this.menuObject[url] || {};
@@ -58,6 +75,11 @@ export class MenuService {
       }
     }
   }
+
+	// 当前路由菜单-权限校验
+	menuPoint(type) {
+		return this.routerMenuPoint.includes(type);
+	}
 
   // 菜单（侧边栏）
   chooseMenu(path) {
