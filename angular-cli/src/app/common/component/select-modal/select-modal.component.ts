@@ -29,6 +29,8 @@ import { BaseTs } from 'src/app/common/ts/base/base';
  * @param maxCount select-展示的最大tag数，默认4
  * @param disabled select-是否禁止选中，默认false
  * @param nzPlaceHolder select-默认文字
+ * @param value select-对应value字段，默认'value'
+ * @param label select-对应label字段，默认'label'
  * @example
 	#selectModal 必须取名
 	formControlName 必须命名
@@ -49,11 +51,13 @@ export class SelectModalComponent
   @Input() maxCount: number = 4;
   @Input() disabled = false;
   @Input() nzPlaceHolder?: string = '';
+	@Input() value: string  = 'value';
+	@Input() label: string  = 'label';
 
   isOpen = false;
-  selectValue = []; // 已选value
-  selectOption: Array<{ value: string; label: string }> = []; // 已选数据
-  selectRows: { [key: string]: boolean } = {}; // 对应表格勾选行
+  selectValue: any; // 已选value
+  selectOption: Array<any> = []; // 已选数据
+  selectRows: { [key: string]: any } = {}; // 对应表格勾选行
 
   ngOnInit(): void {}
 
@@ -63,7 +67,7 @@ export class SelectModalComponent
       this.isOpen = false;
     });
     this.selectRows = {};
-    this.selectValue.forEach((val) => (this.selectRows[val] = true));
+    this.selectOption.forEach((d) => (this.selectRows[d.value] = d));
     this.openChange.emit();
   }
 
@@ -76,8 +80,19 @@ export class SelectModalComponent
     this.tip.modalAfter(modal, {
       close(res) {
         if (res && res != 'close') {
-          _this.selectOption = res?.option;
-          _this.selectValue = res?.value;
+					_this.selectOption = [];
+					(res?.option || []).forEach(d => {
+						_this.selectOption.push({
+							value: d[_this.value],
+							label: d[_this.label],
+							...d
+						})
+					});
+					if (_this.multiple) {
+						_this.selectValue = res?.value || [];
+					} else {
+						_this.selectValue = res?.value?.[0] || '';
+					};
           _this.onChanged(_this.selectOption);
         }
       },
@@ -85,9 +100,13 @@ export class SelectModalComponent
   }
 
   ngModelChange() {
-    this.selectOption = this.selectOption.filter((item) =>
-      this.selectValue.includes(item.value)
-    );
+		if (this.multiple) {
+			this.selectOption = this.selectOption.filter((d) => {
+				return this.selectValue.includes(d.value);
+			});
+		} else {
+			this.selectOption = [];
+		}
     this.onChanged(this.selectOption);
   }
 
@@ -95,8 +114,19 @@ export class SelectModalComponent
   onTouched: any = () => {};
 
   writeValue(values) {
-    this.selectOption = values;
-    this.selectValue = values.map((val) => val.value);
+		this.selectOption = [];
+		(values || []).forEach(d => {
+			this.selectOption.push({
+				value: d[this.value],
+				label: d[this.label],
+				...d
+			})
+		});
+		if (this.multiple) {
+			this.selectValue = this.selectOption.map((val) => val.value);
+		} else {
+			this.selectValue = this.selectOption[0]?.value || '';
+		};
   }
 
   registerOnChange(fn: any): void {

@@ -58,11 +58,21 @@
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>
-					<span [nz-tooltip]="'select-点击出现表格弹出框'">select-点击出现表格弹出框</span>
+					<span [nz-tooltip]="'select-点击出现表格弹出框-单选'">select-点击出现表格弹出框-单选</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框'"
-						(openChange)="openChange()">
+					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框-单选'"
+						(openChange)="openChange()" multiple [value]="'id'" [label]="'name'">
+					</app-select-modal>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-点击出现表格弹出框-多选'">select-点击出现表格弹出框-多选</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<app-select-modal #selectModalMultiple formControlName="modalMultiple" [nzPlaceHolder]="'select-点击出现表格弹出框-多选'"
+						(openChange)="openChangeMultiple()" [value]="'id'" [label]="'name'">
 					</app-select-modal>
 				</nz-form-control>
 			</nz-form-item>

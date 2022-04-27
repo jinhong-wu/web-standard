@@ -73,10 +73,21 @@
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>
-					<span [nz-tooltip]="'select-点击出现表格弹出框'">select-点击出现表格弹出框</span>
+					<span [nz-tooltip]="'select-点击出现表格弹出框-单选'">select-点击出现表格弹出框-单选</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框'" (openChange)="openChange()">
+					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框-单选'"
+						(openChange)="openChange()" multiple [value]="'id'" [label]="'name'">
+					</app-select-modal>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="'select-点击出现表格弹出框-多选'">select-点击出现表格弹出框-多选</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+					<app-select-modal #selectModalMultiple formControlName="modalMultiple" [nzPlaceHolder]="'select-点击出现表格弹出框-多选'"
+						(openChange)="openChangeMultiple()" [value]="'id'" [label]="'name'">
 					</app-select-modal>
 				</nz-form-control>
 			</nz-form-item>
@@ -111,6 +122,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   }
 
   @ViewChild('selectModal', { static: false }) selectModal;
+	@ViewChild('selectModalMultiple', { static: false }) selectModalMultiple;
 
   nodes = [
     {
@@ -138,8 +150,11 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       treeMultiple: ['1-0', '1-1'],
       tags: ['a10', 'c12'],
       modal: [
-        { value: '2', label: 'label2' },
-        { value: '3', label: 'label3' },
+        { id: '2', name: 'name2' },
+      ],
+			modalMultiple: [
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
       ],
     },
   };
@@ -152,6 +167,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       treeMultiple: [null, [Validators.required]],
       tags: [{ value: null, disabled: false }, [Validators.required]],
       modal: [null, [Validators.required]],
+			modalMultiple: [null, [Validators.required]],
     });
     this.reset(false);
   }
@@ -159,7 +175,8 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   save() {
     this.saveInit(() => {
       this.formInit();
-      this.formParams.modal = this.formParams.modal.map((item) => item.value);
+      this.formParams.modal = this.formParams.modal.map((item) => item.id);
+			this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
       setTimeout(() => {
         this.formLoading = false;
         this.tip.notify('success', '新增成功');
@@ -177,22 +194,34 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         treeMultiple: this.tab?.data?.treeMultiple,
         tags: this.tab?.data?.tags,
         modal: this.tab?.data?.modal,
+				modalMultiple: this.tab?.data?.modalMultiple,
       });
     }, confirm);
   }
 
   openChange() {
     this.selectModal.openModal({
-      nzTitle: '标题',
+      nzTitle: 'select-表格弹出框-单选',
       nzContent: SelectOpenComponent,
       nzWidth: 1000,
       nzComponentParams: {
+				multiple: false,
         checkedRows: this.selectModal.selectRows,
       },
     });
   }
-}
 
+	openChangeMultiple() {
+    this.selectModalMultiple.openModal({
+      nzTitle: 'select-表格弹出框-多选',
+      nzContent: SelectOpenComponent,
+      nzWidth: 1000,
+      nzComponentParams: {
+        checkedRows: this.selectModalMultiple.selectRows,
+      },
+    });
+  }
+}
 ```
 
 # select-自行输入多个内容
@@ -213,41 +242,42 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 - multiple：弹出框-表格页面-是否多选，默认true多选
 - maxCount：select-展示的最大tag数，默认4
 - disabled：select-是否禁止选中，默认false
-- placeholder：select-默认文字
+- nzPlaceHolder：select-默认文字
+- value：select-对应value字段，默认'value'
+- label select-对应label字段，默认'label'
+	```html
+	<!-- #selectModal 必须取名，formControlName 必须命名 -->
+	<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="" (openChange)="openChange()"></app-select-modal>
+	```
 
-```html
-<!-- #selectModal 必须取名，formControlName 必须命名 -->
-<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="" (openChange)="openChange()"></app-select-modal>
-```
+	```typescript
+	@ViewChild('selectModal', { static: false }) selectModal;
 
-```typescript
-@ViewChild('selectModal', { static: false }) selectModal;
+	save() {
+		this.saveInit(() => {
+			this.formInit();
+			this.formParams.modal = this.formParams.modal.map((item) => item.value);
+			// 其他操作
+		});
+	}
+	openChange() {
+		this.selectModal.openModal({
+			nzTitle: '标题',
+			nzContent: SelectOpenComponent,
+			nzWidth: 1000,
+			nzComponentParams: {
+				checkedRows: this.selectModal.selectRows,
+			},
+		});
+	}
 
-save() {
-	this.saveInit(() => {
-		this.formInit();
-		this.formParams.modal = this.formParams.modal.map((item) => item.value);
-		// 其他操作
-	});
-}
-openChange() {
-	this.selectModal.openModal({
-		nzTitle: '标题',
-		nzContent: SelectOpenComponent,
-		nzWidth: 1000,
-		nzComponentParams: {
-			checkedRows: this.selectModal.selectRows,
-		},
-	});
-}
-
-// SelectOpenComponent保存方法
-save() {
-	this.checkedIdsFn();
-	this.NzModalRef.close({
-		value: this.checkedIds,
-		option: this.checkedData,
-	});
-}
-```
+	// SelectOpenComponent保存方法
+	save() {
+		this.checkedIdsFn();
+		this.NzModalRef.close({
+			value: this.checkedIds,
+			option: this.checkedData,
+		});
+	}
+	```
 

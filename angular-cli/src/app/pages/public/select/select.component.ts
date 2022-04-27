@@ -14,6 +14,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   }
 
   @ViewChild('selectModal', { static: false }) selectModal;
+	@ViewChild('selectModalMultiple', { static: false }) selectModalMultiple;
 
   nodes = [
     {
@@ -41,8 +42,11 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       treeMultiple: ['1-0', '1-1'],
       tags: ['a10', 'c12'],
       modal: [
-        { value: '2', label: 'label2' },
-        { value: '3', label: 'label3' },
+        { id: '2', name: 'name2' },
+      ],
+			modalMultiple: [
+        { id: '2', name: 'name2' },
+        { id: '3', name: 'name3' },
       ],
     },
   };
@@ -55,6 +59,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       treeMultiple: [null, [Validators.required]],
       tags: [{ value: null, disabled: false }, [Validators.required]],
       modal: [null, [Validators.required]],
+			modalMultiple: [null, [Validators.required]],
     });
     this.reset(false);
   }
@@ -62,7 +67,8 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   save() {
     this.saveInit(() => {
       this.formInit();
-      this.formParams.modal = this.formParams.modal.map((item) => item.value);
+      this.formParams.modal = this.formParams.modal.map((item) => item.id);
+			this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
       setTimeout(() => {
         this.formLoading = false;
         this.tip.notify('success', '新增成功');
@@ -80,17 +86,30 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         treeMultiple: this.tab?.data?.treeMultiple,
         tags: this.tab?.data?.tags,
         modal: this.tab?.data?.modal,
+				modalMultiple: this.tab?.data?.modalMultiple,
       });
     }, confirm);
   }
 
   openChange() {
     this.selectModal.openModal({
-      nzTitle: '标题',
+      nzTitle: 'select-表格弹出框-单选',
       nzContent: SelectOpenComponent,
       nzWidth: 1000,
       nzComponentParams: {
+				multiple: false,
         checkedRows: this.selectModal.selectRows,
+      },
+    });
+  }
+
+	openChangeMultiple() {
+    this.selectModalMultiple.openModal({
+      nzTitle: 'select-表格弹出框-多选',
+      nzContent: SelectOpenComponent,
+      nzWidth: 1000,
+      nzComponentParams: {
+        checkedRows: this.selectModalMultiple.selectRows,
       },
     });
   }

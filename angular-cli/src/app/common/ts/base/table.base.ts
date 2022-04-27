@@ -145,8 +145,12 @@ export class TableBaseTs extends BaseTs {
 			};
 			this.refreshStatus();
 		} else {
-			this.checkedRows = {
-				[item.id]: item,
+			if (this.checkedRows[item.id]) {
+				this.checkedRows = {
+					[item.id]: item,
+				};
+			} else {
+				delete this.checkedRows[item?.id];
 			};
 		};
   }

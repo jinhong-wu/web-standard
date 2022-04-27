@@ -1,4 +1,8 @@
-<nz-select nzMode="tags" nzAllowClear [nzMaxTagCount]="maxCount" [(nzOpen)]='isOpen' (nzOpenChange)="nzOpenChange()"
-	[(ngModel)]="selectValue" (ngModelChange)="ngModelChange()" [nzDisabled]='disabled' [nzPlaceHolder]="nzPlaceHolder">
+<nz-select [nzMode]="multiple?'tags': 'default'" nzAllowClear nzShowArrow="true" [nzMaxTagCount]="maxCount"
+	[(nzOpen)]='isOpen' (nzOpenChange)="nzOpenChange()" [(ngModel)]="selectValue" (ngModelChange)="ngModelChange()"
+	[nzDisabled]='disabled' [nzSuffixIcon]="nzSuffixIcon" [nzPlaceHolder]="nzPlaceHolder">
 	<nz-option *ngFor="let op of selectOption" [nzLabel]="op.label" [nzValue]="op.value" nzHide></nz-option>
 </nz-select>
+<ng-template #nzSuffixIcon>
+	<i nz-icon nzType="unordered-list" nzTheme="outline"></i>
+</ng-template>
