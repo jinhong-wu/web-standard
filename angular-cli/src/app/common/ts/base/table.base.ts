@@ -24,6 +24,8 @@ export class TableBaseTs extends BaseTs {
 
   @ViewChild('tableHead', { static: false }) tableHead: any = {};
   @Input() tab: any = {};
+	@Input() treeParamKey: string = '';  // 左树右表格-树params对应的key
+	@Input() clickNode: any = {};  // 左树右表格-左键点击node
 
   tableData: any = [];
   tableLoading: boolean = false;
@@ -31,10 +33,6 @@ export class TableBaseTs extends BaseTs {
   tablePage: number = 1;
   tableSize: number = 10;
   tableParams: any = {};
-
-	// 左树右表格
-	treeParamKey: string = '';  // 树params对应的key
-	clickNode: any = {};  // 左键点击node
 
   // 排序
   orderBy: string = '';
@@ -53,13 +51,25 @@ export class TableBaseTs extends BaseTs {
 
   // 精确查询
   advanceData: any = [];
+	advanceDataDate = [  // 精确查询-开始结束时间
+		{
+      key: 'startDt',
+      type: 'date',
+      placeholder: this.i18n.baseList.startDt,
+    },
+    {
+      key: 'endDt',
+      type: 'date',
+      placeholder: this.i18n.baseList.endDt,
+    },
+	];
 
   // 数据初始化
   tableInit({reset = false, advance = false, paramsFn, tableService, tableData, successFn, errorFn}: tableInit) {
     if (reset) this.tablePage = 1;
 		if (this.tableParamsFn(advance, paramsFn)) {
 			this.tableLoading = true;
-			tableService[tableData].call(tableService, this.tableParams).subscribe((res) => {
+			tableService[tableData].call(tableService, this.HttpUtilTs.paramsFn(this.tableParams)).subscribe((res) => {
 				this.tableLoading = false;
 				// 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
 				if (![null, undefined].includes(res.total)) {
@@ -112,7 +122,6 @@ export class TableBaseTs extends BaseTs {
 		if(this.treeParamKey) {
 			this.tableParams[this.treeParamKey] = this.clickNode.key;
 		}
-		
 		fn?.();
     return true;
   }

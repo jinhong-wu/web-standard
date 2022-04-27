@@ -49,16 +49,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
         },
       ],
     },
-    {
-      key: 'startDt',
-      type: 'date',
-      placeholder: '开始时间',
-    },
-    {
-      key: 'endDt',
-      type: 'date',
-      placeholder: '结束时间',
-    },
+		...this.advanceDataDate
   ];
 
   colsData = [
@@ -126,7 +117,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
 							};
 						});
 					}, 1000);
-				//}
+			//}
 			//});
   }
 
