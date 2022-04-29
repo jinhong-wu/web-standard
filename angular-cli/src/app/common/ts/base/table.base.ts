@@ -104,6 +104,8 @@ export class TableBaseTs extends BaseTs {
     }
     // 结束时间须在开始时间之后
     if (this.tableParams.startDt || this.tableParams.endDt) {
+			this.tableParams.startDt = this.tableParams.startDt? new DatePipe('zh').transform(this.tableParams?.startDt, 'yyyy-MM-dd HH:mm:ss') : null;
+			this.tableParams.endDt = this.tableParams.endDt? new DatePipe('zh').transform(this.tableParams?.endDt, 'yyyy-MM-dd HH:mm:ss') : null;
       if (
         new DatePipe('zh').transform(
           this.tableParams?.startDt,
@@ -122,6 +124,7 @@ export class TableBaseTs extends BaseTs {
 		if(this.treeParamKey) {
 			this.tableParams[this.treeParamKey] = this.clickNode.key;
 		}
+		console.log(this.tableParams);
 		fn?.();
     return true;
   }

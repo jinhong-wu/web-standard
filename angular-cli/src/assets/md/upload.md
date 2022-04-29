@@ -27,8 +27,8 @@ this.TipModalService.file({
 
 和上传/导入文件相同  
 **使用-参数：**
-- bigSize：大文件界限大小（超过即为大文件分片上传），默认为50MB，单位：KB
-- bigSingle：大文件分片大小，默认为10MB，单位：KB
+- bigSize：大文件界限大小（超过即为大文件分片上传），默认为5GB，单位：KB
+- bigSingle：大文件分片大小，默认为1GB，单位：KB
 - bigInitUrl：大文件传输前初始化url（告知后端分片数量等信息）
 
 # 下载文件

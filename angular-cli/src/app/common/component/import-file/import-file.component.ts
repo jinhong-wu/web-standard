@@ -19,8 +19,8 @@ import { mergeMap } from 'rxjs/operators';
  * @param tempUrl 下载模板地址
  * @param accept 接受数据类型，默认.xlsx
  * @param size 接受数据大小，默认为1048576KB（1GB），单位：KB
- * @param bigSize 大文件界限大小（超过即为大文件分片上传），默认为50MB，单位：KB
- * @param bigSingle 大文件分片大小，默认为10MB，单位：KB
+ * @param bigSize 大文件界限大小（超过即为大文件分片上传），默认为5GB，单位：KB
+ * @param bigSingle 大文件分片大小，默认为1GB，单位：KB
  * @param bigInitUrl 大文件传输前初始化url（告知后端分片数量等信息）
  * @example
 		this.TipModalService.file({
@@ -46,10 +46,9 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   @Input() tempUrl?: string;
   @Input() accept?: string = '.xlsx';
   @Input() size: number = 1048576; // 单位：KB
-  @Input() bigSize: number = 1024 * 50; // 默认50MB，单位：KB
-  @Input() bigSingle: number = 1024 * 10; // 默认10MB，单位：KB
-  @Input() bigInitUrl: string =
-    '/system-management/api/v1/system/upgrade/upload/notice';
+  @Input() bigSize: number = 5242880; // 默认5GB，单位：KB
+  @Input() bigSingle: number = 1048576; // 默认1GB，单位：KB
+  @Input() bigInitUrl: string = '';
 
   uploadLoading: boolean = false;
   uploadHint: any = [];
@@ -83,11 +82,18 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   // 上传文件前
   nzBeforeUpload = (file: NzUploadFile): boolean => {
 		// 文件大小超过
-    if (this.size !== 0 && file.size > this.size) {
+    if (this.size !== 0 && file.size > this.size * 1024) {
       this.tip.msg('warning', this.i18n.list.upload.fileSizeTip + this.uploadHintList[0].size);
       return false;
     }
 		// 文件类型仅支持
+				// 文件类型仅支持
+				//	let nzAccept = this.nzAccept.split(','),
+				//	fileType = file.name.replace(/.+\./, ".");
+				//if (!nzAccept.includes(fileType.toLocaleLowerCase())) {
+				//	this.fileTip = this.i18n.fileAcceptTip + this.nzAccept;
+				//	return false;
+				//}
     let name = new RegExp(this.accept, 'ig');
     if (!name.test(file.name)) {
       this.tip.msg('warning', this.i18n.list.upload.fileAcceptTip + this.accept);
