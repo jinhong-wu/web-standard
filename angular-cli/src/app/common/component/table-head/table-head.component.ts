@@ -43,26 +43,26 @@ interface colsData {
 })
 /**
  * @name 表格-上方操作区
- * @param search 获取表格数据方法（keywordShow = true时必传，false时可不传）
- * @param keywordShow 右侧查询区-输入框，默认true显示
+ * @param search 获取表格数据方法（fuzzyShow = true时必传，false时可不传）
+ * @param fuzzyShow 右侧查询区-输入框，默认true显示
  * @param placeholder 右侧查询区-输入框placeholder，默认'输入关键字进行查询'
  * @param advanceData 精确查询数据，参考interface advanceData
  * @param colsData 可配置列数据，参考interface colsData
  * @param exportShow 精确查询-导出，默认false隐藏 
  * @param export 精确查询-导出方法（exportShow = true时必传，false时可不传）
  * @example
-	#tableHead 必须取此名
-	tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
+  #tableHead 必须取此名
+  tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
 
-	<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
-		<ng-container ngProjectAs="btns">
-			<button nz-button nzType="primary">新增</button>
-			<button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-		</ng-container>
-		<ng-container ngProjectAs="tips">
-			<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
-		</ng-container>
-	</app-table-head>
+  <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
+    <ng-container ngProjectAs="btns">
+      <button nz-button nzType="primary">新增</button>
+      <button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+    </ng-container>
+    <ng-container ngProjectAs="tips">
+      <nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
+    </ng-container>
+  </app-table-head>
 */
 export class TableHeadComponent extends BaseTs implements OnInit {
   constructor(public injector: Injector) {
@@ -70,15 +70,15 @@ export class TableHeadComponent extends BaseTs implements OnInit {
   }
 
   @Output() search = new EventEmitter<boolean>();
-  @Input() keywordShow: any = true;
-	@Input() placeholder: string = this.i18n.baseList.placeholder;
+  @Input() fuzzyShow: any = true;
+  @Input() placeholder: string = this.i18n.baseList.placeholder;
   @Input() advanceData: advanceData[] = [];
   @Input() colsData: colsData[] = [];
   @Input() exportShow: any = false;
   @Output() export = new EventEmitter<string>();
 
   // 关键字查询
-  keyword: string = '';
+  fuzzyQuery: string = '';
   // 精确查询
   advanceShow: boolean = false;
   // 可配置列

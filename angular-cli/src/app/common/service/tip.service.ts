@@ -47,15 +47,19 @@ export class TipService {
     });
   }
 
-	// 右下角通知框-成功提示
-	successNotify(type) {
-		this.notify('success', UtilTs.render(this.i18n.baseList.successNotify, {name: this.i18n.baseList[type] || ''}));
-	}
+  // 右下角通知框-成功提示
+  successNotify(type) {
+    this.notify('success', this.i18n.baseList.success,
+      UtilTs.render(this.i18n.baseList.successNotify, { name: this.i18n.baseList[type] || '' })
+    );
+  }
 
-	// 右下角通知框-失败提示
-	errorNotify(type) {
-		this.notify('error', UtilTs.render(this.i18n.baseList.errorNotify, {name: this.i18n.baseList[type] || ''}));
-	}
+  // 右下角通知框-失败提示
+  errorNotify(type) {
+    this.notify('error', this.i18n.baseList.error,
+      UtilTs.render(this.i18n.baseList.errorNotify, { name: this.i18n.baseList[type] || '' })
+    );
+  }
 
   // 确认对话框（确认操作）
   confirm(content = this.content, okFn: Function) {

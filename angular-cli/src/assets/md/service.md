@@ -11,7 +11,6 @@
 **使用-方法：**
 - initMenu()：获取全局菜单
 - routerMenuFn()：当前路由菜单、权限
-- menuPoint()：当前路由权限校验
 - chooseMenu()：一级菜单切换-侧边栏数据
 - initTab()：tab菜单-初始化
 - selectTab()：tab菜单-选中tab

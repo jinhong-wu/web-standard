@@ -7,8 +7,10 @@
   ```html
 	<!-- 路由配置：canActivate: [ListGuard] -->
 	{ path: '', component: , canActivate: [ListGuard] }
-	<!-- 页面配置：*ngIf="MenuService.menuPoint('create')" -->
-	<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('create')" (click)="create(tab)">新增</button>
+	<!-- 页面配置：*ngIf="MenuService.routerMenuPoint.includes('create')" -->
+	<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')" (click)="create('', tab)">
+    新增
+  </button>
 	````
 
 **文件：**

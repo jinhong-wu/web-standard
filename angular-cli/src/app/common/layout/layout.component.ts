@@ -53,13 +53,8 @@ export class LayoutComponent extends BaseTs implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: NavigationEnd) => {
-				// 路由传参数时：routerLinkActive侧边栏高亮需要去掉参数
-				let paramIndex = res.urlAfterRedirects.indexOf("?")
-				if (paramIndex > 0) {
-					this.routerLinkActive = res.urlAfterRedirects.substring(0, paramIndex);
-				} else {
-					this.routerLinkActive = res.urlAfterRedirects;  // urlAfterRedirects重定向后地址，最好用这个
-				}
+        // 路由传参数时：routerLinkActive侧边栏高亮需要去掉参数
+        this.routerLinkActive = res.urlAfterRedirects.split("?")[0];
         this.MenuService.routerMenuFn(this.routerLinkActive);
         this.routerLinkBreadFn();
       });

@@ -123,10 +123,7 @@ export class FormComponent extends FormBaseTs implements OnInit {
 			this.formInit();
 			setTimeout(() => {
 				this.formLoading = false;
-				this.tip.notify(
-					'success',
-					this.tab.type == 'update' ? '修改成功' : '新增成功'
-				);
+			  this.tip.successNotify(this.tab.type);
 				this.cancel(true);
 			}, 1000);
 		});

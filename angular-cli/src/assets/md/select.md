@@ -179,7 +179,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 			this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
       setTimeout(() => {
         this.formLoading = false;
-        this.tip.notify('success', '新增成功');
+        this.tip.successNotify('create');
         this.cancel(true);
       }, 1000);
     });

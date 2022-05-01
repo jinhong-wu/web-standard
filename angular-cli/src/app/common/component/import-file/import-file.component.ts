@@ -23,13 +23,13 @@ import { mergeMap } from 'rxjs/operators';
  * @param bigSingle 大文件分片大小，默认为1GB，单位：KB
  * @param bigInitUrl 大文件传输前初始化url（告知后端分片数量等信息）
  * @example
-		this.TipModalService.file({
-			importUrl: '',
-			tempUrl: '',
-			close(compo) {
-				// 右上角关闭弹出框后操作
-			}
-		});
+    this.TipModalService.file({
+      importUrl: '',
+      tempUrl: '',
+      close(compo) {
+        // 右上角关闭弹出框后操作
+      }
+    });
 */
 
 @Component({
@@ -81,24 +81,18 @@ export class ImportFileComponent extends BaseTs implements OnInit {
 
   // 上传文件前
   nzBeforeUpload = (file: NzUploadFile): boolean => {
-		// 文件大小超过
+    // 文件大小超过
     if (this.size !== 0 && file.size > this.size * 1024) {
       this.tip.msg('warning', this.i18n.list.upload.fileSizeTip + this.uploadHintList[0].size);
       return false;
     }
-		// 文件类型仅支持
-				// 文件类型仅支持
-				//	let nzAccept = this.nzAccept.split(','),
-				//	fileType = file.name.replace(/.+\./, ".");
-				//if (!nzAccept.includes(fileType.toLocaleLowerCase())) {
-				//	this.fileTip = this.i18n.fileAcceptTip + this.nzAccept;
-				//	return false;
-				//}
-    let name = new RegExp(this.accept, 'ig');
-    if (!name.test(file.name)) {
+    // 文件类型仅支持
+    let accept = this.accept.split(','),
+      fileType = file.name.replace(/.+\./, ".");
+    if (!accept.includes(fileType.toLocaleLowerCase())) {
       this.tip.msg('warning', this.i18n.list.upload.fileAcceptTip + this.accept);
       return false;
-    }
+    };
     return true;
   };
 
@@ -114,6 +108,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
         this.uploadResult = file.error.message;
         break;
       case 'success':
+        this.uploadLoading = false;
         break;
       case 'done':
         this.uploadLoading = false;

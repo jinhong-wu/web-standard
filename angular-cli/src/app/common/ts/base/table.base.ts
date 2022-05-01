@@ -5,13 +5,13 @@ import { DatePipe } from '@angular/common';
 import { DownloadService } from '../../service/download.service';
 
 interface tableInit {
-	reset: boolean;  // 是否初始化page数据
-	advance: boolean;  // 是否为精确查询
-	tableService: any;  // table-api所在service
-	tableData: string; // table-api所在service-方法名
-	paramsFn?: Function;  // 请求参数回调函数
-	successFn?: Function; // 请求成功回调函数
-	errorFn?: Function;  // 请求失败回调函数
+  reset: boolean;  // 是否初始化page数据
+  advance: boolean;  // 是否为精确查询
+  tableService: any;  // table-api所在service
+  tableData: string; // table-api所在service-方法名
+  paramsFn?: Function;  // 请求参数回调函数
+  successFn?: Function; // 请求成功回调函数
+  errorFn?: Function;  // 请求失败回调函数
 }
 export class TableBaseTs extends BaseTs {
   public tipModal;
@@ -24,8 +24,8 @@ export class TableBaseTs extends BaseTs {
 
   @ViewChild('tableHead', { static: false }) tableHead: any = {};
   @Input() tab: any = {};
-	@Input() treeParamKey: string = '';  // 左树右表格-树params对应的key
-	@Input() clickNode: any = {};  // 左树右表格-左键点击node
+  @Input() treeParamKey: string = '';  // 左树右表格-树params对应的key
+  @Input() clickNode: any = {};  // 左树右表格-左键点击node
 
   tableData: any = [];
   tableLoading: boolean = false;
@@ -46,13 +46,13 @@ export class TableBaseTs extends BaseTs {
   isAllChecked: Boolean = false;
   isIndeterminate: Boolean = false;
 
-	// 导出url
-	exportUrl = '';
+  // 导出url
+  exportUrl = '';
 
   // 精确查询
   advanceData: any = [];
-	advanceDataDate = [  // 精确查询-开始结束时间
-		{
+  advanceDataDate = [  // 精确查询-开始结束时间
+    {
       key: 'startDt',
       type: 'date',
       placeholder: this.i18n.baseList.startDt,
@@ -62,26 +62,26 @@ export class TableBaseTs extends BaseTs {
       type: 'date',
       placeholder: this.i18n.baseList.endDt,
     },
-	];
+  ];
 
   // 数据初始化
-  tableInit({reset = false, advance = false, paramsFn, tableService, tableData, successFn, errorFn}: tableInit) {
+  tableInit({ reset = false, advance = false, paramsFn, tableService, tableData, successFn, errorFn }: tableInit) {
     if (reset) this.tablePage = 1;
-		if (this.tableParamsFn(advance, paramsFn)) {
-			this.tableLoading = true;
-			tableService[tableData].call(tableService, this.HttpUtilTs.paramsFn(this.tableParams)).subscribe((res) => {
-				this.tableLoading = false;
-				// 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
-				if (![null, undefined].includes(res.total)) {
-					this.tableTotal = res.total || 0;
-				};
-				this.tableData = res.data || [];
-				successFn?.call(this, res);
-			},() => {
-				this.tableLoading = false;
-				errorFn?.call(this);
-			});
-		}
+    if (this.tableParamsFn(advance, paramsFn)) {
+      this.tableLoading = true;
+      tableService[tableData].call(tableService, this.HttpUtilTs.paramsFn(this.tableParams)).subscribe((res) => {
+        this.tableLoading = false;
+        // 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
+        if (![null, undefined].includes(res.total)) {
+          this.tableTotal = res.total || 0;
+        };
+        this.tableData = res.data || [];
+        successFn?.call(this, res);
+      }, () => {
+        this.tableLoading = false;
+        errorFn?.call(this);
+      });
+    }
   }
 
   // 请求参数
@@ -96,36 +96,26 @@ export class TableBaseTs extends BaseTs {
     // 精确查询传参
     if (advance) {
       this.advanceData.forEach((d) => {
-				if (typeof d.value === 'string') d.value = d.value?.trim();
+        if (typeof d.value === 'string') d.value = d.value?.trim();
         this.tableParams[d.key] = d.value;
       });
     } else {
-      this.tableParams.keyword = this.tableHead?.keyword?.trim();
+      this.tableParams.fuzzyQuery = this.tableHead?.fuzzyQuery?.trim();
     }
     // 结束时间须在开始时间之后
     if (this.tableParams.startDt || this.tableParams.endDt) {
-			this.tableParams.startDt = this.tableParams.startDt? new DatePipe('zh').transform(this.tableParams?.startDt, 'yyyy-MM-dd HH:mm:ss') : null;
-			this.tableParams.endDt = this.tableParams.endDt? new DatePipe('zh').transform(this.tableParams?.endDt, 'yyyy-MM-dd HH:mm:ss') : null;
-      if (
-        new DatePipe('zh').transform(
-          this.tableParams?.startDt,
-          'yyyy-MM-dd HH:mm:ss'
-        ) >
-        new DatePipe('zh').transform(
-          this.tableParams?.endDt,
-          'yyyy-MM-dd HH:mm:ss'
-        )
-      ) {
+      this.tableParams.startDt = this.tableParams.startDt ? new DatePipe('zh').transform(this.tableParams?.startDt, 'yyyy-MM-dd HH:mm:ss') : null;
+      this.tableParams.endDt = this.tableParams.endDt ? new DatePipe('zh').transform(this.tableParams?.endDt, 'yyyy-MM-dd HH:mm:ss') : null;
+      if (this.tableParams.startDt < this.tableParams.endDt) {
         this.tip.msg('warning', this.i18n.baseList.confirmDt);
         return false;
       }
     }
-		// 左树有表格
-		if(this.treeParamKey) {
-			this.tableParams[this.treeParamKey] = this.clickNode.key;
-		}
-		console.log(this.tableParams);
-		fn?.();
+    // 左树有表格
+    if (this.treeParamKey) {
+      this.tableParams[this.treeParamKey] = this.clickNode.key;
+    }
+    fn?.();
     return true;
   }
 
@@ -149,60 +139,61 @@ export class TableBaseTs extends BaseTs {
 
   // 勾选框-多选、单选
   checkbox(item, checkbox: boolean = true) {
-		if (checkbox) {
-			if (this.checkedRows[item.id]) {
-				this.checkedRows[item.id] = item;
-			} else {
-				delete this.checkedRows[item?.id];
-			};
-			this.refreshStatus();
-		} else {
-			if (this.checkedRows[item.id]) {
-				this.checkedRows = {
-					[item.id]: item,
-				};
-			} else {
-				delete this.checkedRows[item?.id];
-			};
-		};
+    if (checkbox) {
+      if (this.checkedRows[item.id]) {
+        this.checkedRows[item.id] = item;
+      } else {
+        delete this.checkedRows[item?.id];
+      };
+      this.refreshStatus();
+    } else {
+      if (this.checkedRows[item.id]) {
+        this.checkedRows = {
+          [item.id]: item,
+        };
+      } else {
+        delete this.checkedRows[item?.id];
+      };
+    };
   }
 
   // 勾选框-全选、取消全选
   checkAll(value) {
-		this.tableData.forEach((d) => {
-			if(value) { 
-				this.checkedRows[d.id] = d;
-			} else {
-				delete this.checkedRows[d.id]
-			}
-		});
+    this.tableData.forEach((d) => {
+      if (value) {
+        this.checkedRows[d.id] = d;
+      } else {
+        delete this.checkedRows[d.id]
+      }
+    });
     this.refreshStatus();
   }
 
   // 勾选框-获取选中行id、行data
   checkedIdsFn() {
-		this.checkedIds = Object.keys(this.checkedRows);
+    this.checkedIds = Object.keys(this.checkedRows);
     this.checkedData = Object.values(this.checkedRows);
   }
 
   // 按钮区：新增
-  create(tab: any = {}) {
+  create(data, tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
       type: 'create',
       pid: this.tab.id,
       name: this.i18n.baseList.create + (this.tab?.name || ''),
+      data: data  // 可带码表之类的数据，避免重复请求
     });
   }
   // 按钮区：删除
   deleteInit(confirmInfo, options) {
-		let confirm = this.UtilTs.render(this.i18n.baseList.deleteConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
+    let confirm = this.UtilTs.render(this.i18n.baseList.deleteConfirm, { name: confirmInfo || this.i18n.lang == 'zh' ? '数据' : 'data' });
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
-			if (this.checkedData.length == 0) {
-				this.tip.msg('warning', this.i18n.baseList.checkTip);
-				return false;
-			}
+      if (this.checkedData.length == 0) {
+        this.tip.msg('warning', this.i18n.baseList.checkTip);
+        return false;
+      }
       this.tipModal.delete({
         nzTitle: this.i18n.baseList.delete,
         checkedData: this.checkedData,
@@ -228,39 +219,39 @@ export class TableBaseTs extends BaseTs {
     });
   }
   // 操作列：修改
-  update(item, name = 'name', tab: any = {}) {
+  update(data, name = 'name', tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
       type: 'update',
       pid: this.tab.id,
-      name: this.i18n.baseList.update + '：' + (item[name] || ''),
-      data: item,
+      name: this.i18n.baseList.update + '：' + (data[name] || ''),
+      data: data,  // 修改行的数据
     });
   }
-	
+
   // 按钮区：导出
   export(type: 'search' | 'checked' = 'search', confirmInfo = '') {
     let confirm = '',
-			url = this.exportUrl,
-			isParams = true,
+      url = this.exportUrl,
+      isParams = true,
       params = null;
     if (type == 'search') {
-			confirm = this.i18n.baseList.exportSearchConfirm;
+      confirm = this.i18n.baseList.exportSearchConfirm;
       isParams = this.tableParamsFn(true);
       params = this.HttpUtilTs.getHttpParam(this.tableParams);
     } else {
-			confirm = this.UtilTs.render(this.i18n.baseList.exportConfirm, {name: confirmInfo  || this.i18n.lang== 'zh'?'数据':'data'});
+      confirm = this.UtilTs.render(this.i18n.baseList.exportConfirm, { name: confirmInfo || this.i18n.lang == 'zh' ? '数据' : 'data' });
       this.checkedIdsFn();
-			if (this.checkedIds.length == 0) {
-				this.tip.msg('warning', this.i18n.baseList.checkTip);
-				isParams = false;
-			}
+      if (this.checkedIds.length == 0) {
+        this.tip.msg('warning', this.i18n.baseList.checkTip);
+        isParams = false;
+      }
       url += this.HttpUtilTs.getString({ ids: this.checkedIds });
     }
-		if (isParams) {
-			this.tip.confirm(confirm, () => {
-				this.download.down(url, { params }).subscribe();
-			});
-		}
+    if (isParams) {
+      this.tip.confirm(confirm, () => {
+        this.download.down(url, { params }).subscribe();
+      });
+    }
   }
 }

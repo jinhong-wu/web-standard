@@ -8,14 +8,14 @@ interface createTab {
   id?: string; // tab id
   name: string; // tab菜单名称
   data?: any; // tab携带数据
-	closeable?: boolean; // 是否可关闭
+  closeable?: boolean; // 是否可关闭
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   menuList: any[] = [];
   menuObject: Object = {};
@@ -28,32 +28,32 @@ export class MenuService {
   // 侧边栏
   siderList = [];
 
-	// 获取菜单数据
-	initMenu() {
-		this.menuLoading = true;
+  // 获取菜单数据
+  initMenu() {
+    this.menuLoading = true;
     this.http.get<any>('assets/json/menu.json').subscribe((data) => {
-			(data.data || []).forEach((d) => {
-				this.menuObject[d.node.path] = d;
-				// 一级导航：有首页跳转首页，没首页跳转第一个子菜单
-				if (d.node.functionPointLanguage.includes("home")) {
-					d.node.linkPath = d.node.path;
-				} else {
-					if(d.child[0]){
-						if(d.child[0].child?.[0].node.sideShow){
-							d.node.linkPath = d.child[0].child[0].node.path;
-						} else {
-							d.node.linkPath = d.child[0].node.path;
-						}
-					}
-				}
-				if (d.child && d.child.length > 0) {
-					this.getMenuDeal(d.child);
-				}
-			});
-			this.menuList = data.data || [];
+      (data.data || []).forEach((d) => {
+        this.menuObject[d.node.path] = d;
+        // 一级导航：有首页跳转首页，没首页跳转第一个子菜单
+        if (d.node.functionPointLanguage.includes("home")) {
+          d.node.linkPath = d.node.path;
+        } else {
+          if (d.child[0]) {
+            if (d.child[0].child?.[0].node.sideShow) {
+              d.node.linkPath = d.child[0].child[0].node.path;
+            } else {
+              d.node.linkPath = d.child[0].node.path;
+            }
+          }
+        }
+        if (d.child && d.child.length > 0) {
+          this.getMenuDeal(d.child);
+        }
+      });
+      this.menuList = data.data || [];
       this.menuLoading = false;
     });
-	}
+  }
 
   // 数据处理
   getMenuDeal(data = []) {
@@ -65,7 +65,7 @@ export class MenuService {
     });
   }
 
-	// 当前路由菜单
+  // 当前路由菜单
   routerMenuFn(url?) {
     if (url) {
       this.routerMenu = this.menuObject[url] || {};
@@ -74,12 +74,8 @@ export class MenuService {
         this.routerMenuPoint = this.routerMenu.node.functionPointLanguage || [];
       }
     }
-  }
 
-	// 当前路由菜单-权限校验
-	menuPoint(type) {
-		return this.routerMenuPoint.includes(type);
-	}
+  }
 
   // 菜单（侧边栏）
   chooseMenu(path) {
@@ -168,7 +164,7 @@ export class MenuService {
     tab.id = `${tab.pid}-${tab.type}`;
     if (tab?.data?.id) tab.id += `-${tab.data.id}`;
 
-		let index = this.tabs.findIndex((d) => d.id === tab.id);
+    let index = this.tabs.findIndex((d) => d.id === tab.id);
     if (index < 0) {
       this.tabs.push({ ...tab, closeable });
       this.selectIndex = this.tabs.length - 1;
@@ -179,7 +175,7 @@ export class MenuService {
 
   // 关闭tab
   closeTab(tab) {
-		let index = this.tabs.findIndex((d) => d.id === tab.id);
+    let index = this.tabs.findIndex((d) => d.id === tab.id);
     this.tabs.splice(index, 1);
     if (this.selectIndex == index) {
       if (tab.pid) {

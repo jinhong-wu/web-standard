@@ -32,8 +32,8 @@
 
 # 上方操作区（app-table-head）
 **使用-参数：**
-- search：获取表格数据方法（keywordShow = true时必传，false时可不传）
-- keywordShow：右侧查询区-输入框，默认true显示
+- search：获取表格数据方法（fuzzyShow = true时必传，false时可不传）
+- fuzzyShow：右侧查询区-输入框，默认true显示
 - placeholder: 右侧查询区-输入框placeholder，默认'输入关键字进行查询'
 - advanceData：精确查询数据，参考interface advanceData
 - colsData：可配置列数据，参考interface colsData
@@ -78,12 +78,12 @@
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
 <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
-		<!-- MenuService.menuPoint('create') 权限校验 -->
-		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('create')">新增</button>
-		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('delete')" [disabled]="!isAllChecked && !isIndeterminate">
+		<!-- MenuService.routerMenuPoint.includes('create') 权限校验 -->
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')">新增</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('delete')" [disabled]="!isAllChecked && !isIndeterminate">
 			删除
 		</button>
-		<button nz-button nzType="primary" *ngIf="MenuService.menuPoint('export')" (click)="export('checked', '列表数据')"
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('export')" (click)="export('checked', '列表数据')"
 			[disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">

@@ -14,7 +14,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   }
 
   @ViewChild('selectModal', { static: false }) selectModal;
-	@ViewChild('selectModalMultiple', { static: false }) selectModalMultiple;
+  @ViewChild('selectModalMultiple', { static: false }) selectModalMultiple;
 
   nodes = [
     {
@@ -44,7 +44,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       modal: [
         { id: '2', name: 'name2' },
       ],
-			modalMultiple: [
+      modalMultiple: [
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' },
       ],
@@ -59,7 +59,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       treeMultiple: [null, [Validators.required]],
       tags: [{ value: null, disabled: false }, [Validators.required]],
       modal: [null, [Validators.required]],
-			modalMultiple: [null, [Validators.required]],
+      modalMultiple: [null, [Validators.required]],
     });
     this.reset(false);
   }
@@ -68,10 +68,10 @@ export class SelectComponent extends FormBaseTs implements OnInit {
     this.saveInit(() => {
       this.formInit();
       this.formParams.modal = this.formParams.modal.map((item) => item.id);
-			this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
+      this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
       setTimeout(() => {
         this.formLoading = false;
-        this.tip.notify('success', '新增成功');
+        this.tip.successNotify('create');
         this.cancel(true);
       }, 1000);
     });
@@ -86,7 +86,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         treeMultiple: this.tab?.data?.treeMultiple,
         tags: this.tab?.data?.tags,
         modal: this.tab?.data?.modal,
-				modalMultiple: this.tab?.data?.modalMultiple,
+        modalMultiple: this.tab?.data?.modalMultiple,
       });
     }, confirm);
   }
@@ -97,13 +97,13 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       nzContent: SelectOpenComponent,
       nzWidth: 1000,
       nzComponentParams: {
-				multiple: false,
+        multiple: false,
         checkedRows: this.selectModal.selectRows,
       },
     });
   }
 
-	openChangeMultiple() {
+  openChangeMultiple() {
     this.selectModalMultiple.openModal({
       nzTitle: 'select-表格弹出框-多选',
       nzContent: SelectOpenComponent,

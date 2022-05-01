@@ -18,7 +18,7 @@ export class FormComponent extends FormBaseTs implements OnInit {
         { value: null, disabled: this.tab.type == 'update' },
         [Validators.required],
       ],
-			init: [null, [Validators.required]],
+      init: [null, [Validators.required]],
       describe: [null, [Validators.required]],
     });
     this.reset(false);
@@ -36,10 +36,7 @@ export class FormComponent extends FormBaseTs implements OnInit {
       this.formInit();
       setTimeout(() => {
         this.formLoading = false;
-        this.tip.notify(
-          'success',
-          this.tab.type == 'update' ? '修改成功' : '新增成功'
-        );
+        this.tip.successNotify(this.tab.type);
         this.cancel(true);
       }, 1000);
     });
@@ -49,7 +46,7 @@ export class FormComponent extends FormBaseTs implements OnInit {
     this.resetInit(() => {
       this.form.patchValue({
         ip: this.tab?.data?.ip || null,
-				init: this.tab?.data?.init || 'nothing',
+        init: this.tab?.data?.init || 'nothing',
         describe: this.tab?.data?.describe,
       });
     }, confirm);
