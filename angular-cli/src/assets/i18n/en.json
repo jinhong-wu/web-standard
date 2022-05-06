@@ -1,0 +1,92 @@
+{
+	"projectTitle": "Web Standard ",
+	"base": {
+		"handle": "handle",
+		"search": "search",
+		"create": "create",
+		"update":"update",
+		"delete":"delete",
+		"deleteConfirm":"Sure to delete the selected ${name || data}?",
+		"import":"import",
+		"download":"download",
+		"allCheck": "all check",
+		"checkTip": "Please check data",
+		"save":"save",
+		"reset":"reset",
+		"resetConfirm": "Sure to reset?",
+		"cancel":"cancel",
+		"on": "on",
+		"off": "off",
+		"close": "close",
+		"export":"export",
+		"exportConfirm":"Sure to export the selected ${name || data}?",
+		"exportSearch": "export search results",
+		"exportSearchConfirm": "Sure to export all search results?",
+
+		"placeholder": "Enter the keyword for search",
+		"sure": "sure",
+		"confirmInfo":"prompt",
+		"noContent": "no data",
+
+		"batch":"batch",
+		"currentBatchRecord":"current batch record",
+  	"batchRecordCompleted":"batch record completed",
+		"batchSuccessAmount":"batch success amount",
+		"batchErrorAmount":"batch error amount",
+		"batchSuccessRecord":"batch success record",
+		"batchErrorRecord":"batch error record",
+
+		"success":"success",
+		"successNotify":"${name} success",
+		"error":"error",
+		"errorNotify":"${name} error",
+		"errorReasons":"error reasons",
+
+		"startDt": "start time",
+		"endDt": "end time",
+		"confirmDt": "The end time must be after the start time"
+	},
+	"unit": {
+		"thousand": "ten thousand",
+		"million": "hundred million"
+	},
+	"tree": {
+		"inputPlaceholder": "Please input name"
+	},
+	"upload": {
+		"file":"Upload file",
+		"placeholder":"Click or drag file to this area to upload",
+		"result":"Upload result",
+		"fileSize": "File size",
+		"fileSizeTip": "File size over: ",
+		"fileAccept": "File accept",
+		"fileAcceptTip": "File accept only support: ",
+		"downloadTemp":"Download the template"
+	},
+	"pattern": {
+    "ipv4": "Please input a valid IPV4 address; Contains a maximum of 15 characters",
+    "ipv6": "Please input a valid IPV6 address; Contains a maximum of 40 characters",
+    "ipv46": "Please input a valid IPV4/IPV6 address",
+		"subnetmask": "Please input a valid subnet mask",
+		"name": "The value can contain a maximum of 64 characters, including digits, underscores (_), hyphens (-), decimal points, parentheses, and square brackets",
+		"nameTip": "Please input a valid name",
+		"userName": "The value can contain a maximum of 64 characters, including digits, underscores (_), hyphens (-), decimal points, and parentheses",
+		"userNameTip": "Please input a valid user name",
+		"realName": "The value can contain a maximum of 50 characters, including digits, underscores (_), hyphens (-), decimal points, parentheses, and square brackets",
+		"realNameTip": "Please input a valid real name",
+		"accountName": "The value can contain a maximum of 64 characters, including digits, underscores (_), hyphens (-), decimal points, parentheses, and square brackets",
+		"accountNameTip": "Please input a valid account name",
+		"filePath": "Please input a valid file path",
+		"url": "The value is a string of 256 characters starting with http://, https://, ftp://",
+    "urlTip": "Please input a valid url",
+		"domain": "Please input a valid domain address; Contains a maximum of 253 characters",
+		"port": "Please input a valid port; 请输入合法的端口; The range of 1-65535",
+		"phone": "Please input a valid phone",
+		"email": "Please input a valid email",
+		"password": "Contains only letters, digits, and visible special characters",
+    "passwordTip": "Please input a valid password",
+		"code": "The value can contain a maximum of 32 characters, including digits, underscores (_), hyphens (-)",
+    "codeTip": "Please input a valid code",
+    "description": "Contains a maximum of 1024 characters"
+  }
+}

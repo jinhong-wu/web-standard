@@ -8,7 +8,7 @@
 		<span [nz-tooltip]=""></span>
 	</nz-form-label>
 	```
-- 提示统一为：下面提示请输入合法的xxxx，且尾部蓝色icon说明具体规则（BUG编号24804）
+- 提示统一为：下面提示 请输入合法的xxxx，且尾部蓝色icon说明具体规则；没有规则的直接就是请输入xxx（BUG编号24804）
   ```html
 	<nz-form-control nzSpan="1">
 		<i nz-icon nzType="info-circle" [nz-tooltip]=""></i>

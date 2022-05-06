@@ -32,13 +32,13 @@ export class MenuService {
   initMenu() {
     this.menuLoading = true;
     this.http.get<any>('assets/json/menu.json').subscribe((data) => {
-      (data.data || []).forEach((d) => {
+			(data.data || []).forEach((d) => {
         this.menuObject[d.node.path] = d;
         // 一级导航：有首页跳转首页，没首页跳转第一个子菜单
-        if (d.node.functionPointLanguage.includes("home")) {
+        if (d.node?.functionPointLanguage?.includes("home")) {
           d.node.linkPath = d.node.path;
         } else {
-          if (d.child[0]) {
+          if (d.child?.[0]) {
             if (d.child[0].child?.[0].node.sideShow) {
               d.node.linkPath = d.child[0].child[0].node.path;
             } else {

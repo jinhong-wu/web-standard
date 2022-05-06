@@ -176,7 +176,7 @@ export class TableBaseTs extends BaseTs {
   }
 
   // 按钮区：新增
-  create(data, tab: any = {}) {
+  create(data: any = {}, tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
       type: 'create',
@@ -187,7 +187,7 @@ export class TableBaseTs extends BaseTs {
   }
   // 按钮区：删除
   deleteInit(confirmInfo, options) {
-    let confirm = this.UtilTs.render(this.i18n.baseList.deleteConfirm, { name: confirmInfo || this.i18n.lang == 'zh' ? '数据' : 'data' });
+    let confirm = this.UtilTs.render(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
       if (this.checkedData.length == 0) {
@@ -219,7 +219,7 @@ export class TableBaseTs extends BaseTs {
     });
   }
   // 操作列：修改
-  update(data, name = 'name', tab: any = {}) {
+  update(data: any = {}, name = 'name', tab: any = {}) {
     if (tab.id) this.tab = tab;
     this.MenuService.createTab({
       type: 'update',
@@ -240,7 +240,7 @@ export class TableBaseTs extends BaseTs {
       isParams = this.tableParamsFn(true);
       params = this.HttpUtilTs.getHttpParam(this.tableParams);
     } else {
-      confirm = this.UtilTs.render(this.i18n.baseList.exportConfirm, { name: confirmInfo || this.i18n.lang == 'zh' ? '数据' : 'data' });
+      confirm = this.UtilTs.render(this.i18n.baseList.exportConfirm, { name: confirmInfo});
       this.checkedIdsFn();
       if (this.checkedIds.length == 0) {
         this.tip.msg('warning', this.i18n.baseList.checkTip);

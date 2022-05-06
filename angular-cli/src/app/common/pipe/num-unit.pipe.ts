@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { I18nService } from '../service/system/i18n.service';
 
 @Pipe({
   name: 'numUnit'
@@ -12,11 +13,13 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 export class NumUnitPipe implements PipeTransform {
 
+	constructor(private i18n: I18nService) {}
+
   transform(value: number): any {
     if (10000 <= value && value < 100000000) {
-      return " 万";
+      return " " + this.i18n.list.unit.thousand;
     } else if (value >= 100000000) {
-      return " 亿";
+      return " " + this.i18n.list.unit.million;
     }
     return "";
   }
