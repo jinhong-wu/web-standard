@@ -48,13 +48,15 @@
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>
-					<span [nz-tooltip]="'select-自行输入多个内容'">select-自行输入多个内容</span>
+					<span [nz-tooltip]="'input-自行输入多个内容'">input-自行输入多个内容</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="tags" formControlName="tags"
-						nzNotFoundContent="多个内容以【回车】分隔" nzPlaceHolder="select-自行输入多个内容">
-					</nz-select>
+					<input nz-input formControlName='input' placeholder="多个内容以【英文逗号】分隔">
+					<!--<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="tags" formControlName="tags"
+						nzNotFoundContent="多个内容以【回车】分隔" nzPlaceHolder="select-自行输入多个内容" (nzBlur)="nzBlur($event)">
+					</nz-select>-->
 				</nz-form-control>
+				<app-form-control-info [tooltip]="i18n.baseList.inputMultiple"></app-form-control-info>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>

@@ -40,7 +40,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       multiple: ['a10', 'c12'],
       tree: '1-0',
       treeMultiple: ['1-0', '1-1'],
-      tags: ['a10', 'c12'],
+      input: ['a10', 'c12'],
       modal: [
         { id: '2', name: 'name2' },
       ],
@@ -57,7 +57,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       multiple: [null, [Validators.required]],
       tree: [null, [Validators.required]],
       treeMultiple: [null, [Validators.required]],
-      tags: [{ value: null, disabled: false }, [Validators.required]],
+      input: [{ value: null, disabled: false }, [Validators.required]],
       modal: [null, [Validators.required]],
       modalMultiple: [null, [Validators.required]],
     });
@@ -84,7 +84,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         multiple: this.tab?.data?.multiple,
         tree: this.tab?.data?.tree,
         treeMultiple: this.tab?.data?.treeMultiple,
-        tags: this.tab?.data?.tags,
+        input: this.tab?.data?.input,
         modal: this.tab?.data?.modal,
         modalMultiple: this.tab?.data?.modalMultiple,
       });

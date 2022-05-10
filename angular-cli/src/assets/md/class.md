@@ -138,7 +138,7 @@
 - th宽度 - 时间：time-short（yyyy-MM-dd）
 - th宽度 - IP：ip
 
-```
+```css
 table {
   tr {
     th.center,

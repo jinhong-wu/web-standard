@@ -12,10 +12,19 @@ import { catchError, mergeMap } from 'rxjs/operators';
 import { HttpUtilTs } from '../ts/util/http.util';
 import { Router } from '@angular/router';
 import { TipService } from '../service/tip.service';
+import { I18nService } from '../service/system/i18n.service';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
   constructor(private injector: Injector) {}
+
+	private get tip(): TipService {
+    return this.injector.get(TipService);
+  }
+
+	private get i18n(): I18nService {
+    return this.injector.get(I18nService);
+  }
 
 	errorMessage = {
     "400":{
@@ -27,11 +36,15 @@ export class Interceptor implements HttpInterceptor {
         title:'FAILED',
         content:"The param of Current Request's length is too long, please use valid query param",
       }
-    }
-  }
-
-  private get tip(): TipService {
-    return this.injector.get(TipService);
+    },
+		"unknown" : {
+			'zh':{
+        title:'未知错误',
+      },
+      'en':{
+        title:'UNKNOWN ERROR',
+      }
+		}
   }
 
   intercept(
@@ -79,28 +92,33 @@ export class Interceptor implements HttpInterceptor {
     ignoreTip: boolean = false
   ): Observable<any> {
     switch (ev.status) {
+			case 200:
+        break;
       case 302:
         this.goTo(ev.headers.get('location'));
         break;
       case 400:
         if (ev instanceof HttpErrorResponse) {
-          if (!ignoreTip) {
-            this.tip.notify('error', ev.error.message, ev.error.details);
+					if(!ignoreTip){
+            // 当前请求为400时，并且ev.error对象为string，此时为浏览器报出的URL超长错误。
+            if(typeof ev.error === 'string'){
+              this.tip.notify('error', this.errorMessage["400"][this.i18n.lang].title, this.errorMessage["400"][this.i18n.lang].content);
+            } else {
+              this.tip.notify('error', ev.error.message, ev.error.details);
+            }
           }
           return throwError(ev);
         }
+				break;
       case 401:
+        //this.cookieService.set("refreshLockScreen", "false", { path: "/" });
+        //this.goTo('/login');
         break;
+			case 403:
       case 404:
 				if (ev instanceof HttpErrorResponse) {
           if(!ignoreTip){
-            // 当前请求为400时，且ev.error对象为string，此时为浏览器报出的URL超长错误。
-            if(typeof ev.error === 'string') {
-              const lang = window.sessionStorage.getItem("lang")
-              this.tip.notify('error', this.errorMessage["400"][lang].title, this.errorMessage["400"][lang].content);
-            } else {
-              this.tip.notify('error', ev.error.message, ev.error.message);
-            }
+            this.tip.notify('error', ev.error.message, ev.error.message);
           }
           return throwError(ev);
         }
@@ -108,15 +126,15 @@ export class Interceptor implements HttpInterceptor {
       case 500:
         if (ev instanceof HttpErrorResponse) {
           if (!ignoreTip) {
-            this.tip.notify('error', ev.error.message, ev.error.message);
+            this.tip.notify('error', ev.error.message, ev.error.details);
           }
-          return throwError({ ev });
+          return throwError(ev);
         }
         break;
       default:
         if (ev instanceof HttpErrorResponse) {
-          if (!ignoreTip) {
-            this.tip.notify('error', '未知错误', ev.error.details);
+          if (!ignoreTip) {  
+            this.tip.notify('error', this.errorMessage["unknown"][this.i18n.lang].title, ev.error.details);
           }
           return throwError(ev);
         }

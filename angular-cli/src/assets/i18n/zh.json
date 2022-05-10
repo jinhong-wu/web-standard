@@ -44,7 +44,8 @@
 
 		"startDt": "开始时间",
 		"endDt": "结束时间",
-		"confirmDt": "结束时间须在开始时间之后"
+		"confirmDt": "结束时间须在开始时间之后",
+		"inputMultiple": "多个${name || 内容}以“ ${split || 英文逗号,} ”分隔"
 	},
 	"unit": {
 		"unit": "个",

@@ -3,22 +3,24 @@
 - 重置方法reset()：必须写上 || null，表示新增无数据传入时，输入框/单选框等的默认值
 - 单选框必须要有默认值
 - 所有label均[nz-tooltip]（BUG编号24136）
-  ```html
-	<nz-form-label nzSpan="6" nzRequired>
-		<span [nz-tooltip]=""></span>
-	</nz-form-label>
-	```
+```html
+<nz-form-label nzSpan="6" nzRequired>
+	<span [nz-tooltip]=""></span>
+</nz-form-label>
+```
 - 提示统一为：下面提示 请输入合法的xxxx，且尾部蓝色icon说明具体规则；没有规则的直接就是请输入xxx（BUG编号24804）
-  ```html
-	<nz-form-control nzSpan="1">
-		<i nz-icon nzType="info-circle" [nz-tooltip]=""></i>
-	</nz-form-control>
-	```
+```html
+<app-form-control-info [tooltip]=""></app-form-control-info>
+<!-- 规则显示已封装为组件：app-form-control-info -->
+<nz-form-control nzSpan="1">
+	<i nz-icon nzType="info-circle" [nz-tooltip]=""></i>
+</nz-form-control>
+```
 - 端口使用nz-input-number（所有的端口号都不能为小数）
-  ```html
-	<nz-input-number [nzMin]="1" [nzMax]="65535" [nzPrecision]='0' formControlName='' nzPlaceHolder="端口">
-	</nz-input-number>
-	```
+```html
+<nz-input-number [nzMin]="1" [nzMax]="65535" [nzPrecision]='0' formControlName='' nzPlaceHolder="端口">
+</nz-input-number>
+```
 
 **文件：**
 - 全局属性：BaseTs（common/ts/base/base.ts）
@@ -43,18 +45,16 @@
 					<span [nz-tooltip]="'IP'">IP</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.pattern.ipv4">
-					<input nz-input formControlName="ip" autocomplete="ip" placeHolder="默认只支持IPV4">
+					<input nz-input formControlName="ip" placeHolder="默认只支持IPV4">
 				</nz-form-control>
-				<nz-form-control nzSpan="1">
-					<i nz-icon nzType="info-circle" [nz-tooltip]="i18n.list.pattern.ipv4"></i>
-				</nz-form-control>
+				<app-form-control-info [tooltip]="i18n.list.pattern.ipv4"></app-form-control-info>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'描述'">描述</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<input nz-input formControlName="describe" autocomplete="describe">
+					<input nz-input formControlName="describe" placeHolder="描述">
 				</nz-form-control>
 			</nz-form-item>
 			<nz-form-item>

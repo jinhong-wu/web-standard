@@ -7,6 +7,7 @@ import { SelectModalComponent } from './select-modal/select-modal.component';
 import { RangePickerComponent } from './range-picker/range-picker.component';
 import { TreeTableComponent } from './tree-table/tree-table.component';
 import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
+import { FormControlInfoComponent } from './form-control-info/form-control-info.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
     RangePickerComponent,
     TreeTableComponent,
     BatchDeleteComponent,
+    FormControlInfoComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [
@@ -25,6 +27,7 @@ import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
     BatchDeleteComponent,
     RangePickerComponent,
 		TreeTableComponent,
+		FormControlInfoComponent
   ],
   entryComponents: [
     TableHeadComponent,
@@ -32,7 +35,8 @@ import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
     SelectModalComponent,
     BatchDeleteComponent,
     RangePickerComponent,
-		TreeTableComponent
+		TreeTableComponent,
+		FormControlInfoComponent
   ],
 })
 export class ComponentModule {}

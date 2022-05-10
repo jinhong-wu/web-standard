@@ -1,110 +1,104 @@
 <!-- 精确查询 -->
 <div class="table-advance" *ngIf="advanceShow">
-  <div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
-    <!-- 文字框 -->
-    <ng-container *ngIf="item.type =='text'">
-      <nz-input-group [nzSuffix]="nzAllowClear">
-        <input nz-input type="text" [(ngModel)]="item.value" (keydown.enter)="searchFn(true)"
-          [placeholder]="item.placeholder">
-      </nz-input-group>
-      <ng-template #nzAllowClear>
-        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="item.value"
-          (click)="item.value = null"></i>
-      </ng-template>
-    </ng-container>
+	<div class="item" [ngClass]="item?.style?.class" *ngFor="let item of advanceData">
+		<!-- 文字框 -->
+		<ng-container *ngIf="item.type =='text'">
+			<input nz-input type="text" [(ngModel)]="item.value" (keydown.enter)="searchFn(true)"
+				[placeholder]="item.placeholder">
+		</ng-container>
 
-    <!-- 下拉框 -->
-    <ng-container *ngIf="item.type =='select'">
-      <nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth [(ngModel)]="item.value"
-        [nzPlaceHolder]="item.placeholder">
-        <nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
-        </nz-option>
-      </nz-select>
-    </ng-container>
+		<!-- 下拉框 -->
+		<ng-container *ngIf="item.type =='select'">
+			<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth [(ngModel)]="item.value"
+				[nzPlaceHolder]="item.placeholder">
+				<nz-option *ngFor="let option of item.options" [nzValue]="option.value" [nzLabel]="option.label">
+				</nz-option>
+			</nz-select>
+		</ng-container>
 
-    <!-- 下拉框-树 -->
-    <ng-container *ngIf="item.type =='tree'">
-      <nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="item.nodes"
-        [(ngModel)]='item.value' [nzPlaceHolder]="item.placeholder">
-      </nz-tree-select>
-    </ng-container>
+		<!-- 下拉框-树 -->
+		<ng-container *ngIf="item.type =='tree'">
+			<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="item.nodes"
+				[(ngModel)]='item.value' [nzPlaceHolder]="item.placeholder">
+			</nz-tree-select>
+		</ng-container>
 
-    <!-- 时间框 -->
-    <ng-container *ngIf="item.type =='date'">
-      <nz-date-picker nzAllowClear nzShowTime [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
-      </nz-date-picker>
-    </ng-container>
-  </div>
-  <div class="item-btn">
-    <!-- 查询 -->
-    <button nz-button nzSearch nzType="primary" (click)="searchFn(true)">
-      {{ i18n.baseList.search }}
-    </button>
-    <!-- 导出查询结果 -->
-    <ng-container *ngIf="exportShow && MenuService.routerMenuPoint.includes('export')">
-      <button nz-button nzSearch nzType="primary" (click)="exportSearchFn()">
-        {{ i18n.baseList.exportSearch }}
-      </button>
-    </ng-container>
-  </div>
+		<!-- 时间框 -->
+		<ng-container *ngIf="item.type =='date'">
+			<nz-date-picker nzAllowClear nzShowTime [(ngModel)]="item.value" [nzPlaceHolder]="item.placeholder">
+			</nz-date-picker>
+		</ng-container>
+	</div>
+	<div class="item-btn">
+		<!-- 查询 -->
+		<button nz-button nzSearch nzType="primary" (click)="searchFn(true)">
+			{{ i18n.baseList.search }}
+		</button>
+		<!-- 导出查询结果 -->
+		<ng-container *ngIf="exportShow && MenuService.routerMenuPoint.includes('export')">
+			<button nz-button nzSearch nzType="primary" (click)="exportSearchFn()">
+				{{ i18n.baseList.exportSearch }}
+			</button>
+		</ng-container>
+	</div>
 </div>
 <!-- 操作区 -->
 <div class="table-head">
-  <!-- 左侧按钮区 -->
-  <div class="btns">
-    <ng-content select="btns"></ng-content>
-  </div>
-  <!-- 右侧查询区 -->
-  <div class="search">
-    <ng-content select="search"></ng-content>
-    <!-- 关键字查询 -->
-    <ng-container *ngIf="fuzzyShow">
-      <nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
-        <input nz-input [(ngModel)]="fuzzyQuery" (keydown.enter)="searchFn()" [placeholder]='placeholder'>
-      </nz-input-group>
-      <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSearch (click)="searchFn()">
-          <i nz-icon nzType="search"></i>
-        </button>
-      </ng-template>
-    </ng-container>
-    <!-- 精确查询 -->
-    <ng-container *ngIf="advanceData.length > 0">
-      <button nz-button nzType="primary" (click)="advanceShow = !advanceShow">
-        <i nz-icon [nzType]="advanceShow?'down':'up'" nzTheme="outline"></i>
-      </button>
-    </ng-container>
-    <!-- 列可配置 -->
-    <ng-container *ngIf="colsData.length > 0">
-      <button nz-button nzType="primary" nz-popover nzPopoverTrigger="click" nzPopoverPlacement="bottomRight"
-        [nzPopoverTitle]="titleTemplate" [nzPopoverContent]="contentTemplate">
-        <i nz-icon nzType="unordered-list" nzTheme="outline"></i>
-      </button>
-      <ng-template #titleTemplate>
-        <div class="col-title">
-          <label nz-checkbox [(ngModel)]="isAllChecked" (ngModelChange)="allCheckFn()"
-            [nzIndeterminate]="isIndeterminate">
-            {{ i18n.baseList.allCheck }}
-          </label>
-          <a nz-button nzType="link" (click)="resetCheckFn()">
-            {{ i18n.baseList.reset }}
-          </a>
-        </div>
-      </ng-template>
-      <ng-template #contentTemplate>
-        <nz-checkbox-wrapper class="col-content" (nzOnChange)="colRefresh()">
-          <div *ngFor="let item of colsData">
-            <label nz-checkbox [nzValue]="item.title" [(ngModel)]="item.show">
-              {{item.title}}
-            </label>
-          </div>
-        </nz-checkbox-wrapper>
-      </ng-template>
-    </ng-container>
-  </div>
+	<!-- 左侧按钮区 -->
+	<div class="btns">
+		<ng-content select="btns"></ng-content>
+	</div>
+	<!-- 右侧查询区 -->
+	<div class="search">
+		<ng-content select="search"></ng-content>
+		<!-- 关键字查询 -->
+		<ng-container *ngIf="fuzzyShow">
+			<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
+				<input nz-input [(ngModel)]="fuzzyQuery" (keydown.enter)="searchFn()" [placeholder]='placeholder'>
+			</nz-input-group>
+			<ng-template #suffixButton>
+				<button nz-button nzType="primary" nzSearch (click)="searchFn()">
+					<i nz-icon nzType="search"></i>
+				</button>
+			</ng-template>
+		</ng-container>
+		<!-- 精确查询 -->
+		<ng-container *ngIf="advanceData.length > 0">
+			<button nz-button nzType="primary" (click)="advanceShow = !advanceShow">
+				<i nz-icon [nzType]="advanceShow?'down':'up'" nzTheme="outline"></i>
+			</button>
+		</ng-container>
+		<!-- 列可配置 -->
+		<ng-container *ngIf="colsData.length > 0">
+			<button nz-button nzType="primary" nz-popover nzPopoverTrigger="click" nzPopoverPlacement="bottomRight"
+				[nzPopoverTitle]="titleTemplate" [nzPopoverContent]="contentTemplate">
+				<i nz-icon nzType="unordered-list" nzTheme="outline"></i>
+			</button>
+			<ng-template #titleTemplate>
+				<div class="col-title">
+					<label nz-checkbox [(ngModel)]="isAllChecked" (ngModelChange)="allCheckFn()"
+						[nzIndeterminate]="isIndeterminate">
+						{{ i18n.baseList.allCheck }}
+					</label>
+					<a nz-button nzType="link" (click)="resetCheckFn()">
+						{{ i18n.baseList.reset }}
+					</a>
+				</div>
+			</ng-template>
+			<ng-template #contentTemplate>
+				<nz-checkbox-wrapper class="col-content" (nzOnChange)="colRefresh()">
+					<div *ngFor="let item of colsData">
+						<label nz-checkbox [nzValue]="item.title" [(ngModel)]="item.show">
+							{{item.title}}
+						</label>
+					</div>
+				</nz-checkbox-wrapper>
+			</ng-template>
+		</ng-container>
+	</div>
 </div>
 
 <!-- 表格提示 -->
 <div class="table-tips">
-  <ng-content select="tips"></ng-content>
+	<ng-content select="tips"></ng-content>
 </div>

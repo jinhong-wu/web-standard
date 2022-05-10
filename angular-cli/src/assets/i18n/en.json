@@ -44,7 +44,8 @@
 
 		"startDt": "start time",
 		"endDt": "end time",
-		"confirmDt": "The end time must be after the start time"
+		"confirmDt": "The end time must be after the start time",
+		"inputMultiple": "Multiple ${name || contents} are separated by ${split || A comma in English,}"
 	},
 	"unit": {
 		"unit": "unit",
