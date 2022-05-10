@@ -1,5 +1,7 @@
-<nz-result nzStatus="403" nzTitle="403" nzSubTitle="对不起，你没有权限访问该页面！">
+<nz-result nzStatus="403" nzTitle="403" [nzSubTitle]="i18n.list.errorPage['403']">
 	<div nz-result-extra>
-		<a routerLink="/home" nz-button nzType="primary">返回到主页面</a>
+		<a routerLink="/home" nz-button nzType="primary">
+			{{ i18n.list.errorPage.toHome }}
+		</a>
 	</div>
 </nz-result>

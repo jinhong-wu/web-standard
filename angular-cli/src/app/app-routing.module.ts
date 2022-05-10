@@ -22,11 +22,10 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '**',
-    loadChildren: () =>
-      import('./pages/error/error.module').then((modal) => modal.ErrorModule),
-  },
+	{
+    path: 'error',
+    loadChildren: () => import('./pages/error/error.module').then(modal => modal.ErrorModule)
+  }
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
-<nz-result nzStatus="500" nzTitle="500" nzSubTitle="对不起，服务器发生错误！">
-    <div nz-result-extra>
-      <a routerLink="/home" nz-button nzType="primary">返回到主页面</a>
-    </div>
+<nz-result nzStatus="500" nzTitle="500" [nzSubTitle]="i18n.list.errorPage['500']">
+	<div nz-result-extra>
+		<a routerLink="/home" nz-button nzType="primary">
+			{{ i18n.list.errorPage.toHome }}
+		</a>
+	</div>
 </nz-result>
-  

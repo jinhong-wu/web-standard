@@ -9,10 +9,11 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      {path: '', component: Error404Component},
-      {path: '404', component: Error404Component},
+      {path: '', redirectTo: '404', pathMatch: 'full'},
       {path: '403', component: Error403Component},
-      {path: '500', component: Error500Component}]
+      {path: '404', component: Error404Component},
+      {path: '500', component: Error500Component}
+		]
   }
 ];
 

@@ -89,5 +89,11 @@
 		"code": "The value can contain a maximum of 32 characters, including digits, underscores (_), hyphens (-)",
     "codeTip": "Please input a valid code",
     "description": "Contains a maximum of 1024 characters"
-  }
+  },
+	"errorPage": {
+		"toHome": "Return to home page",
+		"403": "Sorry, you do not have permission to access this page!",
+		"404": "Sorry, the page you visited does not exist!",
+		"500": "Sorry, server error!"
+	}
 }

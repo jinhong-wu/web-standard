@@ -1,6 +1,7 @@
-<nz-result nzStatus="404" nzTitle="404" nzSubTitle="对不起，你访问的页面不存在!">
-    <div nz-result-extra>
-      <a routerLink="/home" nz-button nzType="primary">返回到主页面</a>
-    </div>
-  </nz-result>
-  
+<nz-result nzStatus="404" nzTitle="404" [nzSubTitle]="i18n.list.errorPage['404']">
+	<div nz-result-extra>
+		<a routerLink="/home" nz-button nzType="primary">
+			{{ i18n.list.errorPage.toHome }}
+		</a>
+	</div>
+</nz-result>

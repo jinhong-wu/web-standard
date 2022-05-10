@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { I18nService } from 'src/app/common/service/system/i18n.service';
 
 @Component({
   selector: 'app-error403',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Error403Component implements OnInit {
 
-  constructor() { }
+  constructor(public i18n: I18nService) { }
 
   ngOnInit() {
   }
