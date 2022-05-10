@@ -167,8 +167,11 @@ export class ImportFileComponent extends BaseTs implements OnInit {
         fileSize: item.file.size, // 文件大小
         sliceSize: this.bigSingle,
         chunkSize: this.bigChunkSize, // 分片数量
-      })
-      .subscribe(
+      }, {
+				headers:{
+					"ignoreTip": "ignoreTip"
+				}
+			}).subscribe(
         (resToken: any) => {
           let reqs = [];
           for (let i = resToken.data.chunk - 1; i < this.bigChunkSize; i++) {

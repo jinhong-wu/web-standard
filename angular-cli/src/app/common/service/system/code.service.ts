@@ -37,7 +37,7 @@ export class CodeService {
 
   // 启用、禁用
   onOff = [
-    { value: 'enable', label: this.i18n.baseList.on },
-    { value: 'disable', label: this.i18n.baseList.off }
+    { value: 'enable', label: this.i18n.baseList.enable },
+    { value: 'disable', label: this.i18n.baseList.disable }
   ];
 }

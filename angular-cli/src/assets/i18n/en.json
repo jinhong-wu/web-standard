@@ -7,7 +7,6 @@
 		"update":"update",
 		"delete":"delete",
 		"deleteConfirm":"Sure to delete the selected ${name || data}?",
-		"import":"import",
 		"download":"download",
 		"allCheck": "all check",
 		"checkTip": "Please check data",
@@ -15,9 +14,10 @@
 		"reset":"reset",
 		"resetConfirm": "Sure to reset?",
 		"cancel":"cancel",
-		"on": "on",
-		"off": "off",
+		"enable": "enable",
+		"disable": "disable",
 		"close": "close",
+		"import":"import",
 		"export":"export",
 		"exportConfirm":"Sure to export the selected ${name || data}?",
 		"exportSearch": "export search results",
@@ -47,6 +47,7 @@
 		"confirmDt": "The end time must be after the start time"
 	},
 	"unit": {
+		"unit": "unit",
 		"thousand": "ten thousand",
 		"million": "hundred million"
 	},
