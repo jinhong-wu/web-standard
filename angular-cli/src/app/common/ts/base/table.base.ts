@@ -2,6 +2,7 @@ import { Injector, Input, ViewChild } from '@angular/core';
 import { BaseTs } from './base';
 import { TipModalService } from 'src/app/common/service/tip-modal.service';
 import { DatePipe } from '@angular/common';
+import { RenderPipe } from '../../pipe/render.pipe';
 import { DownloadService } from '../../service/download.service';
 
 interface tableInit {
@@ -187,7 +188,7 @@ export class TableBaseTs extends BaseTs {
   }
   // 按钮区：删除
   deleteInit(confirmInfo, options) {
-    let confirm = this.UtilTs.render(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
+    let confirm = new RenderPipe().transform(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
       if (this.checkedData.length == 0) {
@@ -240,7 +241,7 @@ export class TableBaseTs extends BaseTs {
       isParams = this.tableParamsFn(true);
       params = this.HttpUtilTs.getHttpParam(this.tableParams);
     } else {
-      confirm = this.UtilTs.render(this.i18n.baseList.exportConfirm, { name: confirmInfo});
+      confirm = new RenderPipe().transform(this.i18n.baseList.exportConfirm, { name: confirmInfo});
       this.checkedIdsFn();
       if (this.checkedIds.length == 0) {
         this.tip.msg('warning', this.i18n.baseList.checkTip);

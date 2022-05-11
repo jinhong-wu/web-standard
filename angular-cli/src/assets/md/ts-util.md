@@ -1,14 +1,3 @@
-# 工具类
-**文件：** UtilTs（common/ts/util/util.ts） 
-
-**使用-方法：**
-- render()：模板编译器
-  ```typescript
-	// 例：value='测试${xxx}${yyy}'，replace={xxx: '', yyy: ''}
-	this.UtilTs.render('确定删除所选${name}？', {name: '列表数据'}) => 确定删除所选列表数据？
-	```
-
-
 # HTTP
 **文件：** HttpUtilTs（common/ts/util/http.util.ts） 
 

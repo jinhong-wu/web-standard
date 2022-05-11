@@ -5,7 +5,6 @@ import { MenuService } from '../../service/system/menu.service';
 import { TipService } from '../../service/tip.service';
 import { I18nService } from '../../service/system/i18n.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { UtilTs } from '../util/util';
 import { HttpUtilTs } from '../util/http.util';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,7 +17,6 @@ export class BaseTs {
   public tip: TipService;
   public i18n: I18nService;
   public MenuService: MenuService;
-	public UtilTs = UtilTs;
   public HttpUtilTs = HttpUtilTs;
 
   constructor(private baseInjector: Injector) {

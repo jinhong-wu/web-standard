@@ -3,7 +3,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { I18nService } from './system/i18n.service';
-import { UtilTs } from '../ts/util/util';
+import { RenderPipe } from '../pipe/render.pipe';
 
 interface modalAfter {
   open?: Function;
@@ -50,14 +50,14 @@ export class TipService {
   // 右下角通知框-成功提示
   successNotify(type) {
     this.notify('success', this.i18n.baseList.success,
-      UtilTs.render(this.i18n.baseList.successNotify, { name: this.i18n.baseList[type] || '' })
+			new RenderPipe().transform(this.i18n.baseList.successNotify, { name: this.i18n.baseList[type] || '' })
     );
   }
 
   // 右下角通知框-失败提示
   errorNotify(type) {
     this.notify('error', this.i18n.baseList.error,
-      UtilTs.render(this.i18n.baseList.errorNotify, { name: this.i18n.baseList[type] || '' })
+			new RenderPipe().transform(this.i18n.baseList.errorNotify, { name: this.i18n.baseList[type] || '' })
     );
   }
 
