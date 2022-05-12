@@ -33,14 +33,16 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
+import { NzPipesModule } from 'ng-zorro-antd/pipes';
 
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
     CommonModule,
-    TranslateModule,
+		TranslateModule,
     // ng-zorro-antd（8.x+没有NgZorroAntdModule，只能手动导入各个模块）
+    NzPipesModule,
     NzModalModule,
     NzLayoutModule,
     NzMenuModule,

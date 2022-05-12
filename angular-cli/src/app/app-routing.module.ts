@@ -10,10 +10,7 @@ const routes: Routes = [
       // 公共示例
       {
         path: 'public',
-        loadChildren: () =>
-          import('./pages/public/public.module').then(
-            (modal) => modal.PublicModule
-          ),
+        loadChildren: () => import('./pages/public/public.module').then((modal) => modal.PublicModule),
       },
       {
         path: '**',

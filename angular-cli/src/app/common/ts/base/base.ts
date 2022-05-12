@@ -32,7 +32,7 @@ export class BaseTs {
 
 	// 项目数据初始化
 	appInit() {
-		this.MenuService.initMenu();  // 加载菜单数据
+		this.MenuService.initMenu();  // 菜单数据
 		// ...其他初始化方法
 	}
 

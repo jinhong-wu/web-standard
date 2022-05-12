@@ -74,7 +74,6 @@ export class MenuService {
         this.routerMenuPoint = this.routerMenu.node.functionPointLanguage || [];
       }
     }
-
   }
 
   // 菜单（侧边栏）

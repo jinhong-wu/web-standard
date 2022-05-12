@@ -64,12 +64,8 @@ export class MenuComponent extends TableBaseTs implements OnInit {
   constructor(public injuctor: Injector) {
     super(injuctor);
   }
-
-  // Tab（备注tab对应id，方便代码查看）
-	// 概览 public-menu-overview
-  // 列表 public-menu-list
-
-	@ViewChild('overview', { static: false }) overview;
+	
+  @ViewChild('overview', { static: false }) overview;
   @ViewChild('list', { static: false }) list;
 
   ngOnInit() {

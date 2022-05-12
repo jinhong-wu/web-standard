@@ -8,14 +8,13 @@ import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
 })
 export class I18nService {
   constructor(
-    public translate: TranslateService,
-    public i18n: NzI18nService,
+		public translate: TranslateService,
+    public nzI18n: NzI18nService,
     public http: HttpClient
   ) {
     this.lang = window.sessionStorage.getItem('lang') || 'zh';
     this.langLocale = this.lang == 'zh' ? zh_CN : en_US;
     window.sessionStorage.setItem('lang', this.lang);
-    this.use();
 
     this.loading = true;
     this.jsonFn().subscribe((res: any) => {
@@ -32,22 +31,25 @@ export class I18nService {
   list: any = {};
   baseList: any = {};
 
-  // 语言-切换、使用
-  use(lang?: 'zh' | 'en') {
-    if (lang) {
-      window.sessionStorage.setItem('lang', lang);
-      window.location.reload();
-    } else {
-      this.translate.use(this.lang);
-      this.i18n.setLocale(this.langLocale);
-    }
+  // 语言-使用
+  use(translate) {
+		translate.use(this.lang);
+		this.nzI18n.setLocale(this.langLocale);
   }
+
+	// 语言-切换
+	changeLang(lang: 'zh' | 'en' = 'zh') {
+		if (lang != this.lang) {
+			window.sessionStorage.setItem('lang', lang);
+			window.location.reload();
+		}
+	}
 
   // 加载zh/en.json
   jsonFn(url: string = '') {
     if (url) url += '/';
     return this.http.get(
-      `assets/i18n/${url}${this.translate.currentLang}.json`
+      `assets/i18n/${url}${this.lang}.json`
     );
   }
 

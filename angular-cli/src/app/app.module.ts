@@ -9,8 +9,7 @@ import {
 // 国际化
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 // ng-zorro-antd
 import { NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
@@ -30,12 +29,8 @@ import { SharedModule } from './common/shared.module';
 import { ComponentModule } from './common/component/component.module';
 import { PipeModule } from './common/pipe/pipe.module';
 import { Interceptor } from './common/interceptor/interceptor';
-import { NzPipesModule } from 'ng-zorro-antd/pipes';
 
 registerLocaleData(zh);
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
-}
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -44,17 +39,10 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+		SharedModule,
     ComponentModule,
     PipeModule,
-    NzPipesModule,
-    SharedModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
+    TranslateModule.forRoot(),
     MarkdownModule.forRoot(),
   ],
   providers: [
