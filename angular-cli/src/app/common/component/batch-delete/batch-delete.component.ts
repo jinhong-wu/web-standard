@@ -22,7 +22,7 @@ export class BatchDeleteComponent implements OnInit {
 
   tableSuccessData: any = [];
   tableErrorData: any = [];
-  tableSize: number = 10;
+  tableSize: number = 5;
 
   currentNodeName = '';
   async ngOnInit() {
@@ -33,11 +33,13 @@ export class BatchDeleteComponent implements OnInit {
       try {
         await this.doFn(data).toPromise();
         this.tableSuccessData.push(data);
+				this.tableSuccessData = [...this.tableSuccessData];
       } catch (err) {
         this.tableErrorData.push({
           reason: this.getErrorMsg(err),
           ...data,
         });
+				this.tableErrorData = [...this.tableErrorData];
       }
     }
   }

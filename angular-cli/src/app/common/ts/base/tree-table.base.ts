@@ -1,60 +1,33 @@
-import { Injector } from '@angular/core';
+import { Injector, ViewChild } from '@angular/core';
 import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzFormatEmitEvent } from 'ng-zorro-antd/tree';
+import { TreeNodesService } from '../../service/tree-nodes.service';
 import { TableBaseTs } from './table.base';
 /**
  * @name 树-基本属性及方法
  */
 export class TreeTableBaseTs extends TableBaseTs {
 
-	private nzContextMenuService;
-  constructor(public injector: Injector) {
+	public TreeNodesService;
+	public nzContextMenuService;
+  constructor(
+		public injector: Injector
+	) {
     super(injector);
+		this.TreeNodesService = this.injector.get(TreeNodesService);
 		this.nzContextMenuService = this.injector.get(NzContextMenuService);
   }
 
-	tree: any;
+	@ViewChild('leftTree', { static: false }) tree: any;
 
 	treeSearch = '';
-  treeNodes = [];
-	treeNode0: any = {};
 	clickNode: any = {};  // 左键点击node
 	selectNode: any = {};  // 右键选择node
 
-
-	treeNodesFn(data: Array<any> = []) {
-    let result = [],
-			map = {},
-			pidMap = {};
-    data.forEach((item) => {
-			delete item.children;
-      map[item.id] = item;
-      if(item.pid && item.pid.length){
-        pidMap[item.pid] = true
-      }
-    });
-    data.forEach((item) => {
-      let parent = map[item.pid];
-      if(pidMap[item.id] == null){
-        item.isLeaf = true
-      }
-      if (parent) {
-        (parent.children || (parent.children = [])).push(item);
-      } else {
-        result.push(item);
-      }
-    });
-		if (result[0]) {
-			result[0].expanded = true;
-		};
-		this.treeNode0 = result[0] || [];
-    return result;
-  }
-
 	// 默认展开根节点
-	searchChange() {
-		if (this.treeSearch == '' && this.treeNodes.length) {
-			this.tree.getTreeNodeByKey(this.treeNode0.key).isExpanded = true;
+	searchChange(tree) {
+		if (this.treeSearch == '' && this.TreeNodesService[tree].length) {
+			this.tree.getTreeNodeByKey(this.TreeNodesService[tree+0].key).isExpanded = true;
 		}
 	}
 

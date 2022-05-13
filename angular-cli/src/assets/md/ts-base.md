@@ -31,7 +31,6 @@
 **文件：** TreeTableBaseTs（common/ts/base/tree-table.base.ts） 
 
 **使用-方法：**
-- treeNodesFn()：数据处理，转化为框架约定的树数据
 - searchChange()：默认展开根节点
 - searchLight()：搜索高亮
 - contextMenu()：右键操作

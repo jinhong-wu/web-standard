@@ -76,13 +76,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
       title: '描述',
       key: 'describe',
       show: true,
-    },
-    {
-      title: '操作',
-      key: 'handle',
-      width: '60px',
-      show: true,
-    },
+    }
   ];
 
   exportUrl = 'https://....';

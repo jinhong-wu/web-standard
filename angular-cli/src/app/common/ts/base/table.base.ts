@@ -10,6 +10,7 @@ interface tableInit {
   advance: boolean;  // 是否为精确查询
   tableService: any;  // table-api所在service
   tableData: string; // table-api所在service-方法名
+	params?: boolean;  // 是否刷新请求参数（为false时，advance值不运行）
   paramsFn?: Function;  // 请求参数回调函数
   successFn?: Function; // 请求成功回调函数
   errorFn?: Function;  // 请求失败回调函数
@@ -46,10 +47,12 @@ export class TableBaseTs extends BaseTs {
   checkedData: any = [];
   isAllChecked: Boolean = false;
   isIndeterminate: Boolean = false;
-
+	// 子表格功能
+	expandRows: { [key: string]: any } = {};
   // 导出url
   exportUrl = '';
-
+	// 可配置列
+	colsData: any = [];
   // 精确查询
   advanceData: any = [];
   advanceDataDate = [  // 精确查询-开始结束时间
@@ -66,9 +69,14 @@ export class TableBaseTs extends BaseTs {
   ];
 
   // 数据初始化
-  tableInit({ reset = false, advance = false, paramsFn, tableService, tableData, successFn, errorFn }: tableInit) {
-    if (reset) this.tablePage = 1;
-    if (this.tableParamsFn(advance, paramsFn)) {
+  tableInit({ reset = false, advance = false, params = true, paramsFn, tableService, tableData, successFn, errorFn }: tableInit) {
+    if (reset) {
+			this.tablePage = 1;
+			this.tableParams.page = this.tablePage - 1;
+		}
+		// 是否刷新tableParams数据
+		let next = params ? this.tableParamsFn(advance, paramsFn) : true;
+    if (next) {
       this.tableLoading = true;
       tableService[tableData].call(tableService, this.HttpUtilTs.paramsFn(this.tableParams)).subscribe((res) => {
         this.tableLoading = false;
@@ -116,7 +124,7 @@ export class TableBaseTs extends BaseTs {
     if (this.treeParamKey) {
       this.tableParams[this.treeParamKey] = this.clickNode.key;
     }
-    fn?.();
+		fn?.call(this);
     return true;
   }
 
@@ -188,7 +196,8 @@ export class TableBaseTs extends BaseTs {
   }
   // 按钮区：删除
   deleteInit(confirmInfo, options) {
-    let confirm = new RenderPipe().transform(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
+    let _this = this,
+			confirm = new RenderPipe().transform(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
       if (this.checkedData.length == 0) {
@@ -199,8 +208,8 @@ export class TableBaseTs extends BaseTs {
         nzTitle: this.i18n.baseList.delete,
         checkedData: this.checkedData,
         columns: options.columns,
-        doFn() {
-          options.doFn();
+        doFn(data) {
+          return options.doFn?.call(_this, data);
         },
         resFn(successData) {
           // 批量删除后，请求最近有数据的一页（需要判断现在页请求的话有无数据）
@@ -214,7 +223,7 @@ export class TableBaseTs extends BaseTs {
             this.tablePage = 1;
           }
           this.checkedRows = {};
-          options.resFn?.();
+					options.resFn?.call(_this);
         },
       });
     });

@@ -48,16 +48,16 @@ export class TipService {
   }
 
   // 右下角通知框-成功提示
-  successNotify(type) {
+  successNotify(type, name = '') {
     this.notify('success', this.i18n.baseList.success,
-			new RenderPipe().transform(this.i18n.baseList.successNotify, { name: this.i18n.baseList[type] || '' })
+			new RenderPipe().transform(this.i18n.baseList.successNotify, { type: this.i18n.baseList[type] || '', name: name })
     );
   }
 
   // 右下角通知框-失败提示
-  errorNotify(type) {
+  errorNotify(type, name = '') {
     this.notify('error', this.i18n.baseList.error,
-			new RenderPipe().transform(this.i18n.baseList.errorNotify, { name: this.i18n.baseList[type] || '' })
+			new RenderPipe().transform(this.i18n.baseList.errorNotify, { type: this.i18n.baseList[type] || '', name: name })
     );
   }
 
@@ -96,6 +96,13 @@ export class TipService {
   }
 
   // 基本对话框-拖拽
+	enableDivDrag(divEle) {
+		const render = this.rendererFactory2.createRenderer(null, null);
+		const modalBackground = divEle.nativeElement;
+		const modalElement = divEle.nativeElement;
+		const modalTitleElement = this.createModalTitleElement(render, modalElement);
+		this.dragListen(render, modalTitleElement, modalElement, modalBackground);
+	}
   enableModalDrag(refModal) {
     const render = this.rendererFactory2.createRenderer(null, null);
     const modalBackground = refModal.containerInstance.elementRef.nativeElement;

@@ -1,10 +1,3 @@
-# 系统信息-国际化
-**文件：** I18nService（common/service/system/i18n.service.ts）
-
-**使用-方法：**
-- use()：语言-切换、使用
-- jsonFn()：加载zh/en.json
-
 # 系统信息-菜单数据
 **文件：** MenuService（common/service/system/menu.service.ts）
 
@@ -16,6 +9,21 @@
 - selectTab()：tab菜单-选中tab
 - createTab()：tab菜单-新增tab
 - closeTab()：tab菜单-关闭tab
+
+# 系统信息-国际化
+**文件：** I18nService（common/service/system/i18n.service.ts）
+
+**使用-方法：**
+- use()：语言-使用
+- changeLang()：语言-切换
+- jsonFn()：加载zh/en.json
+
+# 系统信息-码表
+**文件：** CodeService（common/service/system/code.service.ts）
+
+**使用-方法：**
+- codeFn()：后台码表
+
 
 # 文件下载
 **文件：** DownloadService（common/service/download.service.ts）
@@ -41,3 +49,14 @@
 **使用-方法：**
 - batch()：批量操作
 - file()：导入文件
+
+# 树-数据
+**文件：** TreeNodesService（common/service/tree-nodes.service.ts）
+
+**使用-方法：**
+- treeNodesFn()：数据处理-pid格式
+- treeNodesFnObject()：数据处理-childList格式
+
+# 校验规则
+**文件：** ValidatorService（common/service/validator.service.ts）
+

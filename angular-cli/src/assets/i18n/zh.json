@@ -16,7 +16,6 @@
 		"cancel":"取消",
 		"enable": "启用",
 		"disable": "禁用",
-		"close": "关闭",
 		"import":"导入",
 		"export":"导出",
 		"exportConfirm":"确定导出所选${name || 数据}？",
@@ -37,9 +36,9 @@
 		"batchErrorRecord":"批量操作失败记录",
 
 		"success":"成功",
-		"successNotify":"${name}成功",
+		"successNotify":"${type}${name}成功",
 		"error":"失败",
-		"errorNotify":"${name}失败",
+		"errorNotify":"${type}${name}失败",
 		"errorReasons":"失败原因",
 
 		"startDt": "开始时间",

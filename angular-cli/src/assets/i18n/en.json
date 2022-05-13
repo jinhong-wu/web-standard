@@ -16,7 +16,6 @@
 		"cancel":"cancel",
 		"enable": "enable",
 		"disable": "disable",
-		"close": "close",
 		"import":"import",
 		"export":"export",
 		"exportConfirm":"Sure to export the selected ${name || data}?",
@@ -37,9 +36,9 @@
 		"batchErrorRecord":"batch error record",
 
 		"success":"success",
-		"successNotify":"${name} success",
+		"successNotify":"${type} ${name} success",
 		"error":"error",
-		"errorNotify":"${name} error",
+		"errorNotify":"${type} ${name} error",
 		"errorReasons":"error reasons",
 
 		"startDt": "start time",

@@ -1,4 +1,5 @@
 # 必读！！！
+- nz-tree必须配置nzHideUnMatched
 - nz-tree-select必须配置nzShowSearch、nzAllowClear、nzHideUnMatched、nzDropdownMatchSelectWidth（除非特殊要求）
   ```html
 	<!-- 
@@ -7,7 +8,7 @@
 		nzHideUnMatched：搜索过滤
 		nzDropdownMatchSelectWidth：默认最小宽度为选择器宽度，超出后自适应宽度。  
 	-->
-	<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="nodes" nzPlaceHolder="">
+	<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched [nzDropdownMatchSelectWidth]="false" [nzNodes]="nodes" nzPlaceHolder="">
 	</nz-tree-select>
 	```
 
@@ -45,10 +46,11 @@
 
 # 全部用法
 ```html
+<!-- 左侧树必须命名为：#leftTree -->
 <app-tree-table [(searchValue)]="treeSearch">
 	<ng-container ngProjectAs="tree">
-		<nz-tree #leftTree nzHideUnMatched [nzData]="treeNodes" [nzSearchValue]="treeSearch"
-			(nzSearchValueChange)="searchChange()" (nzClick)="clickNodeFn($event, tableDataFn)"
+		<nz-tree #leftTree nzHideUnMatched [nzData]="TreeNodesService.testNodes" [nzSearchValue]="treeSearch"
+			(nzSearchValueChange)="searchChange('testNodes')" (nzClick)="clickNodeFn($event, tableDataFn)"
 			(nzContextMenu)="contextMenu($event, treeMenu)" [nzTreeTemplate]="treeTemp">
 		</nz-tree>
 		<ng-template #treeTemp let-node>
@@ -66,12 +68,12 @@
 		</nz-dropdown-menu>
 	</ng-container>
 	<ng-container ngProjectAs="table">
-		<app-menu-list></app-menu-list>
+		<app-menu-list [treeParamKey]="treeParamKey" [clickNode]="clickNode"></app-menu-list>
 	</ng-container>
 </app-tree-table>
 ```
 ```typescript
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { TreeTableBaseTs } from 'src/app/common/ts/base/tree-table.base';
 import { TableService } from 'src/app/common/api/public/table/table.service';
 
@@ -87,39 +89,17 @@ export class TreeComponent extends TreeTableBaseTs implements OnInit {
 	) {
     super(injuctor);
   }
-	@ViewChild('leftTree', { static: false }) tree: any;
+	
 	treeParamKey = 'treeKey';
 
-  ngOnInit(): void {
-		this.http.get<any>('assets/json/tree.json').subscribe((data) => {
-			let tem = [];;
-      data.forEach((t) => {
-				tem.push({
-					title: t.name,
-					key: t.id,
-					children: [],
-					id: t.id,
-					pid: t.pid,
-					expanded: t.id == "1",
-					//disabled: true
-				});
-			});
-			this.treeNodes = this.treeNodesFn(tem);
-    });
-	}
+  ngOnInit(): void {}
 
 	// 获取表格数据
 	tableDataFn(reset: boolean = false, advance: boolean = false, params?: Function) {
-		this.tableInit({
-			reset,
-			advance,
-			tableService: this.TableService,
-			tableData: 'tableData',
-			successFn(data){
-			}
-		});
+		this.tableParamsFn(advance)
 		console.log(this.tableParams);
 	}
 
 }
+
 ```

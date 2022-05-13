@@ -19,6 +19,7 @@
 	</td>
 </tbody>
 ```
+- 模糊/精确查询框提示语句：文案及提示顺序与表头字段保持一致
 - 单独的空格、前后的空格当作无效数据查询所有，两个字符中间的空格当作有效数据处理（BUG编号24724）
 
 **文件：**
@@ -76,28 +77,32 @@
 
 ```html
 <!-- 表格-上方操作区 封装组件（app-table-head） -->
-<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
+<app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()"
+	[advanceData]="advanceData" [colsData]="colsData">
 	<ng-container ngProjectAs="btns">
 		<!-- MenuService.routerMenuPoint.includes('create') 权限校验 -->
-		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')">新增</button>
-		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('delete')" [disabled]="!isAllChecked && !isIndeterminate">
-			删除
-		</button>
-		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('export')" (click)="export('checked', '列表数据')"
-			[disabled]="!isAllChecked && !isIndeterminate">导出</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')"
+			(click)="create('', tab)">新增</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('delete')" (click)="delete()"
+			[disabled]="!isAllChecked && !isIndeterminate">删除</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('import')"
+			(click)="import()">导入</button>
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('export')"
+			(click)="export('checked', '列表数据')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
 		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
 	</ng-container>
 </app-table-head>
-<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzFrontPagination="false" nzShowQuickJumper="true"
-	nzShowSizeChanger="true" [nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal"
-	[(nzPageIndex)]="tablePage" [(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()"
-	(nzPageSizeChange)="tableDataFn(true)" (nzCurrentPageDataChange)="refreshStatus()">
+<!-- 此处为前端假数据所以忽略nzFrontPagination="false" -->
+<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzShowQuickJumper="true" nzShowSizeChanger="true"
+	[nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal" [(nzPageIndex)]="tablePage"
+	[(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()" (nzPageSizeChange)="tableDataFn(true)"
+	(nzCurrentPageDataChange)="refreshStatus()">
 	<!-- 排序功能：(nzSortOrderChange)="sortFn($event, tableDataFn)" -->
 	<thead (nzSortOrderChange)="sortFn($event, tableDataFn)">
 		<tr>
-			<!-- th：勾选框、时间、ip等固定列宽加上对应class -->
+			<!-- th：子表格、勾选框、时间、ip等固定列宽加上对应class -->
 			<th class="checkbox" nzShowCheckbox [(nzChecked)]="isAllChecked" [nzIndeterminate]="isIndeterminate"
 				(nzCheckedChange)="checkAll($event)"></th>
 			<!-- 正常写法 -->
@@ -113,6 +118,7 @@
 					{{ item.title }}
 				</th>
 			</ng-container>
+			<th nzWidth="60px">{{ i18n.baseList.handle }}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -120,10 +126,16 @@
 			<td nzShowCheckbox [(nzChecked)]="checkedRows[item.id]" (nzCheckedChange)="checkbox(item)"></td>
 			<td [hidden]="!colsData[0].show">{{item.time}}</td>
 			<td [hidden]="!colsData[1].show">{{item.ip}}</td>
-			<td [hidden]="!colsData[2].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
-			<td [hidden]="!colsData[3].show">
-				<a nz-button nzType="link">修改</a>
-				<a nz-button nzType="link" [disabled]="true">查看结果</a>
+			<td [hidden]="!colsData[2].show">
+				<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth style="width: 100%;"
+					nzPlaceHolder='很长的placeHolder很长的placeHolder很长的placeHolder'>
+					<nz-option nzValue="true" nzLabel="select/select-tree必须配置nzDropdownMatchSelectWidth：默认最小宽度为选择器宽度，超出后自适应宽度">
+					</nz-option>
+				</nz-select>
+			</td>
+			<td [hidden]="!colsData[3].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
+			<td>
+				<a nz-button nzType="link" (click)="update(item, 'name', tab)">修改</a>
 			</td>
 		</tr>
 	</tbody>
@@ -135,40 +147,54 @@ import { TableBaseTs } from 'src/app/common/ts/base/table.base';
 import { TableService } from 'src/app/common/api/public/table/table.service';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.less']
+  selector: 'app-menu-list',
+  templateUrl: './menu-list.component.html',
+  styleUrls: ['./menu-list.component.less'],
 })
-// extends TableBaseTs必须
-export class TableComponent extends TableBaseTs implements OnInit {
+export class MenuListComponent extends TableBaseTs implements OnInit {
+  constructor(public injector: Injector, public TableService: TableService) {
+    super(injector);
+  }
 
-	constructor(
-		public injector: Injector,
-		public TableService: TableService
-	) {
-		super(injector);
-	}
-
-	// 举例
-	advanceData = [
-		{ 
-			key: "strategyName", 
-			type: "text", 
-			style: { class: 'width1' },
-			placeholder: "策略名称", 
-		},
-		{ 
-			key: "strategyStatus", 
-			type: "select",
-			placeholder: "策略状态", 
-			options: [
-				{ value: 'PROCESSING', label: '进行中' },
-				{ value: 'SUCCESS', label: '下发成功' },
-				{ value: 'FAILED', label: '下发失败' },
-				{ value: 'CANCELED', label: '已取消' },
-			]
-		},
-	];
+  // 举例
+  advanceData = [
+    {
+      key: 'key-text',
+      type: 'text',
+      style: { class: 'width1' },
+      placeholder: '文字框',
+    },
+    {
+      key: 'key-select',
+      type: 'select',
+      placeholder: '下拉框',
+      options: [
+        { value: '1', label: 'option1' },
+        { value: '2', label: 'option2' },
+        { value: '3', label: 'option3' },
+        { value: '4', label: 'option4' },
+      ],
+    },
+    {
+      key: 'key-tree',
+      type: 'tree',
+      placeholder: '下拉框-树',
+      nodes: [
+        {
+          title: 'parent 1',
+          key: '100',
+          children: [
+            {
+              title: 'parent 1-0',
+              key: '1001',
+              children: [{ title: 'leaf 1-0-0', key: '10010', isLeaf: true }],
+            },
+          ],
+        },
+      ],
+    },
+		...this.advanceDataDate
+  ];
 
   colsData = [
     {
@@ -184,35 +210,85 @@ export class TableComponent extends TableBaseTs implements OnInit {
       class: 'ip',
       show: true,
     },
+		{
+      title: '下拉框样式',
+      key: 'select',
+			width: '100px',
+      show: true,
+    },
     {
       title: '描述',
       key: 'describe',
       show: true,
-    },
-    {
-      title: '操作',
-      key: 'handle',
-      width: '120px',
-      show: true,
-    },
+    }
   ];
 
-	exportUrl = 'https://....';
+  exportUrl = 'https://....';
 
   ngOnInit(): void {
-		this.tableDataFn();
+    this.tableDataFn();
+  }
+	
+  // 获取表格数据
+  tableDataFn(reset: boolean = false, advance: boolean = false) {
+			//this.tableInit({
+			//	reset,
+			//	advance,
+			//	tableService: this.TableService,
+			//	tableData: 'tableData',
+			//	successFn(data){
+	
+			//	},
+			//	errorFn() {
+					setTimeout(() => {
+						this.tableTotal = 5;
+						this.tableSize = 3;
+						this.tableLoading = false;
+						this.tableData = new Array(this.tableTotal).fill(0).map((_, index) => {
+							return {
+								id: index,
+								init: 'init',
+								name: 'name' + index,
+								time: '2022-01-01 12:00:00',
+								ip: '255.255.255.255',
+								describe: `超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述超长描述`,
+							};
+						});
+					}, 1000);
+			//}
+			//});
   }
 
-	// 获取表格数据
-	tableDataFn(reset: boolean = false, advance: boolean = false) {
-		this.tableInit({
-			reset,
-			advance,
-			tableService: this.TableService,
-			tableData: 'tableData',
-			successFn(data){
-			}
-		});
-	}
+  import() {
+    this.tipModal.file({
+      importUrl: '',
+      tempUrl: 'aa',
+      close(compo) {
+        console.log('右上角关闭弹出框后操作');
+      },
+    });
+  }
+
+  delete() {
+    this.deleteInit('列表数据', {
+      columns: [
+        {
+          title: '名称',
+          key: 'name',
+        },
+        {
+          title: 'IP',
+          key: 'ip',
+        },
+      ],
+      doFn() {
+        console.log('删除函数');
+      },
+      resFn() {
+        console.log('执行完成后的回调函数');
+      },
+    });
+  }
 }
+
 ```

@@ -16,7 +16,7 @@ export class RenderPipe implements PipeTransform {
   transform(value: string, replace: Object = {}): any {
 		value = value.replace(/\$\{(.*?)\}/g, function(data){
 			let d = data.substring(2, data.length-1).split("||");
-			return replace[d[0]?.trim()] || d[1]?.trim() || data;
+			return replace[d[0]?.trim()] || d[1]?.trim() || "";
 		});
 		return value;
   }
