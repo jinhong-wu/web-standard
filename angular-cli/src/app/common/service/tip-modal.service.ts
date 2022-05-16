@@ -29,7 +29,7 @@ interface importOptions {
   bigSize?: number; // 大文件界限大小，单位：KB
   bigSingle?: number; // 大文件分片大小，单位：KB
   bigInitUrl?: string; // 大文件传输前初始化url
-  close?: Function; // 下载弹框关闭后操作
+  resFn?: Function; // 弹框关闭后的回调函数
 }
 
 @Injectable({
@@ -69,11 +69,11 @@ export class TipModalService extends BaseTs {
       nzContent: ImportFileComponent,
       nzWidth: 700,
       nzComponentParams: options,
-      // 该弹出框关闭函数调用nzOnCancel
-      nzOnCancel: (compo) => {
-        options?.close(compo);
+    });
+    this.tip.modalAfter(modal, {
+      close() {
+        options?.resFn();
       },
     });
-    this.tip.modalAfter(modal);
   }
 }

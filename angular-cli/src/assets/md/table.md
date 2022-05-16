@@ -83,10 +83,10 @@
 		<!-- MenuService.routerMenuPoint.includes('create') 权限校验 -->
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')"
 			(click)="create('', tab)">新增</button>
-		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('delete')" (click)="delete()"
+		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('delete')" (click)="deleteFn()"
 			[disabled]="!isAllChecked && !isIndeterminate">删除</button>
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('import')"
-			(click)="import()">导入</button>
+			(click)="importFn()">导入</button>
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('export')"
 			(click)="export('checked', '列表数据')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
@@ -259,18 +259,18 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
 			//});
   }
 
-  import() {
-    this.tipModal.file({
-      importUrl: '',
+	importFn() {
+		this.import({
+			importUrl: '',
       tempUrl: 'aa',
-      close(compo) {
-        console.log('右上角关闭弹出框后操作');
-      },
-    });
+      resFn() {
+				console.log('右上角关闭弹出框后操作');
+      }
+		})
   }
 
-  delete() {
-    this.deleteInit('列表数据', {
+  deleteFn() {
+    this.delete('列表数据', {
       columns: [
         {
           title: '名称',

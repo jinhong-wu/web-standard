@@ -12,7 +12,9 @@ interface advanceData {
   key: string; // 对应param参数
   type: string; // 输入框类型（文字输入框text、下拉框select）
   value?: string | number; // ngModel输入值
-  options?: advanceDataOptions[]; // type: 'select'时，必传
+  options?: Array<any>; // type: 'select'时，必传
+	nzValue?: string;  // type: 'select'时，对应的nzValue参数
+	nzLabel?: string;  // type: 'select'时，对应的nzLabel参数
   nodes?: []; // type: 'tree'时，必传
   placeholder?: string; // placeholder提示文字
   style?: {
@@ -21,10 +23,6 @@ interface advanceData {
     //（输入框宽度.width2 >.width-short，为了美观，width2数据建议放在最后）
     class?: string;
   };
-}
-interface advanceDataOptions {
-  label: string;
-  value: string;
 }
 
 interface colsData {

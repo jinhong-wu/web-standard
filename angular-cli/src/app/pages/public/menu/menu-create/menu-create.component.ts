@@ -22,18 +22,18 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
 			init: [null, [Validators.required]],
       describe: [null, [Validators.pattern(this.validator.DESCRIPTION)]],
     });
-    this.reset(false);
+    this.resetFn(false);
   }
 
   test() {
-    this.saveInit(() => {
+    this.save(() => {
       // 拨测代码
       console.log('拨测');
     });
   }
 
-  save() {
-    this.saveInit(() => {
+  saveFn() {
+    this.save(() => {
       this.formInit();
       setTimeout(() => {
         this.formLoading = false;
@@ -43,8 +43,8 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
     });
   }
 
-  reset(confirm?) {
-    this.resetInit(() => {
+  resetFn(confirm?) {
+    this.reset(() => {
       this.form.patchValue({
         ip: this.tab?.data?.ip || null,
 				init: this.tab?.data?.init || 'nothing',

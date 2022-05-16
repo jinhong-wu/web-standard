@@ -56,7 +56,7 @@
 					<span [nz-tooltip]="'select-树-多选'">select-树-多选</span>
 				</nz-form-label>
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
-					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth nzMultiple
+					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth nzCheckable
 						[nzNodes]="nodes" nzPlaceHolder="select-树-多选" formControlName="treeMultiple">
 					</nz-tree-select>
 				</nz-form-control>
@@ -121,7 +121,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   }
 
   @ViewChild('selectModal', { static: false }) selectModal;
-	@ViewChild('selectModalMultiple', { static: false }) selectModalMultiple;
+  @ViewChild('selectModalMultiple', { static: false }) selectModalMultiple;
 
   nodes = [
     {
@@ -131,7 +131,10 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         {
           title: 'parent 1-0',
           key: '1-0',
-          children: [{ title: 'leaf 1-0-0', key: '1-0-0', isLeaf: true }],
+          children: [
+						{ title: 'leaf 1-0-0', key: '1-0-0', isLeaf: true },
+						{ title: 'leaf 1-0-1', key: '1-0-1', isLeaf: true }
+					],
         },
         {
           title: 'parent 1-1',
@@ -146,12 +149,12 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       select: 'a10',
       multiple: ['a10', 'c12'],
       tree: '1-0',
-      treeMultiple: ['1-0', '1-1'],
-      tags: ['a10', 'c12'],
+      treeMultiple: ['1-0-1', '1-1-0'],
+      input: ['a10', 'c12'],
       modal: [
         { id: '2', name: 'name2' },
       ],
-			modalMultiple: [
+      modalMultiple: [
         { id: '2', name: 'name2' },
         { id: '3', name: 'name3' },
       ],
@@ -164,18 +167,18 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       multiple: [null, [Validators.required]],
       tree: [null, [Validators.required]],
       treeMultiple: [null, [Validators.required]],
-      tags: [{ value: null, disabled: false }, [Validators.required]],
+      input: [{ value: null, disabled: false }, [Validators.required]],
       modal: [null, [Validators.required]],
-			modalMultiple: [null, [Validators.required]],
+      modalMultiple: [null, [Validators.required]],
     });
-    this.reset(false);
+    this.resetFn(false);
   }
 
-  save() {
-    this.saveInit(() => {
+  saveFn() {
+    this.save(() => {
       this.formInit();
       this.formParams.modal = this.formParams.modal.map((item) => item.id);
-			this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
+      this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
       setTimeout(() => {
         this.formLoading = false;
         this.tip.successNotify('create');
@@ -184,16 +187,16 @@ export class SelectComponent extends FormBaseTs implements OnInit {
     });
   }
 
-  reset(confirm?) {
-    this.resetInit(() => {
+  resetFn(confirm?) {
+    this.reset(() => {
       this.form.patchValue({
         select: this.tab?.data?.select,
         multiple: this.tab?.data?.multiple,
         tree: this.tab?.data?.tree,
         treeMultiple: this.tab?.data?.treeMultiple,
-        tags: this.tab?.data?.tags,
+        input: this.tab?.data?.input,
         modal: this.tab?.data?.modal,
-				modalMultiple: this.tab?.data?.modalMultiple,
+        modalMultiple: this.tab?.data?.modalMultiple,
       });
     }, confirm);
   }
@@ -204,13 +207,13 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       nzContent: SelectOpenComponent,
       nzWidth: 1000,
       nzComponentParams: {
-				multiple: false,
+        multiple: false,
         checkedRows: this.selectModal.selectRows,
       },
     });
   }
 
-	openChangeMultiple() {
+  openChangeMultiple() {
     this.selectModalMultiple.openModal({
       nzTitle: 'select-表格弹出框-多选',
       nzContent: SelectOpenComponent,
@@ -252,8 +255,8 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 	```typescript
 	@ViewChild('selectModal', { static: false }) selectModal;
 
-	save() {
-		this.saveInit(() => {
+	saveFn() {
+		this.save(() => {
 			this.formInit();
 			this.formParams.modal = this.formParams.modal.map((item) => item.value);
 			// 其他操作

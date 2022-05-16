@@ -73,8 +73,8 @@
 	</div>
 	<div class="form-footer">
 		<button nz-button nzType="primary" (click)="test()">拨测</button>
-		<button nz-button nzType="primary" (click)="save()">保存</button>
-		<button nz-button nzType="default" (click)="reset()">重置</button>
+		<button nz-button nzType="primary" (click)="saveFn()">保存</button>
+		<button nz-button nzType="default" (click)="resetFn()">重置</button>
 		<button nz-button nzType="default" (click)="cancel()">取消</button>
 	</div>
 </nz-spin>
@@ -109,18 +109,18 @@ export class FormComponent extends FormBaseTs implements OnInit {
 			init: [null, [Validators.required]],
 			describe: [null, [Validators.required]],
 		});
-		this.reset(false);
+		this.resetFn(false);
 	}
 
 	test() {
-		this.saveInit(() => {
+		this.save(() => {
 			// 拨测代码
 			console.log('拨测');
 		});
 	}
 
-	save() {
-		this.saveInit(() => {
+	saveFn() {
+		this.save(() => {
 			this.formInit();
 			setTimeout(() => {
 				this.formLoading = false;
@@ -130,8 +130,8 @@ export class FormComponent extends FormBaseTs implements OnInit {
 		});
 	}
 
-	reset(confirm?) {
-		this.resetInit(() => {
+	resetFn(confirm?) {
+		this.reset(() => {
 			this.form.patchValue({
 				ip: this.tab?.data?.ip || null,
 				init: this.tab?.data?.init || 'nothing',

@@ -18,16 +18,23 @@ export class TreeTableBaseTs extends TableBaseTs {
 		this.nzContextMenuService = this.injector.get(NzContextMenuService);
   }
 
-	@ViewChild('leftTree', { static: false }) tree: any;
-
+	@ViewChild('leftTree', { static: false }) leftTree: any;
+	treeNodes: any = [];
+	treeNodes0: any = {};
 	treeSearch = '';
 	clickNode: any = {};  // 左键点击node
 	selectNode: any = {};  // 右键选择node
 
+	treeNodesFn(node) {
+		let { treeNodes, treeNodes0 } = this.TreeNodesService.copyNodes(node);
+		this.treeNodes = treeNodes;
+		this.treeNodes0 = treeNodes0;
+	}
+	
 	// 默认展开根节点
-	searchChange(tree) {
-		if (this.treeSearch == '' && this.TreeNodesService[tree].length) {
-			this.tree.getTreeNodeByKey(this.TreeNodesService[tree+0].key).isExpanded = true;
+	searchChange() {
+		if (this.treeSearch == '' && this.treeNodes.length) {
+			this.leftTree.getTreeNodeByKey(this.treeNodes0.key).isExpanded = true;
 		}
 	}
 

@@ -49,8 +49,9 @@ export class TableBaseTs extends BaseTs {
   isIndeterminate: Boolean = false;
 	// 子表格功能
 	expandRows: { [key: string]: any } = {};
-  // 导出url
-  exportUrl = '';
+  // 导出
+	exportKey = 'ids';  // 对应参数
+  exportUrl = '';  // url
 	// 可配置列
 	colsData: any = [];
   // 精确查询
@@ -121,7 +122,7 @@ export class TableBaseTs extends BaseTs {
       }
     }
     // 左树有表格
-    if (this.treeParamKey) {
+    if (this.treeParamKey && this.clickNode?.key) {
       this.tableParams[this.treeParamKey] = this.clickNode.key;
     }
 		fn?.call(this);
@@ -195,7 +196,7 @@ export class TableBaseTs extends BaseTs {
     });
   }
   // 按钮区：删除
-  deleteInit(confirmInfo, options) {
+  delete(confirmInfo, options) {
     let _this = this,
 			confirm = new RenderPipe().transform(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
     this.tip.confirm(confirm, () => {
@@ -239,15 +240,27 @@ export class TableBaseTs extends BaseTs {
     });
   }
 
+	// 按钮区：导入
+	import(options) {
+    let _this = this;
+		this.tipModal.file({
+      importUrl: options.importUrl,
+      tempUrl: options.tempUrl,
+      resFn() {
+				options.resFn?.call(_this);
+      },
+    });
+  }
+
   // 按钮区：导出
-  export(type: 'search' | 'checked' = 'search', confirmInfo = '') {
+  export(type: 'search' | 'checked' = 'search', confirmInfo = '', options: any = {}) {
     let confirm = '',
       url = this.exportUrl,
       isParams = true,
       params = null;
     if (type == 'search') {
       confirm = this.i18n.baseList.exportSearchConfirm;
-      isParams = this.tableParamsFn(true);
+      isParams = this.tableParamsFn(true, options.paramsFn);
       params = this.HttpUtilTs.getHttpParam(this.tableParams);
     } else {
       confirm = new RenderPipe().transform(this.i18n.baseList.exportConfirm, { name: confirmInfo});
@@ -256,7 +269,7 @@ export class TableBaseTs extends BaseTs {
         this.tip.msg('warning', this.i18n.baseList.checkTip);
         isParams = false;
       }
-      url += this.HttpUtilTs.getString({ ids: this.checkedIds });
+      url += this.HttpUtilTs.getString({ [this.exportKey]: this.checkedIds });
     }
     if (isParams) {
       this.tip.confirm(confirm, () => {

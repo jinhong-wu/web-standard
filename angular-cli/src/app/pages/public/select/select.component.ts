@@ -24,7 +24,10 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         {
           title: 'parent 1-0',
           key: '1-0',
-          children: [{ title: 'leaf 1-0-0', key: '1-0-0', isLeaf: true }],
+          children: [
+						{ title: 'leaf 1-0-0', key: '1-0-0', isLeaf: true },
+						{ title: 'leaf 1-0-1', key: '1-0-1', isLeaf: true }
+					],
         },
         {
           title: 'parent 1-1',
@@ -39,7 +42,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       select: 'a10',
       multiple: ['a10', 'c12'],
       tree: '1-0',
-      treeMultiple: ['1-0', '1-1'],
+      treeMultiple: ['1-0-1', '1-1-0'],
       input: ['a10', 'c12'],
       modal: [
         { id: '2', name: 'name2' },
@@ -61,11 +64,11 @@ export class SelectComponent extends FormBaseTs implements OnInit {
       modal: [null, [Validators.required]],
       modalMultiple: [null, [Validators.required]],
     });
-    this.reset(false);
+    this.resetFn(false);
   }
 
-  save() {
-    this.saveInit(() => {
+  saveFn() {
+    this.save(() => {
       this.formInit();
       this.formParams.modal = this.formParams.modal.map((item) => item.id);
       this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
@@ -77,8 +80,8 @@ export class SelectComponent extends FormBaseTs implements OnInit {
     });
   }
 
-  reset(confirm?) {
-    this.resetInit(() => {
+  resetFn(confirm?) {
+    this.reset(() => {
       this.form.patchValue({
         select: this.tab?.data?.select,
         multiple: this.tab?.data?.multiple,

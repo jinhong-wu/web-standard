@@ -13,8 +13,9 @@
 - checkAll()：勾选框-全选、取消全选
 - checkedIdsFn()：勾选框-获取选中行id、行data
 - create()：新增功能
-- deleteInit()：删除前confirm提示
+- delete()：删除前confirm提示
 - update()：修改功能
+- import()：导入功能
 - export()：导出功能
 
 ## 表单
@@ -23,8 +24,8 @@
 **使用-方法：**
 - formInit()：状态初始化
 - formValuesFn()：获取表单所有value
-- saveInit()：保存前校验
-- resetInit()：重置前confirm提示
+- save()：保存前校验
+- reset()：重置前confirm提示
 - cancel()：取消
 
 ## 左树右表格

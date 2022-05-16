@@ -36,7 +36,7 @@ export class FormBaseTs extends BaseTs {
   }
 
   // 保存
-  saveInit(okFn: Function) {
+  save(okFn: Function) {
     // 更新验证规则，统一写在前面（valid更改时会出现验证规则更新不及时的bug）
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
@@ -48,7 +48,7 @@ export class FormBaseTs extends BaseTs {
   }
 
   // 重置时confirm提示
-  resetInit(okFn: Function, confirm = true) {
+  reset(okFn: Function, confirm = true) {
     if (confirm) {
       this.tip.confirm(this.i18n.baseList.resetConfirm, okFn);
     } else {

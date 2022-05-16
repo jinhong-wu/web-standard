@@ -49,8 +49,8 @@
 <!-- 左侧树必须命名为：#leftTree -->
 <app-tree-table [(searchValue)]="treeSearch">
 	<ng-container ngProjectAs="tree">
-		<nz-tree #leftTree nzHideUnMatched [nzData]="TreeNodesService.testNodes" [nzSearchValue]="treeSearch"
-			(nzSearchValueChange)="searchChange('testNodes')" (nzClick)="clickNodeFn($event, tableDataFn)"
+		<nz-tree #leftTree nzHideUnMatched [nzData]="treeNodes" [nzSearchValue]="treeSearch"
+			(nzSearchValueChange)="searchChange()" (nzClick)="clickNodeFn($event, tableDataFn)"
 			(nzContextMenu)="contextMenu($event, treeMenu)" [nzTreeTemplate]="treeTemp">
 		</nz-tree>
 		<ng-template #treeTemp let-node>
@@ -92,7 +92,9 @@ export class TreeComponent extends TreeTableBaseTs implements OnInit {
 	
 	treeParamKey = 'treeKey';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+		this.treeNodesFn('testNodes');
+	}
 
 	// 获取表格数据
 	tableDataFn(reset: boolean = false, advance: boolean = false, params?: Function) {

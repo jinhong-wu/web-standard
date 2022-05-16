@@ -1,8 +1,8 @@
 <h1>示例</h1>
 <app-tree-table [(searchValue)]="treeSearch">
 	<ng-container ngProjectAs="tree">
-		<nz-tree #leftTree nzHideUnMatched [nzData]="TreeNodesService.testNodes" [nzSearchValue]="treeSearch"
-			(nzSearchValueChange)="searchChange('testNodes')" (nzClick)="clickNodeFn($event, tableDataFn)"
+		<nz-tree #leftTree nzHideUnMatched [nzData]="treeNodes" [nzSearchValue]="treeSearch"
+			(nzSearchValueChange)="searchChange()" (nzClick)="clickNodeFn($event, tableDataFn)"
 			(nzContextMenu)="contextMenu($event, treeMenu)" [nzTreeTemplate]="treeTemp">
 		</nz-tree>
 		<ng-template #treeTemp let-node>

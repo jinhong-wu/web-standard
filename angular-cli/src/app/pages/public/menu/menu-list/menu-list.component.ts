@@ -115,18 +115,18 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
 			//});
   }
 
-  import() {
-    this.tipModal.file({
-      importUrl: '',
+	importFn() {
+		this.import({
+			importUrl: '',
       tempUrl: 'aa',
-      close(compo) {
-        console.log('右上角关闭弹出框后操作');
-      },
-    });
+      resFn() {
+				console.log('右上角关闭弹出框后操作');
+      }
+		})
   }
 
-  delete() {
-    this.deleteInit('列表数据', {
+  deleteFn() {
+    this.delete('列表数据', {
       columns: [
         {
           title: '名称',

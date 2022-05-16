@@ -15,10 +15,17 @@ export class TreeNodesService {
 		this.testNodesFn();
 	}
 
+	// 复制（为了不影响原树数据）
+	copyNodes(node) {
+		return {
+			treeNodes: JSON.parse(JSON.stringify(this[node])),
+			treeNodes0: JSON.parse(JSON.stringify(this[node+0]))
+		};
+	}
+	
 	testNodes: any = [];
 	testNodes0: any = {};
-	
-	testNodesFn() {
+	testNodesFn(fn?: Function) {
 		this.ApiService.getTestTree().subscribe((res) => {
 			let nodes = [];
       res.forEach((t) => {
@@ -30,11 +37,12 @@ export class TreeNodesService {
 					pid: t.pid,
 				});
 			});
-			this.testNodes = this.treeNodesFn(nodes);
+			this.testNodes = this.treeNodesDeal(nodes);
 			if (this.testNodes[0]) {
 				this.testNodes[0].expanded = true;
 				this.testNodes0 = this.testNodes[0];
 			};
+			fn?.();
     });
 	}
 
@@ -45,7 +53,7 @@ export class TreeNodesService {
 	// 数据标签
 
 	// 数据处理-pid格式
-	treeNodesFn(data: Array<any> = []) {
+	treeNodesDeal(data: Array<any> = []) {
 		let result = [],
 			map = {},
 			pidMap = {};
@@ -71,7 +79,7 @@ export class TreeNodesService {
 	}
 
 	// 数据处理-childList格式
-	treeNodesFnObject(data: Array<any> = []) {
+	treeNodesDealObject(data: Array<any> = []) {
 		data.forEach((item) => {
 			if (item.id) {
 				item['key'] = item.id;
@@ -83,7 +91,7 @@ export class TreeNodesService {
 				item['children'] = item.childList;
 				item['isLeaf'] = item.childList.length > 0 ? false : true;
 				item.childList.forEach((child) => {
-					this.treeNodesFnObject([child]);
+					this.treeNodesDealObject([child]);
 				});
 			} else {
 				item['isLeaf'] = true;
@@ -94,15 +102,14 @@ export class TreeNodesService {
 
 	// 数据处理-非叶子节点禁用复选框
 	disableCheckbox(data: Array<any> = []) {
-		// 为了不影响原树数据：data = JSON.parse(JSON.stringify(this.TreeNodesService.xxx));
 		data.forEach((item) => {
 			if (item.hasOwnProperty("children")) {
-				item.disableCheckbox = true;
-				this.disableCheckbox(item.children);
-			} else {
-				item.disableCheckbox = false;
-			}
+        item.disableCheckbox = true;
+        this.disableCheckbox(item.children);
+      } else {
+        item.disableCheckbox = false;
+      }
 		});
-	}
+  }
 
 }	

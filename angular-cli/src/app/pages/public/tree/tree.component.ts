@@ -17,7 +17,11 @@ export class TreeComponent extends TreeTableBaseTs implements OnInit {
 	
 	treeParamKey = 'treeKey';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+		setTimeout(()=>{
+			this.treeNodesFn('testNodes');
+		},1000)
+	}
 
 	// 获取表格数据
 	tableDataFn(reset: boolean = false, advance: boolean = false, params?: Function) {
