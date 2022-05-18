@@ -22,6 +22,7 @@ interface Column {
 }
 
 interface importOptions {
+	title?: string; 
   importUrl: string; // 上传/导入路径，必传
   tempUrl?: string; // 下载模板地址
   accept?: string; // 接受数据类型
@@ -44,7 +45,7 @@ export class TipModalService extends BaseTs {
   delete(options: modalBatchOptions) {
     const modal = this.nzModal.create({
       ...this.tip.modal(),
-      nzTitle: this.i18n.baseList.batch + options.nzTitle,
+      nzTitle: this.i18n.baseList.batch + this.i18n.baseList.delete,
       nzContent: BatchDeleteComponent,
       nzWidth: 800,
       nzComponentParams: {
@@ -56,7 +57,7 @@ export class TipModalService extends BaseTs {
     this.tip.modalAfter(modal, {
       close() {
         let comp = modal.getContentComponent();
-        options.resFn(comp.tableSuccessData);
+        options?.resFn(comp.tableSuccessData);
       },
     });
   }
@@ -65,14 +66,15 @@ export class TipModalService extends BaseTs {
   file(options: importOptions) {
     const modal = this.nzModal.create({
       ...this.tip.modal(),
-      nzTitle: this.i18n.baseList.import,
+      nzTitle: options.title || this.i18n.baseList.import,
       nzContent: ImportFileComponent,
       nzWidth: 700,
       nzComponentParams: options,
     });
     this.tip.modalAfter(modal, {
       close() {
-        options?.resFn();
+				let comp = modal.getContentComponent();
+        options?.resFn(comp);
       },
     });
   }

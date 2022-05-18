@@ -65,18 +65,21 @@ export class MenuComponent extends TableBaseTs implements OnInit {
     super(injuctor);
   }
 	
-  @ViewChild('overview', { static: false }) overview;
+	@ViewChild('overview', { static: false }) overview;
   @ViewChild('list', { static: false }) list;
 
   ngOnInit() {
-    this.MenuService.initTab(); // 菜单页面必须调用此方法，生成菜单数据
+    this.MenuService.initTab(null, ()=>{
+			this.MenuService.selectTab(this.overview);
+		}); // 菜单页面必须调用此方法，生成菜单数据
   }
 
   // 刷新表格数据
-  tableDataFn(reset) {
-    this.list.tableDataFn(reset);
+  tableDataFn(refresh) {
+    if (refresh) this.list.tableDataFn(refresh);
   }
 }
+
 ```
 
 # 概览

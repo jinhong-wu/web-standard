@@ -26,7 +26,7 @@ import { mergeMap } from 'rxjs/operators';
     this.TipModalService.file({
       importUrl: '',
       tempUrl: '',
-      close(compo) {
+      resFn(compo) {
         // 右上角关闭弹出框后操作
       }
     });
@@ -109,6 +109,7 @@ export class ImportFileComponent extends BaseTs implements OnInit {
         break;
       case 'success':
         this.uploadLoading = false;
+				this.uploadResult = file.response.message;
         break;
       case 'done':
         this.uploadLoading = false;

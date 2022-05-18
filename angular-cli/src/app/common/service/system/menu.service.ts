@@ -32,7 +32,7 @@ export class MenuService {
   initMenu() {
     this.menuLoading = true;
     this.http.get<any>('assets/json/menu.json').subscribe((data) => {
-			(data.data || []).forEach((d) => {
+      (data.data || []).forEach((d) => {
         this.menuObject[d.node.path] = d;
         // 一级导航：有首页跳转首页，没首页跳转第一个子菜单
         if (d.node?.functionPointLanguage?.includes("home")) {
@@ -130,14 +130,22 @@ export class MenuService {
 
   // 菜单（nz-tab ）
   tabs: any = [];
-  selectIndex = 0; // 当前页
+  selectIndex: number; // 当前页
 
   // 菜单初始化
-  initTab(fn?: Function) {
+  initTab(fn?: Function | null, selectTabFn?: Function) {
     this.promise(() => {
       this.tabs = (this.routerMenu.child || []).map((d) => d.node);
-      this.selectIndex = 0;
-      fn?.();
+			// selectIndex上一页为0，上一页也为0时不会自动触发selectTab()
+			if (this.selectIndex == 0) {
+				setTimeout(()=>{
+					// tab包含概览页时，因overviewEle无法及时获取值故selectTabFn手动调用
+					selectTabFn ? selectTabFn() : this.selectTab();
+				});
+			} else {
+				this.selectIndex = 0;
+			};
+			fn?.();
     });
   }
 
@@ -148,10 +156,10 @@ export class MenuService {
    */
   selectTab(overviewEle?, fn?: Function) {
     this.routerMenuFn(this.tabs[this.selectIndex]?.path || '');
-    if (overviewEle && this.routerMenu?.node?.id.includes('overview')) {
-      overviewEle?.getOverview();
-    }
-    fn?.();
+		if (overviewEle && this.routerMenu?.node?.id.includes('overview')) {
+			overviewEle?.getOverview();
+		}
+		fn?.();
   }
 
   /**

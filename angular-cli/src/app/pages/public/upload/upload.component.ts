@@ -14,7 +14,7 @@ export class UploadComponent implements OnInit {
     //  this.TipModalService.file({
     //    importUrl: '',
     //    tempUrl: 'aa',
-    //    close(compo) {
+    //    resFn(compo) {
     //      // 右上角关闭弹出框后操作
     //    },
     //  });

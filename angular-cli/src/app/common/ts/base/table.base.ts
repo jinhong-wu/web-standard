@@ -29,6 +29,7 @@ export class TableBaseTs extends BaseTs {
   @Input() treeParamKey: string = '';  // 左树右表格-树params对应的key
   @Input() clickNode: any = {};  // 左树右表格-左键点击node
 
+	tableName: string = ""; // 是否删除所选tableName
   tableData: any = [];
   tableLoading: boolean = false;
   tableTotal: number = 0;
@@ -191,14 +192,14 @@ export class TableBaseTs extends BaseTs {
     this.MenuService.createTab({
       type: 'create',
       pid: this.tab.id,
-      name: this.i18n.baseList.create + (this.tab?.name || ''),
+      name: this.i18n.baseList.create + this.tableName,
       data: data  // 可带码表之类的数据，避免重复请求
     });
   }
   // 按钮区：删除
   delete(confirmInfo, options) {
     let _this = this,
-			confirm = new RenderPipe().transform(this.i18n.baseList.deleteConfirm, { name: confirmInfo});
+			confirm = new RenderPipe().transform(this.i18n.baseList.deleteConfirm, { name: confirmInfo || this.tableName });
     this.tip.confirm(confirm, () => {
       this.checkedIdsFn();
       if (this.checkedData.length == 0) {
@@ -206,7 +207,6 @@ export class TableBaseTs extends BaseTs {
         return false;
       }
       this.tipModal.delete({
-        nzTitle: this.i18n.baseList.delete,
         checkedData: this.checkedData,
         columns: options.columns,
         doFn(data) {
@@ -263,7 +263,7 @@ export class TableBaseTs extends BaseTs {
       isParams = this.tableParamsFn(true, options.paramsFn);
       params = this.HttpUtilTs.getHttpParam(this.tableParams);
     } else {
-      confirm = new RenderPipe().transform(this.i18n.baseList.exportConfirm, { name: confirmInfo});
+      confirm = new RenderPipe().transform(this.i18n.baseList.exportConfirm, { name: confirmInfo || this.tableName });
       this.checkedIdsFn();
       if (this.checkedIds.length == 0) {
         this.tip.msg('warning', this.i18n.baseList.checkTip);

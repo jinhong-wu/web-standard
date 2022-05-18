@@ -9,7 +9,6 @@ import {
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
-import { HttpUtilTs } from '../ts/util/http.util';
 import { Router } from '@angular/router';
 import { TipService } from '../service/tip.service';
 import { I18nService } from '../service/system/i18n.service';
@@ -53,23 +52,13 @@ export class Interceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // 统一加上服务端前缀，前缀配置在environments文件夹下的文件内
     let url = request.url;
-    if (
-      !url.startsWith('https://') &&
-      !url.startsWith('http://') &&
-      !url.startsWith('assets')
-    ) {
-      //url = environment.SERVER_URL + url;
+		if(!/assets/.test(url)){
+      if (!url.startsWith('https://') && !url.startsWith('http://')) {
+        //url = environment.SERVER_URL + url; // 接口路径
+      }
     }
-
-    // 去除body-params无效值
-    let body = request.body;
-    if (body) {
-      body = HttpUtilTs.paramsFn(body);
-    }
-
     let newReq = request.clone({
       url: url,
-      body: body,
       withCredentials: false,
     });
 

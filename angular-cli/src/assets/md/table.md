@@ -88,7 +88,7 @@
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('import')"
 			(click)="importFn()">导入</button>
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('export')"
-			(click)="export('checked', '列表数据')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
+			(click)="export('checked')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
 		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
@@ -270,7 +270,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
   }
 
   deleteFn() {
-    this.delete('列表数据', {
+    this.delete('', {
       columns: [
         {
           title: '名称',

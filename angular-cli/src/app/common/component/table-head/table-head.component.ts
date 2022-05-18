@@ -1,10 +1,11 @@
 import {
   Component,
-  OnInit,
   Injector,
   Output,
   Input,
   EventEmitter,
+	OnChanges,
+	SimpleChanges,
 } from '@angular/core';
 import { BaseTs } from '../../ts/base/base';
 
@@ -62,7 +63,7 @@ interface colsData {
     </ng-container>
   </app-table-head>
 */
-export class TableHeadComponent extends BaseTs implements OnInit {
+export class TableHeadComponent extends BaseTs implements OnChanges {
   constructor(public injector: Injector) {
     super(injector);
   }
@@ -84,12 +85,12 @@ export class TableHeadComponent extends BaseTs implements OnInit {
   isAllChecked: boolean = false;
   isIndeterminate: boolean = false;
 
-  ngOnInit() {
-    if (this.colsData.length > 0) {
-      this.colsDataCopy = JSON.parse(JSON.stringify(this.colsData));
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes.colsData?.currentValue) {
+			this.colsDataCopy = JSON.parse(JSON.stringify(changes.colsData.currentValue));
       this.colRefresh();
-    }
-  }
+		}
+	}
 
   // 查询
   searchFn(advance: boolean = false) {

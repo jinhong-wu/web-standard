@@ -13,6 +13,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
   }
 
   // 举例
+	tableName: string = "测试数据";
   advanceData = [
     {
       key: 'key-text',
@@ -78,7 +79,6 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
       show: true,
     }
   ];
-
   exportUrl = 'https://....';
 
   ngOnInit(): void {
@@ -126,7 +126,7 @@ export class MenuListComponent extends TableBaseTs implements OnInit {
   }
 
   deleteFn() {
-    this.delete('列表数据', {
+    this.delete('', {
       columns: [
         {
           title: '名称',
