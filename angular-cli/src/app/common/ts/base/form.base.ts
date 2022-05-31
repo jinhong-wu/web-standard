@@ -10,7 +10,7 @@ export class FormBaseTs extends BaseTs {
   public fb: FormBuilder;
   constructor(public injector: Injector) {
     super(injector);
-    this.fb = this.injector.get(FormBuilder);
+		this.fb = injector.get(FormBuilder);
   }
 
   @Input() tab?: any = {};

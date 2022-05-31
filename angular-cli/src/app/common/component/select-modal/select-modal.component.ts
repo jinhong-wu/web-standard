@@ -94,6 +94,7 @@ export class SelectModalComponent
 						_this.selectValue = res?.value?.[0] || '';
 					};
           _this.onChanged(_this.selectOption);
+					option.close?.(_this);
         }
       },
     });

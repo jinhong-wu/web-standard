@@ -14,7 +14,9 @@
 <tbody>
 	<td>
 		<!-- 按钮使用：<a nz-button nzType="link"></a> -->
-		<a nz-button nzType="link" (click)="update(item, 'name', tab)">修改</a>
+		<a nz-button nzType="link"  *ngIf="MenuService.routerMenuPoint.includes('update')" (click)="update(item, 'name', tab)">
+			修改
+		</a>
 		<a nz-button nzType="link" [disabled]="true">其他操作</a>
 	</td>
 </tbody>
@@ -38,7 +40,7 @@
 - placeholder: 右侧查询区-输入框placeholder，默认'输入关键字进行查询'
 - advanceData：精确查询数据，参考interface advanceData
 - colsData：可配置列数据，参考interface colsData
-- exportShow：精确查询-导出，默认true显示
+- exportShow：精确查询-导出，默认false隐藏
 - export：精确查询-导出方法（exportShow = true时必传，false时可不传）
 	```html
 	<!-- #tableHead 必须取此名 -->
@@ -135,7 +137,9 @@
 			</td>
 			<td [hidden]="!colsData[3].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
 			<td>
-				<a nz-button nzType="link" (click)="update(item, 'name', tab)">修改</a>
+				<a nz-button nzType="link"  *ngIf="MenuService.routerMenuPoint.includes('update')" (click)="update(item, 'name', tab)">
+					修改
+				</a>
 			</td>
 		</tr>
 	</tbody>

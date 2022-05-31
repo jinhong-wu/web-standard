@@ -1,6 +1,6 @@
 <div class="tree-table">
 	<!-- 左侧树 -->
-	<div class="left-tree" nz-resizable [style.width.px]="width" (nzResize)="onResize($event)">
+	<div class="left-tree" nz-resizable [style.width.px]="width" (nzResize)="onResize($event)" [ngStyle]="treeStyle">
 		<ng-container *ngIf="searchShow">
 			<nz-input-group [nzSuffix]="searchIcon">
 				<input nz-input type="text" [(ngModel)]="searchValue" (ngModelChange)="modelChange()"

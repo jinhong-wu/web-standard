@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+
 // ng-zorro-antd
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -40,6 +41,8 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
   imports: [],
   exports: [
     CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
 		TranslateModule,
     // ng-zorro-antd（8.x+没有NgZorroAntdModule，只能手动导入各个模块）
     NzPipesModule,
@@ -48,7 +51,6 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
     NzMenuModule,
     NzTabsModule,
     NzBreadCrumbModule,
-    FormsModule,
     NzDropDownModule,
     NzIconModule,
     NzButtonModule,
@@ -66,14 +68,13 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
     NzMessageModule,
     NzUploadModule,
     NzFormModule,
-    ReactiveFormsModule,
     NzSwitchModule,
     NzRadioModule,
     NzEmptyModule,
     NzProgressModule,
     NzDatePickerModule,
     NzTreeSelectModule,
-		NzResizableModule
+		NzResizableModule,
   ],
   // tip的位置，持续时间，最大数量
   providers: [NzMessageService],

@@ -26,9 +26,11 @@ export class TreeTableBaseTs extends TableBaseTs {
 	selectNode: any = {};  // 右键选择node
 
 	treeNodesFn(node) {
-		let { treeNodes, treeNodes0 } = this.TreeNodesService.copyNodes(node);
-		this.treeNodes = treeNodes;
-		this.treeNodes0 = treeNodes0;
+		this.TreeNodesService.promise(node, ()=>{
+			let { treeNodes, treeNodes0 } = this.TreeNodesService.copyNodes(node);
+			this.treeNodes = treeNodes;
+			this.treeNodes0 = treeNodes0;
+		});
 	}
 	
 	// 默认展开根节点

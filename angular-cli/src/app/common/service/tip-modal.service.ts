@@ -27,7 +27,7 @@ interface importOptions {
   tempUrl?: string; // 下载模板地址
   accept?: string; // 接受数据类型
   size?: number; // 接受数据大小，单位：KB
-  bigSize?: number; // 大文件界限大小，单位：KB
+  isBigFile?: boolean; // 是否为大文件上传
   bigSingle?: number; // 大文件分片大小，单位：KB
   bigInitUrl?: string; // 大文件传输前初始化url
   resFn?: Function; // 弹框关闭后的回调函数

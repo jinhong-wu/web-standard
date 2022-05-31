@@ -110,7 +110,7 @@ export class TableBaseTs extends BaseTs {
         if (typeof d.value === 'string') d.value = d.value?.trim();
         this.tableParams[d.key] = d.value;
       });
-    } else {
+    } else if (this.tableHead?.fuzzyQuery) {
       this.tableParams.fuzzyQuery = this.tableHead?.fuzzyQuery?.trim();
     }
     // 结束时间须在开始时间之后
@@ -132,7 +132,7 @@ export class TableBaseTs extends BaseTs {
 
   // 排序功能
   sortFn(sort, fn: Function) {
-    this.orderBy = sort.key + ' ' + sort.value;
+    this.orderBy = sort.key + ' ' + (sort.value == "ascend" ? "asc" : "desc");
     fn.call(this);
   }
 
@@ -224,7 +224,8 @@ export class TableBaseTs extends BaseTs {
             this.tablePage = 1;
           }
           this.checkedRows = {};
-					options.resFn?.call(_this);
+					// 请求表格数据，且reset = false, advance = false, params = false
+					options.resFn?.call(_this, false, false, false);
         },
       });
     });

@@ -13,6 +13,7 @@ import { I18nService } from '../../service/system/i18n.service';
  * @param searchValue 查询值（searchShow = true时必传，false时可不传）
  * @param width 树宽度，默认300px
  * @param resizable 是否可拖动，默认true（200px<width<50%）
+ * @param treeStyle 左树css样式
  * @example
 	<app-tree-table [(searchValue)]="treeSearch" searchShow resizable>
 		<ng-container ngProjectAs="tree">
@@ -31,6 +32,7 @@ export class TreeTableComponent implements OnInit {
 	@Output() searchValueChange = new EventEmitter<string>();
 	@Input() width: any = 300;
 	@Input() resizable: boolean = true;
+	@Input() treeStyle?: any;
 
 	id = null;
 

@@ -19,7 +19,7 @@ import { mergeMap } from 'rxjs/operators';
  * @param tempUrl 下载模板地址
  * @param accept 接受数据类型，默认.xlsx
  * @param size 接受数据大小，默认为1048576KB（1GB），单位：KB
- * @param bigSize 大文件界限大小（超过即为大文件分片上传），默认为5GB，单位：KB
+ * @param isBigFile 是否为大文件上传，默认false
  * @param bigSingle 大文件分片大小，默认为1GB，单位：KB
  * @param bigInitUrl 大文件传输前初始化url（告知后端分片数量等信息）
  * @example
@@ -45,10 +45,11 @@ export class ImportFileComponent extends BaseTs implements OnInit {
   @Input() importUrl: string;
   @Input() tempUrl?: string;
   @Input() accept?: string = '.xlsx';
-  @Input() size: number = 1048576; // 单位：KB
-  @Input() bigSize: number = 5242880; // 默认5GB，单位：KB
+  @Input() size: number = 1048576; // 默认1GB，单位：KB
+  @Input() isBigFile: boolean = false;
   @Input() bigSingle: number = 1048576; // 默认1GB，单位：KB
   @Input() bigInitUrl: string = '';
+	@Input() afterUploadFn: Function = null; // 文件上传后回调函数
 
   uploadLoading: boolean = false;
   uploadHint: any = [];
@@ -122,12 +123,12 @@ export class ImportFileComponent extends BaseTs implements OnInit {
     }
   }
 
-  // 上传行为（超过大文件界限值，用大文件分片上传）
+  // 上传行为
   nzCustomRequest = (item: NzUploadXHRArgs) => {
-    if (item.file.size < this.bigSize) {
-      this.nzCustomReq(item);
+    if(this.isBigFile){
+			this.nzCustomBigReq(item);
     } else {
-      this.nzCustomBigReq(item);
+      this.nzCustomReq(item);
     }
   };
   nzCustomReq = (item: NzUploadXHRArgs) => {
@@ -219,6 +220,9 @@ export class ImportFileComponent extends BaseTs implements OnInit {
                     item.file!,
                     this.uploadRes
                   );
+                  if(this.afterUploadFn){
+                    this.afterUploadFn(this.uploadRes.body.data.filePath)
+                  }
                 }
               }
             );

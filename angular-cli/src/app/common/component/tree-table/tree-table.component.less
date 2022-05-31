@@ -3,7 +3,11 @@
 /*
 	* 【布局】左树右表格
 */
-.tree-table {
+:host ::ng-deep .ant-tabs-bar{
+  margin: 0;
+}
+
+:host ::ng-deep .tree-table {
   display: flex;
   width: 100%;
 
@@ -13,10 +17,13 @@
 		max-width: 50%;
 		height: calc(100vh - 190px);
     border-right: 1px solid #e8e8e8;
-		overflow-x: hidden;
-    overflow-y: auto;
 		nz-input-group {
 			margin-bottom: @space-samll;
+		}
+		nz-tree {
+			height: calc(100% - 38px);
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
   }
 

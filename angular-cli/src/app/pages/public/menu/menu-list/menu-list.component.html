@@ -56,7 +56,10 @@
 			</td>
 			<td [hidden]="!colsData[3].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
 			<td>
-				<a nz-button nzType="link" (click)="update(item, 'name', tab)">修改</a>
+				<a nz-button nzType="link" *ngIf="MenuService.routerMenuPoint.includes('update')"
+					(click)="update(item, 'name', tab)">
+					修改
+				</a>
 			</td>
 		</tr>
 	</tbody>
