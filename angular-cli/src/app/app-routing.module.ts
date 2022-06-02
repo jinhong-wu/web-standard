@@ -12,6 +12,11 @@ const routes: Routes = [
         path: 'public',
         loadChildren: () => import('./pages/public/public.module').then((modal) => modal.PublicModule),
       },
+			// 插件配置
+      {
+        path: 'config',
+        loadChildren: () => import('./pages/config/config.module').then((modal) => modal.ConfigModule),
+      },
       {
         path: '**',
         redirectTo: 'public',

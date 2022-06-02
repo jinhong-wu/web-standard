@@ -20,6 +20,8 @@ export class AppComponent extends BaseTs {
   }
 
 	ngOnInit() {
+		// 国际化
+		this.i18n.use();
 		// 若为登录页，需登录成功后再项目数据初始化
 		const url = this.location["location"].pathname;
 		if(!["/login"].includes(url)){

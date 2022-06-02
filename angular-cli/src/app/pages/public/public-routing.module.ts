@@ -8,7 +8,6 @@ import { MenuComponent } from './menu/menu.component';
 import { ModalComponent } from './modal/modal.component';
 import { OtherComponent } from './other/other.component';
 import { PipeComponent } from './pipe/pipe.component';
-import { PublicComponent } from './public.component';
 import { SelectComponent } from './select/select.component';
 import { ServiceComponent } from './service/service.component';
 import { TableComponent } from './table/table.component';
@@ -18,41 +17,35 @@ import { UtilComponent } from './ts/util/util.component';
 import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    component: PublicComponent,
-		children: [
-			{ path: '', redirectTo: 'other', pathMatch: 'full', canActivate: [ListGuard] },
-			// 规范
-			{ path: 'other', component: OtherComponent, canActivate: [ListGuard] },
-			// ts-base
-			{ path: 'ts/base', component: BaseComponent, canActivate: [ListGuard] },
-			// ts-util
-			{ path: 'ts/util', component: UtilComponent, canActivate: [ListGuard] },
-			// 菜单
-			{ path: 'menu', component: MenuComponent, canActivate: [ListGuard] },
-			// 表格
-			{ path: 'table', component: TableComponent, canActivate: [ListGuard] },
-			// 树
-			{ path: 'tree', component: TreeComponent, canActivate: [ListGuard] },
-			// 表单
-			{ path: 'form', component: FormComponent, canActivate: [ListGuard] },
-			// 样式
-			{ path: 'class', component: ClassComponent, canActivate: [ListGuard] },
-			// 弹出框
-			{ path: 'modal', component: ModalComponent, canActivate: [ListGuard] },
-			// 上传/下载
-			{ path: 'upload', component: UploadComponent, canActivate: [ListGuard] },
-			// input
-			{ path: 'input', component: InputComponent, canActivate: [ListGuard] },
-			// select
-			{ path: 'select', component: SelectComponent, canActivate: [ListGuard] },
-			// service
-			{ path: 'service', component: ServiceComponent, canActivate: [ListGuard] },
-			// pipe
-			{ path: 'pipe', component: PipeComponent, canActivate: [ListGuard] },
-    ],
-  }
+	{ path: '', redirectTo: 'other', pathMatch: 'full', canActivate: [ListGuard] },
+	// 规范
+	{ path: 'other', component: OtherComponent, canActivate: [ListGuard] },
+	// ts-base
+	{ path: 'ts/base', component: BaseComponent, canActivate: [ListGuard] },
+	// ts-util
+	{ path: 'ts/util', component: UtilComponent, canActivate: [ListGuard] },
+	// 菜单
+	{ path: 'menu', component: MenuComponent, canActivate: [ListGuard] },
+	// 表格
+	{ path: 'table', component: TableComponent, canActivate: [ListGuard] },
+	// 树
+	{ path: 'tree', component: TreeComponent, canActivate: [ListGuard] },
+	// 表单
+	{ path: 'form', component: FormComponent, canActivate: [ListGuard] },
+	// 样式
+	{ path: 'class', component: ClassComponent, canActivate: [ListGuard] },
+	// 弹出框
+	{ path: 'modal', component: ModalComponent, canActivate: [ListGuard] },
+	// 上传/下载
+	{ path: 'upload', component: UploadComponent, canActivate: [ListGuard] },
+	// input
+	{ path: 'input', component: InputComponent, canActivate: [ListGuard] },
+	// select
+	{ path: 'select', component: SelectComponent, canActivate: [ListGuard] },
+	// service
+	{ path: 'service', component: ServiceComponent, canActivate: [ListGuard] },
+	// pipe
+	{ path: 'pipe', component: PipeComponent, canActivate: [ListGuard] },
 ];
 
 @NgModule({

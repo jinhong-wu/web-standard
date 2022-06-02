@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PublicRoutingModule } from './public-routing.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { SharedModule } from 'src/app/common/shared.module';
-import { PublicComponent } from './public.component';
 
 import { ClassComponent } from './class/class.component';
 import { TableComponent } from './table/table.component';
@@ -26,17 +25,9 @@ import { TreeComponent } from './tree/tree.component';
 import { OtherComponent } from './other/other.component';
 import { BaseComponent } from './ts/base/base.component';
 import { UtilComponent } from './ts/util/util.component';
-import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, 'assets/i18n/public/', '.json');
-}
 
 @NgModule({
   declarations: [
-		PublicComponent,
     TableComponent,
     ClassComponent,
     ModalComponent,
@@ -63,13 +54,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SharedModule,
     ComponentModule,
     PipeModule,
-		TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
     MarkdownModule.forChild(),
   ],
   entryComponents: [ModalCreateComponent, SelectOpenComponent],

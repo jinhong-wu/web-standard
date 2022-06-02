@@ -32,8 +32,8 @@ export class I18nService {
   baseList: any = {};
 
   // 语言-使用
-  use(translate) {
-		translate.use(this.lang);
+  use() {
+		this.translate.use(this.lang);
 		this.nzI18n.setLocale(this.langLocale);
   }
 

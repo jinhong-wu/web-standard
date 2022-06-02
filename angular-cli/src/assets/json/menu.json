@@ -170,6 +170,35 @@
 					}
 				}
 			]
+		},
+		{
+			"node": {
+				"id": "config",
+				"name": "插件配置",
+				"path": "/config",
+				"sideShow": true,
+				"functionPointLanguage": ["list"]
+			},
+			"child": [
+				{
+					"node": {
+						"id": "config-i18n",
+						"pid": "config",
+						"name": "国际化",
+						"path": "/config/i18n",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
+						"id": "config-pdf",
+						"pid": "config",
+						"name": "PDF",
+						"path": "/config/pdf",
+						"sideShow": true
+					}
+				}
+			]
 		}
 	]
 }

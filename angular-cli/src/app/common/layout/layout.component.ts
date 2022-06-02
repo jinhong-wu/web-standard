@@ -35,6 +35,10 @@ export class LayoutComponent extends BaseTs implements OnInit {
       name: 'ECharts官方文档',
       href: 'https://echarts.apache.org/examples/zh/index.html',
     },
+    {
+      name: 'PDF官方文档',
+      href: 'https://github.com/VadimDez/ng2-pdf-viewer',
+    },
   ];
 
   ngOnInit() {
