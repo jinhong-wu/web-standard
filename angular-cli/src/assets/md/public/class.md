@@ -95,39 +95,6 @@
 }
 ```
 
-# 表格-头部操作区（table-head）
-
-**文件：common.less**
-
-**页面效果：**
-![image-1](assets/md/imgs/table-head.png)
-
-**使用：**（具体使用查看 公共示例-Table 表格）
-```html
-<div class="table-head">
-	<!-- 左侧按钮区 -->
-	<div class="btns">
-		<button nz-button nzType="primary">按钮一</button>
-		<button nz-button nzType="primary" [disabled]="'true'">按钮二</button>
-	</div>
-	<!-- 右侧查询区 -->
-	<div class="search">
-		<nz-input-group class="search-input" nzSearch [nzAddOnAfter]="suffixButton">
-			<input nz-input placeholder='输入关键字进行查询' (keydown.enter)="tableDataFn(true)">
-		</nz-input-group>
-		<ng-template #suffixButton>
-			<button nz-button nzType="primary" nzSearch (click)="tableDataFn(true)">
-				<i nz-icon nzType="search"></i>
-			</button>
-		</ng-template>
-		<!-- 右侧查询区-精确查询 -->
-		<button nz-button nzType="primary">
-			<i nz-icon nzType="up" nzTheme="outline"></i>
-		</button>
-	</div>
-</div>
-```
-
 # 表格-Table
 
 **文件：common.less**
@@ -146,47 +113,6 @@ table {
       text-align: center;
     }
   }
-}
-```
-
-# 【布局】左树右表格
-**文件：common.less**
-
-**页面效果：**
-![image-1](assets/md/imgs/tree-table.png)
-
-**使用：**
-```html
-<div class="tree-table">
-	<!-- 左侧树 -->
-	<div class="left-tree" nz-resizable [nzMinWidth]="320" [style.width.px]="width" (nzResize)="onResize($event)">
-		<nz-input-group nzSearch [nzAddOnAfter]="suffixIcon">
-			<input nz-input [(ngModel)]="treeSearch" placeholder="输入关键字进行查询" />
-		</nz-input-group>
-		<ng-template #suffixIcon>
-			<button nz-button nzType="primary" nzSearch>
-				<i nz-icon nzType="search"></i>
-			</button>
-		</ng-template>
-		<nz-tree [nzData]="treeData" [nzSearchValue]="treeSearch"></nz-tree>
-		<nz-resize-handles [nzDirections]="['right']"></nz-resize-handles>
-	</div>
-	<!-- 右侧列表 -->
-	<div class="right-table">
-		<!-- 查阅：公共示例-Table 表格 -->
-	</div>
-</div>
-```
-
-```typescript
-// requestAnimationFrame返回id
-id = null;
-width = null;
-onResize({ width }: NzResizeEvent): void {
-	cancelAnimationFrame(this.id);
-	this.id = requestAnimationFrame(() => {
-		this.width = width!;
-	});
 }
 ```
 

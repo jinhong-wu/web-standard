@@ -10,7 +10,7 @@ ts：new RenderPipe().transform('测试${xxx}${yyy}', {xxx: 'x1', yyy: 'y1'})
 // 展示为：测试x1y1
 ```
 
-# 数组展示为字符串
+# 数组-展示为字符串
 **文件：** arrayShow（common/pipe/array-show.pipe.ts）
 
 **使用-参数：**

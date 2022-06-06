@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from "@angular/core";
   name: "arrayShow",
 })
 /**
- * @name 数组展示为字符串
+ * @name 数组-展示为字符串
  * @param value 数组，必填
  * @param key 需要展示的参数
  * @param limit 需要展示的个数

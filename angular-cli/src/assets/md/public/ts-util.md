@@ -14,6 +14,5 @@ this.http.get(url, { getHttpParam(params) });
 ## 拦截器
 **文件：**Interceptor（common/interceptor/interceptor.ts）
 - url：统一加上服务端前缀
-- body：去除body-params无效值
 - 状态码：统一处理
   

@@ -6,8 +6,7 @@ npm install ng2-pdf-viewer@5.3.4
 npm install pdfjs-dist@2.5.207
 ```
 - 配置
-```javascript
-// angular.json
+<!--// angular.json
 "architect": {
 	"build": {
 		"options": {
@@ -16,7 +15,8 @@ npm install pdfjs-dist@2.5.207
 			]
 		}
 	}
-}
+}-->
+```javascript
 // A模块使用-模块注入
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 imports: [PdfViewerModule]
