@@ -10,6 +10,8 @@
 		"download":"下载",
 		"allCheck": "全选",
 		"checkTip": "请勾选操作数据",
+		
+		"test":"拨测",
 		"save":"保存",
 		"reset":"重置",
 		"resetConfirm": "确定重置？",
@@ -22,7 +24,6 @@
 		"exportSearch": "导出查询结果",
 		"exportSearchConfirm": "是否导出所有查询结果？",
 
-		"placeholder": "输入关键字进行查询",
 		"sure": "确定",
 		"confirmInfo":"提示",
 		"noContent": "暂无内容",
@@ -47,7 +48,8 @@
 		"inputMultiple": "多个${name || 内容}以“ ${split || 英文逗号,} ”分隔"
 	},
 	"unit": {
-		"unit": "个",
+		"unit": "单位：",
+		"number": "个",
 		"thousand": "万",
 		"million": "亿"
 	},
@@ -65,31 +67,24 @@
 		"downloadTemp":"下载模板"
 	},
 	"pattern": {
-    "ipv4": "请输入合法的IPV4地址；最大长度15位",
-    "ipv6": "请输入合法的IPV6地址；最大长度40位",
-    "ipv46": "请输入合法的IPV4/IPV6地址",
-		"subnetmask": "请输入合法的子网掩码",
+    "ipv4": "最大长度15位",
+    "ipv6": "最大长度40位",
 		"name": "仅由中文、英文、数字、中划线、下划线、小数点、圆括号、方括号组成；最大长度64位",
-		"nameTip": "请输入合法的名称",
 		"userName": "仅由英文、数字、中划线、下划线、小数点、圆括号组成；最大长度64位",
-		"userNameTip": "请输入合法的用户名称",
 		"realName": "仅由中文、英文、数字、中划线、下划线、小数点、圆括号、方括号组成；最大长度64位",
-		"realNameTip": "请输入合法的真实名称",
 		"accountName": "仅由中文、英文、数字、中划线、下划线、小数点、圆括号、方括号组成；最大长度64位",
-		"accountNameTip": "请输入合法的账号名称",
-		"filePath": "请输入合法的文件路径",
     "url": "由http、https、ftp、file开头的字符串组成；最大长度256位",
-		"urlPath": "请输入合法的URL",
-		"domain": "请输入合法的域名；最大长度253位",
-		"port": "请输入合法的端口；范围为1-65535",
-		"phone": "请输入合法的电话号码",
-		"email": "请输入合法的邮箱",
+		"domain": "最大长度253位",
+		"port": "范围为1-65535",
     "password": "仅由英文、数字及可见的特殊字符组成",
-		"passwordTip": "请输入合法的密码",
     "code": "仅由英文、数字、中划线、下划线组成；最大长度32位",
-		"codeTip": "请输入合法的编号",
     "description": "最大长度1024位"
   },
+	"formTip": {
+		"input": "请输入",
+		"select": "请选择",
+		"legal": "请输入合法的"
+	},
 	"errorPage": {
 		"toHome": "返回到主页面",
 		"403": "对不起，你没有权限访问该页面！",

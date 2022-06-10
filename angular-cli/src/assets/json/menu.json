@@ -74,7 +74,7 @@
 								"name": "菜单列表",
 								"path": "/public/menu/list",
 								"sideShow": false,
-								"functionPointLanguage": ["create", "delete", "import", "export"]
+								"functionPointLanguage": ["create", "delete", "import", "export", "update"]
 							}
 						}
 					]

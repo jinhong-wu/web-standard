@@ -9,7 +9,9 @@
 	<span [nz-tooltip]=""></span>
 </nz-form-label>
 ```
-- 提示统一为：下面提示 请输入合法的xxxx，且尾部蓝色icon说明具体规则；没有规则的直接就是请输入xxx（BUG编号24804）
+- 提示统一为（BUG编号24804）  
+  有具体规则提示：请输入合法的xxxx，且尾部蓝色icon说明具体规则  
+	无具体规则提示：请输入xxx、请选择xxx
 ```html
 <app-form-control-info [tooltip]=""></app-form-control-info>
 <!-- 规则显示已封装为组件：app-form-control-info -->
@@ -21,6 +23,17 @@
 ```html
 <nz-input-number [nzMin]="1" [nzMax]="65535" [nzPrecision]='0' formControlName='' nzPlaceHolder="端口">
 </nz-input-number>
+```
+- 表单：nz-spin加载效果（必须）
+```html
+<nz-spin [nzSpinning]="formLoading">
+	<div class="form-content">
+      <form nz-form [formGroup]="form">
+      </form>
+	</div>
+	<div class="form-footer">
+	</div>
+</nz-spin>
 ```
 
 **文件：**
@@ -45,7 +58,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'IP'">IP</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.pattern.ipv4">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.legal+'IPV4'">
 					<input nz-input formControlName="ip" placeHolder="默认只支持IPV4">
 				</nz-form-control>
 				<app-form-control-info [tooltip]="i18n.list.pattern.ipv4"></app-form-control-info>
@@ -54,7 +67,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'描述'">描述</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.input+'描述'">
 					<input nz-input formControlName="describe" placeHolder="描述">
 				</nz-form-control>
 			</nz-form-item>
@@ -62,11 +75,16 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'初始值'">初始值</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback>
 					<nz-radio-group formControlName="init">
 						<label nz-radio nzValue="nothing">初始值为空</label>
 						<label nz-radio nzValue="init">初始值</label>
 					</nz-radio-group>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control nzOffset="6" nzSpan="12">
+					<nz-alert nzShowIcon nzType="info" nzMessage="表单提示：统一放在输入框下，按钮上。"></nz-alert>
 				</nz-form-control>
 			</nz-form-item>
 		</form>
@@ -78,11 +96,6 @@
 		<button nz-button nzType="default" (click)="cancel()">取消</button>
 	</div>
 </nz-spin>
-<ng-template #requiredErrorTpl let-control>
-	<ng-container *ngIf="control.hasError('required')">
-		必须输入
-	</ng-container>
-</ng-template>
 ```
 
 ```typescript

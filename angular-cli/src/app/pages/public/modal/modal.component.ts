@@ -14,23 +14,23 @@ export class ModalComponent extends BaseTs implements OnInit {
 
   ngOnInit(): void {
     //setTimeout(()=>{
-    //	//this.tip.confirm("确定xxxx？", ()=>{
-    //	//	// 确认后代码...
-    //	//	console.log(1);
-    //	//});
-    //const modal = this.nzModal.create({
-    //	...this.tip.modal(),
-    //	nzTitle: '标题',
-    //	nzContent: ModalCreateComponent,
-    //	nzComponentParams: {
-    //		// 传递数据
-    //	},
-    //});
-    //this.tip.modalAfter(modal, {
-    //	close(res) {
-    //		// 关闭后代码...
-    //	}
-    //})
+    //	this.tip.confirm("是否删除所选列表数据？", ()=>{
+    //		// 确认后代码...
+    //		console.log(1);
+    //	});
+		//	//const modal = this.nzModal.create({
+		//	//	...this.tip.modal(),
+		//	//	nzTitle: '标题',
+		//	//	nzContent: ModalCreateComponent,
+		//	//	nzComponentParams: {
+		//	//		// 传递数据
+		//	//	},
+		//	//});
+		//	//this.tip.modalAfter(modal, {
+		//	//	close(res) {
+		//	//		// 关闭后代码...
+		//	//	}
+		//	//})
     //}, 1000)
   }
 }

@@ -1,14 +1,9 @@
 @import url("src/common-name.less");
 
-/*
-	* 【布局】左树右表格
-*/
-:host ::ng-deep .ant-tabs-bar{
-  margin: 0;
-}
-
 :host ::ng-deep .tree-table {
   display: flex;
+	position: relative;
+	bottom: @space;
   width: 100%;
 
   .left-tree {

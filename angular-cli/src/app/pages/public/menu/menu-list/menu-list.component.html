@@ -1,5 +1,5 @@
 <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()"
-	[advanceData]="advanceData" [colsData]="colsData">
+	[advanceData]="advanceData" [colsData]="colsData" [placeholder]="'请输入IP、描述'">
 	<ng-container ngProjectAs="btns">
 		<!-- MenuService.routerMenuPoint.includes('create') 权限校验 -->
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')"

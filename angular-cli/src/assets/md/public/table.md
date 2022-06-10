@@ -1,5 +1,6 @@
 # 必读！！！
 - 增删改等操作，都需要刷新table数据
+- 增/改：请求第一页、删：请求最近有数据的一页
 - th：勾选框、时间、ip等固定列宽，必须写入宽度样式（.checkbox .time .ip）
 - td：较长td必须 [nz-tooltip]="xxx"
 ```html
@@ -23,6 +24,11 @@
 ```
 - 模糊/精确查询框提示语句：文案及提示顺序与表头字段保持一致
 - 单独的空格、前后的空格当作无效数据查询所有，两个字符中间的空格当作有效数据处理（BUG编号24724）
+- 表格：[nzLoading]="tableLoading"（必须）
+```html
+<nz-table [nzLoading]="tableLoading">
+</nz-table>
+```
 
 **文件：**
 - 全局属性：BaseTs（common/ts/base/base.ts）
@@ -37,7 +43,7 @@
 **使用-参数：**
 - search：获取表格数据方法（fuzzyShow = true时必传，false时可不传）
 - fuzzyShow：右侧查询区-输入框，默认true显示
-- placeholder: 右侧查询区-输入框placeholder，默认'输入关键字进行查询'
+- placeholder: 右侧查询区-输入框placeholder
 - advanceData：精确查询数据，参考interface advanceData
 - colsData：可配置列数据，参考interface colsData
 - exportShow：精确查询-导出，默认false隐藏

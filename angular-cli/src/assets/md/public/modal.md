@@ -35,6 +35,7 @@ this.tip.notify(type, "提示标题", "提示内容");
 - 提示语句：是否/确定xxx？
   ```html
 	例：是否删除所选xxx？、是否导出所选xxx？、是否导出所有查询结果？
+	特殊删除提示框：删除xxx会导致xxx，确定是否删除？
 	```
 - 按钮顺序：确定、取消
 ```typescript
@@ -70,13 +71,14 @@ this.tip.modalAfter(modal, {
 ```
 - 弹出框nzContent统一要求（ModalCreateComponent）
 ```html
-<!-- public nzModalRef: NzModalRef -->
+<!-- 弹出框：nz-spin加载效果（必须） -->
 <nz-spin [nzSpinning]="formLoading">
 	<div class="content">
 		// 内容
 	</div>
 	<div class="footer">
 		// 按钮（测试、保存、重置、取消...）
+		<!-- public nzModalRef: NzModalRef -->
 		<button nz-button nzType="default" (click)="nzModalRef.close()">取消</button>
 	</div>
 </nz-spin>

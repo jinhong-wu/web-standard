@@ -21,7 +21,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'select-单选'">select-单选</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'xxx'">
 					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="select"
 						nzPlaceHolder="select-单选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
@@ -33,7 +33,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'select-多选'">select-多选</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'xxx'">
 					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth nzMode="multiple" formControlName="multiple"
 						nzPlaceHolder="select-多选">
 						<nz-option nzLabel="a10" nzValue="a10"></nz-option>
@@ -45,7 +45,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'select-树-单选'">select-树-单选</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'xxx'">
 					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth [nzNodes]="nodes"
 						nzPlaceHolder="select-树-单选" formControlName="tree">
 					</nz-tree-select>
@@ -55,7 +55,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'select-树-多选'">select-树-多选</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'xxx'">
 					<nz-tree-select nzShowSearch nzAllowClear nzHideUnMatched nzDropdownMatchSelectWidth nzCheckable
 						[nzNodes]="nodes" nzPlaceHolder="select-树-多选" formControlName="treeMultiple">
 					</nz-tree-select>
@@ -65,7 +65,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'input-自行输入多个内容'">input-自行输入多个内容</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.input+'xxx'">
 					<input nz-input formControlName='input' placeholder="多个内容以【英文逗号】分隔">
 				</nz-form-control>
 				<app-form-control-info [tooltip]="i18n.baseList.inputMultiple"></app-form-control-info>
@@ -74,7 +74,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'select-点击出现表格弹出框-单选'">select-点击出现表格弹出框-单选</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'xxx'">
 					<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="'select-点击出现表格弹出框-单选'"
 						(openChange)="openChange()" multiple [value]="'id'" [label]="'name'">
 					</app-select-modal>
@@ -84,7 +84,7 @@
 				<nz-form-label nzSpan="6" nzRequired>
 					<span [nz-tooltip]="'select-点击出现表格弹出框-多选'">select-点击出现表格弹出框-多选</span>
 				</nz-form-label>
-				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="requiredErrorTpl">
+				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'xxx'">
 					<app-select-modal #selectModalMultiple formControlName="modalMultiple" [nzPlaceHolder]="'select-点击出现表格弹出框-多选'"
 						(openChange)="openChangeMultiple()" [value]="'id'" [label]="'name'">
 					</app-select-modal>
@@ -98,11 +98,6 @@
 		<button nz-button nzType="default" (click)="cancel()">取消</button>
 	</div>
 </nz-spin>
-<ng-template #requiredErrorTpl let-control>
-	<ng-container *ngIf="control.hasError('required')">
-		必须输入
-	</ng-container>
-</ng-template>
 ```
 ```typescript
 import { Component, OnInit, Injector, ViewChild } from '@angular/core';

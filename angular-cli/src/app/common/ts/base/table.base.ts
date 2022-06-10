@@ -29,7 +29,7 @@ export class TableBaseTs extends BaseTs {
   @Input() treeParamKey: string = '';  // 左树右表格-树params对应的key
   @Input() clickNode: any = {};  // 左树右表格-左键点击node
 
-	tableName: string = ""; // 是否删除所选tableName
+	tableName: string = ""; // 是否删除/导出所选tableName
   tableData: any = [];
   tableLoading: boolean = false;
   tableTotal: number = 0;
