@@ -6,13 +6,15 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { Error403Component } from './error403/error403.component';
 import { Error404Component } from './error404/error404.component';
 import { Error500Component } from './error500/error500.component';
+import { AccessComponent } from './access/access.component';
 
 
 @NgModule({
   declarations: [
 		Error403Component, 
 		Error404Component, 
-		Error500Component
+		Error500Component, 
+		AccessComponent
 	],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { Error500Component } from './error500/error500.component';
   exports: [ 
 		Error403Component, 
 		Error500Component, 
-		Error404Component
+		Error404Component,
+		AccessComponent
 	]
 })
 export class ErrorModule { }

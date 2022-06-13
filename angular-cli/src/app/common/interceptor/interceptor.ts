@@ -29,11 +29,11 @@ export class Interceptor implements HttpInterceptor {
     "400":{
       'zh':{
         title:'失败',
-        content:'当前请求携带参数过长，请使用合理的查询参数',
+        content:'当前请求携带参数过长，请使用合理的参数',
       },
       'en':{
         title:'FAILED',
-        content:"The param of Current Request's length is too long, please use valid query param",
+        content:"The param of Current Request's length is too long, please use valid params",
       }
     },
 		"unknown" : {

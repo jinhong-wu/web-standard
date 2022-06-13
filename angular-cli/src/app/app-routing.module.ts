@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './common/layout/layout.component';
 
 const routes: Routes = [
+	{
+    path: 'error',
+    loadChildren: () => import('./pages/error/error.module').then(modal => modal.ErrorModule)
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -23,10 +27,6 @@ const routes: Routes = [
         pathMatch: 'full',
       },
     ],
-  },
-	{
-    path: 'error',
-    loadChildren: () => import('./pages/error/error.module').then(modal => modal.ErrorModule)
   }
 ];
 
