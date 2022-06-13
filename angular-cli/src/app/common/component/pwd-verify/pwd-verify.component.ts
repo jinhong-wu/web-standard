@@ -23,6 +23,7 @@ export class PwdVerifyComponent implements OnInit {
 	) { }
 
 	form: FormGroup;
+	formLoading = false;
 
   ngOnInit(): void {
 		this.form = this.fb.group({
@@ -36,7 +37,9 @@ export class PwdVerifyComponent implements OnInit {
 			this.form.controls[i].updateValueAndValidity();
 		}
 		if (this.form.valid) {
+			//this.formLoading = true;
 			// API请求，验证成功执行this.nzModalRef.close(true);
+			//this.formLoading = false;
 			this.nzModalRef.close(true);
 		}
 	}
