@@ -1,0 +1,29 @@
+<div class="content">
+	<nz-spin [nzSpinning]="formLoading">
+		<div class="form-content">
+			<form nz-form [formGroup]="form">
+				<nz-form-item>
+					<nz-form-label nzSpan="6">
+						<span [nz-tooltip]="i18n?.list?.other?.loginUser">{{ i18n?.list?.other?.loginUser }}</span>
+					</nz-form-label>
+					<nz-form-control nzSpan="16">
+						<span>xxxxx</span>
+					</nz-form-control>
+				</nz-form-item>
+				<nz-form-item>
+					<nz-form-label nzSpan="6" nzRequired>
+						<span [nz-tooltip]="i18n?.list?.other?.loginPwd">{{ i18n?.list?.other?.loginPwd }}</span>
+					</nz-form-label>
+					<nz-form-control nzSpan="16" nzHasFeedback
+						[nzErrorTip]="i18n?.list?.formTip?.input+i18n?.list?.other?.loginPwd">
+						<input nz-input type="password" formControlName="pwd" [placeholder]="i18n?.list?.other?.loginPwd">
+					</nz-form-control>
+				</nz-form-item>
+			</form>
+		</div>
+	</nz-spin>
+</div>
+<div class="footer">
+	<button nz-button nzType="primary" (click)="save()">{{ i18n.baseList.save }}</button>
+	<button nz-button nzType="default" (click)="nzModalRef.close()">{{ i18n.baseList.cancel }}</button>
+</div>

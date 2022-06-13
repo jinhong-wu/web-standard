@@ -8,7 +8,29 @@ import {
 	SimpleChanges,
 } from '@angular/core';
 import { BaseTs } from '../../ts/base/base';
+/**
+ * @name 表格-上方操作区
+ * @param search 获取表格数据方法（fuzzyShow = true时必传，false时可不传）
+ * @param fuzzyShow 右侧查询区-输入框，默认true显示
+ * @param placeholder 右侧查询区-输入框placeholder
+ * @param advanceData 精确查询数据，参考interface advanceData
+ * @param colsData 可配置列数据，参考interface colsData
+ * @param exportShow 精确查询-导出，默认false隐藏 
+ * @param export 精确查询-导出方法（exportShow = true时必传，false时可不传）
+ * @example
+  #tableHead 必须取此名
+  tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
 
+  <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
+    <ng-container ngProjectAs="btns">
+      <button nz-button nzType="primary">新增</button>
+      <button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
+    </ng-container>
+    <ng-container ngProjectAs="tips">
+      <nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
+    </ng-container>
+  </app-table-head>
+*/
 interface advanceData {
   key: string; // 对应param参数
   type: string; // 输入框类型（文字输入框text、下拉框select）
@@ -40,29 +62,6 @@ interface colsData {
   templateUrl: './table-head.component.html',
   styleUrls: ['./table-head.component.less'],
 })
-/**
- * @name 表格-上方操作区
- * @param search 获取表格数据方法（fuzzyShow = true时必传，false时可不传）
- * @param fuzzyShow 右侧查询区-输入框，默认true显示
- * @param placeholder 右侧查询区-输入框placeholder
- * @param advanceData 精确查询数据，参考interface advanceData
- * @param colsData 可配置列数据，参考interface colsData
- * @param exportShow 精确查询-导出，默认false隐藏 
- * @param export 精确查询-导出方法（exportShow = true时必传，false时可不传）
- * @example
-  #tableHead 必须取此名
-  tableDataFn(true, $event)  // 参数：是否刷新页数, 是否为精确查询
-
-  <app-table-head #tableHead (search)="tableDataFn(true, $event)" [exportShow]="'true'" (export)="export()" [advanceData]="advanceData" [colsData]="colsData">
-    <ng-container ngProjectAs="btns">
-      <button nz-button nzType="primary">新增</button>
-      <button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
-    </ng-container>
-    <ng-container ngProjectAs="tips">
-      <nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
-    </ng-container>
-  </app-table-head>
-*/
 export class TableHeadComponent extends BaseTs implements OnChanges {
   constructor(public injector: Injector) {
     super(injector);

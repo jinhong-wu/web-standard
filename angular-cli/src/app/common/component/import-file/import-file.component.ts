@@ -12,7 +12,6 @@ import { NzBytesPipe } from 'ng-zorro-antd/pipes';
 import { DownloadService } from '../../service/download.service';
 import { from } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-
 /**
  * @name 上传/导入文件
  * @param importUrl 上传/导入路径（必传）
@@ -31,7 +30,6 @@ import { mergeMap } from 'rxjs/operators';
       }
     });
 */
-
 @Component({
   selector: 'app-import-file',
   templateUrl: './import-file.component.html',

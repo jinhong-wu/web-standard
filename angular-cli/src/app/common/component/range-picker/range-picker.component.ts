@@ -2,7 +2,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { I18nService } from '../../service/system/i18n.service';
 import { TipService } from '../../service/tip.service';
-
+/**
+ * @name 时间范围选择器
+ * @param dateFn 接收时间
+*/
 @Component({
   selector: 'app-range-picker',
   templateUrl: './range-picker.component.html',

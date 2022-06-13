@@ -11,7 +11,7 @@
 ```
 - 提示统一为（BUG编号24804）  
   有具体规则提示：请输入合法的xxxx，且尾部蓝色icon说明具体规则  
-	无具体规则提示：请输入xxx、请选择xxx
+	无具体规则提示：请输入xxx、请选择xxx（不提示 必须输入xxx）
 ```html
 <app-form-control-info [tooltip]=""></app-form-control-info>
 <!-- 规则显示已封装为组件：app-form-control-info -->

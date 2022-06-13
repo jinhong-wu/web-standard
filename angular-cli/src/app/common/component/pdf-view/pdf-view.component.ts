@@ -1,6 +1,9 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
+/**
+ * @name pdf预览
+ * @param url API地址
+*/
 @Component({
   selector: 'app-pdf-view',
   templateUrl: './pdf-view.component.html',

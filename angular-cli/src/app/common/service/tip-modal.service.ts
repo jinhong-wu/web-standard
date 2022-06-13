@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { BatchDeleteComponent } from '../component/batch-delete/batch-delete.component';
 import { ImportFileComponent } from '../component/import-file/import-file.component';
+import { PwdVerifyComponent } from '../component/pwd-verify/pwd-verify.component';
 import { BaseTs } from '../ts/base/base';
 
 /**
@@ -78,4 +79,19 @@ export class TipModalService extends BaseTs {
       },
     });
   }
+
+	// 密码验证
+	verify(fn: Function) {
+		const modal = this.nzModal.create({
+			...this.tip.modal(),
+			nzTitle: this.i18n?.list?.other?.pwdVerify,
+			nzWidth: 500,
+			nzContent: PwdVerifyComponent,
+		});
+		this.tip.modalAfter(modal, {
+			close(res) {
+				if(res) fn?.();  // 验证成功
+			}
+		})
+	}
 }

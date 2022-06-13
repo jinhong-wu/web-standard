@@ -53,9 +53,6 @@
 		"thousand": "万",
 		"million": "亿"
 	},
-	"tree": {
-		"inputPlaceholder": "请输入名称"
-	},
 	"upload": {
 		"file":"上传文件",
 		"placeholder":"点击或拖拽文件到此区域上传",
@@ -92,5 +89,11 @@
 		"500": "对不起，服务器发生错误！",
 		"access": "无权限",
 		"accessTitle": "请联系管理员分配权限！"
+	},
+	"other": {
+		"treePlaceholder": "请输入名称",
+		"pwdVerify": "身份验证",
+		"loginUser": "当前登录用户",
+		"loginPwd": "登录密码"
 	}
 }

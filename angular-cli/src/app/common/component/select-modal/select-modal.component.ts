@@ -9,19 +9,6 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseTs } from 'src/app/common/ts/base/base';
-
-@Component({
-  selector: 'app-select-modal',
-  templateUrl: './select-modal.component.html',
-  styleUrls: [],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectModalComponent),
-      multi: true,
-    },
-  ],
-})
 /**
  * @name select-点击出现表格弹出框
  * @param openChange 弹出框-打开表格页面方法，必传
@@ -38,6 +25,18 @@ import { BaseTs } from 'src/app/common/ts/base/base';
 	<app-select-modal #selectModal formControlName="modal" [nzPlaceHolder]="" (openChange)="openChange()">
 	</app-select-modal>
 */
+@Component({
+  selector: 'app-select-modal',
+  templateUrl: './select-modal.component.html',
+  styleUrls: [],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SelectModalComponent),
+      multi: true,
+    },
+  ],
+})
 export class SelectModalComponent
   extends BaseTs
   implements OnInit, ControlValueAccessor

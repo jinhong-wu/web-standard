@@ -1,7 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { I18nService } from '../../service/system/i18n.service';
-
+/**
+ * @name 批量删除
+ * @example 参考TipModalService.delete()
+ * 规范3.0 批量删除改成一个接口，百分比不显示 ，后端返回成功列表和成功列表
+*/
 @Component({
   selector: 'app-batch-delete',
   templateUrl: './batch-delete.component.html',

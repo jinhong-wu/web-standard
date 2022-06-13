@@ -1,12 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { I18nService } from '../../service/system/i18n.service';
-
-@Component({
-  selector: 'app-tree-table',
-  templateUrl: './tree-table.component.html',
-  styleUrls: ['./tree-table.component.less']
-})
 /**
  * @name 左树右表格
  * @param searchShow 是否显示查询输入框，默认true显示
@@ -24,6 +18,11 @@ import { I18nService } from '../../service/system/i18n.service';
 		</ng-container>
 	</app-tree-table>
 */
+@Component({
+  selector: 'app-tree-table',
+  templateUrl: './tree-table.component.html',
+  styleUrls: ['./tree-table.component.less']
+})
 export class TreeTableComponent implements OnInit {
   constructor(public i18n: I18nService) {}
 
