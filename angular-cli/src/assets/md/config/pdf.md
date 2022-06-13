@@ -34,6 +34,7 @@ imports: [PdfViewerModule]
 ```
 - 使用
 ```html
+<!-- 公共组件：app-pdf-view -->
 <pdf-viewer [src]="url" [original-size]="true" style="width: 500px; height: 500px"></pdf-viewer>
 	<!--
 url = "https://...."

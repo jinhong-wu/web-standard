@@ -15,13 +15,8 @@ export class I18nService {
     this.lang = window.sessionStorage.getItem('lang') || 'zh';
     this.langLocale = this.lang == 'zh' ? zh_CN : en_US;
     window.sessionStorage.setItem('lang', this.lang);
-
-    this.loading = true;
-    this.jsonFn().subscribe((res: any) => {
-      this.loading = false;
-      this.list = res;
-      this.baseList = res.base;
-    });
+		this.initI18n();
+		this.use();
   }
   // 当前语言
   lang; // zh、en
@@ -30,6 +25,16 @@ export class I18nService {
   loading: boolean = false;
   list: any = {};
   baseList: any = {};
+
+  // 加载公共zh/en.json
+  initI18n() {
+		this.loading = true;
+    this.http.get(`assets/i18n/${this.lang}.json`).subscribe((res: any) => {
+      this.list = res;
+      this.baseList = res.base;
+      this.loading = false;
+    });
+  }
 
   // 语言-使用
   use() {
@@ -44,14 +49,6 @@ export class I18nService {
 			window.location.reload();
 		}
 	}
-
-  // 加载zh/en.json
-  jsonFn(url: string = '') {
-    if (url) url += '/';
-    return this.http.get(
-      `assets/i18n/${url}${this.lang}.json`
-    );
-  }
 
   promise(ok: Function) {
     let timer = setInterval(() => {

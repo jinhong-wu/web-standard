@@ -9,5 +9,11 @@
 		"expireTime":"失效时间",
 		"releaseTime":"发布时间",
 		"findTime": "发现时间"
+	},
+	"public": {
+
+	},
+	"config": {
+
 	}
 }
