@@ -8,7 +8,11 @@ import { RangePickerComponent } from './range-picker/range-picker.component';
 import { TreeTableComponent } from './tree-table/tree-table.component';
 import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
 import { FormControlInfoComponent } from './form-control-info/form-control-info.component';
+import { PdfViewComponent } from './pdf-view/pdf-view.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
+// pdf预览加载js
+(<any>window).pdfWorkerSrc = 'assets/lib/pdf.worker.min.js';
 @NgModule({
   declarations: [
     TableHeadComponent,
@@ -18,8 +22,9 @@ import { FormControlInfoComponent } from './form-control-info/form-control-info.
     TreeTableComponent,
     BatchDeleteComponent,
     FormControlInfoComponent,
+    PdfViewComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, PdfViewerModule],
   exports: [
     TableHeadComponent,
     ImportFileComponent,
@@ -27,7 +32,8 @@ import { FormControlInfoComponent } from './form-control-info/form-control-info.
     BatchDeleteComponent,
     RangePickerComponent,
 		TreeTableComponent,
-		FormControlInfoComponent
+		FormControlInfoComponent,
+		PdfViewComponent
   ],
   entryComponents: [
     TableHeadComponent,
@@ -36,7 +42,8 @@ import { FormControlInfoComponent } from './form-control-info/form-control-info.
     BatchDeleteComponent,
     RangePickerComponent,
 		TreeTableComponent,
-		FormControlInfoComponent
+		FormControlInfoComponent,
+		PdfViewComponent
   ],
 })
 export class ComponentModule {}

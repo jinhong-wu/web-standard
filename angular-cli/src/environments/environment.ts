@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
 	DEFAULT_MENU_ICON: "profile",
+	SERVER_URL: '',
+	TOKEN: ''
 };
 
 /*
