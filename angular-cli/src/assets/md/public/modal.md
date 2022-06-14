@@ -74,10 +74,13 @@ this.tip.modalAfter(modal, {
 <!-- 弹出框：nz-spin加载效果（必须） -->
 <nz-spin [nzSpinning]="formLoading">
 	<div class="content">
-		// 内容
+		内容
 	</div>
 	<div class="footer">
-		// 按钮（测试、保存、重置、取消...）
+		<!--按钮顺序：拨测、保存、重置、取消...-->
+		<button nz-button nzType="primary" (click)="test()">拨测</button>
+		<button nz-button nzType="primary" (click)="saveFn()">保存</button>
+		<button nz-button nzType="primary" nzGhost (click)="resetFn()">重置</button>
 		<!-- public nzModalRef: NzModalRef -->
 		<button nz-button nzType="default" (click)="nzModalRef.close()">取消</button>
 	</div>

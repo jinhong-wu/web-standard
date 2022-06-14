@@ -94,7 +94,7 @@
 	</div>
 	<div class="form-footer">
 		<button nz-button nzType="primary" (click)="save()">保存</button>
-		<button nz-button nzType="primary" (click)="reset()">重置</button>
+		<button nz-button nzType="primary" nzGhost (click)="reset()">重置</button>
 		<button nz-button nzType="default" (click)="cancel()">取消</button>
 	</div>
 </nz-spin>

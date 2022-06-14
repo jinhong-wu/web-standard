@@ -47,7 +47,7 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
     this.reset(() => {
       this.form.patchValue({
         ip: this.tab?.data?.ip || null,
-				init: this.tab?.data?.init || 'nothing',
+				init: this.tab?.data?.init || 'init',
         describe: this.tab?.data?.describe,
       });
     }, confirm);
