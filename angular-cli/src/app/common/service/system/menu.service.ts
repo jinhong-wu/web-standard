@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
+/**
+ * @name 页面菜单
+*/
 interface createTab {
   type: string; // tab类型
   pid: string; // 父tab id

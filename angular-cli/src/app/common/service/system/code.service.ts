@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { I18nService } from './i18n.service';
-
+/**
+ * @name 码表
+*/
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +14,9 @@ export class CodeService {
     private i18n: I18nService
   ) {
     this.loading = true;
-    this.codeFn().subscribe((res: any) => {
-      this.loading = false;
+    this.initCode().subscribe((res: any) => {
       this.list = res;
+      this.loading = false;
     });
   }
 
@@ -22,7 +24,7 @@ export class CodeService {
   list = {};
 
   // 后台码表
-  codeFn(moduleName: string = '') {
+  initCode(moduleName: string = '') {
     return this.http.get('/system-management/api/v1/system/code/' + moduleName);
   }
 

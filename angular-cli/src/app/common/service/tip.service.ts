@@ -4,7 +4,9 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { I18nService } from './system/i18n.service';
 import { RenderPipe } from '../pipe/render.pipe';
-
+/**
+ * @name 提示框、对话框
+*/
 interface modalAfter {
   open?: Function;
   close?: Function;

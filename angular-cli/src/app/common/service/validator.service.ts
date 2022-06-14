@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormControl, ValidationErrors } from '@angular/forms';
-
+/**
+ * @name 验证规则
+*/
 @Injectable({
   providedIn: 'root',
 })

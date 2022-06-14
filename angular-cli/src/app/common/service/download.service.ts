@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TipService } from './tip.service';
 import { Observable } from 'rxjs';
 import { I18nService } from './system/i18n.service';
-
+/**
+ * @name 文件下载
+*/
 interface options {
   type?: 'excel' | 'file';
   params?: HttpParams;

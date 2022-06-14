@@ -22,7 +22,7 @@
 **文件：** CodeService（common/service/system/code.service.ts）
 
 **使用-方法：**
-- codeFn()：后台码表
+- initCode()：后台码表
 
 
 # 文件下载

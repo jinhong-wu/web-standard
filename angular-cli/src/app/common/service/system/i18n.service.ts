@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
-
+/**
+ * @name 国际化
+*/
 @Injectable({
   providedIn: 'root',
 })
