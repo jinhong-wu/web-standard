@@ -19,7 +19,7 @@ export class PwdVerifyComponent implements OnInit {
   constructor(
 		public nzModalRef: NzModalRef,
 		public fb: FormBuilder, 
-		private i18n: I18nService
+		public i18n: I18nService
 	) { }
 
 	form: FormGroup;

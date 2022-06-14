@@ -150,6 +150,12 @@ table {
 	</div>
 </nz-spin>
 ```
+- 图表：nz-spin加载效果（必须）
+```html
+<nz-spin [nzSpinning]="chartLoading">
+	<div echarts [options]="chartOption" style="width: 100%; height: 500px;"></div>
+</nz-spin>
+```
 
 # 无数据/空状态  
 
