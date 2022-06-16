@@ -53,6 +53,27 @@
 		"thousand": "万",
 		"million": "亿"
 	},
+	"cron": {
+		"type": "周期类型",
+		"year": "每年",
+		"month": "每月",
+		"week": "每周",
+		"quarter": "每季度",
+		"number": "几",
+		"day": "天数",
+		"date": "具体日期",
+		"time": "执行时间",
+		"monday": "星期一",
+		"tuesday": "星期二",
+		"wednesday": "星期三",
+		"thursday": "星期四",
+		"friday": "星期五",
+		"saturday": "星期六",
+		"sunday": "星期天",
+		"firstMonth": "第一个月",
+    "secondMonth": "第二个月",
+    "thirdMonth": "第三个月"
+	},
 	"upload": {
 		"file":"上传文件",
 		"placeholder":"点击或拖拽文件到此区域上传",

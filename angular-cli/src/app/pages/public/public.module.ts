@@ -25,6 +25,8 @@ import { TreeComponent } from './tree/tree.component';
 import { OtherComponent } from './other/other.component';
 import { BaseComponent } from './ts/base/base.component';
 import { UtilComponent } from './ts/util/util.component';
+import { ComponentComponent } from './component/component.component';
+import { UseCronComponent } from './component/use-cron/use-cron.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { UtilComponent } from './ts/util/util.component';
     OtherComponent,
     BaseComponent,
     UtilComponent,
+    ComponentComponent,
+    UseCronComponent,
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,7 @@ import { FormControlInfoComponent } from './form-control-info/form-control-info.
 import { PdfViewComponent } from './pdf-view/pdf-view.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PwdVerifyComponent } from './pwd-verify/pwd-verify.component';
+import { CronComponent } from './cron/cron.component';
 
 // pdf预览加载js
 (<any>window).pdfWorkerSrc = 'assets/lib/pdf.worker.min.js';
@@ -25,6 +26,7 @@ import { PwdVerifyComponent } from './pwd-verify/pwd-verify.component';
     FormControlInfoComponent,
     PdfViewComponent,
     PwdVerifyComponent,
+    CronComponent,
   ],
   imports: [CommonModule, SharedModule, PdfViewerModule],
   exports: [
@@ -36,7 +38,8 @@ import { PwdVerifyComponent } from './pwd-verify/pwd-verify.component';
 		TreeTableComponent,
 		FormControlInfoComponent,
 		PdfViewComponent,
-		PwdVerifyComponent
+		PwdVerifyComponent,
+		CronComponent,
   ],
   entryComponents: [
     TableHeadComponent,
@@ -47,7 +50,8 @@ import { PwdVerifyComponent } from './pwd-verify/pwd-verify.component';
 		TreeTableComponent,
 		FormControlInfoComponent,
 		PdfViewComponent,
-		PwdVerifyComponent
+		PwdVerifyComponent,
+		CronComponent,
   ],
 })
 export class ComponentModule {}

@@ -41,18 +41,16 @@ export class LayoutComponent extends BaseTs implements OnInit {
     },
   ];
 
-  ngOnInit() {
+  async ngOnInit() {
     // 初始化侧边栏菜单
-    this.MenuService.promise(() => {
-      this.MenuService.routerMenuFn(this.routerLinkActive);
-      this.MenuService.menuList.forEach((item) => {
-        if (this.router.isActive(item.node.path, false)) {
-          this.MenuService.chooseMenu(item.node.path);
-        }
-      });
-      this.routerLinkBreadFn();
-    });
-
+		await this.MenuService.promise()
+    this.MenuService.routerMenuFn(this.routerLinkActive);
+		this.MenuService.menuList.forEach((item) => {
+			if (this.router.isActive(item.node.path, false)) {
+				this.MenuService.chooseMenu(item.node.path);
+			}
+		});
+		this.routerLinkBreadFn();
     // 路由事件
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))

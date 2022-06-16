@@ -35,6 +35,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 
 @NgModule({
   declarations: [],
@@ -75,6 +77,8 @@ import { NzPipesModule } from 'ng-zorro-antd/pipes';
     NzDatePickerModule,
     NzTreeSelectModule,
 		NzResizableModule,
+		NzCascaderModule,
+		NzTimePickerModule
   ],
   // tip的位置，持续时间，最大数量
   providers: [NzMessageService],

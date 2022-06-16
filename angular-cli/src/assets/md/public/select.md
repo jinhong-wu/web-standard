@@ -183,7 +183,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   }
 
   resetFn(confirm?) {
-    this.reset(() => {
+    this.reset(confirm, () => {
       this.form.patchValue({
         select: this.tab?.data?.select,
         multiple: this.tab?.data?.multiple,
@@ -193,7 +193,7 @@ export class SelectComponent extends FormBaseTs implements OnInit {
         modal: this.tab?.data?.modal,
         modalMultiple: this.tab?.data?.modalMultiple,
       });
-    }, confirm);
+    });
   }
 
   openChange() {

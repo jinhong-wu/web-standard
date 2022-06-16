@@ -7,6 +7,7 @@ import { I18nService } from '../../service/system/i18n.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { HttpUtilTs } from '../util/http.util';
 import { HttpClient } from '@angular/common/http';
+import { CodeService } from '../../service/system/code.service';
 
 export class BaseTs {
   public translate: TranslateService;
@@ -16,6 +17,7 @@ export class BaseTs {
   public nzModal: NzModalService;
   public tip: TipService;
   public i18n: I18nService;
+	public code: CodeService;
   public MenuService: MenuService;
   public HttpUtilTs = HttpUtilTs;
 
@@ -27,6 +29,7 @@ export class BaseTs {
     this.nzModal = this.baseInjector.get(NzModalService);
     this.tip = this.baseInjector.get(TipService);
     this.i18n = this.baseInjector.get(I18nService);
+		this.code = this.baseInjector.get(CodeService);
     this.MenuService = this.baseInjector.get(MenuService);
   }
 

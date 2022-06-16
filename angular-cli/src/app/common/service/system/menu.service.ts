@@ -135,20 +135,19 @@ export class MenuService {
   selectIndex: number; // 当前页
 
   // 菜单初始化
-  initTab(fn?: Function | null, selectTabFn?: Function) {
-    this.promise(() => {
-      this.tabs = (this.routerMenu.child || []).map((d) => d.node);
-			// selectIndex上一页为0，上一页也为0时不会自动触发selectTab()
-			if (this.selectIndex == 0) {
-				setTimeout(()=>{
-					// tab包含概览页时，因overviewEle无法及时获取值故selectTabFn手动调用
-					selectTabFn ? selectTabFn() : this.selectTab();
-				});
-			} else {
-				this.selectIndex = 0;
-			};
-			fn?.();
-    });
+  async initTab(fn?: Function | null, selectTabFn?: Function) {
+		await this.promise();
+    this.tabs = (this.routerMenu.child || []).map((d) => d.node);
+		// selectIndex上一页为0，上一页也为0时不会自动触发selectTab()
+		if (this.selectIndex == 0) {
+			setTimeout(()=>{
+				// tab包含概览页时，因overviewEle无法及时获取值故selectTabFn手动调用
+				selectTabFn ? selectTabFn() : this.selectTab();
+			});
+		} else {
+			this.selectIndex = 0;
+		};
+		fn?.();
   }
 
   /**
@@ -195,13 +194,15 @@ export class MenuService {
     }
   }
 
-  promise(ok: Function) {
-    let timer = setInterval(() => {
-      if (!this.menuLoading) {
-        clearInterval(timer);
-        ok();
-      }
-    }, 500);
+	promise() {
+		return new Promise((resolve, reject) => {
+			let timer = setInterval(() => {
+				if (!this.menuLoading) {
+					clearInterval(timer);
+					resolve(true);
+				}
+			}, 50);
+    });
   }
 }
 // 对应权限注解

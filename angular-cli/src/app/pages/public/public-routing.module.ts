@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListGuard } from 'src/app/common/guard/list.guard';
 import { ClassComponent } from './class/class.component';
+import { ComponentComponent } from './component/component.component';
 import { FormComponent } from './form/form.component';
 import { InputComponent } from './input/input.component';
 import { MenuComponent } from './menu/menu.component';
@@ -42,6 +43,8 @@ const routes: Routes = [
 	{ path: 'input', component: InputComponent, canActivate: [ListGuard] },
 	// select
 	{ path: 'select', component: SelectComponent, canActivate: [ListGuard] },
+	// component
+	{ path: 'component', component: ComponentComponent, canActivate: [ListGuard] },
 	// service
 	{ path: 'service', component: ServiceComponent, canActivate: [ListGuard] },
 	// pipe

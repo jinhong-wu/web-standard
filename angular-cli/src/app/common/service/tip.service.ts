@@ -22,27 +22,19 @@ export class TipService {
     private notification: NzNotificationService,
     private nzModal: NzModalService,
     private rendererFactory2: RendererFactory2
-  ) {
-    this.i18n.promise(() => {
-      this.title = this.i18n?.baseList?.confirmInfo; // 默认标题：提示
-      this.content = this.i18n?.baseList?.noContent; // 默认内容：暂无内容
-    });
-  }
-
-  title = '';
-  content = '';
+  ) {}
 
   msgRemove(id) {
     this.nzMessage.remove(id);
   }
 
   // 顶部居中提示（前端提示）
-  msg(type = 'info', content = this.content, options?: object) {
+  msg(type = 'info', content = this.i18n?.baseList?.noContent, options?: object) {
     return this.nzMessage.create(type, content, options);
   }
 
   // 右下角通知框（后端接口调用的提示）
-  notify(type = 'info', title = this.title, content = '') {
+  notify(type = 'info', title = this.i18n?.baseList?.confirmInfo, content = '') {
     this.notification.create(type, title, content, {
       nzDuration: 3000,
       nzPlacement: 'bottomRight',
@@ -64,10 +56,10 @@ export class TipService {
   }
 
   // 确认对话框（确认操作）
-  confirm(content = this.content, okFn: Function) {
+  confirm(content = "", okFn: Function) {
     this.nzModal.confirm({
-      nzTitle: this.title,
-      nzContent: content,
+      nzTitle: this.i18n?.baseList?.confirmInfo,
+      nzContent: content || this.i18n?.baseList?.noContent,
       nzOnOk() {
         okFn();
       },

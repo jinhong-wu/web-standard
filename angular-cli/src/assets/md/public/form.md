@@ -6,7 +6,7 @@
 	<div class="form-content">
       <form nz-form [formGroup]="form">
 				<nz-form-item>
-					<!-- 所有label均[nz-tooltip]（BUG编号24136） -->
+					<!-- 所有label均[nz-tooltip]（BUG编号24136）、此写法多余文字还能显示省略号 -->
 					<nz-form-label nzSpan="6" nzRequired>
 						<span [nz-tooltip]=""></span>
 					</nz-form-label>
@@ -153,13 +153,13 @@ export class FormComponent extends FormBaseTs implements OnInit {
 	}
 
 	resetFn(confirm?) {
-		this.reset(() => {
+		this.reset(confirm, () => {
 			this.form.patchValue({
 				ip: this.tab?.data?.ip || null,
 				init: this.tab?.data?.init || 'init',
 				describe: this.tab?.data?.describe,
 			});
-		}, confirm);
+		});
 	}
 }
 ```

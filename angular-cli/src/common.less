@@ -239,6 +239,14 @@ table {
 	* 表单
 */
 form {
+	nz-form-label label {
+    width: 100% !important;
+		justify-content: flex-end;
+		&, span {
+			overflow: hidden;
+    	text-overflow: ellipsis;
+		}
+	}
   .anticon-info-circle,
 	.anticon-question-circle {
     margin-left: @space-samll;

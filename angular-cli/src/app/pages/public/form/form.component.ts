@@ -43,12 +43,12 @@ export class FormComponent extends FormBaseTs implements OnInit {
   }
 
   resetFn(confirm?) {
-    this.reset(() => {
+    this.reset(confirm, () => {
       this.form.patchValue({
         ip: this.tab?.data?.ip || null,
         init: this.tab?.data?.init || 'init',
         describe: this.tab?.data?.describe,
       });
-    }, confirm);
+    });
   }
 }

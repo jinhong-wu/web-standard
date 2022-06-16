@@ -153,6 +153,15 @@
 				},
 				{
 					"node": {
+						"id": "public-component",
+						"pid": "public",
+						"name": "Component 组件",
+						"path": "/public/component",
+						"sideShow": true
+					}
+				},
+				{
+					"node": {
 						"id": "public-service",
 						"pid": "public",
 						"name": "Service 服务",

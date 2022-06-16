@@ -1,0 +1,110 @@
+<form nz-form [formGroup]="form">
+	<!-- 执行模式 -->
+	<nz-form-item>
+		<nz-form-label nzSpan="6" nzRequired>
+			<span [nz-tooltip]="'trigger'">trigger</span>
+		</nz-form-label>
+		<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'trigger'">
+			<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="executeType"
+				(ngModelChange)="selectExecuteType($event)" [nzPlaceHolder]="'trigger'">
+				<nz-option *ngFor="let item of executeTypeList" [nzLabel]="item.value" [nzValue]="item.key"></nz-option>
+			</nz-select>
+		</nz-form-control>
+	</nz-form-item>
+	<!-- 执行模式-周期执行 -->
+	<ng-container *ngIf="executeType === 'SCHEDULE'">
+		<!-- 执行模式-周期执行-周期类型 -->
+		<nz-form-item>
+			<nz-form-label nzSpan="6" nzRequired>
+				<span [nz-tooltip]="i18n.list.cron.type">{{ i18n.list.cron.type }}</span>
+			</nz-form-label>
+			<nz-form-control nzSpan="12" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.type">
+				<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="cycleType"
+					[(ngModel)]="cycleTaskType" [nzPlaceHolder]='i18n.list.cron.type'>
+					<nz-option *ngFor="let item of cycleTaskTypeList" [nzLabel]="item.value" [nzValue]="item.key"></nz-option>
+				</nz-select>
+			</nz-form-control>
+		</nz-form-item>
+		<!-- 执行模式-周期执行-周期类型-每年 -->
+		<ng-container *ngIf="cycleTaskType === 'year'">
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="i18n.list.cron.year">{{ i18n.list.cron.year }}</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.date">
+					<nz-cascader [nzOptions]="yearList" formControlName="year" [nzPlaceHolder]="i18n.list.cron.year">
+					</nz-cascader>
+				</nz-form-control>
+			</nz-form-item>
+		</ng-container>
+		<!-- 执行模式-周期执行-周期类型-每季度 -->
+		<ng-container *ngIf="cycleTaskType === 'quarter'">
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="i18n.list.cron.quarter">{{ i18n.list.cron.quarter }}</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.quarter">
+					<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="quarter"
+						[nzPlaceHolder]="i18n.list.cron.quarter">
+						<nz-option *ngFor="let item of quarterList" [nzLabel]="item.value" [nzValue]="item.key"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control nzOffset="6" nzSpan="12"
+					[nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.month+i18n.list.cron.day">
+					<input type="hidden" formControlName="month">
+					<nz-checkbox-group [(ngModel)]="dayList" (ngModelChange)="selectList('month', $event)"
+						[ngModelOptions]="{standalone: true}">
+					</nz-checkbox-group>
+				</nz-form-control>
+			</nz-form-item>
+		</ng-container>
+		<!-- 执行模式-周期执行-周期类型-每月 -->
+		<ng-container *ngIf="cycleTaskType === 'month'">
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="i18n.list.cron.month">{{ i18n.list.cron.month }}</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.month+i18n.list.cron.day">
+					<input type="hidden" formControlName="month">
+					<nz-checkbox-group [(ngModel)]="dayList" (ngModelChange)="selectList('month', $event)"
+						[ngModelOptions]="{standalone: true}">
+					</nz-checkbox-group>
+				</nz-form-control>
+			</nz-form-item>
+		</ng-container>
+		<!-- 执行模式-周期执行-周期类型-每周 -->
+		<ng-container *ngIf="cycleTaskType === 'week'">
+			<nz-form-item>
+				<nz-form-label nzSpan="6" nzRequired>
+					<span [nz-tooltip]="i18n.list.cron.week">{{ i18n.list.cron.week }}</span>
+				</nz-form-label>
+				<nz-form-control nzSpan="12" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.week+i18n.list.cron.number">
+					<input type="hidden" formControlName="week">
+					<nz-checkbox-group [(ngModel)]="weekList" (ngModelChange)="selectList('week', $event)"
+						[ngModelOptions]="{standalone: true}">
+					</nz-checkbox-group>
+				</nz-form-control>
+			</nz-form-item>
+		</ng-container>
+		<!-- 执行模式-周期执行-执行时间 -->
+		<nz-form-item>
+			<nz-form-label nzSpan="6" nzRequired>{{ i18n.list.cron.time }}</nz-form-label>
+			<nz-form-control nzSpan="9" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.time">
+				<nz-time-picker formControlName="time" [nzPlaceHolder]="i18n.list.cron.time">
+				</nz-time-picker>
+			</nz-form-control>
+		</nz-form-item>
+	</ng-container>
+	<!-- 执行模式-定时执行 -->
+	<ng-container *ngIf="executeType === 'DELAY'">
+		<nz-form-item>
+			<nz-form-label nzSpan="6" nzRequired>{{ i18n.list.cron.time }}</nz-form-label>
+			<nz-form-control nzSpan="12" [nzErrorTip]="i18n.list.formTip.select+i18n.list.cron.time">
+				<nz-date-picker nzShowTime formControlName="executeTime" [nzPlaceHolder]="i18n.list.cron.time">
+				</nz-date-picker>
+			</nz-form-control>
+		</nz-form-item>
+	</ng-container>
+</form>

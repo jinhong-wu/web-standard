@@ -48,7 +48,7 @@ export class FormBaseTs extends BaseTs {
   }
 
   // 重置时confirm提示
-  reset(okFn: Function, confirm = true) {
+  reset(confirm = true, okFn: Function) {
     if (confirm) {
       this.tip.confirm(this.i18n.baseList.resetConfirm, okFn);
     } else {

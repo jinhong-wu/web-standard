@@ -25,13 +25,15 @@ export class UserService {
 	// 退出登录
 
 
-	promise(ok: Function) {
-    let timer = setInterval(() => {
-      if (!this.loading) {
-        clearInterval(timer);
-        ok();
-      }
-    }, 500);
+	promise() {
+		return new Promise((resolve, reject) => {
+			let timer = setInterval(() => {
+				if (!this.loading) {
+					clearInterval(timer);
+					resolve(true);
+				}
+			}, 500);
+    });
   }
 
 }

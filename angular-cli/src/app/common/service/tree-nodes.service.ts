@@ -112,13 +112,15 @@ export class TreeNodesService {
 		});
   }
 
-	promise(node, ok: Function) {
-    let timer = setInterval(() => {
-      if (this[node]?.length > 0) {
-        clearInterval(timer);
-        ok();
-      }
-  	}, 200);
-	}
+	promise(node) {
+		return new Promise((resolve, reject) => {
+			let timer = setInterval(() => {
+				if (this[node]?.length > 0) {
+					clearInterval(timer);
+					resolve(true);
+				}
+			}, 500);
+    });
+  }
 
 }	
