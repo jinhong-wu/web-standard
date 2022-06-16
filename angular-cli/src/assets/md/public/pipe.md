@@ -43,5 +43,15 @@ ts：new RenderPipe().transform('测试${xxx}${yyy}', {xxx: 'x1', yyy: 'y1'})
 // 展示为：万
 ```
 
-# 计量单位 等
-使用ng-zorro官方定义：https://ng.ant.design/version/10.2.x/experimental/pipes/zh
+# 计量单位
+使用ng-zorro官方定义：https://ng.ant.design/version/10.2.x/experimental/pipes/zh  
+
+**使用-参数：**
+- value：数值，必填
+- decimal：保留小数位（number）
+- from：当前值的单位（string），默认'B'
+- to：转换到目标值的单位
+```typescript
+{{ 1024 | nzBytes: 0:'KB':'MB' }}
+// 展示为：1 MB
+```
