@@ -30,7 +30,10 @@ npm install pdfjs-dist@2.5.207
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 imports: [PdfViewerModule]
 // 全局 pdf预览加载js
-(<any>window).pdfWorkerSrc = 'assets/lib/pdf.worker.min.js';   
+(<any>window).pdfWorkerSrc = 'assets/lib/pdf.worker.min.js';
+// 或
+import * as pdfjsLib from "pdfjs-dist/build/pdf";
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/lib/pdf.worker.min.js';
 ```
 - 使用
 ```html

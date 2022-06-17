@@ -20,8 +20,21 @@ export class LayoutComponent extends BaseTs implements OnInit {
   // 侧边栏是否缩小
   isCollapsed: boolean = false;
 
+	// 在线文档
+	linkFiles = [
+    { name: '问题总结', href: 'https://venusgroup.feishu.cn/sheets/shtcnYN9aMGvgx6oMgW9FkGhq2d' },
+		{
+      name: '代码规范记录',
+      href: 'https://venusgroup.feishu.cn/sheets/shtcns5AoJrd2VcSSmO74AukJzh?sheet=d2zYrT',
+    },
+		{
+      name: '产品各类输入项检查',
+      href: 'https://venusgroup.feishu.cn/sheets/shtcnnQEAE93X3LJVymN4e5rrnb',
+    },
+		
+  ];
   // 参考链接
-  linkmenus = [
+  linkMenus = [
     { name: 'Angular官方文档', href: 'https://angular.cn/docs' },
     {
       name: 'ng-zorro 10.x',

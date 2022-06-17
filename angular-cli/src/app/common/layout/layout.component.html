@@ -43,12 +43,22 @@
 					routerLinkActive="selected" (click)="MenuService.chooseMenu(menu.node.path)">
 					{{ menu.node.name }}
 				</a>
-				<a class="item" nz-dropdown [nzDropdownMenu]="linkmenu">
+				<a class="item" nz-dropdown [nzDropdownMenu]="linkFile">
+					在线文档<i nz-icon nzType="down"></i>
+				</a>
+				<nz-dropdown-menu #linkFile="nzDropdownMenu">
+					<ul nz-menu nzSelectable>
+						<li nz-menu-item *ngFor="let item of linkFiles">
+							<a target="_blank" [href]="item.href">{{item.name}}</a>
+						</li>
+					</ul>
+				</nz-dropdown-menu>
+				<a class="item" nz-dropdown [nzDropdownMenu]="linkMenu">
 					参考链接<i nz-icon nzType="down"></i>
 				</a>
-				<nz-dropdown-menu #linkmenu="nzDropdownMenu">
+				<nz-dropdown-menu #linkMenu="nzDropdownMenu">
 					<ul nz-menu nzSelectable>
-						<li nz-menu-item *ngFor="let item of linkmenus">
+						<li nz-menu-item *ngFor="let item of linkMenus">
 							<a target="_blank" [href]="item.href">{{item.name}}</a>
 						</li>
 					</ul>

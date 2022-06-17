@@ -74,6 +74,23 @@
 </nz-spin>
 ```
 
+# 下拉框-带查询按钮  
+**文件：common.less**  
+**页面效果：**
+![image-1](assets/md/imgs/input-select.png)  
+**使用：**
+```html
+<nz-input-group nzSearch nzSize="default" [nzAddOnAfter]="suffixButton" style="width: 30%">
+	<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth [ngModel]="'Sign Up'">
+		<nz-option [nzLabel]="'Sign Up'" [nzValue]="'Sign Up'"></nz-option>
+		<nz-option [nzLabel]="'Sign In'" [nzValue]="'Sign In'"></nz-option>
+	</nz-select>
+</nz-input-group>
+<ng-template #suffixButton>
+	<button nz-button nzType="primary" nzSize="default" nzSearch>查询</button>
+</ng-template>
+```
+
 # 字体颜色（ft-xxx）
 
 **文件：common.less**
