@@ -11,10 +11,10 @@ import { environment } from 'src/environments/environment';
 })
 export class PdfViewComponent implements OnChanges {
 
-  @Input() url : string = '';
-  srcUrl: any;
-
   constructor() {}
+
+	@Input() url : string = '';
+  srcUrl: any;
 
   ngOnChanges(changes):void {
     if (changes.url) {

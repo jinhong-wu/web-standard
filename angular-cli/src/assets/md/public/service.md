@@ -58,5 +58,5 @@
 - treeNodesFnObject()：数据处理-childList格式
 
 # 校验规则
-**文件：** ValidatorService（common/service/validator.service.ts）
+**文件：** PatternService（common/service/pattern.service.ts）
 

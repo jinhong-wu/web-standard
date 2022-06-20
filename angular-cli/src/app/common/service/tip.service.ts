@@ -50,6 +50,7 @@ export class TipService {
 
   // 右下角通知框-失败提示
   errorNotify(type, name = '') {
+		debugger
     this.notify('error', this.i18n.baseList.error,
 			new RenderPipe().transform(this.i18n.baseList.errorNotify, { type: this.i18n.baseList[type] || '', name: name })
     );

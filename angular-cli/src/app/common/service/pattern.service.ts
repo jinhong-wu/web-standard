@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormControl, ValidationErrors } from '@angular/forms';
-/**
- * @name 验证规则
-*/
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ValidatorService {
+export class PatternService {
   constructor() {}
   // IPV4
   IPV4: RegExp = /^(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}$/;

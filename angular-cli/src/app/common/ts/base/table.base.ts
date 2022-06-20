@@ -82,12 +82,17 @@ export class TableBaseTs extends BaseTs {
       this.tableLoading = true;
       tableService[tableData].call(tableService, this.HttpUtilTs.paramsFn(this.tableParams)).subscribe((res) => {
         this.tableLoading = false;
-        // 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
-        if (![null, undefined].includes(res.total)) {
-          this.tableTotal = res.total || 0;
-        };
-        this.tableData = res.data || [];
-        successFn?.call(this, res);
+				if (res.code == 1) {
+					// 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
+					if (![null, undefined].includes(res.total)) {
+						this.tableTotal = res.total || 0;
+					};
+					this.tableData = res.data || [];
+					successFn?.call(this, res);
+				} else {
+					this.tip.notify('error', res.details);
+					errorFn?.call(this);
+				}
       }, () => {
         this.tableLoading = false;
         errorFn?.call(this);

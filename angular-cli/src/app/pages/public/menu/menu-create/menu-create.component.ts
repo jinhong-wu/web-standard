@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { ValidatorService } from 'src/app/common/service/validator.service';
+import { TableService } from 'src/app/common/api/public/table/table.service';
 import { FormBaseTs } from 'src/app/common/ts/base/form.base';
 
 @Component({
@@ -9,7 +9,10 @@ import { FormBaseTs } from 'src/app/common/ts/base/form.base';
   styleUrls: ['./menu-create.component.less'],
 })
 export class MenuCreateComponent extends FormBaseTs implements OnInit {
-  constructor(public injuctor: Injector, public validator: ValidatorService) {
+  constructor(
+		public injuctor: Injector, 
+		public TableService: TableService
+	) {
     super(injuctor);
   }
 
@@ -17,30 +20,44 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
     this.form = this.fb.group({
       ip: [
         { value: null, disabled: this.tab.type == 'update' },
-        [Validators.required, Validators.pattern(this.validator.IPV4)],
+        [Validators.required, Validators.pattern(this.pattern.IPV4)],
       ],
 			init: [null, [Validators.required]],
-      describe: [null, [Validators.pattern(this.validator.DESCRIPTION)]],
+      describe: [null, [Validators.pattern(this.pattern.DESCRIPTION)]],
     });
     this.resetFn(false);
   }
 
   test() {
-    this.save(() => {
-      // 拨测代码
-      console.log('拨测');
-    });
+		this.save({
+			paramsFn() {
+
+			}, 
+			formService: this.TableService,
+			saveApi: 'test', 
+			successFn(res) {
+				console.log('test成功');
+			},
+			errorFn() {
+				console.log('test失败');
+			}
+		});
   }
 
   saveFn() {
-    this.save(() => {
-      this.formInit();
-      setTimeout(() => {
-        this.formLoading = false;
-				this.tip.successNotify(this.tab.type);
-        this.cancel(true);
-      }, 1000);
-    });
+		this.save({
+			paramsFn() {
+
+			}, 
+			formService: this.TableService,
+			saveApi: 'create', 
+			successFn(res) {
+				console.log('create成功');
+			},
+			errorFn() {
+				console.log('create失败');
+			}
+		});
   }
 
   resetFn(confirm?) {

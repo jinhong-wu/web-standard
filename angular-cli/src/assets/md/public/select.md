@@ -104,14 +104,17 @@ import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBaseTs } from 'src/app/common/ts/base/form.base';
 import { SelectOpenComponent } from './select-open/select-open.component';
-
+import { TableService } from 'src/app/common/api/public/table/table.service';
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.less'],
 })
 export class SelectComponent extends FormBaseTs implements OnInit {
-  constructor(public injuctor: Injector) {
+  constructor(
+		public injuctor: Injector,
+		public TableService: TableService
+	) {
     super(injuctor);
   }
 
@@ -170,16 +173,20 @@ export class SelectComponent extends FormBaseTs implements OnInit {
   }
 
   saveFn() {
-    this.save(() => {
-      this.formInit();
-      this.formParams.modal = this.formParams.modal.map((item) => item.id);
-      this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
-      setTimeout(() => {
-        this.formLoading = false;
-        this.tip.successNotify('create');
-        this.cancel(true);
-      }, 1000);
-    });
+		this.save({
+			paramsFn() {
+				this.formParams.modal = this.formParams.modal.map((item) => item.id);
+				this.formParams.modalMultiple = this.formParams.modalMultiple.map((item) => item.id);
+			}, 
+			formService: this.TableService,
+			saveApi: 'create', 
+			successFn(res) {
+				console.log('create成功');
+			},
+			errorFn() {
+				console.log('create失败');
+			}
+		});
   }
 
   resetFn(confirm?) {
@@ -250,13 +257,17 @@ export class SelectComponent extends FormBaseTs implements OnInit {
 	```typescript
 	@ViewChild('selectModal', { static: false }) selectModal;
 
-	saveFn() {
-		this.save(() => {
-			this.formInit();
-			this.formParams.modal = this.formParams.modal.map((item) => item.value);
-			// 其他操作
+  saveFn() {
+		this.save({
+			paramsFn() {
+				this.formParams.modal = this.formParams.modal.map((item) => item.value);
+			}, 
+			formService: "",
+			saveApi: 'create', 
+			successFn(res) {},
+			errorFn() {}
 		});
-	}
+  }
 	openChange() {
 		this.selectModal.openModal({
 			nzTitle: '标题',

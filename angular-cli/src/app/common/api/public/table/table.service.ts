@@ -12,4 +12,12 @@ export class TableService {
 	tableData(params: any) {
 		return this.http.get<any>('url...', {params});
 	}
+	// 表格数据-测试
+	test(params: any) {
+		return this.http.post<any>('url...', {params});
+	}
+	// 表格数据-新增
+	create(params: any) {
+		return this.http.post<any>('url...', {params});
+	}
 }
