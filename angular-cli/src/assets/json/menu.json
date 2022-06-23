@@ -103,7 +103,8 @@
 						"pid": "public",
 						"name": "Tree 树",
 						"path": "/public/tree",
-						"sideShow": true
+						"sideShow": true,
+						"functionPointLanguage": ["create", "delete", "import", "export", "update"]
 					}
 				},
 				{

@@ -28,11 +28,11 @@
 - 当下拉框只有2~3个等固定情况下，用radio或checkbox，更直观，不用下拉列表
 - 单选框必须要有默认值
 - 提示统一为（BUG编号24804）  
-  有具体规则提示：请输入合法的xxxx，且尾部蓝色icon说明具体规则  
-	无具体规则提示：请输入xxx、请选择xxx（不提示 必须输入xxx）
+  有具体规则提示：请输入合法的xxx，且尾部蓝色icon说明具体规则  
+	无具体规则提示：请输入xxx、请选择xxx（不提示：必须输入xxx、xxx不能为空）
 ```html
 <app-form-control-info [tooltip]=""></app-form-control-info>
-<!-- 规则显示已封装为组件：app-form-control-info -->
+<!-- 尾部蓝色icon说明-组件：app-form-control-info -->
 <nz-form-control nzSpan="1">
 	<i nz-icon nzType="info-circle" [nz-tooltip]=""></i>
 </nz-form-control>

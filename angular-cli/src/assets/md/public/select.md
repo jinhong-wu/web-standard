@@ -1,5 +1,6 @@
 # 必读！！！
-- 所有select都需要nzPlaceHolder
+- 所有select都需要nzPlaceHolder  
+  select：列名1
 - nz-select必须配置nzShowSearch、nzAllowClear、nzDropdownMatchSelectWidth（除非特殊要求）
   ```html
 	<!-- 
@@ -68,7 +69,7 @@
 				<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.input+'xxx'">
 					<input nz-input formControlName='input' placeholder="多个内容以【英文逗号】分隔">
 				</nz-form-control>
-				<app-form-control-info [tooltip]="i18n.baseList.inputMultiple"></app-form-control-info>
+				<app-form-control-info [tooltip]="i18n.list.formTip.multiple"></app-form-control-info>
 			</nz-form-item>
 			<nz-form-item>
 				<nz-form-label nzSpan="6" nzRequired>

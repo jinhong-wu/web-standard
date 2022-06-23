@@ -3,12 +3,12 @@
 - 安装（版本必须使用下方，其他版本有问题）
 ```typescript
 // Angular10还未具体测试过...到时再看
-npm install ng2-pdf-viewer@5.3.4
-npm install pdfjs-dist@2.5.207
+npm install ng2-pdf-viewer@6.4.1
 ```
+<!-- npm install pdfjs-dist@2.5.207 -->
 - 配置
 ```typescript
-// 方法一：angular.json配置，这种方法偶尔会有第一次不加载pdf的情况（不推荐，具体原因未知）
+// 方法一：angular.json配置
 "architect": {
 	"build": {
 		"options": {
@@ -31,9 +31,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 imports: [PdfViewerModule]
 // 全局 pdf预览加载js
 (<any>window).pdfWorkerSrc = 'assets/lib/pdf.worker.min.js';
-// 或
-import * as pdfjsLib from "pdfjs-dist/build/pdf";
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/lib/pdf.worker.min.js';
 ```
 - 使用
 ```html

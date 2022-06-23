@@ -8,21 +8,29 @@
 		"delete":"删除",
 		"deleteConfirm":"是否删除所选${name || 数据}？",
 		"download":"下载",
+		"import":"导入",
+		"export":"导出",
+		"exportConfirm":"是否导出所选${name || 数据}？",
+		"exportSearch": "导出查询结果",
+		"exportSearchConfirm": "是否导出所有查询结果？",
+		"start": "启动",
+    "stop": "停止",
+		"execute": "执行一次",
+		"view": "查看",
+		"detail": "详情",
+		"viewDetail": "查看详情",
+
 		"allCheck": "全选",
 		"checkTip": "请勾选操作数据",
 		
 		"test":"拨测",
 		"save":"保存",
 		"reset":"重置",
-		"resetConfirm": "确定重置？",
 		"cancel":"取消",
+		"resetConfirm": "确定重置？",
+
 		"enable": "启用",
 		"disable": "禁用",
-		"import":"导入",
-		"export":"导出",
-		"exportConfirm":"是否导出所选${name || 数据}？",
-		"exportSearch": "导出查询结果",
-		"exportSearchConfirm": "是否导出所有查询结果？",
 
 		"sure": "确定",
 		"confirmInfo":"提示",
@@ -37,19 +45,20 @@
 		"batchErrorRecord":"批量操作失败记录",
 
 		"success":"成功",
-		"successNotify":"${type}${name}成功",
 		"error":"失败",
+		"successNotify":"${type}${name}成功",
 		"errorNotify":"${type}${name}失败",
 		"errorReasons":"失败原因",
 
-		"startDt": "开始时间",
-		"endDt": "结束时间",
-		"confirmDt": "结束时间须在开始时间之后",
-		"inputMultiple": "多个${name || 内容}以“ ${split || 英文逗号,} ”分隔"
+		"startTime": "开始时间",
+		"endTime": "结束时间",
+		"confirmTime": "结束时间须在开始时间之后"
 	},
 	"unit": {
 		"unit": "单位：",
 		"number": "个",
+		"type": "种",
+		"times":"次",
 		"thousand": "万",
 		"million": "亿"
 	},
@@ -101,7 +110,10 @@
 	"formTip": {
 		"input": "请输入",
 		"select": "请选择",
-		"legal": "请输入合法的"
+		"legal": "请输入合法的",
+		"multiple": "多个${name || 数据}以 ${split || ,} 分隔",
+		"multipleLine": "多个${name || 数据}以 换行 分隔",
+		"example": "例："
 	},
 	"errorPage": {
 		"toHome": "返回到主页面",
@@ -112,7 +124,7 @@
 		"accessTitle": "请联系管理员分配权限！"
 	},
 	"other": {
-		"treePlaceholder": "请输入名称",
+		"treeSearchTip": "请输入名称",
 		"pwdVerify": "身份验证",
 		"loginUser": "当前登录用户",
 		"loginPwd": "登录密码"

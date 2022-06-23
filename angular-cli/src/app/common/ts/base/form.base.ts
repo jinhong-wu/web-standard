@@ -52,7 +52,7 @@ export class FormBaseTs extends BaseTs {
 			this.formLoading = true;
       formService[saveApi].call(formService, this.HttpUtilTs.paramsFn(this.formParams)).subscribe((res) => {
 				this.formLoading = false;
-				if (res.code == 1) {
+				if (res.code == 0) {
 					this.tip.successNotify(notify);
 					this.cancel(true);
 					successFn?.call(this, res);

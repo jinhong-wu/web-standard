@@ -4,7 +4,7 @@
 		<ng-container *ngIf="searchShow">
 			<nz-input-group [nzSuffix]="searchIcon">
 				<input nz-input type="text" [(ngModel)]="searchValue" (ngModelChange)="modelChange()"
-					[placeholder]='i18n?.list?.other?.treePlaceholder' />
+					[placeholder]='i18n?.list?.other?.treeSearchTip' />
 			</nz-input-group>
 			<ng-template #searchIcon>
 				<i nz-icon nzType="search"></i>

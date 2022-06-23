@@ -26,7 +26,7 @@ export class RangePickerComponent implements OnInit {
       new DatePipe('zh').transform(this.startDt, 'yyyy-MM-dd HH:mm:ss') >
       new DatePipe('zh').transform(this.endDt, 'yyyy-MM-dd HH:mm:ss')
     ) {
-      this.tip.msg('warning', this.i18n.baseList.confirmDt);
+      this.tip.msg('warning', this.i18n.baseList.confirmTime);
       return;
     }
     this.dateFn.emit([this.startDt, this.endDt]);

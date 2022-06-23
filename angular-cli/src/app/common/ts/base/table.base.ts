@@ -61,12 +61,12 @@ export class TableBaseTs extends BaseTs {
     {
       key: 'startDt',
       type: 'date',
-      placeholder: this.i18n.baseList.startDt,
+      placeholder: this.i18n.baseList.startTime,
     },
     {
       key: 'endDt',
       type: 'date',
-      placeholder: this.i18n.baseList.endDt,
+      placeholder: this.i18n.baseList.endTime,
     },
   ];
 
@@ -82,7 +82,7 @@ export class TableBaseTs extends BaseTs {
       this.tableLoading = true;
       tableService[tableData].call(tableService, this.HttpUtilTs.paramsFn(this.tableParams)).subscribe((res) => {
         this.tableLoading = false;
-				if (res.code == 1) {
+				if (res.code == 0) {
 					// 对于数据量大的接口，后台只会在需要请求total时返回，例如：第一页、第10001页,其他情况下total可能是个undefined值，故做此判断
 					if (![null, undefined].includes(res.total)) {
 						this.tableTotal = res.total || 0;
@@ -123,7 +123,7 @@ export class TableBaseTs extends BaseTs {
       this.tableParams.startDt = this.tableParams.startDt ? new DatePipe('zh').transform(this.tableParams?.startDt, 'yyyy-MM-dd HH:mm:ss') : null;
       this.tableParams.endDt = this.tableParams.endDt ? new DatePipe('zh').transform(this.tableParams?.endDt, 'yyyy-MM-dd HH:mm:ss') : null;
       if (this.tableParams.startDt < this.tableParams.endDt) {
-        this.tip.msg('warning', this.i18n.baseList.confirmDt);
+        this.tip.msg('warning', this.i18n.baseList.confirmTime);
         return false;
       }
     }
