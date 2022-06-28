@@ -42,7 +42,15 @@ export class TreeTableBaseTs extends TableBaseTs {
 	// 搜索高亮
 	searchLight(title: string) {
 		if (this.treeSearch) {
-			let reg = new RegExp(this.treeSearch, "gi");
+			let search = ``;
+			for(let i=0,len=this.treeSearch.length; i<len; i++) {
+				if('()[]'.includes(this.treeSearch[i])) {
+					search += `\\${this.treeSearch[i]}`;
+				} else {
+					search += this.treeSearch[i];
+				}
+			}
+			let reg = new RegExp(search, "gi");
 			title = title.replace(reg, (match)=>{
 				return `<span class="font-highlight">${match}</span>`
 			});
