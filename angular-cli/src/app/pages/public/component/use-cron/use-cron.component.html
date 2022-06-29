@@ -9,7 +9,7 @@
 					组件app-cron
 				</nz-form-control>
 			</nz-form-item>
-			<app-cron #cron [type]="'SCHEDULE'" [cron]="tab.data.trigger"></app-cron>
+			<app-cron #cron [type]="'SCHEDULE'" [cron]="MenuService.tab.data.trigger"></app-cron>
 		</form>
 	</div>
 	<div class="form-footer">

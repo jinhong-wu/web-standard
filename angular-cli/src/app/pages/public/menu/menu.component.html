@@ -14,12 +14,12 @@
 		</ng-container>
 		<!-- 列表 -->
 		<ng-container *ngIf="tab.id == 'public-menu-list'">
-			<app-menu-list #list [tab]="tab"></app-menu-list>
+			<app-menu-list #list></app-menu-list>
 		</ng-container>
 		<!-- 列表-新增、修改 -->
 		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
 			<!-- tab：对应tab值，必传；search：对应表格查询函数，必传  -->
-			<app-menu-create [tab]="tab" (search)="tableDataFn($event)"></app-menu-create>
+			<app-menu-create (search)="tableDataFn($event)"></app-menu-create>
 		</ng-container>
 	</nz-tab>
 </nz-tabset>

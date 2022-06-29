@@ -207,15 +207,6 @@
 						"path": "/config/echarts",
 						"sideShow": true
 					}
-				},
-				{
-					"node": {
-						"id": "config-pdf",
-						"pid": "config",
-						"name": "PDF",
-						"path": "/config/pdf",
-						"sideShow": true
-					}
 				}
 			]
 		}

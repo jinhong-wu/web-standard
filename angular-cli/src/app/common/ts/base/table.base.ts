@@ -25,7 +25,6 @@ export class TableBaseTs extends BaseTs {
   }
 
   @ViewChild('tableHead', { static: false }) tableHead: any = {};
-  @Input() tab: any = {};
   @Input() treeParamKey: string = '';  // 左树右表格-树params对应的key
   @Input() clickNode: any = {};  // 左树右表格-左键点击node
 
@@ -192,11 +191,10 @@ export class TableBaseTs extends BaseTs {
   }
 
   // 按钮区：新增
-  create(data: any = {}, tab: any = {}) {
-    if (tab.id) this.tab = tab;
+  create(data: any = {}) {
     this.MenuService.createTab({
       type: 'create',
-      pid: this.tab.id,
+      pid: this.MenuService.tab?.id,
       name: this.i18n.baseList.create + this.tableName,
       data: data  // 可带码表之类的数据，避免重复请求
     });
@@ -236,11 +234,10 @@ export class TableBaseTs extends BaseTs {
     });
   }
   // 操作列：修改
-  update(data: any = {}, name = 'name', tab: any = {}) {
-    if (tab.id) this.tab = tab;
+  update(data: any = {}, name = 'name') {
     this.MenuService.createTab({
       type: 'update',
-      pid: this.tab.id,
+      pid: this.MenuService.tab?.id,
       name: this.i18n.baseList.update + '：' + (data[name] || ''),
       data: data,  // 修改行的数据
     });

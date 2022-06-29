@@ -4,7 +4,6 @@ import { PatternService } from '../../service/pattern.service';
 import { BaseTs } from './base';
 /**
  * @name 表单-基本属性及方法
- * @param tab 当前tab值，必传
  * @param search 数据刷新对应函数，必传
  */
  interface saveInit {
@@ -24,7 +23,6 @@ export class FormBaseTs extends BaseTs {
 		this.pattern = injector.get(PatternService);
   }
 
-  @Input() tab?: any = {};
   @Output() search = new EventEmitter<boolean>();
 
   form: FormGroup;
@@ -41,7 +39,7 @@ export class FormBaseTs extends BaseTs {
   }
 
   // 保存
-  save({ paramsFn, formService, saveApi, successFn, errorFn, notify = this.tab.type }: saveInit) {
+  save({ paramsFn, formService, saveApi, successFn, errorFn, notify = this.MenuService?.tab?.type }: saveInit) {
     // 更新验证规则，统一写在前面（valid更改时会出现验证规则更新不及时的bug）
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
@@ -78,7 +76,7 @@ export class FormBaseTs extends BaseTs {
 
   // 取消时是否刷新数据
   cancel(refresh = false) {
-    this.MenuService.closeTab(this.tab);
+    this.MenuService.closeTab(this.MenuService.tab);
     this.search.emit(refresh);
   }
 }

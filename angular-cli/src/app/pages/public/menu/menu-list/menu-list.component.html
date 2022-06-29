@@ -3,7 +3,7 @@
 	<ng-container ngProjectAs="btns">
 		<!-- MenuService.routerMenuPoint.includes('create') 权限校验 -->
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')"
-			(click)="create('', tab)">新增</button>
+			(click)="create()">新增</button>
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('delete')" (click)="deleteFn()"
 			[disabled]="!isAllChecked && !isIndeterminate">删除</button>
 		<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('import')"
@@ -57,7 +57,7 @@
 			<td [hidden]="!colsData[3].show" [nz-tooltip]="item.describe">{{item.describe}}</td>
 			<td>
 				<a nz-button nzType="link" *ngIf="MenuService.routerMenuPoint.includes('update')"
-					(click)="update(item, 'name', tab)">
+					(click)="update(item, 'name')">
 					修改
 				</a>
 			</td>

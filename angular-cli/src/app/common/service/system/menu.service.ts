@@ -132,6 +132,7 @@ export class MenuService {
 
   // 菜单（nz-tab ）
   tabs: any = [];
+	tab: any = {}; // 当前tab
   selectIndex: number; // 当前页
 
   // 菜单初始化
@@ -156,7 +157,8 @@ export class MenuService {
    * @param fn 回调函数
    */
   selectTab(overviewEle?, fn?: Function) {
-    this.routerMenuFn(this.tabs[this.selectIndex]?.path || '');
+		this.tab = this.tabs[this.selectIndex] || {};
+    this.routerMenuFn(this.tab?.path || '');
 		if (overviewEle && this.routerMenu?.node?.id.includes('overview')) {
 			overviewEle?.getOverview();
 		}

@@ -1,6 +1,6 @@
 # 必读！！！
 - 新增/修改：用同一个文件即可，命名 xxx-list-create  
-  组件传值 [tab]="tab"，修改数据包含在tab.data
+  修改数据包含在MenuService.tab.data
 - 修改：函数命名统一为update()
 - 概览：命名 xxx-overview
 - 权限校验
@@ -8,7 +8,7 @@
 	<!-- 路由配置：canActivate: [ListGuard] -->
 	{ path: '', component: , canActivate: [ListGuard] }
 	<!-- 页面配置：*ngIf="MenuService.routerMenuPoint.includes('create')" -->
-	<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')" (click)="create('', tab)">
+	<button nz-button nzType="primary" *ngIf="MenuService.routerMenuPoint.includes('create')" (click)="create('')">
     新增
   </button>
 	````
@@ -40,12 +40,12 @@
 		</ng-container>
 		<!-- 列表 -->
 		<ng-container *ngIf="tab.id == 'public-menu-list'">
-			<app-menu-list #list [tab]="tab"></app-menu-list>
+			<app-menu-list #list></app-menu-list>
 		</ng-container>
 		<!-- 列表-新增、修改 -->
 		<ng-container *ngIf="tab.id.includes('public-menu-list-')">
 			<!-- tab：对应tab值，必传；search：对应表格查询函数，必传  -->
-			<app-menu-create [tab]="tab" (search)="tableDataFn($event)"></app-menu-create>
+			<app-menu-create (search)="tableDataFn($event)"></app-menu-create>
 		</ng-container>
 	</nz-tab>
 </nz-tabset>

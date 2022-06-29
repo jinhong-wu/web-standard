@@ -19,7 +19,7 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       ip: [
-        { value: null, disabled: this.tab.type == 'update' },
+        { value: null, disabled: this.MenuService.tab.type == 'update' },
         [Validators.required, Validators.pattern(this.pattern.IPV4)],
       ],
 			init: [null, [Validators.required]],
@@ -63,9 +63,9 @@ export class MenuCreateComponent extends FormBaseTs implements OnInit {
   resetFn(confirm?) {
     this.reset(confirm, () => {
       this.form.patchValue({
-        ip: this.tab?.data?.ip || null,
-				init: this.tab?.data?.init || 'init',
-        describe: this.tab?.data?.describe,
+        ip: this.MenuService.tab?.data?.ip || null,
+				init: this.MenuService.tab?.data?.init || 'init',
+        describe: this.MenuService.tab?.data?.describe,
       });
     });
   }

@@ -1,3 +1,7 @@
+ng2-pdf-viewer不适用
+5.3.4版本偶尔存在不加载、6.4.1版本服务器build失败，其他版本各种不适配
+
+
 # 全部用法
 官方连接：https://github.com/VadimDez/ng2-pdf-viewer
 - 安装（版本必须使用下方，其他版本有问题）
