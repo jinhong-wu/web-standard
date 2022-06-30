@@ -8,7 +8,7 @@ import {
   Input,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BaseTs } from 'src/app/common/ts/base/base';
+import { BaseTs } from 'src/app/common/ts/base';
 /**
  * @name select-点击出现表格弹出框
  * @param openChange 弹出框-打开表格页面方法，必传

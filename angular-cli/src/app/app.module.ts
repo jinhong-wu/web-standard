@@ -19,8 +19,6 @@ import {
   FormOutline,
   DashboardOutline,
 } from '@ant-design/icons-angular/icons';
-// markdown
-import { MarkdownModule } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,8 +49,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-    MarkdownModule.forRoot(),
+    })
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },

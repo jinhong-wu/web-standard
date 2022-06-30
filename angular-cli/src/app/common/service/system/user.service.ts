@@ -16,7 +16,7 @@ export class UserService {
 	// 获取用户信息
 	initUser() {
 		this.loading = true;
-    //this.http.get(`assets/i18n/${this.lang}.json`).subscribe((res: any) => {
+    //this.http.get(``).subscribe((res: any) => {
       //this.list = res;
       this.loading = false;
     //});

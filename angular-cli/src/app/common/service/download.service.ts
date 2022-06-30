@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TipService } from './tip.service';
 import { Observable } from 'rxjs';
 import { I18nService } from './system/i18n.service';
+import { Options } from '../entity/download';
 /**
  * @name 文件下载
+ * 全部用post请求
 */
-interface options {
-  type?: 'excel' | 'file';
-  params?: HttpParams;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +25,7 @@ export class DownloadService {
     file: 'application/octet-stream',
   };
 
-  down(url: string, option: options = {}): Observable<boolean> {
+  down(url: string, option: Options = {}): Observable<boolean> {
     const msgId: any = this.tip.msg('loading', this.loadI18n[this.i18n.lang], {
       nzDuration: 0,
     }).messageId;

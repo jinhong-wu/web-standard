@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { NavigationEnd } from '@angular/router';
-import { BaseTs } from '../ts/base/base';
+import { BaseTs } from '../ts/base';
 
 @Component({
   selector: 'app-layout',

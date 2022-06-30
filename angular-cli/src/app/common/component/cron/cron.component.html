@@ -2,11 +2,11 @@
 	<!-- 执行模式 -->
 	<nz-form-item>
 		<nz-form-label nzSpan="6" nzRequired>
-			<span [nz-tooltip]="'trigger'">trigger</span>
+			<span [nz-tooltip]="cronLabel">{{ cronLabel }}</span>
 		</nz-form-label>
-		<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+'trigger'">
+		<nz-form-control nzSpan="12" nzHasFeedback [nzErrorTip]="i18n.list.formTip.select+cronLabel">
 			<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth formControlName="executeType"
-				(ngModelChange)="selectExecuteType($event)" [nzPlaceHolder]="'trigger'">
+				(ngModelChange)="selectExecuteType($event)" [nzPlaceHolder]="cronLabel">
 				<nz-option *ngFor="let item of executeTypeList" [nzLabel]="item.value" [nzValue]="item.key"></nz-option>
 			</nz-select>
 		</nz-form-control>

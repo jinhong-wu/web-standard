@@ -7,7 +7,8 @@ import {
 	OnChanges,
 	SimpleChanges,
 } from '@angular/core';
-import { BaseTs } from '../../ts/base/base';
+import { AdvanceData, ColsData } from '../../entity/table';
+import { BaseTs } from '../../ts/base';
 /**
  * @name 表格-上方操作区
  * @param search 获取表格数据方法（fuzzyShow = true时必传，false时可不传）
@@ -31,31 +32,6 @@ import { BaseTs } from '../../ts/base/base';
     </ng-container>
   </app-table-head>
 */
-interface advanceData {
-  key: string; // 对应param参数
-  type: string; // 输入框类型（文字输入框text、下拉框select）
-  value?: string | number; // ngModel输入值
-  options?: Array<any>; // type: 'select'时，必传
-	nzValue?: string;  // type: 'select'时，对应的nzValue参数
-	nzLabel?: string;  // type: 'select'时，对应的nzLabel参数
-  nodes?: []; // type: 'tree'时，必传
-  placeholder?: string; // placeholder提示文字
-  style?: {
-    // .item样式
-    // .item盒子新增class，更多class查看common.less .table-head
-    //（输入框宽度.width2 >.width-short，为了美观，width2数据建议放在最后）
-    class?: string;
-  };
-}
-
-interface colsData {
-  title: string; // 列名
-  key: string; // 列key
-  show?: boolean; // 是否展示
-  sort?: boolean; // 是否支持排序
-  class?: string; // 列class
-  width?: string; // 列宽度
-}
 
 @Component({
   selector: 'app-table-head',
@@ -70,8 +46,8 @@ export class TableHeadComponent extends BaseTs implements OnChanges {
   @Output() search = new EventEmitter<boolean>();
   @Input() fuzzyShow: any = true;
   @Input() placeholder: string = "";
-  @Input() advanceData: advanceData[] = [];
-  @Input() colsData: colsData[] = [];
+  @Input() advanceData: AdvanceData[] = [];
+  @Input() colsData: ColsData[] = [];
   @Input() exportShow: any = false;
   @Output() export = new EventEmitter<string>();
 

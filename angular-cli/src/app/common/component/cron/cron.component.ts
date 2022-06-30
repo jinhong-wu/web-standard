@@ -1,21 +1,15 @@
 import { Component, Injector, Input, OnInit } from '@angular/core';
 import { FormControl, ValidationErrors, Validators } from '@angular/forms';
+import { CornData } from '../../entity/corn';
 import { FormBaseTs } from '../../ts/base/form.base';
 /**
  * @name 计时程序
  * @param type 执行模式
  * @param cron 计时程序
+ * @param cronLabel 计时程序-lable名称
  * @example 
- * 	<app-cron #cron [type]="" [cron]=""></app-cron>
+ * 	<app-cron #cron [type]="" [cron]="" [cronLabel]=""></app-cron>
 */
-interface cornData {
-	time?: Date;
-	week?: string;
-	day?: string;
-	moth?: string[];
-	quarter?: string,
-	date?: Date;
-}
 
 @Component({
   selector: 'app-cron',
@@ -28,6 +22,7 @@ export class CronComponent extends FormBaseTs implements OnInit {
   }
 	@Input() type = "";  // 执行模式
 	@Input() cron: string = "";  // 计时程序
+	@Input() cronLabel: string = "";  // 计时程序-lable名称
 	cronData: any = {}; 	// cron解析数据
 
 	// 执行模式
@@ -206,7 +201,7 @@ export class CronComponent extends FormBaseTs implements OnInit {
 		}
 	}
   // 转为corn表达式
-  toCronFn (data: cornData, type: string): string {
+  toCronFn (data: CornData, type: string): string {
     const blankSpace = " ",
 			hour = data.time.getHours(),
 			minute = data.time.getMinutes(),

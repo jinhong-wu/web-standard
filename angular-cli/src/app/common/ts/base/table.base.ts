@@ -1,20 +1,11 @@
 import { Injector, Input, ViewChild } from '@angular/core';
-import { BaseTs } from './base';
+import { BaseTs } from '../base';
 import { TipModalService } from 'src/app/common/service/tip-modal.service';
 import { DatePipe } from '@angular/common';
 import { RenderPipe } from '../../pipe/render.pipe';
 import { DownloadService } from '../../service/download.service';
+import { TableInit } from '../../entity/table';
 
-interface tableInit {
-  reset: boolean;  // 是否初始化page数据
-  advance: boolean;  // 是否为精确查询
-  tableService: any;  // table-api所在service
-  tableData: string; // table-api所在service-方法名
-	params?: boolean;  // 是否刷新请求参数（为false时，advance值不运行）
-  paramsFn?: Function;  // 请求参数回调函数
-  successFn?: Function; // 请求成功回调函数
-  errorFn?: Function;  // 请求失败回调函数
-}
 export class TableBaseTs extends BaseTs {
   public tipModal;
   public download;
@@ -70,7 +61,7 @@ export class TableBaseTs extends BaseTs {
   ];
 
   // 数据初始化
-  tableInit({ reset = false, advance = false, params = true, paramsFn, tableService, tableData, successFn, errorFn }: tableInit) {
+  tableInit({ reset = false, advance = false, params = true, paramsFn, tableService, tableData, successFn, errorFn }: TableInit) {
     if (reset) {
 			this.tablePage = 1;
 			this.tableParams.page = this.tablePage - 1;

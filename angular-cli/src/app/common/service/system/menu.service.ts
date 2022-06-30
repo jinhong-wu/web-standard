@@ -4,14 +4,6 @@ import { environment } from 'src/environments/environment';
 /**
  * @name 页面菜单
 */
-interface createTab {
-  type: string; // tab类型
-  pid: string; // 父tab id
-  id?: string; // tab id
-  name: string; // tab菜单名称
-  data?: any; // tab携带数据
-  closeable?: boolean; // 是否可关闭
-}
 
 @Injectable({
   providedIn: 'root',
@@ -170,7 +162,7 @@ export class MenuService {
    * @param tab tab数据，必传
    * @param closeable tab是否可关闭
    */
-  createTab(tab: createTab, closeable: boolean = true) {
+  createTab(tab: CreateTab, closeable: boolean = true) {
     tab.id = `${tab.pid}-${tab.type}`;
     if (tab?.data?.id) tab.id += `-${tab.data.id}`;
 

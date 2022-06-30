@@ -1,19 +1,13 @@
 import { EventEmitter, Injector, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SaveInit } from '../../entity/form';
 import { PatternService } from '../../service/pattern.service';
-import { BaseTs } from './base';
+import { BaseTs } from '../base';
 /**
  * @name 表单-基本属性及方法
  * @param search 数据刷新对应函数，必传
  */
- interface saveInit {
-  formService: any;  // form-api所在service
-  saveApi: string; // form-api所在service-方法名
-  paramsFn?: Function;  // 请求参数回调函数
-  successFn?: Function; // 请求成功回调函数
-  errorFn?: Function;  // 请求失败回调函数
-	notify?: string; // 提示框内容
-}
+
 export class FormBaseTs extends BaseTs {
   public fb;
 	public pattern;
@@ -39,7 +33,7 @@ export class FormBaseTs extends BaseTs {
   }
 
   // 保存
-  save({ paramsFn, formService, saveApi, successFn, errorFn, notify = this.MenuService?.tab?.type }: saveInit) {
+  save({ paramsFn, formService, saveApi, successFn, errorFn, notify = this.MenuService?.tab?.type }: SaveInit) {
     // 更新验证规则，统一写在前面（valid更改时会出现验证规则更新不及时的bug）
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();

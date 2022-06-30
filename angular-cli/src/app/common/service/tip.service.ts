@@ -1,16 +1,13 @@
 import { Injectable, RendererFactory2 } from '@angular/core';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzNotificationPlacement, NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { I18nService } from './system/i18n.service';
 import { RenderPipe } from '../pipe/render.pipe';
+import { ModalAfter } from '../entity/tip';
 /**
  * @name 提示框、对话框
 */
-interface modalAfter {
-  open?: Function;
-  close?: Function;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -34,11 +31,11 @@ export class TipService {
   }
 
   // 右下角通知框（后端接口调用的提示）
-  notify(type = 'info', title = this.i18n?.baseList?.confirmInfo, content = '') {
+  notify(type = 'info', title = this.i18n?.baseList?.confirmInfo, content = '', nzPlacement: NzNotificationPlacement = 'bottomRight') {
     this.notification.create(type, title, content, {
-      nzDuration: 3000,
-      nzPlacement: 'bottomRight',
-    });
+			nzDuration: 3000,
+			nzPlacement: nzPlacement
+		});
   }
 
   // 右下角通知框-成功提示
@@ -77,7 +74,7 @@ export class TipService {
   }
 
   // 基本对话框（弹框页）
-  modalAfter(modal, after?: modalAfter) {
+  modalAfter(modal, after?: ModalAfter) {
     modal.afterOpen.subscribe(() => {
       this.enableModalDrag(modal); // 支持拖拽
       after?.open?.();

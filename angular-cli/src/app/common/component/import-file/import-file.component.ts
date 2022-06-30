@@ -6,7 +6,7 @@ import {
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
-import { BaseTs } from 'src/app/common/ts/base/base';
+import { BaseTs } from 'src/app/common/ts/base';
 import { NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { NzBytesPipe } from 'ng-zorro-antd/pipes';
 import { DownloadService } from '../../service/download.service';
