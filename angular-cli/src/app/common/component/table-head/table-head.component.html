@@ -89,7 +89,7 @@
 			<ng-template #contentTemplate>
 				<nz-checkbox-wrapper class="col-content" (nzOnChange)="colRefresh()">
 					<div *ngFor="let item of colsData">
-						<label nz-checkbox [nzValue]="item.title" [(ngModel)]="item.show">
+						<label nz-checkbox [nzValue]="item.key" [(ngModel)]="item.show">
 							{{item.title}}
 						</label>
 					</div>

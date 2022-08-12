@@ -1,5 +1,5 @@
 # 必读！！！
-- 新增/修改：用同一个文件即可，命名 xxx-list-create  
+- 新增/修改：用同一个文件即可，命名 xxx-list-form 
   修改数据包含在MenuService.tab.data
 - 修改：函数命名统一为update()
 - 概览：命名 xxx-overview

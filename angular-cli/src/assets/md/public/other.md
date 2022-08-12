@@ -1,5 +1,6 @@
 # 代码规范
-- 必须多写注释！！！！！（特别是国际化代码）  
+- 必须多写注释！！！！！（特别是国际化代码） 
+- 未使用的import必须删除（优化打包） 
 - 代码顺序保持下列示例  
   ```typescript
 	import { Component, OnInit, Injector } from '@angular/core';
@@ -30,16 +31,27 @@
 
 # 命名规范
 ## 文件名
-- 任何文件命名不许用中文，打包会出问题！！！
+- 任何文件（图片等）命名不许用中文，打包会出问题！！！
 - 概览：xxx-overview
 - 列表：xxx-list
-- 新增/修改：用同一个文件即可，命名 xxx-list-create  
+- 新增/修改：用同一个文件即可，命名 xxx-list-form  
   修改数据包含在MenuService.tab.data（参考 公共示例-Menu菜单）
+- 组件创建映射名称时，# + 首写字符大写
+  ```html
+	例如：#Table，#TableHead
+	```
 
 ## 函数名
 - 概览页面初始化函数名必须：getOverview()   
 	// 在MenuService.selectTab()中，点击到概览页面，都需要重新刷新数据
 - 修改：update()
+
+## 引用名
+```typescript
+public apiService: ApiService  // 正确示例
+public ApiService: ApiService  // 错误示例
+public api: ApiService  // 错误示例
+```
 
 
 # UI规范
@@ -49,3 +61,9 @@
 	<nz-empty nzNotFoundImage="simple"></nz-empty>
 	```
 - 按钮无描边及图标
+
+# 其它规范
+- 占比，统一保留两位小数
+  ```typescript
+	10.5623% => 10.56%
+	```

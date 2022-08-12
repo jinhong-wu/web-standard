@@ -1,8 +1,8 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
 /**
  * @name pdf预览
- * @param url API地址
+ * @param src API地址
 */
 @Component({
   selector: 'app-pdf-view',
@@ -11,18 +11,26 @@ import { environment } from 'src/environments/environment';
 })
 export class PdfViewComponent implements OnChanges {
 
-  constructor() {}
+  constructor(public ElementRef: ElementRef) {}
 
-	@Input() url : string = '';
-  srcUrl: any;
+  @Input() src : string = '';
 
   ngOnChanges(changes):void {
-    if (changes.url) {
-			this.srcUrl = {
-				url: environment.SERVER_URL + this.url,
-				withCredentials: false,
-				httpHeaders: { 'Authorization': environment.TOKEN },
-			};
+    if (changes.src) {
+			let viewer = this.ElementRef.nativeElement.querySelector("#pdf_viewer"),	
+			xhr = new XMLHttpRequest();
+      xhr.open("GET", environment.SERVER_URL + this.src + '#toolbar=0');
+      xhr.responseType = "blob";
+      xhr.setRequestHeader('Authorization', environment.TOKEN);
+			xhr.setRequestHeader('X-Frame-Options', 'SAMEORIGIN');
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === xhr.DONE) {
+          if (xhr.status === 200) {
+            viewer.src = URL.createObjectURL(xhr.response);
+          }
+        }
+      };
+      xhr.send();
     }
   }
 

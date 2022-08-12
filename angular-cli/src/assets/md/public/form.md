@@ -42,6 +42,7 @@
 <nz-input-number [nzMin]="1" [nzMax]="65535" [nzPrecision]='0' formControlName='' nzPlaceHolder="端口">
 </nz-input-number>
 ```
+- input等长度限制，使用maxlength，不使用validator
 
 
 **文件：**

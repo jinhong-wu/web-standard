@@ -9,7 +9,6 @@ import { TreeTableComponent } from './tree-table/tree-table.component';
 import { BatchDeleteComponent } from './batch-delete/batch-delete.component';
 import { FormControlInfoComponent } from './form-control-info/form-control-info.component';
 import { PdfViewComponent } from './pdf-view/pdf-view.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PwdVerifyComponent } from './pwd-verify/pwd-verify.component';
 import { CronComponent } from './cron/cron.component';
 
@@ -28,7 +27,7 @@ import { CronComponent } from './cron/cron.component';
     PwdVerifyComponent,
     CronComponent,
   ],
-  imports: [CommonModule, SharedModule, PdfViewerModule],
+  imports: [CommonModule, SharedModule],
   exports: [
     TableHeadComponent,
     ImportFileComponent,
