@@ -31,8 +31,13 @@ imports: [
 ```
 - 使用
 ```html
-<!-- nz-spin加载效果（必须） -->
+<!-- nz-spin加载效果（必须）、无数据效果（必须） -->
 <nz-spin [nzSpinning]="chartLoading">
-	<div echarts [options]="chartOption" (chartClick)="chartClick($event)" style="width: 100%; height: 500px;"></div>
+	<ng-container *ngIf="chartOption; else empty">
+		<div echarts [options]="chartOption" (chartClick)="chartClick($event)" style="width: 100%; height: 500px;"></div>
+	</ng-container>
 </nz-spin>
+<ng-template #empty>
+	<nz-empty nzNotFoundImage="simple"></nz-empty>
+</ng-template>
 ```  
