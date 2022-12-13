@@ -80,14 +80,14 @@
 ![image-1](assets/md/imgs/input-select.png)  
 **使用：**
 ```html
-<nz-input-group nzSearch nzSize="default" [nzAddOnAfter]="suffixButton" style="width: 30%">
+<nz-input-group nzSearch [nzAddOnAfter]="suffixButton" style="width: 30%">
 	<nz-select nzShowSearch nzAllowClear nzDropdownMatchSelectWidth [ngModel]="'Sign Up'">
 		<nz-option [nzLabel]="'Sign Up'" [nzValue]="'Sign Up'"></nz-option>
 		<nz-option [nzLabel]="'Sign In'" [nzValue]="'Sign In'"></nz-option>
 	</nz-select>
 </nz-input-group>
 <ng-template #suffixButton>
-	<button nz-button nzType="primary" nzSize="default" nzSearch>查询</button>
+	<button nz-button nzType="primary" nzSearch>查询</button>
 </ng-template>
 ```
 

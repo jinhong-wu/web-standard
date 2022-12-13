@@ -17,8 +17,8 @@
 		<nz-tab *ngFor="let tab of tabs;" [nzTitle]="tab.name">
 			<!-- 批量操作成功记录 -->
 			<ng-container *ngIf="tab.id == 'success'">
-				<nz-table #tableSuccess nzSize="middle" nzShowPagination nzShowSizeChanger [nzData]="tableSuccessData"
-					[nzPageSize]='tableSize'>
+				<nz-table #tableSuccess nzSize="middle" nzTableLayout="fixed" nzShowPagination nzShowSizeChanger
+					[nzData]="tableSuccessData" [nzPageSize]='tableSize'>
 					<thead>
 						<tr>
 							<th *ngFor='let col of columns'>{{ col.title }}</th>
@@ -36,8 +36,8 @@
 			</ng-container>
 			<!-- 批量操作失败记录 -->
 			<ng-container *ngIf="tab.id == 'error'">
-				<nz-table #tableError nzSize="middle" nzShowPagination nzShowSizeChanger [nzData]="tableErrorData"
-					[nzPageSize]='tableSize'>
+				<nz-table #tableError nzSize="middle" nzTableLayout="fixed" nzShowPagination nzShowSizeChanger
+					[nzData]="tableErrorData" [nzPageSize]='tableSize'>
 					<thead>
 						<tr>
 							<th *ngFor='let col of columns'>{{ col.title }}</th>

@@ -103,7 +103,7 @@
 	</ng-container>
 </app-table-head>
 <!-- 此处为前端假数据所以忽略nzFrontPagination="false" -->
-<nz-table #Table nzSize="middle" nzLoadingDelay="500" nzShowQuickJumper="true" nzShowSizeChanger="true"
+<nz-table #Table nzSize="middle" nzTableLayout="fixed" nzLoadingDelay="500" nzShowQuickJumper="true" nzShowSizeChanger="true"
 	[nzLoading]="tableLoading" [nzData]="tableData" [nzTotal]="tableTotal" [(nzPageIndex)]="tablePage"
 	[(nzPageSize)]="tableSize" (nzPageIndexChange)="tableDataFn()" (nzPageSizeChange)="tableDataFn(true)"
 	(nzCurrentPageDataChange)="refreshStatus()">

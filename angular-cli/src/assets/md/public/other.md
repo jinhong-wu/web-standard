@@ -41,11 +41,6 @@
 	例如：#Table，#TableHead
 	```
 
-## 函数名
-- 概览页面初始化函数名必须：getOverview()   
-	// 在MenuService.selectTab()中，点击到概览页面，都需要重新刷新数据
-- 修改：update()
-
 ## 引用名
 ```typescript
 public apiService: ApiService  // 正确示例
@@ -67,3 +62,4 @@ public api: ApiService  // 错误示例
   ```typescript
 	10.5623% => 10.56%
 	```
+- 账号、帐号 => 统一为： 帐号
