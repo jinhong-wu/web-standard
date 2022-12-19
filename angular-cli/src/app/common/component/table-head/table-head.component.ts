@@ -27,7 +27,7 @@ import { BaseTs } from '../../ts/base/base';
       <button nz-button nzType="primary" [disabled]="!isAllChecked && !isIndeterminate">删除</button>
     </ng-container>
     <ng-container ngProjectAs="tips">
-      <nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
+      <nz-alert nzShowIcon nzType="info" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
     </ng-container>
   </app-table-head>
 */

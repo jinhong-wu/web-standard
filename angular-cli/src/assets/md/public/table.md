@@ -99,7 +99,7 @@
 			(click)="export('checked')" [disabled]="!isAllChecked && !isIndeterminate">导出</button>
 	</ng-container>
 	<ng-container ngProjectAs="tips">
-		<nz-alert nzShowIcon nzType="warning" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
+		<nz-alert nzShowIcon nzType="info" nzMessage="表格提示：统一放在按钮下，表格上。"></nz-alert>
 	</ng-container>
 </app-table-head>
 <!-- 此处为前端假数据所以忽略nzFrontPagination="false" -->

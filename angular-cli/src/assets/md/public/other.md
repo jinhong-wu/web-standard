@@ -63,3 +63,16 @@ public api: ApiService  // 错误示例
 	10.5623% => 10.56%
 	```
 - 账号、帐号 => 统一为： 帐号
+- 英文版json：除特殊情况，首字母大写
+  ```typescript
+	{
+		"handle": "Handle",    
+		"handleConfirm": "Whether to ${handle || handle} the selected ${name || data}?",
+	}
+	```
+- 文本
+	```html
+xxxTOPx  统一改成 xxx【TOPx】     
+xxx KB  统一改为 xxx（KB）
+	```
+
